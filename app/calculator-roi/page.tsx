@@ -227,7 +227,8 @@ function CurrentSituation({ formData, onInputChange }: {
   onInputChange: (f: keyof FormData, v: number | string) => void
 }) {
   const { t } = useLanguage()
-  const accent = formData.industry ? industryAccent[formData.industry] : null
+  const industry = formData.industry || null
+  const accent = industry ? industryAccent[industry] : null
   const industryAverages: Record<IndustryId, { energy: string; size: string }> = {
     hospitality: { energy: "150.000 – 500.000 EUR/an", size: "5.000 – 50.000 mp" },
     office:      { energy: "80.000 – 300.000 EUR/an",  size: "3.000 – 30.000 mp" },
@@ -236,7 +237,7 @@ function CurrentSituation({ formData, onInputChange }: {
     industrial:  { energy: "150.000 – 1.000.000 EUR/an", size: "5.000 – 100.000 mp" },
     dataCenter:  { energy: "500.000 – 5.000.000 EUR/an", size: "1.000 – 20.000 mp" },
   }
-  const avg = formData.industry ? industryAverages[formData.industry] : null
+  const avg = industry ? industryAverages[industry] : null
 
   return (
     <div className="max-w-lg">
@@ -245,16 +246,16 @@ function CurrentSituation({ formData, onInputChange }: {
         title={t("Situație curentă", "Current Situation")}
         subtitle={t("Introdu costurile și dimensiunea clădirii pentru a calcula economiile potențiale.", "Enter your building's costs and size to calculate potential savings.")}
       />
-      {formData.industry && accent && (
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-6" style={{ backgroundColor: industryTint[formData.industry], color: accent.bg }}>
-          {industryIcons[formData.industry]}
-          <span>{industryDefaults[formData.industry].label}</span>
+      {industry && accent && (
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-6" style={{ backgroundColor: industryTint[industry], color: accent.bg }}>
+          {industryIcons[industry]}
+          <span>{industryDefaults[industry].label}</span>
         </div>
       )}
       <div className="space-y-6">
         <FormField
           label={t("Cost anual energie (EUR) *", "Annual Energy Cost (EUR) *")}
-          hint={avg ? `${t("Medie pentru", "Average for")} ${industryDefaults[formData.industry!].label}: ${avg.energy}` : undefined}
+          hint={avg && industry ? `${t("Medie pentru", "Average for")} ${industryDefaults[industry].label}: ${avg.energy}` : undefined}
         >
           <Input
             type="number"
@@ -266,7 +267,7 @@ function CurrentSituation({ formData, onInputChange }: {
         </FormField>
         <FormField
           label={t("Suprafața clădirii (m²) *", "Building Area (m²) *")}
-          hint={avg ? `${t("Medie pentru", "Average for")} ${industryDefaults[formData.industry!].label}: ${avg.size}` : undefined}
+          hint={avg && industry ? `${t("Medie pentru", "Average for")} ${industryDefaults[industry].label}: ${avg.size}` : undefined}
         >
           <Input
             type="number"
@@ -286,8 +287,8 @@ function CurrentSituation({ formData, onInputChange }: {
             <span>{t("1 clădire", "1 building")}</span>
             <span>{t("50 clădiri", "50 buildings")}</span>
           </div>
-          {formData.buildingCount > 1 && accent && (
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl" style={{ backgroundColor: industryTint[formData.industry!] }}>
+          {formData.buildingCount > 1 && accent && industry && (
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl" style={{ backgroundColor: industryTint[industry] }}>
               <Check className="h-3.5 w-3.5 shrink-0" style={{ color: accent.bg }} />
               <p className="text-xs font-semibold" style={{ color: accent.bg }}>
                 {t("Discount aplicat pentru", "Volume discount applied for")} {formData.buildingCount} {t("clădiri", "buildings")}:{" "}
