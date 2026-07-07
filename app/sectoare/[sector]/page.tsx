@@ -1,0 +1,302 @@
+import { notFound } from "next/navigation"
+import Link from "next/link"
+import { ArrowLeft, ArrowRight, Check, Quote } from "lucide-react"
+import { getSectorBySlug, getRelatedSectors, sectors } from "@/lib/sector-data"
+
+export async function generateStaticParams() {
+  return sectors.map((s) => ({ sector: s.slug }))
+}
+
+export default async function SectorPage({
+  params,
+}: {
+  params: Promise<{ sector: string }>
+}) {
+  const { sector: slug } = await params
+  const sector = getSectorBySlug(slug)
+
+  if (!sector) notFound()
+
+  const related = getRelatedSectors(sector.relatedSectors)
+
+  const accentBg = sector.accentColor
+  const accentText = sector.accentTextDark ? "#0D2E2B" : "#ffffff"
+  const accentMuted = sector.accentTextDark ? "#0D2E2B99" : "#ffffff99"
+
+  return (
+    <div className="min-h-screen bg-[#F5F4F0]">
+
+      {/* ── HERO ── */}
+      <section className="bg-[#0D2E2B] relative overflow-hidden">
+        {/* Accent colour bar top */}
+        <div className="h-1 w-full" style={{ backgroundColor: accentBg }} />
+
+        <div className="max-w-7xl mx-auto px-8 pt-20 pb-24">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-3 mb-12">
+            <Link
+              href="/sectoare"
+              className="flex items-center gap-2 text-white/40 text-sm hover:text-white/70 transition"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              All sectors
+            </Link>
+            <span className="text-white/20">/</span>
+            <span className="text-sm font-medium" style={{ color: accentBg }}>
+              {sector.title}
+            </span>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-end">
+            {/* Left */}
+            <div>
+              <div
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold tracking-widest uppercase mb-6"
+                style={{ backgroundColor: accentBg + "22", color: accentBg }}
+              >
+                • {sector.title}
+              </div>
+              <h1 className="text-6xl md:text-7xl font-black text-white leading-[1.0] tracking-tight mb-6 whitespace-pre-line">
+                {sector.heroHeadline}
+              </h1>
+              <p className="text-lg text-white/50 font-light leading-relaxed max-w-lg">
+                {sector.heroSubheadline}
+              </p>
+              <div className="flex items-center gap-4 mt-10">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full transition-all"
+                  style={{ backgroundColor: accentBg, color: accentText }}
+                >
+                  Talk to a specialist
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/calculator-roi"
+                  className="text-white/50 text-sm border border-white/15 px-5 py-3 rounded-full hover:text-white hover:border-white/30 transition-all"
+                >
+                  Calculate ROI
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — metrics strip */}
+            <div className="grid grid-cols-2 gap-4">
+              {sector.metrics.map((m, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl p-6 border border-white/8"
+                  style={{ backgroundColor: "#ffffff08" }}
+                >
+                  <p className="text-3xl font-black text-white mb-1">{m.value}</p>
+                  <p className="text-xs text-white/40 font-light leading-snug">{m.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRUSTED BY strip ── */}
+      <section className="bg-white border-b border-[#0D2E2B]/8 py-8">
+        <div className="max-w-7xl mx-auto px-8 flex flex-col sm:flex-row items-center gap-6">
+          <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] whitespace-nowrap">
+            Trusted by
+          </p>
+          <div className="h-px flex-1 bg-[#0D2E2B]/8 hidden sm:block" />
+          <div className="flex flex-wrap items-center gap-8">
+            {["Globalworth", "NEPI Rockcastle", "One United Properties", "Iulius Group", "Palas Campus"].map((name) => (
+              <span key={name} className="text-sm font-semibold text-[#0D2E2B]/30 tracking-wide">
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURES GRID ── */}
+      <section className="py-28 bg-[#F5F4F0]">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="max-w-2xl mb-16">
+            <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: sector.accentColor }}>
+              • CAPABILITIES
+            </p>
+            <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight leading-tight">
+              Premier software,<br />premier service.
+            </h2>
+            <p className="text-base text-[#888888] font-light mt-4 leading-relaxed">
+              {sector.description}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sector.features.map((feature, i) => {
+              const Icon = feature.icon
+              return (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl p-8 border border-[#0D2E2B]/6 hover:border-[#0D2E2B]/12 transition-colors"
+                >
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                    style={{ backgroundColor: accentBg + "22" }}
+                  >
+                    <Icon className="h-5 w-5" style={{ color: sector.accentColor }} />
+                  </div>
+                  <h3 className="text-base font-black text-[#0D2E2B] mb-2">{feature.title}</h3>
+                  <p className="text-sm text-[#888888] font-light leading-relaxed">{feature.description}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CAPABILITIES LIST + IMAGE ── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+          {/* List */}
+          <div>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-4 text-[#888888]">
+              • WHAT WE DELIVER
+            </p>
+            <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight mb-10">
+              Everything your {sector.title.toLowerCase()} needs.
+            </h2>
+            <ul className="space-y-4">
+              {sector.capabilities.map((cap, i) => (
+                <li key={i} className="flex items-start gap-4">
+                  <div
+                    className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full flex-shrink-0"
+                    style={{ backgroundColor: accentBg }}
+                  >
+                    <Check className="h-3.5 w-3.5" style={{ color: accentText }} />
+                  </div>
+                  <span className="text-base text-[#0D2E2B] font-light leading-relaxed">{cap}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Image */}
+          <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#F5F4F0]">
+            <img
+              src={sector.image}
+              alt={`${sector.title} BMS installation`}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIAL ── */}
+      <section className="bg-[#0D2E2B] py-28">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <Quote className="h-10 w-10 mx-auto mb-8 opacity-20 text-white" />
+            <blockquote className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight mb-10">
+              &ldquo;{sector.testimonial.quote}&rdquo;
+            </blockquote>
+            <div className="flex items-center justify-center gap-4">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-black"
+                style={{ backgroundColor: accentBg, color: accentText }}
+              >
+                {sector.testimonial.name.charAt(0)}
+              </div>
+              <div className="text-left">
+                <p className="text-white font-semibold text-sm">{sector.testimonial.name}</p>
+                <p className="text-white/40 text-xs">{sector.testimonial.role} · {sector.testimonial.company}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── RELATED SECTORS ── */}
+      {related.length > 0 && (
+        <section className="py-24 bg-[#F5F4F0]">
+          <div className="max-w-7xl mx-auto px-8">
+            <p className="text-xs font-semibold tracking-widest uppercase mb-3 text-[#888888]">
+              • OTHER SECTORS
+            </p>
+            <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight mb-12">
+              Explore related industries
+            </h2>
+            <div className="grid md:grid-cols-3 gap-5">
+              {related.map((rel) => (
+                <Link
+                  key={rel.id}
+                  href={`/sectoare/${rel.slug}`}
+                  className="group relative rounded-2xl p-8 flex flex-col justify-between min-h-[200px] overflow-hidden transition-transform duration-200 hover:scale-[1.02]"
+                  style={{ backgroundColor: rel.accentColor }}
+                >
+                  <div>
+                    <span
+                      className="text-xs tracking-widest uppercase font-semibold"
+                      style={{ color: rel.accentTextDark ? "#0D2E2B" : "rgba(255,255,255,0.6)" }}
+                    >
+                      {rel.subtitle}
+                    </span>
+                    <h3
+                      className="text-2xl font-black mt-2 tracking-tight"
+                      style={{ color: rel.accentTextDark ? "#0D2E2B" : "#ffffff" }}
+                    >
+                      {rel.title}
+                    </h3>
+                  </div>
+                  <div className="flex items-center justify-between mt-6">
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: rel.accentTextDark ? "#0D2E2B99" : "rgba(255,255,255,0.5)" }}
+                    >
+                      Explore sector
+                    </span>
+                    <ArrowRight
+                      className="h-5 w-5 group-hover:translate-x-1 transition-transform"
+                      style={{ color: rel.accentTextDark ? "#0D2E2B" : "#ffffff" }}
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── CTA ── */}
+      <section className="bg-white border-t border-[#0D2E2B]/8 py-20">
+        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="max-w-xl">
+            <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: sector.accentColor }}>
+              • GET STARTED
+            </p>
+            <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight leading-tight">
+              Ready to optimise your {sector.title.toLowerCase()} building?
+            </h2>
+            <p className="text-[#888888] font-light mt-3 text-base leading-relaxed">
+              Talk to one of our specialists and get a personalised ROI estimate within 48 hours.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-7 py-4 rounded-full transition-all"
+              style={{ backgroundColor: accentBg, color: accentText }}
+            >
+              Talk to a specialist
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/calculator-roi"
+              className="inline-flex items-center justify-center gap-2 bg-[#0D2E2B] text-white text-sm font-semibold px-7 py-4 rounded-full hover:bg-[#1F6B4A] transition-all"
+            >
+              Calculate ROI
+            </Link>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  )
+}
