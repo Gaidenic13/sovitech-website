@@ -176,12 +176,12 @@ export default function ResursePage() {
     <div className="min-h-screen bg-[#F5F4F0]">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="bg-[#0D2E2B] pt-20 pb-0 relative overflow-hidden">
+      <section className="bg-[#07201C] pt-20 pb-0 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-8 pb-16">
           <div className="flex items-start justify-between gap-6">
             <div>
               <p className="section-label text-[#1F6B4A] mb-4">{t.label}</p>
-              <h1 className="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight mb-4 max-w-2xl text-balance">
+              <h1 className="text-5xl md:text-6xl font-light text-white leading-tight tracking-tighter mb-4 max-w-2xl text-balance">
                 {t.hero}
               </h1>
               <p className="text-white/50 font-light text-lg max-w-lg leading-relaxed">
@@ -227,7 +227,7 @@ export default function ResursePage() {
 
             {/* Featured large card */}
             <Link href={featuredHref} className="group block">
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#0D2E2B]/5 mb-6">
+              <div className="relative aspect-[16/10] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 mb-6">
                 <Image
                   src={featuredImage}
                   alt={t.featured.title}
@@ -239,7 +239,7 @@ export default function ResursePage() {
                   <CategoryBadge category={t.featured.category} />
                 </div>
               </div>
-              <h2 className="text-2xl font-black text-[#0D2E2B] leading-snug tracking-tight mb-3 group-hover:text-[#1F6B4A] transition-colors text-balance">
+              <h2 className="text-2xl font-light text-[#0D2E2B] leading-snug tracking-tighter mb-3 group-hover:text-[#1F6B4A] transition-colors text-balance">
                 {t.featured.title}
               </h2>
               <p className="text-[#888888] font-light leading-relaxed mb-4 text-sm max-w-xl">
@@ -272,7 +272,7 @@ export default function ResursePage() {
             <div className="flex flex-col divide-y divide-[#0D2E2B]/8">
               {t.secondary.map((post, i) => (
                 <Link key={i} href={secondaryImages[i].href} className="group flex gap-4 py-5 first:pt-0 last:pb-0 items-start">
-                  <div className="relative h-20 w-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F5F4F0]">
+                  <div className="relative h-20 w-28 flex-shrink-0 rounded-[2px] overflow-hidden bg-[#F5F4F0]">
                     <Image
                       src={secondaryImages[i].image}
                       alt={post.title}
@@ -282,7 +282,7 @@ export default function ResursePage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <CategoryBadge category={post.category} />
-                    <h3 className="font-black text-sm text-[#0D2E2B] leading-snug mt-2 mb-1.5 group-hover:text-[#1F6B4A] transition-colors line-clamp-2">
+                    <h3 className="font-light text-sm text-[#0D2E2B] leading-snug mt-2 mb-1.5 group-hover:text-[#1F6B4A] transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     <p className="text-[10px] text-[#888888]">
@@ -302,14 +302,14 @@ export default function ResursePage() {
         <div className="max-w-7xl mx-auto px-8">
           <p className="section-label mb-10">{t.latest}</p>
 
-          <div className="grid gap-px bg-[#0D2E2B]/8 rounded-2xl overflow-hidden md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px bg-[#0D2E2B]/8 rounded-[2px] overflow-hidden md:grid-cols-2 lg:grid-cols-3">
             {t.articles.map((article, i) => (
               <Link
                 key={i}
                 href={articleImages[i].href}
                 className="group bg-white p-6 flex flex-col hover:bg-[#F5F4F0] transition-colors"
               >
-                <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#0D2E2B]/5 mb-5">
+                <div className="relative aspect-[16/9] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 mb-5">
                   <Image
                     src={articleImages[i].image}
                     alt={article.title}
@@ -321,7 +321,7 @@ export default function ResursePage() {
                   <CategoryBadge category={article.category} />
                   <span className="text-[10px] text-[#888888]">{article.readTime}</span>
                 </div>
-                <h3 className="font-black text-[#0D2E2B] leading-snug text-base mb-2 group-hover:text-[#1F6B4A] transition-colors line-clamp-2 flex-1">
+                <h3 className="font-light text-[#0D2E2B] leading-snug text-base mb-2 group-hover:text-[#1F6B4A] transition-colors line-clamp-2 flex-1">
                   {article.title}
                 </h3>
                 <p className="text-sm text-[#888888] font-light line-clamp-2 leading-relaxed mb-4">
@@ -338,7 +338,7 @@ export default function ResursePage() {
           </div>
 
           <div className="mt-10 text-center">
-            <button className="inline-flex items-center gap-2 border border-[#0D2E2B]/15 bg-white text-[#0D2E2B] text-sm font-semibold px-7 py-3.5 rounded-full hover:border-[#0D2E2B]/30 hover:bg-[#F5F4F0] transition-colors">
+            <button className="inline-flex items-center gap-2 border border-[#0D2E2B]/15 bg-white text-[#0D2E2B] text-sm font-semibold px-7 py-3.5 rounded-[1px] hover:border-[#0D2E2B]/30 hover:bg-[#F5F4F0] transition-colors">
               {t.viewMore}
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -394,9 +394,9 @@ export default function ResursePage() {
             </div>
 
             {/* Newsletter */}
-            <div className="bg-[#0D2E2B] rounded-2xl p-7 flex flex-col">
+            <div className="bg-[#0D2E2B] rounded-[2px] p-7 flex flex-col">
               <p className="section-label text-[#1F6B4A] mb-4">{t.newsletter}</p>
-              <h3 className="text-xl font-black text-white leading-snug mb-3">
+              <h3 className="text-xl font-light text-white leading-snug mb-3">
                 {t.newsletterTitle}
               </h3>
               <p className="text-white/50 text-sm font-light leading-relaxed mb-6 flex-1">
@@ -406,11 +406,11 @@ export default function ResursePage() {
                 <input
                   type="email"
                   placeholder={t.emailPlaceholder}
-                  className="h-11 rounded-xl border border-white/12 bg-white/8 px-4 text-white placeholder:text-white/30 text-sm focus:outline-none focus:border-white/25"
+                  className="h-11 rounded-[2px] border border-white/12 bg-white/8 px-4 text-white placeholder:text-white/30 text-sm focus:outline-none focus:border-white/25"
                 />
                 <button
                   type="submit"
-                  className="h-11 bg-white text-[#0D2E2B] text-sm font-bold rounded-xl hover:bg-[#F5F4F0] transition-colors"
+                  className="h-11 bg-white text-[#0D2E2B] text-sm font-bold rounded-[2px] hover:bg-[#F5F4F0] transition-colors"
                 >
                   {t.subscribe}
                 </button>

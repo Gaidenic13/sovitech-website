@@ -22,12 +22,17 @@ export default async function SectorPage({
   const accentBg = sector.accentColor
   const accentText = sector.accentTextDark ? "#0D2E2B" : "#ffffff"
   const accentMuted = sector.accentTextDark ? "#0D2E2B99" : "#ffffff99"
+  // darker counterpart of light accents, for text sitting on light backgrounds
+  const accentOnLight =
+    ({ "#C5C0F5": "#5C5FD4", "#C8E6C9": "#1F6B4A", "#E07B6A": "#B14A36" } as Record<string, string>)[
+      sector.accentColor
+    ] ?? sector.accentColor
 
   return (
     <div className="min-h-screen bg-[#F5F4F0]">
 
       {/* ── HERO ── */}
-      <section className="bg-[#0D2E2B] relative overflow-hidden">
+      <section className="bg-[#07201C] relative overflow-hidden">
         {/* Accent colour bar top */}
         <div className="h-1 w-full" style={{ backgroundColor: accentBg }} />
 
@@ -56,7 +61,7 @@ export default async function SectorPage({
               >
                 • {sector.title}
               </div>
-              <h1 className="text-6xl md:text-7xl font-black text-white leading-[1.0] tracking-tight mb-6 whitespace-pre-line">
+              <h1 className="text-6xl md:text-7xl font-light text-white leading-[1.0] tracking-tighter mb-6 whitespace-pre-line">
                 {sector.heroHeadline}
               </h1>
               <p className="text-lg text-white/50 font-light leading-relaxed max-w-lg">
@@ -65,7 +70,7 @@ export default async function SectorPage({
               <div className="flex items-center gap-4 mt-10">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full transition-all"
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-[1px] transition-colors duration-300"
                   style={{ backgroundColor: accentBg, color: accentText }}
                 >
                   Talk to a specialist
@@ -73,7 +78,7 @@ export default async function SectorPage({
                 </Link>
                 <Link
                   href="/calculator-roi"
-                  className="text-white/50 text-sm border border-white/15 px-5 py-3 rounded-full hover:text-white hover:border-white/30 transition-all"
+                  className="text-white/50 text-sm border border-white/15 px-5 py-3 rounded-[1px] hover:text-white hover:border-white/30 transition-colors duration-300"
                 >
                   Calculate ROI
                 </Link>
@@ -85,10 +90,10 @@ export default async function SectorPage({
               {sector.metrics.map((m, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl p-6 border border-white/8"
+                  className="rounded-[2px] p-6 border border-white/8"
                   style={{ backgroundColor: "#ffffff08" }}
                 >
-                  <p className="text-3xl font-black text-white mb-1">{m.value}</p>
+                  <p className="text-3xl font-light text-white mb-1">{m.value}</p>
                   <p className="text-xs text-white/40 font-light leading-snug">{m.label}</p>
                 </div>
               ))}
@@ -118,10 +123,10 @@ export default async function SectorPage({
       <section className="py-28 bg-[#F5F4F0]">
         <div className="max-w-7xl mx-auto px-8">
           <div className="max-w-2xl mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: sector.accentColor }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: accentOnLight }}>
               • CAPABILITIES
             </p>
-            <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight leading-tight">
+            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
               Premier software,<br />premier service.
             </h2>
             <p className="text-base text-[#888888] font-light mt-4 leading-relaxed">
@@ -135,15 +140,15 @@ export default async function SectorPage({
               return (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl p-8 border border-[#0D2E2B]/6 hover:border-[#0D2E2B]/12 transition-colors"
+                  className="bg-white rounded-[2px] p-8 border border-[#0D2E2B]/6 hover:border-[#0D2E2B]/12 transition-colors"
                 >
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                    className="w-11 h-11 rounded-[2px] flex items-center justify-center mb-5"
                     style={{ backgroundColor: accentBg + "22" }}
                   >
-                    <Icon className="h-5 w-5" style={{ color: sector.accentColor }} />
+                    <Icon className="h-5 w-5" style={{ color: accentOnLight }} />
                   </div>
-                  <h3 className="text-base font-black text-[#0D2E2B] mb-2">{feature.title}</h3>
+                  <h3 className="text-base font-light text-[#0D2E2B] mb-2">{feature.title}</h3>
                   <p className="text-sm text-[#888888] font-light leading-relaxed">{feature.description}</p>
                 </div>
               )
@@ -160,7 +165,7 @@ export default async function SectorPage({
             <p className="text-xs font-semibold tracking-widest uppercase mb-4 text-[#888888]">
               • WHAT WE DELIVER
             </p>
-            <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight mb-10">
+            <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-10">
               Everything your {sector.title.toLowerCase()} needs.
             </h2>
             <ul className="space-y-4">
@@ -179,7 +184,7 @@ export default async function SectorPage({
           </div>
 
           {/* Image */}
-          <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#F5F4F0]">
+          <div className="aspect-[4/3] rounded-[2px] overflow-hidden bg-[#F5F4F0]">
             <img
               src={sector.image}
               alt={`${sector.title} BMS installation`}
@@ -190,16 +195,16 @@ export default async function SectorPage({
       </section>
 
       {/* ── TESTIMONIAL ── */}
-      <section className="bg-[#0D2E2B] py-28">
+      <section className="bg-[#07201C] py-28">
         <div className="max-w-7xl mx-auto px-8">
           <div className="max-w-3xl mx-auto text-center">
             <Quote className="h-10 w-10 mx-auto mb-8 opacity-20 text-white" />
-            <blockquote className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight mb-10">
+            <blockquote className="text-2xl md:text-3xl font-light text-white leading-tight tracking-tighter mb-10">
               &ldquo;{sector.testimonial.quote}&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
               <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-black"
+                className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-light"
                 style={{ backgroundColor: accentBg, color: accentText }}
               >
                 {sector.testimonial.name.charAt(0)}
@@ -220,7 +225,7 @@ export default async function SectorPage({
             <p className="text-xs font-semibold tracking-widest uppercase mb-3 text-[#888888]">
               • OTHER SECTORS
             </p>
-            <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight mb-12">
+            <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-12">
               Explore related industries
             </h2>
             <div className="grid md:grid-cols-3 gap-5">
@@ -228,7 +233,7 @@ export default async function SectorPage({
                 <Link
                   key={rel.id}
                   href={`/sectoare/${rel.slug}`}
-                  className="group relative rounded-2xl p-8 flex flex-col justify-between min-h-[200px] overflow-hidden transition-transform duration-200 hover:scale-[1.02]"
+                  className="group relative rounded-[2px] p-8 flex flex-col justify-between min-h-[200px] overflow-hidden transition-transform duration-200 hover:scale-[1.02]"
                   style={{ backgroundColor: rel.accentColor }}
                 >
                   <div>
@@ -239,7 +244,7 @@ export default async function SectorPage({
                       {rel.subtitle}
                     </span>
                     <h3
-                      className="text-2xl font-black mt-2 tracking-tight"
+                      className="text-2xl font-light mt-2 tracking-tighter"
                       style={{ color: rel.accentTextDark ? "#0D2E2B" : "#ffffff" }}
                     >
                       {rel.title}
@@ -248,7 +253,7 @@ export default async function SectorPage({
                   <div className="flex items-center justify-between mt-6">
                     <span
                       className="text-sm font-medium"
-                      style={{ color: rel.accentTextDark ? "#0D2E2B99" : "rgba(255,255,255,0.5)" }}
+                      style={{ color: rel.accentTextDark ? "#0D2E2B99" : "rgba(255,255,255,0.9)" }}
                     >
                       Explore sector
                     </span>
@@ -268,10 +273,10 @@ export default async function SectorPage({
       <section className="bg-white border-t border-[#0D2E2B]/8 py-20">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="max-w-xl">
-            <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: sector.accentColor }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: accentOnLight }}>
               • GET STARTED
             </p>
-            <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight leading-tight">
+            <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
               Ready to optimise your {sector.title.toLowerCase()} building?
             </h2>
             <p className="text-[#888888] font-light mt-3 text-base leading-relaxed">

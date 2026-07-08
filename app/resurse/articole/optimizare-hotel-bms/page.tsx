@@ -95,7 +95,7 @@ export default function OptimizareHotelBMSPage() {
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 Ghid Tehnic
               </div>
-              <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
+              <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tighter text-foreground md:text-5xl">
                 Optimizarea performantei hoteliere prin automatizare si management energetic
               </h1>
               <p className="mb-6 text-xl text-muted-foreground leading-relaxed">
@@ -106,7 +106,7 @@ export default function OptimizareHotelBMSPage() {
             </header>
 
             {/* Hero Image */}
-            <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-muted">
+            <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-[2px] bg-muted">
               <Image
                 src="/luxury-hotel-lobby-modern-interior.jpg"
                 alt="Interior hotel modern cu sistem de automatizare"
@@ -144,20 +144,20 @@ export default function OptimizareHotelBMSPage() {
               </p>
 
               {/* Key Data Point */}
-              <div className="my-12 rounded-xl border border-border bg-card p-8">
+              <div className="my-12 rounded-[2px] border border-border bg-card p-8">
                 <h4 className="mb-6 text-lg font-semibold text-foreground">
                   Consumul energetic tipic al unui hotel
                 </h4>
                 <div className="grid grid-cols-3 gap-6 text-center">
-                  <div className="rounded-lg bg-muted/50 p-6">
+                  <div className="rounded-[2px] bg-muted/50 p-6">
                     <p className="text-3xl font-bold text-primary mb-2">1.52</p>
                     <p className="text-sm text-muted-foreground">GWh/an consum<br/>hotel 170 camere</p>
                   </div>
-                  <div className="rounded-lg bg-muted/50 p-6">
+                  <div className="rounded-[2px] bg-muted/50 p-6">
                     <p className="text-3xl font-bold text-primary mb-2">82.6%</p>
                     <p className="text-sm text-muted-foreground">Scor BREEAM<br/>Radisson Blu</p>
                   </div>
-                  <div className="rounded-lg bg-muted/50 p-6">
+                  <div className="rounded-[2px] bg-muted/50 p-6">
                     <p className="text-3xl font-bold text-primary mb-2">100%</p>
                     <p className="text-sm text-muted-foreground">Electricitate din<br/>surse regenerabile</p>
                   </div>
@@ -193,7 +193,7 @@ export default function OptimizareHotelBMSPage() {
                   { title: "Protocoale deschise", desc: "KNX, DALI, Modbus, M-Bus, BACnet pentru interoperabilitate" },
                   { title: "Alerte si mentenanta", desc: "Notificari automate pentru anomalii si intretinere preventiva" },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-lg border border-border/40 bg-card p-5">
+                  <div key={item.title} className="rounded-[2px] border border-border/40 bg-card p-5">
                     <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
                   </div>
@@ -212,7 +212,7 @@ export default function OptimizareHotelBMSPage() {
                 Radisson Blu Bucuresti: un exemplu de ospitalitate sustenabila
               </h2>
 
-              <div className="relative my-8 aspect-[16/9] overflow-hidden rounded-xl bg-muted">
+              <div className="relative my-8 aspect-[16/9] overflow-hidden rounded-[2px] bg-muted">
                 <Image
                   src="/ref-radisson-blu.jpg"
                   alt="Hotel Radisson Blu Bucuresti"
@@ -227,7 +227,7 @@ export default function OptimizareHotelBMSPage() {
                 supraveghere centralizata a sistemelor HVAC, apei calde, incalzirii piscinelor si iluminatului.
               </p>
 
-              <div className="my-8 rounded-xl bg-primary/5 border border-primary/20 p-6">
+              <div className="my-8 rounded-[2px] bg-primary/5 border border-primary/20 p-6">
                 <p className="text-foreground font-medium mb-3">Rezultate post-implementare:</p>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-3">
@@ -259,7 +259,7 @@ export default function OptimizareHotelBMSPage() {
               </p>
 
               {/* Benchmark Data */}
-              <div className="my-12 rounded-xl border border-border bg-card p-8">
+              <div className="my-12 rounded-[2px] border border-border bg-card p-8">
                 <h4 className="mb-6 text-lg font-semibold text-foreground">
                   Reduceri energetice raportate de lanturi hoteliere
                 </h4>
@@ -286,18 +286,18 @@ export default function OptimizareHotelBMSPage() {
                 </div>
               </div>
 
-              <div className="my-12 rounded-xl border border-border bg-card p-8">
+              <div className="my-12 rounded-[2px] border border-border bg-card p-8">
                 <h4 className="mb-6 text-lg font-semibold text-foreground">KPI-uri tipice de benchmarking</h4>
                 <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="rounded-lg bg-muted/50 p-5">
+                  <div className="rounded-[2px] bg-muted/50 p-5">
                     <p className="text-2xl font-bold text-primary mb-1">{'100-150'}</p>
                     <p className="text-xs text-muted-foreground">kWh/mp/an<br/>consum hotel tipic</p>
                   </div>
-                  <div className="rounded-lg bg-muted/50 p-5">
+                  <div className="rounded-[2px] bg-muted/50 p-5">
                     <p className="text-2xl font-bold text-primary mb-1">{'20-30%'}</p>
                     <p className="text-xs text-muted-foreground">Reducere tinta<br/>obiectiv BMS comun</p>
                   </div>
-                  <div className="rounded-lg bg-muted/50 p-5">
+                  <div className="rounded-[2px] bg-muted/50 p-5">
                     <p className="text-2xl font-bold text-primary mb-1">{'3-5'}</p>
                     <p className="text-xs text-muted-foreground">Ani perioada<br/>de amortizare</p>
                   </div>
@@ -389,7 +389,7 @@ export default function OptimizareHotelBMSPage() {
                     desc: "Procentul de functionare al sistemelor critice (boilere, chillere). Sisteme mai stabile inseamna mai putina mentenanta reactiva.",
                   },
                 ].map((item) => (
-                  <div key={item.kpi} className="rounded-lg border border-border/40 bg-card p-5">
+                  <div key={item.kpi} className="rounded-[2px] border border-border/40 bg-card p-5">
                     <h4 className="font-semibold text-foreground mb-1">{item.kpi}</h4>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
                   </div>
@@ -414,7 +414,7 @@ export default function OptimizareHotelBMSPage() {
               </p>
 
               {/* CTA */}
-              <div className="mt-16 rounded-xl bg-primary/5 border border-primary/20 p-8 text-center">
+              <div className="mt-16 rounded-[2px] bg-primary/5 border border-primary/20 p-8 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-3">
                   Doriti o evaluare BMS pentru hotelul dumneavoastra?
                 </h3>
@@ -442,7 +442,7 @@ export default function OptimizareHotelBMSPage() {
               <h3 className="mb-8 text-2xl font-bold text-foreground">Articole similare</h3>
               <div className="grid gap-8 sm:grid-cols-2">
                 <Link href="/resurse/articole/eficienta-bms" className="group">
-                  <div className="relative mb-4 aspect-[5/3] overflow-hidden rounded-xl bg-muted">
+                  <div className="relative mb-4 aspect-[5/3] overflow-hidden rounded-[2px] bg-muted">
                     <Image
                       src="/modern-building-automation-dashboard-with-energy-c.jpg"
                       alt="Eficienta BMS"
@@ -459,7 +459,7 @@ export default function OptimizareHotelBMSPage() {
                   <p className="mt-2 text-sm text-muted-foreground">Ian 15, 2026 — 12 min citire</p>
                 </Link>
                 <Link href="/resurse/studii-de-caz/therme-bucuresti" className="group">
-                  <div className="relative mb-4 aspect-[5/3] overflow-hidden rounded-xl bg-muted">
+                  <div className="relative mb-4 aspect-[5/3] overflow-hidden rounded-[2px] bg-muted">
                     <Image
                       src="/therme-bucuresti-spa-exterior-modern.jpg"
                       alt="Therme Bucuresti"

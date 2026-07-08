@@ -78,7 +78,7 @@ export default function EficientaBMSArticlePage() {
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 Date & Analiză
               </div>
-              <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
+              <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tighter text-foreground md:text-5xl">
                 Cât de eficiente sunt sistemele BMS în reducerea costurilor energetice?
               </h1>
               <p className="mb-6 text-xl text-muted-foreground leading-relaxed">
@@ -89,7 +89,7 @@ export default function EficientaBMSArticlePage() {
             </header>
 
             {/* Hero Image */}
-            <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-muted">
+            <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-[2px] bg-muted">
               <Image
                 src="/modern-building-automation-dashboard-with-energy-c.jpg"
                 alt="Dashboard BMS cu grafice energie"
@@ -197,7 +197,7 @@ export default function EficientaBMSArticlePage() {
               </p>
 
               {/* Data Visualization - Chart 1 */}
-              <div className="my-12 rounded-xl border border-border bg-card p-8">
+              <div className="my-12 rounded-[2px] border border-border bg-card p-8">
                 <h4 className="mb-6 text-lg font-semibold text-foreground">
                   Reducerea consumului energetic pe sector (%)
                 </h4>
@@ -229,7 +229,7 @@ export default function EficientaBMSArticlePage() {
                 </p>
               </div>
 
-              <div className="my-8 rounded-xl bg-primary/5 border border-primary/20 p-6">
+              <div className="my-8 rounded-[2px] bg-primary/5 border border-primary/20 p-6">
                 <p className="text-foreground font-medium mb-2">Rezultatul nostru:</p>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>
@@ -270,7 +270,7 @@ export default function EficientaBMSArticlePage() {
               </p>
 
               {/* Data Visualization - Chart 2 */}
-              <div className="my-12 rounded-xl border border-border bg-card p-8">
+              <div className="my-12 rounded-[2px] border border-border bg-card p-8">
                 <h4 className="mb-6 text-lg font-semibold text-foreground">
                   Perioada medie de amortizare pe dimensiune clădire
                 </h4>
@@ -281,7 +281,7 @@ export default function EficientaBMSArticlePage() {
                     { size: "15-30.000 mp", years: "2.4 ani" },
                     { size: "> 30.000 mp", years: "1.8 ani" },
                   ].map((item) => (
-                    <div key={item.size} className="rounded-lg bg-muted/50 p-4">
+                    <div key={item.size} className="rounded-[2px] bg-muted/50 p-4">
                       <p className="text-2xl font-bold text-primary mb-1">{item.years}</p>
                       <p className="text-xs text-muted-foreground">{item.size}</p>
                     </div>
@@ -300,7 +300,7 @@ export default function EficientaBMSArticlePage() {
               </p>
 
               {/* Data Visualization - Chart 3 */}
-              <div className="my-12 rounded-xl border border-border bg-card p-8">
+              <div className="my-12 rounded-[2px] border border-border bg-card p-8">
                 <h4 className="mb-6 text-lg font-semibold text-foreground">
                   Rata de succes (ROI ≥100% în 3 ani) pe sector
                 </h4>
@@ -432,7 +432,7 @@ export default function EficientaBMSArticlePage() {
               </ol>
 
               {/* Disclaimer */}
-              <div className="mt-16 rounded-xl border border-border bg-muted/30 p-6">
+              <div className="mt-16 rounded-[2px] border border-border bg-muted/30 p-6">
                 <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                   Disclaimer
                 </h4>
@@ -479,7 +479,7 @@ export default function EficientaBMSArticlePage() {
                 },
               ].map((article, index) => (
                 <Link key={index} href="#" className="group">
-                  <div className="relative mb-4 aspect-[2/1] overflow-hidden rounded-xl bg-muted">
+                  <div className="relative mb-4 aspect-[2/1] overflow-hidden rounded-[2px] bg-muted">
                     <Image
                       src={article.image || "/placeholder.svg"}
                       alt={article.title}

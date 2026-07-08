@@ -15,7 +15,7 @@ export default function PricingPage() {
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-foreground md:text-6xl text-balance">
+            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tighter text-foreground md:text-6xl text-balance">
               {t("Pachete de servicii BMS", "BMS service packages")}
             </h1>
             <p className="mb-8 text-xl text-foreground/80 text-pretty">
@@ -29,7 +29,7 @@ export default function PricingPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid gap-8 md:grid-cols-3">
-            <Card className="border-border/40 bg-card">
+            <Card className="flex h-full flex-col border-border/40 bg-card">
               <CardHeader className="border-b border-border/40 p-8">
                 <h3 className="mb-2 text-2xl font-bold text-foreground">{t("Esențial", "Essential")}</h3>
                 <div className="mb-4">
@@ -37,8 +37,8 @@ export default function PricingPage() {
                 </div>
                 <p className="text-sm text-foreground/70">{t("Pentru proiecte BMS la scară mică", "For small-scale BMS projects")}</p>
               </CardHeader>
-              <CardContent className="p-8">
-                <ul className="mb-8 space-y-4">
+              <CardContent className="flex flex-1 flex-col p-8">
+                <ul className="mb-8 flex-1 space-y-4">
                   <li className="flex items-start gap-3">
                     <Check className="mt-1 h-5 w-5 flex-shrink-0 text-accent" />
                     <span className="text-foreground/80">{t("Până la 500 m² suprafață", "Up to 500 m² floor area")}</span>
@@ -62,7 +62,7 @@ export default function PricingPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-accent bg-card shadow-lg shadow-accent/20">
+            <Card className="flex h-full flex-col border-accent bg-card">
               <CardHeader className="border-b border-border/40 p-8">
                 <div className="mb-2 inline-block rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold text-accent">
                   {t("CEL MAI POPULAR", "MOST POPULAR")}
@@ -73,8 +73,8 @@ export default function PricingPage() {
                 </div>
                 <p className="text-sm text-foreground/70">{t("Pentru clădiri comerciale și de birouri", "For commercial and office buildings")}</p>
               </CardHeader>
-              <CardContent className="p-8">
-                <ul className="mb-8 space-y-4">
+              <CardContent className="flex flex-1 flex-col p-8">
+                <ul className="mb-8 flex-1 space-y-4">
                   <li className="flex items-start gap-3">
                     <Check className="mt-1 h-5 w-5 flex-shrink-0 text-accent" />
                     <span className="text-foreground/80">{t("Până la 5.000 m² suprafață", "Up to 5,000 m² floor area")}</span>
@@ -102,7 +102,7 @@ export default function PricingPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-border/40 bg-card">
+            <Card className="flex h-full flex-col border-border/40 bg-card">
               <CardHeader className="border-b border-border/40 p-8">
                 <h3 className="mb-2 text-2xl font-bold text-foreground">{t("Enterprise", "Enterprise")}</h3>
                 <div className="mb-4">
@@ -110,8 +110,8 @@ export default function PricingPage() {
                 </div>
                 <p className="text-sm text-foreground/70">{t("Pentru campusuri și complexe mari", "For campuses and large complexes")}</p>
               </CardHeader>
-              <CardContent className="p-8">
-                <ul className="mb-8 space-y-4">
+              <CardContent className="flex flex-1 flex-col p-8">
+                <ul className="mb-8 flex-1 space-y-4">
                   <li className="flex items-start gap-3">
                     <Check className="mt-1 h-5 w-5 flex-shrink-0 text-accent" />
                     <span className="text-foreground/80">{t("Suprafață nelimitată", "Unlimited floor area")}</span>

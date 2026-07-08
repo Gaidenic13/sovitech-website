@@ -338,7 +338,7 @@ export default function ProdusePage() {
               </span>
               {t("Partener autorizat SAUTER Elveția în România", "Authorised SAUTER Partner in Romania")}
             </div>
-            <h1 className="mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-5xl font-bold tracking-tight text-transparent md:text-6xl">
+            <h1 className="mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-5xl font-bold tracking-tighter text-transparent md:text-6xl">
               {t("Gama completă SAUTER", "Complete SAUTER Range")}
             </h1>
             <p className="text-balance text-lg text-muted-foreground md:text-xl">
@@ -348,13 +348,13 @@ export default function ProdusePage() {
 
           <div className="mx-auto mt-10 max-w-4xl">
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-lg border border-border/50 bg-card/50 p-6 backdrop-blur-sm">
+              <div className="rounded-[2px] border border-border/50 bg-card/50 p-6 backdrop-blur-sm">
                 <h3 className="mb-2 font-semibold text-foreground">{t("Documentație tehnică", "Technical Documentation")}</h3>
                 <p className="text-sm text-muted-foreground">
                   {t("Fișe tehnice și manuale în format PDF disponibile pentru fiecare produs în secțiunea de detalii.", "Technical data sheets and manuals in PDF format available for each product in the details section.")}
                 </p>
               </div>
-              <div className="rounded-lg border border-border/50 bg-card/50 p-6 backdrop-blur-sm">
+              <div className="rounded-[2px] border border-border/50 bg-card/50 p-6 backdrop-blur-sm">
                 <h3 className="mb-2 font-semibold text-foreground">{t("Oferte personalizate", "Custom Quotes")}</h3>
                 <p className="text-sm text-muted-foreground">
                   {t("Reprezentanții noștri comerciali pot furniza prețuri pentru echipamente și oferte personalizate bazate pe cerințele proiectului.", "Our sales representatives can provide equipment pricing and custom quotes based on your project requirements.")}
@@ -381,7 +381,7 @@ export default function ProdusePage() {
                 onClick={() => setSelectedCategory(category)}
                 className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-medium transition-all ${
                   selectedCategory === category
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    ? "bg-primary text-primary-foreground"
                     : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
@@ -405,7 +405,7 @@ export default function ProdusePage() {
                   key={product.id}
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
-                  className="group relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card to-muted/20 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+                  className="group relative flex flex-col overflow-hidden rounded-[2px] border border-border/50 bg-gradient-to-br from-card to-muted/20 transition-all duration-500 hover:border-primary/50"
                 >
                   {/* Product Image */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
@@ -421,7 +421,7 @@ export default function ProdusePage() {
                     </div>
 
                     {/* Icon */}
-                    <div className="absolute bottom-4 right-4 rounded-xl bg-primary/90 p-3 text-primary-foreground shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                    <div className="absolute bottom-4 right-4 rounded-[2px] bg-primary/90 p-3 text-primary-foreground backdrop-blur-sm">
                       <Icon className="h-6 w-6" />
                     </div>
 
@@ -471,7 +471,7 @@ export default function ProdusePage() {
                   </div>
 
                   {/* Product Info */}
-                  <div className="p-6">
+                  <div className="flex flex-1 flex-col p-6">
                     <h3 className="mb-2 text-xl font-semibold text-foreground">{product.name}</h3>
                     <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{product.shortDesc}</p>
 
@@ -489,7 +489,7 @@ export default function ProdusePage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="group/btn w-full border-primary/20 hover:border-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+                      className="group/btn mt-auto w-full border-primary/20 hover:border-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
                     >
                       <span>{t("Detalii produs", "Product details")}</span>
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />

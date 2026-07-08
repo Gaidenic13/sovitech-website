@@ -5,7 +5,7 @@ export default function GhidBMSPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#F5F4F0]">
       {/* Hero Section */}
-      <section className="bg-[#0D2E2B] py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-[#07201C] py-20 md:py-28 relative overflow-hidden">
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg"
@@ -19,7 +19,7 @@ export default function GhidBMSPage() {
               <FileText className="h-3.5 w-3.5" />
               Free Evaluation Guide
             </div>
-            <h1 className="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight mb-6 text-balance">
+            <h1 className="text-5xl md:text-6xl font-light text-white leading-tight tracking-tighter mb-6 text-balance">
               Assess Your Building&apos;s Automation Potential
             </h1>
             <p className="text-white/60 font-light text-lg mb-10 max-w-2xl leading-relaxed">
@@ -29,14 +29,14 @@ export default function GhidBMSPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/ghid-bms/descarca"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#0D2E2B] text-sm font-bold px-7 py-3.5 rounded-xl hover:bg-[#F5F4F0] transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#0D2E2B] text-sm font-bold px-7 py-3.5 rounded-[2px] hover:bg-[#F5F4F0] transition-colors"
               >
                 <Download className="h-4 w-4" />
                 Download the Free Guide
               </Link>
               <Link
                 href="#continut"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/15 text-white text-sm font-medium px-7 py-3.5 rounded-xl hover:bg-white/5 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/15 text-white text-sm font-medium px-7 py-3.5 rounded-[2px] hover:bg-white/5 transition-colors"
               >
                 View Contents
                 <ArrowRight className="h-4 w-4" />
@@ -51,7 +51,7 @@ export default function GhidBMSPage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="max-w-2xl mb-14">
             <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• What you will discover</p>
-            <h2 className="text-4xl font-black text-[#0D2E2B] leading-tight tracking-tight">
+            <h2 className="text-4xl font-light text-[#0D2E2B] leading-tight tracking-tighter">
               What You Will Find in This Guide
             </h2>
             <p className="text-[#888888] font-light mt-3">A complete toolkit for evaluating the BMS investment opportunity</p>
@@ -78,11 +78,11 @@ export default function GhidBMSPage() {
                 bg: "#C8E6C9",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-[#F5F4F0] p-8 flex flex-col gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: item.bg + "60" }}>
+              <div key={item.title} className="rounded-[2px] bg-[#F5F4F0] p-8 flex flex-col gap-4">
+                <div className="w-12 h-12 rounded-[2px] flex items-center justify-center" style={{ backgroundColor: item.bg + "60" }}>
                   {item.icon}
                 </div>
-                <h3 className="text-lg font-black text-[#0D2E2B]">{item.title}</h3>
+                <h3 className="text-lg font-light text-[#0D2E2B]">{item.title}</h3>
                 <p className="text-sm text-[#888888] font-light leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -95,7 +95,7 @@ export default function GhidBMSPage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="max-w-2xl mb-14">
             <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• Guide structure</p>
-            <h2 className="text-4xl font-black text-[#0D2E2B] leading-tight tracking-tight">
+            <h2 className="text-4xl font-light text-[#0D2E2B] leading-tight tracking-tighter">
               Guide Contents
             </h2>
           </div>
@@ -143,12 +143,12 @@ export default function GhidBMSPage() {
                 ],
               },
             ].map((section) => (
-              <div key={section.num} className="bg-white rounded-2xl p-8 flex gap-6">
+              <div key={section.num} className="bg-white rounded-[2px] p-8 flex gap-6">
                 <div className="flex-shrink-0">
-                  <span className="text-4xl font-black text-[#0D2E2B]/10">{section.num}</span>
+                  <span className="text-4xl font-light text-[#0D2E2B]/10">{section.num}</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-black text-[#0D2E2B] mb-2">{section.title}</h3>
+                  <h3 className="text-lg font-light text-[#0D2E2B] mb-2">{section.title}</h3>
                   <p className="text-sm text-[#888888] font-light mb-4 leading-relaxed">{section.desc}</p>
                   <ul className="space-y-2">
                     {section.items.map((item) => (
@@ -166,11 +166,11 @@ export default function GhidBMSPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0D2E2B] py-20">
+      <section className="bg-[#07201C] py-20">
         <div className="max-w-7xl mx-auto px-8">
           <div className="max-w-2xl">
-            <p className="text-xs text-[#1F6B4A] font-semibold tracking-widest uppercase mb-3">• Download now</p>
-            <h2 className="text-4xl font-black text-white leading-tight tracking-tight mb-4">
+            <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• Download now</p>
+            <h2 className="text-4xl font-light text-white leading-tight tracking-tighter mb-4">
               Ready to Assess Your Building?
             </h2>
             <p className="text-white/60 font-light mb-8 leading-relaxed">
@@ -179,14 +179,14 @@ export default function GhidBMSPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/ghid-bms/descarca"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#0D2E2B] text-sm font-bold px-7 py-3.5 rounded-xl hover:bg-[#F5F4F0] transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#0D2E2B] text-sm font-bold px-7 py-3.5 rounded-[2px] hover:bg-[#F5F4F0] transition-colors"
               >
                 <Download className="h-4 w-4" />
                 Download the Guide Now
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/15 text-white text-sm font-medium px-7 py-3.5 rounded-xl hover:bg-white/5 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/15 text-white text-sm font-medium px-7 py-3.5 rounded-[2px] hover:bg-white/5 transition-colors"
               >
                 Schedule a Consultation
               </Link>

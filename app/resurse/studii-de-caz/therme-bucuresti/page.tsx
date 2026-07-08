@@ -83,7 +83,7 @@ export default function ThermeBucurestiCaseStudy() {
 
             {/* Metrics Card */}
             <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-apple">
+              <div className="rounded-[2px] border border-border bg-card p-6 shadow-apple">
                 <div className="grid grid-cols-2 gap-6">
                   {metrics.map((m, i) => (
                     <div key={i} className={i < 2 ? "pb-6 border-b border-border" : ""}>
@@ -105,7 +105,7 @@ export default function ThermeBucurestiCaseStudy() {
       {/* Hero Image */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8 py-0">
-          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-none md:rounded-2xl md:my-8 -mx-4 md:mx-0">
+          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-none md:rounded-[2px] md:my-8 -mx-4 md:mx-0">
             <Image
               src="/thermal-spa-modern-building.jpg"
               alt="Therme Bucharest - Spa and wellness complex"
@@ -143,7 +143,7 @@ export default function ThermeBucurestiCaseStudy() {
               <div className="pt-4 border-t border-border">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground no-underline hover:no-underline transition-all"
+                  className="inline-flex items-center gap-2 rounded-[1px] bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground no-underline hover:no-underline transition-all"
                   style={{ letterSpacing: "-0.01em" }}
                 >
                   Request a Consultation
@@ -157,7 +157,7 @@ export default function ThermeBucurestiCaseStudy() {
           <main className="lg:col-span-9 order-1 lg:order-2">
 
             {/* Testimonial */}
-            <div className="mb-16 rounded-2xl bg-secondary p-8 md:p-10">
+            <div className="mb-16 rounded-[2px] bg-secondary p-8 md:p-10">
               <blockquote>
                 <p className="text-foreground mb-6 text-pretty" style={{ fontSize: "var(--font-size-xl)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.02em", fontWeight: 500 }}>
                   {'"'}Sovitech was an outstanding partner. Their real-time reporting, premium service for our technical team, and intuitive platform allowed us to meet international standards with confidence.{'"'}
@@ -205,7 +205,7 @@ export default function ThermeBucurestiCaseStudy() {
                   { title: "Intelligent HVAC control", desc: "Optimisation algorithms that automatically adjust temperature based on occupancy and weather conditions." },
                   { title: "Training & support", desc: "Intensive training for the Therme technical team and continuous 24/7 post-implementation support." },
                 ].map((item, i) => (
-                  <div key={i} className="rounded-xl border border-border bg-card p-5 hover-lift">
+                  <div key={i} className="rounded-[2px] border border-border bg-card p-5 hover-lift">
                     <div className="flex items-start gap-3">
                       <div className="mt-0.5 h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <Check className="h-3 w-3 text-accent" />
@@ -263,7 +263,7 @@ export default function ThermeBucurestiCaseStudy() {
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {results.map((r, i) => (
-                  <div key={i} className="rounded-xl bg-secondary p-6">
+                  <div key={i} className="rounded-[2px] bg-secondary p-6">
                     <h4 className="font-semibold text-foreground mb-2" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>
                       {r.title}
                     </h4>
@@ -276,7 +276,7 @@ export default function ThermeBucurestiCaseStudy() {
             </div>
 
             {/* About Company */}
-            <div className="mb-16 rounded-2xl border border-border bg-card p-8">
+            <div className="mb-16 rounded-[2px] border border-border bg-card p-8">
               <h3 className="font-semibold text-foreground mb-3" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
                 About Therme Bucharest
               </h3>
@@ -286,7 +286,7 @@ export default function ThermeBucurestiCaseStudy() {
             </div>
 
             {/* CTA */}
-            <div className="rounded-2xl bg-foreground p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="rounded-[2px] bg-foreground p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-background font-semibold mb-2" style={{ fontSize: "var(--font-size-xl)", letterSpacing: "-0.02em" }}>
                   Want similar results?
@@ -297,7 +297,7 @@ export default function ThermeBucurestiCaseStudy() {
               </div>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground no-underline hover:no-underline whitespace-nowrap transition-all"
+                className="inline-flex items-center gap-2 rounded-[1px] bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground no-underline hover:no-underline whitespace-nowrap transition-all"
                 style={{ letterSpacing: "-0.01em" }}
               >
                 Contact us
@@ -315,7 +315,7 @@ export default function ThermeBucurestiCaseStudy() {
             Other case studies
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <Link href="/resurse/studii-de-caz/radisson-bucuresti" className="group rounded-xl border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
+            <Link href="/resurse/studii-de-caz/radisson-bucuresti" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
               <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA - Hotel</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
                 Radisson Blu Bucharest
@@ -327,7 +327,7 @@ export default function ThermeBucurestiCaseStudy() {
                 Read the study <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
-            <Link href="/contact" className="group rounded-xl border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
+            <Link href="/contact" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
               <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">Your project</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
                 The next case study could be yours

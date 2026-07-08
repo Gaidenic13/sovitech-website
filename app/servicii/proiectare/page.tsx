@@ -80,7 +80,7 @@ export default function ProiectarePage() {
             </header>
 
             {/* Hero Image */}
-            <div className="mb-12 aspect-video overflow-hidden rounded-xl bg-muted">
+            <div className="mb-12 aspect-video overflow-hidden rounded-[2px] bg-muted">
               <img
                 src="/services-engineering-design.jpg"
                 alt="Proiectare BMS - Echipa de ingineri"
@@ -96,7 +96,7 @@ export default function ProiectarePage() {
               </h2>
 
               <div className="space-y-6">
-                <div className="rounded-xl border border-border bg-card p-6">
+                <div className="rounded-[2px] border border-border bg-card p-6">
                   <div className="flex items-start gap-4">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white text-sm font-bold shrink-0">
                       1
@@ -113,7 +113,7 @@ export default function ProiectarePage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-border bg-card p-6">
+                <div className="rounded-[2px] border border-border bg-card p-6">
                   <div className="flex items-start gap-4">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white text-sm font-bold shrink-0">
                       2
@@ -130,7 +130,7 @@ export default function ProiectarePage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-border bg-card p-6">
+                <div className="rounded-[2px] border border-border bg-card p-6">
                   <div className="flex items-start gap-4">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white text-sm font-bold shrink-0">
                       3
@@ -147,7 +147,7 @@ export default function ProiectarePage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-border bg-card p-6">
+                <div className="rounded-[2px] border border-border bg-card p-6">
                   <div className="flex items-start gap-4">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white text-sm font-bold shrink-0">
                       4
@@ -250,7 +250,7 @@ export default function ProiectarePage() {
             </section>
 
             {/* CTA Section */}
-            <section className="rounded-xl bg-accent/10 border border-accent/20 p-8 text-center">
+            <section className="rounded-[2px] bg-accent/10 border border-accent/20 p-8 text-center">
               <h2 className="text-2xl font-bold text-foreground mb-4">Pregatit sa incepi proiectul BMS?</h2>
               <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
                 Contacteaza-ne pentru o consultatie gratuita. Echipa noastra va analiza cerintele tale si va propune
@@ -272,7 +272,7 @@ export default function ProiectarePage() {
               <div className="grid gap-4 sm:grid-cols-3">
                 <Link
                   href="/servicii/executie"
-                  className="group rounded-lg border border-border p-4 hover:border-accent/50 transition-colors"
+                  className="group rounded-[2px] border border-border p-4 hover:border-accent/50 transition-colors"
                 >
                   <h4 className="font-medium text-foreground group-hover:text-accent transition-colors">
                     Executie & Implementare
@@ -281,7 +281,7 @@ export default function ProiectarePage() {
                 </Link>
                 <Link
                   href="/servicii/integrare"
-                  className="group rounded-lg border border-border p-4 hover:border-accent/50 transition-colors"
+                  className="group rounded-[2px] border border-border p-4 hover:border-accent/50 transition-colors"
                 >
                   <h4 className="font-medium text-foreground group-hover:text-accent transition-colors">
                     Integrare Sisteme
@@ -290,7 +290,7 @@ export default function ProiectarePage() {
                 </Link>
                 <Link
                   href="/servicii/mentenanta"
-                  className="group rounded-lg border border-border p-4 hover:border-accent/50 transition-colors"
+                  className="group rounded-[2px] border border-border p-4 hover:border-accent/50 transition-colors"
                 >
                   <h4 className="font-medium text-foreground group-hover:text-accent transition-colors">Mentenanta</h4>
                   <p className="text-sm text-muted-foreground mt-1">Service si upgrade-uri de eficienta</p>

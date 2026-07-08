@@ -300,7 +300,7 @@ export default function DashboardPage() {
                     <div
                       key={badge.id}
                       className={cn(
-                        "flex flex-col items-center p-3 rounded-lg border text-center transition-all",
+                        "flex flex-col items-center p-3 rounded-[2px] border text-center transition-all",
                         badge.earned ? "border-primary/50 bg-primary/5" : "border-border bg-muted/30 opacity-50",
                       )}
                     >

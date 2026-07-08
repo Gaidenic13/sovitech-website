@@ -26,6 +26,12 @@ import {
   FileText,
   Zap,
   RotateCcw,
+  Download,
+  Share2,
+  Link2,
+  Mail,
+  Linkedin,
+  MessageCircle,
 } from "lucide-react"
 import {
   type FormData,
@@ -82,7 +88,7 @@ function StepHeading({ label, title, subtitle }: { label?: string; title: string
   return (
     <div className="mb-8">
       {label && <p className="text-xs text-[#1F6B4A] font-semibold tracking-widest uppercase mb-2">{label}</p>}
-      <h2 className="text-3xl font-black text-[#0D2E2B] tracking-tight leading-tight">{title}</h2>
+      <h2 className="text-3xl font-light text-[#0D2E2B] tracking-tighter leading-tight">{title}</h2>
       {subtitle && <p className="text-sm text-[#888888] font-light mt-2 leading-relaxed">{subtitle}</p>}
     </div>
   )
@@ -100,7 +106,7 @@ function FormField({ label, hint, children }: { label: string; hint?: string; ch
 
 function RadioOption({ value, id, label, desc }: { value: string; id: string; label: string; desc?: string }) {
   return (
-    <div className="flex items-start gap-3 p-4 rounded-xl border border-[#0D2E2B]/10 bg-[#F5F4F0] hover:border-[#0D2E2B]/25 transition-colors cursor-pointer">
+    <div className="flex items-start gap-3 p-4 rounded-[2px] border border-[#0D2E2B]/10 bg-[#F5F4F0] hover:border-[#0D2E2B]/25 transition-colors cursor-pointer">
       <RadioGroupItem value={value} id={id} className="mt-0.5 shrink-0" />
       <div>
         <Label htmlFor={id} className="text-sm font-semibold text-[#0D2E2B] cursor-pointer leading-snug">{label}</Label>
@@ -115,7 +121,7 @@ function CheckboxRow({ id, checked, onCheckedChange, label, desc }: {
 }) {
   return (
     <div
-      className="flex items-start gap-3 p-4 rounded-xl border transition-colors cursor-pointer"
+      className="flex items-start gap-3 p-4 rounded-[2px] border transition-colors cursor-pointer"
       style={{ borderColor: checked ? "#1F6B4A40" : "rgba(13,46,43,0.10)", backgroundColor: checked ? "#C8E6C940" : "#F5F4F0" }}
       onClick={() => onCheckedChange(!checked)}
     >
@@ -163,7 +169,7 @@ function ProgressBar({ currentStep, accent }: { currentStep: number; accent: typ
               >
                 {done ? <Check className="h-3.5 w-3.5" /> : step}
               </div>
-              <span className={`mt-1.5 text-xs hidden sm:block text-center transition-colors ${active ? "text-[#0D2E2B] font-semibold" : "text-[#aaa]"}`}>
+              <span className={`mt-1.5 text-xs hidden sm:block text-center transition-colors ${active ? "text-[#0D2E2B] font-semibold" : "text-[#888]"}`}>
                 {label}
               </span>
             </div>
@@ -195,7 +201,7 @@ function IndustrySelect({ formData, onSelect }: { formData: FormData; onSelect: 
               key={id}
               type="button"
               onClick={() => onSelect(id)}
-              className="group relative p-6 rounded-2xl text-left transition-all duration-200 border-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D2E2B]"
+              className="group relative p-6 rounded-[2px] text-left transition-all duration-200 border-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D2E2B]"
               style={{
                 backgroundColor: selected ? tint : "#F5F4F0",
                 borderColor: selected ? accent.bg : "transparent",
@@ -204,7 +210,7 @@ function IndustrySelect({ formData, onSelect }: { formData: FormData; onSelect: 
               <div className="mb-4" style={{ color: selected ? accent.bg : "#aaa" }}>
                 {industryIcons[id]}
               </div>
-              <h3 className="font-black text-base mb-1 text-[#0D2E2B]">{cfg.label}</h3>
+              <h3 className="font-light text-base mb-1 text-[#0D2E2B]">{cfg.label}</h3>
               <p className="text-xs font-light mb-3 text-[#888]">{t(cfg.description, cfg.descriptionEn ?? cfg.description)}</p>
               <p className="text-xs font-semibold" style={{ color: accent.bg }}>{t(cfg.paybackInfo, cfg.paybackInfoEn ?? cfg.paybackInfo)}</p>
               {selected && (
@@ -262,7 +268,7 @@ function CurrentSituation({ formData, onInputChange }: {
             placeholder={t("ex. 250000", "e.g. 250000")}
             value={formData.annualEnergyCost || ""}
             onChange={(e) => onInputChange("annualEnergyCost", Number(e.target.value) || 0)}
-            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-xl bg-[#F5F4F0]"
+            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-[2px] bg-[#F5F4F0]"
           />
         </FormField>
         <FormField
@@ -274,21 +280,21 @@ function CurrentSituation({ formData, onInputChange }: {
             placeholder={t("ex. 15000", "e.g. 15000")}
             value={formData.buildingSize || ""}
             onChange={(e) => onInputChange("buildingSize", Number(e.target.value) || 0)}
-            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-xl bg-[#F5F4F0]"
+            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-[2px] bg-[#F5F4F0]"
           />
         </FormField>
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <label className="text-sm font-semibold text-[#0D2E2B]">{t("Număr de clădiri", "Number of Buildings")}</label>
-            <span className="text-sm font-black" style={{ color: accent?.bg ?? "#1F6B4A" }}>{formData.buildingCount}</span>
+            <span className="text-sm font-light" style={{ color: accent?.bg ?? "#1F6B4A" }}>{formData.buildingCount}</span>
           </div>
           <Slider value={[formData.buildingCount]} onValueChange={(v) => onInputChange("buildingCount", v[0])} min={1} max={50} step={1} className="py-1" />
-          <div className="flex justify-between text-xs text-[#aaa]">
+          <div className="flex justify-between text-xs text-[#888]">
             <span>{t("1 clădire", "1 building")}</span>
             <span>{t("50 clădiri", "50 buildings")}</span>
           </div>
           {formData.buildingCount > 1 && accent && industry && (
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl" style={{ backgroundColor: industryTint[industry] }}>
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-[2px]" style={{ backgroundColor: industryTint[industry] }}>
               <Check className="h-3.5 w-3.5 shrink-0" style={{ color: accent.bg }} />
               <p className="text-xs font-semibold" style={{ color: accent.bg }}>
                 {t("Discount aplicat pentru", "Volume discount applied for")} {formData.buildingCount} {t("clădiri", "buildings")}:{" "}
@@ -325,10 +331,10 @@ function PainPoints({ formData, onInputChange, onArrayToggle }: {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <label className="text-sm font-semibold text-[#0D2E2B]">{t("Grad mediu de ocupare", "Average Occupancy Rate")}</label>
-              <span className="text-sm font-black" style={{ color: accent?.bg ?? "#1F6B4A" }}>{formData.occupancyRate}%</span>
+              <span className="text-sm font-light" style={{ color: accent?.bg ?? "#1F6B4A" }}>{formData.occupancyRate}%</span>
             </div>
             <Slider value={[formData.occupancyRate]} onValueChange={(v) => onInputChange("occupancyRate", v[0])} min={0} max={100} step={5} className="py-1" />
-            <div className="flex justify-between text-xs text-[#aaa]"><span>0%</span><span>100%</span></div>
+            <div className="flex justify-between text-xs text-[#888]"><span>0%</span><span>100%</span></div>
           </div>
           <CheckboxRow
             id="guestComfortIssues"
@@ -376,11 +382,11 @@ function PainPoints({ formData, onInputChange, onArrayToggle }: {
       )}
 
       {(formData.industry === "healthcare" || formData.industry === "industrial" || formData.industry === "dataCenter") && accent && (
-        <div className="text-center py-12 rounded-2xl border-2 border-dashed" style={{ borderColor: accent.bg + "30", backgroundColor: industryTint[formData.industry!] }}>
+        <div className="text-center py-12 rounded-[2px] border-2 border-dashed" style={{ borderColor: accent.bg + "30", backgroundColor: industryTint[formData.industry!] }}>
           <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: accent.bg }}>
             <Check className="h-7 w-7 text-white" />
           </div>
-          <h3 className="text-base font-black text-[#0D2E2B] mb-2">{t("Configurație standard", "Standard Configuration")}</h3>
+          <h3 className="text-base font-light text-[#0D2E2B] mb-2">{t("Configurație standard", "Standard Configuration")}</h3>
           <p className="text-sm text-[#888] font-light max-w-xs mx-auto">
             {t("Pentru sectorul", "For the")} <span className="font-semibold text-[#0D2E2B]">{industryDefaults[formData.industry!].label}</span>{t(" vom aplica parametrii standard optimizați pe industrie.", ", we apply industry-optimised standard parameters.")}
           </p>
@@ -411,7 +417,7 @@ function MaintenanceData({ formData, onInputChange }: {
             placeholder={t("ex. 50000", "e.g. 50000")}
             value={formData.maintenanceBudget || ""}
             onChange={(e) => onInputChange("maintenanceBudget", Number(e.target.value) || 0)}
-            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-xl bg-[#F5F4F0]"
+            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-[2px] bg-[#F5F4F0]"
           />
         </FormField>
         <FormField label={t("Frecvența reparațiilor neprevăzute", "Frequency of Unexpected Repairs")}>
@@ -463,14 +469,14 @@ function GoalsSelection({ formData, onArrayToggle }: {
               key={g.id}
               type="button"
               onClick={() => onArrayToggle("selectedGoals", g.id)}
-              className="relative p-5 rounded-2xl border-2 text-left transition-all duration-200 focus:outline-none"
+              className="relative p-5 rounded-[2px] border-2 text-left transition-all duration-200 focus:outline-none"
               style={{
                 backgroundColor: sel ? a.tint : "#F5F4F0",
                 borderColor: sel ? a.solid : "transparent",
               }}
             >
               <div className="mb-3" style={{ color: sel ? a.solid : "#aaa" }}>{g.icon}</div>
-              <h3 className="font-black text-sm mb-1 text-[#0D2E2B]">{g.label}</h3>
+              <h3 className="font-light text-sm mb-1 text-[#0D2E2B]">{g.label}</h3>
               <p className="text-xs font-light text-[#888] leading-relaxed">{g.desc}</p>
               {sel && (
                 <div className="absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: a.solid }}>
@@ -512,7 +518,7 @@ function ImplementationPrefs({ formData, onInputChange }: {
             placeholder={t("Lasă gol pentru estimare automată", "Leave blank for automatic estimate")}
             value={formData.implementationBudget || ""}
             onChange={(e) => onInputChange("implementationBudget", Number(e.target.value) || 0)}
-            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-xl bg-[#F5F4F0]"
+            className="h-12 text-base border-[#0D2E2B]/20 focus-visible:ring-[#0D2E2B] rounded-[2px] bg-[#F5F4F0]"
           />
         </FormField>
         <FormField label={t("Orizont de timp ROI dorit", "Desired ROI Timeframe")}>
@@ -540,9 +546,28 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
   const { t } = useLanguage()
   const accent = formData.industry ? industryAccent[formData.industry] : null
   const tint = formData.industry ? industryTint[formData.industry] : "#F5F4F0"
+  const [shareOpen, setShareOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const fmt = (v: number) =>
     new Intl.NumberFormat("ro-RO", { style: "decimal", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(Math.round(v))
+
+  const shareUrl = () => `${window.location.origin}/calculator-roi`
+  const shareText = () =>
+    t(
+      `Am estimat cu calculatorul Sovitech economii anuale de ${fmt(results.totalAnnualSavings)} EUR cu un sistem BMS, cu amortizare în ${results.paybackYears} ani. Calculează și tu:`,
+      `I estimated ${fmt(results.totalAnnualSavings)} EUR in annual savings with a BMS using the Sovitech calculator, with payback in ${results.paybackYears} years. Try it yourself:`
+    )
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl())
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // clipboard unavailable (e.g. insecure context) — nothing else to do
+    }
+  }
 
   const savings = [
     {
@@ -568,12 +593,12 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
   ]
 
   return (
-    <div className="space-y-6">
+    <div id="roi-report" className="space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <p className="text-xs text-[#1F6B4A] font-semibold tracking-widest uppercase mb-1">• {t("Rezultate", "Results")}</p>
-          <h2 className="text-3xl md:text-4xl font-black text-[#0D2E2B] leading-tight tracking-tight">{t("Analiza ta ROI personalizată", "Your Personalised ROI Analysis")}</h2>
+          <h2 className="text-3xl md:text-4xl font-light text-[#0D2E2B] leading-tight tracking-tighter">{t("Analiza ta ROI personalizată", "Your Personalised ROI Analysis")}</h2>
           {formData.industry && accent && (
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mt-2" style={{ backgroundColor: tint, color: accent.bg }}>
               {industryIcons[formData.industry]}
@@ -583,7 +608,7 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
         </div>
         <button
           onClick={onReset}
-          className="inline-flex items-center gap-2 text-sm text-[#888] hover:text-[#0D2E2B] border border-[#0D2E2B]/15 px-4 py-2 rounded-xl hover:border-[#0D2E2B]/30 transition-colors shrink-0"
+          className="print-hide inline-flex items-center gap-2 text-sm text-[#888] hover:text-[#0D2E2B] border border-[#0D2E2B]/15 px-4 py-2 rounded-[2px] hover:border-[#0D2E2B]/30 transition-colors shrink-0"
         >
           <RotateCcw className="h-3.5 w-3.5" />
           {t("Recalculează", "Recalculate")}
@@ -591,58 +616,58 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
       </div>
 
       {/* Hero metrics */}
-      <div className="bg-[#0D2E2B] rounded-2xl p-6 md:p-8">
+      <div className="bg-[#0D2E2B] rounded-[2px] p-6 md:p-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
             <p className="text-xs text-white/40 font-semibold tracking-widest uppercase mb-2">{t("ROI 5 ani", "5-Year ROI")}</p>
-            <p className="text-3xl md:text-4xl font-black" style={{ color: accent?.bg ?? "#C8E6C9" }}>{results.roiPercentage}%</p>
+            <p className="text-3xl md:text-4xl font-light" style={{ color: accent?.bg ?? "#C8E6C9" }}>{results.roiPercentage}%</p>
           </div>
           <div>
             <p className="text-xs text-white/40 font-semibold tracking-widest uppercase mb-2">{t("Recuperare invest.", "Payback")}</p>
-            <p className="text-3xl md:text-4xl font-black text-white">{results.paybackYears} {t("ani", "yrs")}</p>
+            <p className="text-3xl md:text-4xl font-light text-white">{results.paybackYears} {t("ani", "yrs")}</p>
           </div>
           <div>
             <p className="text-xs text-white/40 font-semibold tracking-widest uppercase mb-2">{t("Economii/an", "Savings/yr")}</p>
-            <p className="text-3xl md:text-4xl font-black text-white">{fmt(results.totalAnnualSavings)}</p>
+            <p className="text-3xl md:text-4xl font-light text-white">{fmt(results.totalAnnualSavings)}</p>
             <p className="text-xs text-white/40 mt-1">EUR</p>
           </div>
           <div>
             <p className="text-xs text-white/40 font-semibold tracking-widest uppercase mb-2">{t("Beneficiu net 5 ani", "Net benefit 5 yrs")}</p>
-            <p className="text-3xl md:text-4xl font-black" style={{ color: "#C8E6C9" }}>{fmt(results.fiveYearReturn)}</p>
+            <p className="text-3xl md:text-4xl font-light" style={{ color: "#C8E6C9" }}>{fmt(results.fiveYearReturn)}</p>
             <p className="text-xs text-white/40 mt-1">EUR</p>
           </div>
         </div>
       </div>
 
       {/* Savings breakdown */}
-      <div className="bg-white rounded-2xl p-6 border border-[#0D2E2B]/8">
+      <div className="bg-white rounded-[2px] p-6 border border-[#0D2E2B]/8">
         <p className="text-xs text-[#888] font-semibold tracking-widest uppercase mb-5">• {t("Detaliu economii", "Savings breakdown")}</p>
         <div className="space-y-4">
           {savings.map((s, i) => (
             <div key={i} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: s.tint }}>
+                <div className="w-10 h-10 rounded-[2px] flex items-center justify-center shrink-0" style={{ backgroundColor: s.tint }}>
                   {s.icon}
                 </div>
                 <div>
-                  <p className="font-black text-sm text-[#0D2E2B]">{s.label}</p>
+                  <p className="font-light text-sm text-[#0D2E2B]">{s.label}</p>
                   <p className="text-xs text-[#888] font-light">{s.sub}</p>
                 </div>
               </div>
-              <p className="text-lg font-black text-[#0D2E2B] shrink-0">{s.value}</p>
+              <p className="text-lg font-light text-[#0D2E2B] shrink-0">{s.value}</p>
             </div>
           ))}
           <div className="border-t border-[#0D2E2B]/8 pt-4 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "#C5C0F5" }}>
+              <div className="w-10 h-10 rounded-[2px] flex items-center justify-center shrink-0" style={{ backgroundColor: "#C5C0F5" }}>
                 <TrendingUp className="h-5 w-5 text-[#5C5FD4]" />
               </div>
               <div>
-                <p className="font-black text-sm text-[#0D2E2B]">{t("Cost estimat implementare", "Estimated implementation cost")}</p>
+                <p className="font-light text-sm text-[#0D2E2B]">{t("Cost estimat implementare", "Estimated implementation cost")}</p>
                 <p className="text-xs text-[#888] font-light">{t("Investiție inițială", "Initial investment")}</p>
               </div>
             </div>
-            <p className="text-lg font-black text-[#0D2E2B] shrink-0">{fmt(results.implementationCost)} EUR</p>
+            <p className="text-lg font-light text-[#0D2E2B] shrink-0">{fmt(results.implementationCost)} EUR</p>
           </div>
         </div>
       </div>
@@ -650,9 +675,9 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
       {/* Timeline */}
       <div className="grid gap-3 md:grid-cols-3">
         {timeline.map((item) => (
-          <div key={item.label} className="rounded-2xl p-6 text-center" style={{ backgroundColor: item.bg }}>
+          <div key={item.label} className="rounded-[2px] p-6 text-center" style={{ backgroundColor: item.bg }}>
             <p className="text-xs font-semibold tracking-widest uppercase mb-2" style={{ color: item.text }}>{item.label}</p>
-            <p className="text-2xl font-black leading-tight" style={{ color: item.bg === "#0D2E2B" ? "#fff" : "#0D2E2B" }}>
+            <p className="text-2xl font-light leading-tight" style={{ color: item.bg === "#0D2E2B" ? "#fff" : "#0D2E2B" }}>
               {fmt(item.value)} EUR
             </p>
             <p className="text-xs font-light mt-1" style={{ color: item.text }}>{t("economii cumulate", "cumulative savings")}</p>
@@ -667,25 +692,84 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
       </div>
 
       {/* CTA */}
-      <div className="bg-[#F5F4F0] rounded-2xl p-6 border border-[#0D2E2B]/8">
-        <p className="text-base font-black text-[#0D2E2B] mb-1">{t("Vrei o propunere detaliată?", "Want a detailed proposal?")}</p>
+      <div className="bg-[#F5F4F0] rounded-[2px] p-6 border border-[#0D2E2B]/8 print-hide">
+        <p className="text-base font-light text-[#0D2E2B] mb-1">{t("Vrei o propunere detaliată?", "Want a detailed proposal?")}</p>
         <p className="text-sm text-[#888] font-light mb-5">{t("Specialiștii noștri pot analiza clădirea ta și furniza un raport complet de fezabilitate BMS.", "Our specialists can assess your building and provide a full BMS feasibility report.")}</p>
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
             href="/contact"
-            className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0D2E2B] text-white text-sm font-semibold px-6 py-3.5 rounded-xl hover:bg-[#1F6B4A] transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0D2E2B] text-white text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#1F6B4A] transition-colors"
           >
             <FileText className="h-4 w-4" />
             {t("Solicită propunere detaliată", "Request a Detailed Proposal")}
           </Link>
           <Link
             href="/contact"
-            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-xl hover:bg-[#0D2E2B]/5 transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
           >
             <Phone className="h-4 w-4" />
             {t("Programează o discuție", "Schedule a Call")}
           </Link>
         </div>
+
+        {/* Report actions: download / share / copy link */}
+        <div className="flex flex-col sm:flex-row gap-3 mt-3">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            {t("Descarcă PDF", "Download PDF")}
+          </button>
+          <button
+            type="button"
+            onClick={() => setShareOpen((v) => !v)}
+            aria-expanded={shareOpen}
+            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
+          >
+            <Share2 className="h-4 w-4" />
+            {t("Distribuie", "Share")}
+          </button>
+          <button
+            type="button"
+            onClick={handleCopyLink}
+            className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
+          >
+            {copied ? <Check className="h-4 w-4 text-[#1F6B4A]" /> : <Link2 className="h-4 w-4" />}
+            {copied ? t("Copiat!", "Copied!") : t("Copiază link", "Copy Link")}
+          </button>
+        </div>
+
+        {shareOpen && (
+          <div className="flex flex-col sm:flex-row gap-3 mt-3">
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(`${shareText()} ${shareUrl()}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
+            <a
+              href={`mailto:?subject=${encodeURIComponent(t("Analiza ROI pentru un sistem BMS", "ROI analysis for a BMS system"))}&body=${encodeURIComponent(`${shareText()}\n${shareUrl()}`)}`}
+              className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              Email
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl())}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 border border-[#0D2E2B]/20 text-[#0D2E2B] text-sm font-semibold px-6 py-3.5 rounded-[2px] hover:bg-[#0D2E2B]/5 transition-colors"
+            >
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </a>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -742,15 +826,15 @@ export default function CalculatorROIPage() {
   return (
     <main className="min-h-screen bg-[#F5F4F0]">
       {/* Hero */}
-      <section className="bg-[#0D2E2B] pt-12 pb-10 relative overflow-hidden">
+      <section className="bg-[#07201C] pt-12 pb-10 relative overflow-hidden">
         {/* Progress stripe */}
         <div
           className="absolute bottom-0 left-0 h-[3px] transition-all duration-500"
           style={{ width: `${progressPercent}%`, backgroundColor: accent?.bg ?? "#1F6B4A" }}
         />
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
-          <p className="text-xs text-[#1F6B4A] font-semibold tracking-widest uppercase mb-3">• Calculator ROI</p>
-          <h1 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight mb-3 text-balance">
+          <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• Calculator ROI</p>
+          <h1 className="text-3xl md:text-5xl font-light text-white leading-tight tracking-tighter mb-3 text-balance">
             {t("Cât poți economisi cu un BMS?", "How much could you save with a BMS?")}
           </h1>
           <p className="text-white/50 font-light text-base max-w-xl leading-relaxed">
@@ -764,13 +848,13 @@ export default function CalculatorROIPage() {
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           {/* Progress bar — only visible on steps 1-6 */}
           {currentStep <= TOTAL_STEPS && (
-            <div className="bg-white rounded-2xl p-5 mb-5 border border-[#0D2E2B]/8 shadow-sm">
+            <div className="bg-white rounded-[2px] p-5 mb-5 border border-[#0D2E2B]/10">
               <ProgressBar currentStep={currentStep} accent={accent} />
             </div>
           )}
 
           {/* Step content */}
-          <div className="bg-white rounded-2xl p-6 md:p-10 border border-[#0D2E2B]/8 shadow-sm min-h-[400px]">
+          <div className="bg-white rounded-[2px] p-6 md:p-10 border border-[#0D2E2B]/10 min-h-[400px]">
             {currentStep === 1 && <IndustrySelect formData={formData} onSelect={(id) => setFormData((p) => ({ ...p, industry: id }))} />}
             {currentStep === 2 && <CurrentSituation formData={formData} onInputChange={onInputChange} />}
             {currentStep === 3 && <PainPoints formData={formData} onInputChange={onInputChange} onArrayToggle={onArrayToggle} />}
@@ -786,19 +870,19 @@ export default function CalculatorROIPage() {
               <button
                 onClick={handleBack}
                 disabled={currentStep === 1}
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#888] hover:text-[#0D2E2B] disabled:opacity-30 disabled:cursor-not-allowed transition-colors px-4 py-2.5 rounded-xl hover:bg-[#0D2E2B]/5"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[#888] hover:text-[#0D2E2B] disabled:opacity-30 disabled:cursor-not-allowed transition-colors px-4 py-2.5 rounded-[2px] hover:bg-[#0D2E2B]/5"
               >
                 <ArrowLeft className="h-4 w-4" />
                 {t("Înapoi", "Back")}
               </button>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-[#aaa] hidden sm:block">
+                <span className="text-xs text-[#888] hidden sm:block">
                   {t("Pasul", "Step")} {currentStep} {t("din", "of")} {TOTAL_STEPS}
                 </span>
                 <button
                   onClick={handleNext}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-[2px] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
                   style={{
                     backgroundColor: accent ? accent.bg : "#0D2E2B",
                     color: "#fff",

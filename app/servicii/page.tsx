@@ -339,13 +339,13 @@ export default function ServiciiPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="bg-[#0D2E2B] min-h-[45vh] flex items-end pb-16 relative overflow-hidden">
+      <section className="bg-[#07201C] min-h-[45vh] flex items-end pb-16 relative overflow-hidden">
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg" alt="" className="h-[600px] w-auto" />
         </div>
         <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
-          <span className="text-[#1F6B4A] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Servicii", "Services")}</span>
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight">
+          <span className="text-[#C8E6C9] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Servicii", "Services")}</span>
+          <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
             {t("Servicii complete.", "Complete services.")}<br />{t("Rezultate garantate.", "Guaranteed results.")}
           </h1>
           <p className="text-lg text-white/60 font-light mt-4 max-w-xl">
@@ -355,7 +355,7 @@ export default function ServiciiPage() {
       </section>
 
       {/* ── Sticky nav tabs ── */}
-      <section className="sticky top-16 z-30 bg-[#0D2E2B]/95 backdrop-blur border-b border-white/10">
+      <section className="sticky top-16 z-30 bg-[#07201C]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex items-center gap-1 py-4">
             {serviceCategories.map((cat) => (
@@ -385,7 +385,7 @@ export default function ServiciiPage() {
                 {active.icon}
                 {t(active.heroRo, active.heroEn)}
               </div>
-              <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight leading-tight">
+              <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
                 {t(active.heroRo, active.heroEn)}
               </h2>
               <p className="mt-4 text-base text-[#555555] font-light max-w-2xl leading-relaxed">
@@ -394,7 +394,7 @@ export default function ServiciiPage() {
             </div>
             <Link
               href="/contact"
-              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-[#1F6B4A] transition-colors"
+              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-6 py-3 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
             >
               {t("Solicita o consultatie", "Request a consultation")}
               <ArrowRight className="h-4 w-4" />
@@ -404,18 +404,18 @@ export default function ServiciiPage() {
           {/* Process steps */}
           <div className="grid gap-6 md:grid-cols-2">
             {active.steps.map((step, idx) => (
-              <div key={idx} className="bg-white rounded-2xl p-8 border border-[#0D2E2B]/8 hover:shadow-md transition-shadow">
+              <div key={idx} className="bg-white rounded-[2px] p-8 border border-[#0D2E2B]/10 hover:border-[#0D2E2B]/25 transition-colors duration-300">
                 <div className="flex items-start gap-4">
                   <div
-                    className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mt-0.5"
+                    className="flex-shrink-0 w-10 h-10 rounded-[2px] flex items-center justify-center mt-0.5"
                     style={{ backgroundColor: active.accentColor, color: active.accentText }}
                   >
                     {step.iconEl}
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-bold text-[#BBBBBB]">{String(idx + 1).padStart(2, "0")}</span>
-                      <h3 className="text-base font-black text-[#0D2E2B] tracking-tight">
+                      <span className="text-xs font-bold text-[#999999]">{String(idx + 1).padStart(2, "0")}</span>
+                      <h3 className="text-base font-light text-[#0D2E2B] tracking-tighter">
                         {t(step.titleRo, step.titleEn)}
                       </h3>
                     </div>
@@ -429,7 +429,7 @@ export default function ServiciiPage() {
           </div>
 
           {/* Deliverables */}
-          <div className="mt-12 bg-[#0D2E2B] rounded-2xl p-8">
+          <div className="mt-12 bg-[#0D2E2B] rounded-[2px] p-8">
             <p className="text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: active.accentText === "#1F6B4A" ? "#C8E6C9" : active.accentColor }}>
               • {t("Ce livrezi clientului", "What we deliver")}
             </p>
@@ -471,32 +471,32 @@ export default function ServiciiPage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-16">
             <p className="section-label mb-3">• {t("PACHETE DE SERVICII", "SERVICE PACKAGES")}</p>
-            <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight mb-4">{t("Preturi transparente", "Transparent pricing")}</h2>
+            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("Preturi transparente", "Transparent pricing")}</h2>
             <p className="text-base text-[#888888] font-light max-w-xl">{t("Servicii activate prin software cu planuri construite pentru nevoile specifice ale cladirilor comerciale si industriale.", "Software-enabled services with plans built for the specific needs of commercial and industrial buildings.")}</p>
           </div>
           <div className="grid max-w-5xl gap-6 lg:grid-cols-2">
             {offerings.map((offering) => (
-              <div key={offering.id} className={`relative rounded-2xl p-8 transition-all ${offering.recommended ? "bg-[#0D2E2B] text-white" : "bg-[#F5F4F0] border border-[#0D2E2B]/10"}`}>
+              <div key={offering.id} className={`relative flex flex-col rounded-[2px] p-8 transition-all ${offering.recommended ? "bg-[#0D2E2B] text-white" : "bg-[#F5F4F0] border border-[#0D2E2B]/10"}`}>
                 {offering.recommended && (
                   <div className="absolute -top-3 left-8">
                     <span className="rounded-full bg-[#1F6B4A] px-4 py-1 text-xs font-semibold text-white tracking-wide">{t("Recomandat", "Recommended")}</span>
                   </div>
                 )}
                 <div className="mb-4">
-                  <h3 className={`text-xl font-black tracking-tight ${offering.recommended ? "text-white" : "text-[#0D2E2B]"}`}>{t(offering.nameRo, offering.nameEn)}</h3>
-                  <p className={`mt-1 text-sm ${offering.recommended ? "text-[#1F6B4A]" : "text-[#888888]"}`}>{t(offering.taglineRo, offering.taglineEn)}</p>
+                  <h3 className={`text-xl font-light tracking-tighter ${offering.recommended ? "text-white" : "text-[#0D2E2B]"}`}>{t(offering.nameRo, offering.nameEn)}</h3>
+                  <p className={`mt-1 text-sm ${offering.recommended ? "text-[#C8E6C9]" : "text-[#888888]"}`}>{t(offering.taglineRo, offering.taglineEn)}</p>
                 </div>
                 <p className={`mb-6 text-sm font-light ${offering.recommended ? "text-white/60" : "text-[#888888]"}`}>{t(offering.descRo, offering.descEn)}</p>
                 <div className={`mb-6 border-t border-b py-6 ${offering.recommended ? "border-white/10" : "border-[#0D2E2B]/10"}`}>
                   <span className={`text-xs font-semibold tracking-widest uppercase ${offering.recommended ? "text-white/40" : "text-[#888888]"}`}>{t(offering.priceTypeRo, offering.priceTypeEn)}</span>
                   <div className="flex items-baseline gap-1 mt-1">
-                    <span className={`text-5xl font-black tracking-tight ${offering.recommended ? "text-white" : "text-[#0D2E2B]"}`}>{offering.price}</span>
+                    <span className={`text-5xl font-light tracking-tighter ${offering.recommended ? "text-white" : "text-[#0D2E2B]"}`}>{offering.price}</span>
                     <span className={`text-xl ${offering.recommended ? "text-white/60" : "text-[#888888]"}`}>{offering.priceUnit}</span>
                     <span className={`text-sm ${offering.recommended ? "text-white/40" : "text-[#888888]"}`}>{t(offering.pricePeriodRo, offering.pricePeriodEn)}</span>
                   </div>
                   {offering.additionalPriceRo && <p className={`mt-2 text-sm ${offering.recommended ? "text-white/40" : "text-[#888888]"}`}>{t(offering.additionalPriceRo, offering.additionalPriceEn!)}</p>}
                 </div>
-                <ul className="mb-8 space-y-3">
+                <ul className="mb-8 flex-1 space-y-3">
                   {offering.features.map((feature, fidx) => (
                     <li key={fidx} className="flex items-center gap-3">
                       {feature.included
@@ -509,7 +509,7 @@ export default function ServiciiPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/contact" className={`w-full inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-3 rounded-xl transition-colors ${offering.recommended ? "bg-[#1F6B4A] text-white hover:bg-[#185c3f]" : "bg-[#0D2E2B] text-white hover:bg-[#0D2E2B]/90"}`}>
+                <Link href="/contact" className={`w-full inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-3 rounded-[2px] transition-colors ${offering.recommended ? "bg-[#1F6B4A] text-white hover:bg-[#185c3f]" : "bg-[#0D2E2B] text-white hover:bg-[#0D2E2B]/90"}`}>
                   {t(offering.ctaRo, offering.ctaEn)}
                 </Link>
               </div>
@@ -524,7 +524,7 @@ export default function ServiciiPage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-12">
             <p className="section-label mb-3">• {t("CE ESTE INCLUS", "WHAT IS INCLUDED")}</p>
-            <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight mb-4">{t("50+ servicii BMS", "50+ BMS services")}</h2>
+            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("50+ servicii BMS", "50+ BMS services")}</h2>
             <p className="text-base text-[#888888] font-light max-w-xl">{t("De la management standard la infrastructura completa, Sovitech combina software modern si servicii de expert.", "From standard management to full infrastructure, Sovitech combines modern software and expert services.")}</p>
           </div>
           <div className="mb-10 flex items-center gap-2">
@@ -532,10 +532,10 @@ export default function ServiciiPage() {
             <button onClick={() => setShowPlan("complet")} className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${showPlan === "complet" ? "bg-[#0D2E2B] text-white" : "bg-white text-[#888888] hover:text-[#0D2E2B]"}`}>Full Service</button>
           </div>
           <div className="max-w-4xl">
-            <div className="rounded-2xl bg-white border border-[#0D2E2B]/8 p-8">
+            <div className="rounded-[2px] bg-white border border-[#0D2E2B]/8 p-8">
               {showPlan === "complet" && (
-                <div className="mb-6 rounded-lg bg-[#C8E6C9] p-4">
-                  <p className="text-sm font-semibold text-[#1F6B4A]">{t("Operatiuni complete + mentenanta inclusa", "Full operations + maintenance included")}</p>
+                <div className="mb-6 rounded-[2px] bg-[#C8E6C9] p-4">
+                  <p className="text-sm font-semibold text-[#C8E6C9]">{t("Operatiuni complete + mentenanta inclusa", "Full operations + maintenance included")}</p>
                 </div>
               )}
               {featureCategories.map((category, idx) => (
@@ -566,11 +566,11 @@ export default function ServiciiPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-8">
           <p className="section-label mb-3">• {t("SERVICII ADITIONALE", "ADDITIONAL SERVICES")}</p>
-          <h2 className="text-4xl font-black text-[#0D2E2B] mb-12 tracking-tight">{t("Solutii specializate", "Specialised solutions")}</h2>
+          <h2 className="text-4xl font-light text-[#0D2E2B] mb-12 tracking-tighter">{t("Solutii specializate", "Specialised solutions")}</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {additionalServices.map((service, idx) => (
-              <div key={idx} className="rounded-2xl bg-[#F5F4F0] border border-[#0D2E2B]/8 p-8 hover:shadow-sm transition-all">
-                <h3 className="mb-3 text-lg font-black text-[#0D2E2B] tracking-tight">{t(service.titleRo, service.titleEn)}</h3>
+              <div key={idx} className="rounded-[2px] bg-[#F5F4F0] border border-[#0D2E2B]/10 p-8 hover:border-[#0D2E2B]/25 transition-colors duration-300">
+                <h3 className="mb-3 text-lg font-light text-[#0D2E2B] tracking-tighter">{t(service.titleRo, service.titleEn)}</h3>
                 <p className="text-sm text-[#888888] font-light leading-relaxed">{t(service.descRo, service.descEn)}</p>
               </div>
             ))}
@@ -579,12 +579,12 @@ export default function ServiciiPage() {
       </section>
 
       {/* ── Trusted CTA band ── */}
-      <section className="bg-[#0D2E2B] py-24">
+      <section className="bg-[#07201C] py-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div>
               <p className="section-label text-[#1F6B4A] mb-2">• {t("DE INCREDERE", "TRUSTED")}</p>
-              <h2 className="text-4xl font-black text-white tracking-tight max-w-xl">{t("Blocheaza costurile de management BMS pentru 10 ani", "Lock in your BMS management costs for 10 years")}</h2>
+              <h2 className="text-4xl font-light text-white tracking-tighter max-w-xl">{t("Blocheaza costurile de management BMS pentru 10 ani", "Lock in your BMS management costs for 10 years")}</h2>
               <p className="mt-4 text-white/60 font-light max-w-lg">{t("Lanseaza, opereaza si scaloneaza sistemul tau BMS fara griji legate de costurile in crestere.", "Launch, operate and scale your BMS system without worrying about rising costs.")}</p>
             </div>
             <Link href="/contact" className="btn-sovitech flex-shrink-0">
@@ -599,7 +599,7 @@ export default function ServiciiPage() {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-8">
           <p className="section-label mb-3">• FAQ</p>
-          <h2 className="text-5xl font-black text-[#0D2E2B] mb-16 tracking-tight">{t("Intrebari frecvente", "Frequently asked questions")}</h2>
+          <h2 className="text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">{t("Intrebari frecvente", "Frequently asked questions")}</h2>
           <div className="max-w-3xl">
             {faqs.map((faq, idx) => (
               <div key={idx} className="border-b border-[#0D2E2B]/10">
@@ -628,9 +628,9 @@ export default function ServiciiPage() {
       <section className="bg-[#F5F4F0] py-24">
         <div className="max-w-7xl mx-auto px-8">
           <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• {t("Clienti", "Clients")}</p>
-          <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight mb-16">{t("Ce spun clientii nostri", "What our clients say")}</h2>
+          <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-16">{t("Ce spun clientii nostri", "What our clients say")}</h2>
           <div className="max-w-3xl">
-            <div className="relative bg-white rounded-2xl p-10 border border-[#0D2E2B]/8">
+            <div className="relative bg-white rounded-[2px] p-10 border border-[#0D2E2B]/8">
               <div className="absolute top-0 left-8 right-8 h-1 rounded-b-full transition-colors duration-300" style={{ backgroundColor: ["#C8E6C9", "#C5C0F5", "#8B7B5C"][currentTestimonial] }} />
               <blockquote>
                 <p className="text-xl font-light leading-relaxed text-[#0D2E2B] mb-8">&ldquo;{t(testimonials[currentTestimonial].quoteRo, testimonials[currentTestimonial].quoteEn)}&rdquo;</p>
@@ -639,7 +639,7 @@ export default function ServiciiPage() {
                     <Image src={testimonials[currentTestimonial].image || "/placeholder.svg"} alt={testimonials[currentTestimonial].author} fill className="object-cover" />
                   </div>
                   <div>
-                    <p className="font-black text-sm text-[#0D2E2B]">{testimonials[currentTestimonial].author}</p>
+                    <p className="font-light text-sm text-[#0D2E2B]">{testimonials[currentTestimonial].author}</p>
                     <p className="text-xs text-[#888888] font-light">{t(testimonials[currentTestimonial].roleRo, testimonials[currentTestimonial].roleEn)}</p>
                   </div>
                 </footer>

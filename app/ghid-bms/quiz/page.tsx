@@ -146,7 +146,7 @@ export default function QuizPage() {
               </div>
 
               <div className="space-y-6">
-                <div className="p-4 bg-muted/30 rounded-lg">
+                <div className="p-4 bg-muted/30 rounded-[2px]">
                   <h3 className="font-semibold mb-3">Recomandările Noastre:</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
@@ -211,7 +211,7 @@ export default function QuizPage() {
                 {question.options.map((option) => (
                   <div
                     key={option.value}
-                    className="flex items-center space-x-3 rounded-lg border border-border p-4 hover:border-primary/50 transition-colors cursor-pointer"
+                    className="flex items-center space-x-3 rounded-[2px] border border-border p-4 hover:border-primary/50 transition-colors cursor-pointer"
                   >
                     <RadioGroupItem value={option.value} id={`${question.id}-${option.value}`} />
                     <Label htmlFor={`${question.id}-${option.value}`} className="flex-1 cursor-pointer text-base">

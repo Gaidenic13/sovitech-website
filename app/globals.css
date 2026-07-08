@@ -265,3 +265,31 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── ROI report print/PDF export ─────────────────────────────────────────────
+   "Descarcă PDF" triggers window.print(); when the ROI report is on the page,
+   print only the report itself, with its brand colors preserved. Pages without
+   #roi-report print normally. */
+@media print {
+  body:has(#roi-report) * {
+    visibility: hidden;
+  }
+  body:has(#roi-report) #roi-report,
+  body:has(#roi-report) #roi-report * {
+    visibility: visible;
+  }
+  body:has(#roi-report) #roi-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 24px;
+  }
+  #roi-report {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  #roi-report .print-hide {
+    display: none !important;
+  }
+}

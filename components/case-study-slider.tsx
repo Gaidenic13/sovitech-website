@@ -107,8 +107,8 @@ export function CaseStudySlider() {
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-end justify-between mb-12">
           <div>
-            <p className="text-sm text-[#888888] font-semibold mb-2">• {t("STUDII DE CAZ", "CASE STUDIES")}</p>
-            <h2 className="text-5xl font-black text-[#0D2E2B] tracking-tight">
+            <p className="text-sm text-[#888888] font-semibold tracking-wider uppercase mb-2">• {t("Studii de caz", "Case studies")}</p>
+            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter">
               {t("Povesti de succes", "Success stories")}
             </h2>
           </div>
@@ -118,7 +118,7 @@ export function CaseStudySlider() {
           </Link>
         </div>
 
-        <div className="rounded-2xl overflow-hidden bg-white border border-[#0D2E2B]/8">
+        <div className="rounded-[2px] overflow-hidden bg-white border border-[#0D2E2B]/10">
           <div className="grid lg:grid-cols-2">
             <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden bg-[#F5F4F0]">
               <img src={current.image} alt={current.clientCompany} className="h-full w-full object-cover" />
@@ -137,7 +137,7 @@ export function CaseStudySlider() {
                     {'"'}{t(current.quoteRo, current.quoteEn)}{'"'}
                   </p>
                   <footer className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full flex items-center justify-center text-[#0D2E2B] font-black text-sm flex-shrink-0" style={{ backgroundColor: current.accentColor }}>
+                    <div className="h-10 w-10 rounded-full flex items-center justify-center text-[#0D2E2B] font-light text-sm flex-shrink-0" style={{ backgroundColor: current.accentColor }}>
                       {current.clientName.split(" ").map((n) => n[0]).join("")}
                     </div>
                     <div>
@@ -147,14 +147,14 @@ export function CaseStudySlider() {
                   </footer>
                 </blockquote>
 
-                <div className="grid grid-cols-3 gap-4 py-6 border-t border-[#0D2E2B]/8">
+                <div className="grid grid-cols-3 divide-x divide-[#0D2E2B]/10 py-6 border-t border-[#0D2E2B]/10">
                   {[
                     { v: current.stat1, ro: current.stat1LabelRo, en: current.stat1LabelEn },
                     { v: current.stat2, ro: current.stat2LabelRo, en: current.stat2LabelEn },
                     { v: current.stat3, ro: current.stat3LabelRo, en: current.stat3LabelEn },
                   ].map((s, i) => (
-                    <div key={i}>
-                      <div className="text-2xl font-black text-[#0D2E2B] tracking-tight leading-none mb-1">{s.v}</div>
+                    <div key={i} className={i > 0 ? "pl-4" : ""}>
+                      <div className="text-2xl font-light text-[#0D2E2B] tracking-tighter leading-none mb-1">{s.v}</div>
                       <div className="text-xs text-[#888888] font-light">{t(s.ro, s.en)}</div>
                     </div>
                   ))}
@@ -162,7 +162,7 @@ export function CaseStudySlider() {
               </div>
 
               <div className="pt-4">
-                <Link href={`/resurse/studii-de-caz/${current.slug}`} className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#0a2220] transition-colors">
+                <Link href={`/resurse/studii-de-caz/${current.slug}`} className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2.5 rounded-[1px] transition-colors duration-300 hover:bg-[#1F6B4A]">
                   {t("Citeste studiul de caz complet", "Read the full case study")}
                   <ArrowRight className="h-4 w-4" />
                 </Link>

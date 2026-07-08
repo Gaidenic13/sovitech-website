@@ -90,7 +90,7 @@ export default function CaseStudiesPage() {
           {/* Case Studies Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {filteredStudies.map((study) => (
-              <Card key={study.id} className="overflow-hidden border-border hover:shadow-lg transition-shadow">
+              <Card key={study.id} className="overflow-hidden border-border hover:border-primary/40 transition-colors duration-300">
                 <div className="relative h-48 bg-muted">
                   <img
                     src={study.image || "/placeholder.svg"}

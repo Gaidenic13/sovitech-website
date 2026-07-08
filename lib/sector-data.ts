@@ -433,7 +433,7 @@ export const sectors: Sector[] = [
     description:
       "BMS automation designed around the rhythms of education — delivering healthy learning environments, simplified campus management, and compliance with sustainability targets.",
     accentColor: "#E07B6A",
-    accentTextDark: false,
+    accentTextDark: true,
     heroHeadline: "Healthy spaces.\nFocused minds.",
     heroSubheadline:
       "The quality of the learning environment directly impacts academic performance. SOVITECH BMS systems maintain optimal CO2, temperature and lighting conditions throughout the school day — automatically.",

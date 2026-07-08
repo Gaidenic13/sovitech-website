@@ -25,7 +25,7 @@ export default function ResurseSuplimentarePage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Instrumente Interactive</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card className="p-8 border-border hover:border-primary/50 transition-colors">
-              <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+              <div className="h-14 w-14 rounded-[2px] bg-primary/10 flex items-center justify-center mb-6">
                 <Calculator className="h-7 w-7 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-3">Calculator ROI BMS</h3>
@@ -44,7 +44,7 @@ export default function ResurseSuplimentarePage() {
             </Card>
 
             <Card className="p-8 border-border hover:border-primary/50 transition-colors">
-              <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+              <div className="h-14 w-14 rounded-[2px] bg-primary/10 flex items-center justify-center mb-6">
                 <TrendingUp className="h-7 w-7 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-3">Quiz Pregătire BMS</h3>
@@ -75,11 +75,11 @@ export default function ResurseSuplimentarePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <Card className="p-6 border-border hover:shadow-md transition-shadow">
+            <Card className="p-6 border-border hover:border-primary/40 transition-colors duration-300">
               <img
                 src="/modern-spa-building-thermal-pools.jpg"
                 alt="Therme Bucuresti"
-                className="w-full h-48 object-cover rounded-lg mb-4"
+                className="w-full h-48 object-cover rounded-[2px] mb-4"
               />
               <span className="text-xs font-semibold text-primary">HORECA</span>
               <h3 className="text-xl font-bold mt-2 mb-2">Therme București</h3>
@@ -91,11 +91,11 @@ export default function ResurseSuplimentarePage() {
               </Button>
             </Card>
 
-            <Card className="p-6 border-border hover:shadow-md transition-shadow">
+            <Card className="p-6 border-border hover:border-primary/40 transition-colors duration-300">
               <img
                 src="/luxury-hotel-modern-building.jpg"
                 alt="Radisson Blu"
-                className="w-full h-48 object-cover rounded-lg mb-4"
+                className="w-full h-48 object-cover rounded-[2px] mb-4"
               />
               <span className="text-xs font-semibold text-primary">HOTEL</span>
               <h3 className="text-xl font-bold mt-2 mb-2">Radisson Blu București</h3>
@@ -107,11 +107,11 @@ export default function ResurseSuplimentarePage() {
               </Button>
             </Card>
 
-            <Card className="p-6 border-border hover:shadow-md transition-shadow">
+            <Card className="p-6 border-border hover:border-primary/40 transition-colors duration-300">
               <img
                 src="/pharmaceutical-manufacturing.png"
                 alt="Rompharm"
-                className="w-full h-48 object-cover rounded-lg mb-4"
+                className="w-full h-48 object-cover rounded-[2px] mb-4"
               />
               <span className="text-xs font-semibold text-primary">PHARMA</span>
               <h3 className="text-xl font-bold mt-2 mb-2">Rompharm Company</h3>

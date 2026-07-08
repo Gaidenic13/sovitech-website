@@ -1,6 +1,8 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Calculator } from "lucide-react"
 import {
   NavigationMenu,
@@ -12,207 +14,251 @@ import {
 } from "@/components/ui/navigation-menu"
 import { useLanguage } from "@/lib/language-context"
 
+// ─── Navigation data ──────────────────────────────────────────────────────────
+
+type NavLink = { href: string; labelRo: string; labelEn: string; descRo?: string; descEn?: string }
+type NavGroup = { labelRo: string; labelEn: string; twoColumns?: boolean; links: NavLink[] }
+
+const navGroups: NavGroup[] = [
+  {
+    labelRo: "Servicii",
+    labelEn: "Services",
+    twoColumns: true,
+    links: [
+      { href: "/servicii", labelRo: "Servicii BMS Complete", labelEn: "Complete BMS Services", descRo: "Parcursul complet de la consultanta la mentenanta", descEn: "The full journey from consultation to maintenance" },
+      { href: "/servicii#proiectare", labelRo: "Proiectare BMS", labelEn: "BMS Design", descRo: "Proiectare completa a sistemelor de automatizare", descEn: "Full design of automation systems" },
+      { href: "/servicii#executie", labelRo: "Executie Sisteme", labelEn: "System Installation", descRo: "Implementare profesionala sisteme BMS", descEn: "Professional BMS system implementation" },
+      { href: "/servicii#integrare", labelRo: "Integrare Sisteme", labelEn: "Systems Integration", descRo: "Integrare KNX, DALI, Modbus, M-Bus", descEn: "KNX, DALI, Modbus, M-Bus integration" },
+    ],
+  },
+  {
+    labelRo: "Sectoare",
+    labelEn: "Sectors",
+    links: [
+      { href: "/sectoare", labelRo: "Toate Sectoarele", labelEn: "All Sectors", descRo: "Expertiza BMS in toate industriile", descEn: "BMS expertise across all industries" },
+      { href: "/sectoare/civil", labelRo: "Civil & Birouri", labelEn: "Civil & Office", descRo: "Cladiri de birouri si spatii comerciale", descEn: "Office buildings and commercial spaces" },
+      { href: "/sectoare/medical", labelRo: "Medical & Farma", labelEn: "Medical & Pharma", descRo: "Facilitati medicale si productie farmaceutica", descEn: "Medical facilities and pharmaceutical production" },
+      { href: "/sectoare/retail", labelRo: "Retail & HoReCa", labelEn: "Retail & HoReCa", descRo: "Magazine, hoteluri si restaurante", descEn: "Shops, hotels and restaurants" },
+      { href: "/sectoare/industrial", labelRo: "Industrial", labelEn: "Industrial", descRo: "Depozite industriale si productie", descEn: "Industrial warehouses and production" },
+    ],
+  },
+  {
+    labelRo: "Resurse",
+    labelEn: "Resources",
+    links: [
+      { href: "/resurse", labelRo: "Toate Resursele", labelEn: "All Resources", descRo: "Date, analize si ghiduri pentru profesionisti", descEn: "Data, analysis and guides for professionals" },
+      { href: "/resurse/articole/eficienta-bms", labelRo: "Eficienta BMS - Analiza Date", labelEn: "BMS Efficiency - Data Analysis", descRo: "Cat de eficiente sunt sistemele BMS?", descEn: "How efficient are BMS systems?" },
+      { href: "/resurse/referinte", labelRo: "Proiecte & Referinte", labelEn: "Projects & References", descRo: "Portofoliul nostru de proiecte BMS", descEn: "Our portfolio of BMS projects" },
+      { href: "/ghid-bms", labelRo: "Ghid BMS Gratuit", labelEn: "Free BMS Guide", descRo: "Evalueaza potentialul cladirii tale", descEn: "Assess the potential of your building" },
+      { href: "/resurse/raport-piata", labelRo: "Raport Piata BMS", labelEn: "BMS Market Report", descRo: "Analiza pietei de automatizare 2025", descEn: "Automation market analysis 2025" },
+    ],
+  },
+]
+
+const produseLink: NavLink = { href: "/produse", labelRo: "Produse SAUTER", labelEn: "SAUTER Products" }
+
+// Trigger states: solid dark text + cream chip on hover/open/focus so the
+// hovered label is unmistakably darker and readable on the white bar
+const triggerClasses =
+  "bg-transparent text-[15px] font-medium text-[#0D2E2B]/80 rounded-full px-4 transition-colors duration-300 " +
+  "hover:bg-[#F5F4F0] hover:text-[#0D2E2B] " +
+  "focus:bg-[#F5F4F0] focus:text-[#0D2E2B] " +
+  "data-[state=open]:bg-[#F5F4F0] data-[state=open]:text-[#0D2E2B] " +
+  "data-[state=open]:hover:bg-[#F5F4F0] data-[state=open]:focus:bg-[#F5F4F0]"
+
+const itemLinkClasses =
+  "hover:bg-[#F5F4F0] hover:text-[#0D2E2B] focus:bg-[#F5F4F0] focus:text-[#0D2E2B] " +
+  "data-[active=true]:bg-[#F5F4F0] data-[active=true]:text-[#0D2E2B] focus-visible:ring-[#1F6B4A]/40"
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+
 export function Header() {
   const { lang, setLang, t } = useLanguage()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+
+  // close the drawer on navigation and keep the page from scrolling behind it
+  useEffect(() => setMobileOpen(false), [pathname])
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [mobileOpen])
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMobileOpen(false) }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [])
+
+  const langToggle = (
+    <div className="flex items-center rounded-full border border-[#0D2E2B]/15 overflow-hidden text-xs font-semibold">
+      {(["ro", "en"] as const).map((code) => (
+        <button
+          key={code}
+          onClick={() => setLang(code)}
+          className={`px-3 py-1.5 transition-colors duration-150 ${lang === code ? "bg-[#0D2E2B] text-white" : "text-[#0D2E2B]/60 hover:text-[#0D2E2B]"}`}
+        >
+          {code.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  )
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-[#0D2E2B]/10">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center">
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/placeholder%20%281%29-3DZXnJPEBcaC7XdneA9zScoygOkuFv.png"
-              alt="SOVITECH Control"
-              className="h-8 w-auto"
-            />
+      <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-4 md:px-6">
+        {/* Left: logo + desktop nav */}
+        <div className="flex items-center gap-6 min-w-0">
+          <Link href="/" className="flex shrink-0 items-center">
+            <img src="/logo.svg" alt="SOVITECH Control" width={200} height={50} className="h-8 w-auto shrink-0 select-none" />
           </Link>
 
-          <NavigationMenu className="hidden md:flex">
+          {/* Desktop nav appears only when there is genuinely room for it */}
+          <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-[#0D2E2B]/70 text-sm font-medium hover:text-[#0D2E2B] hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent transition">
-                  {t("Servicii", "Services")}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 bg-white border border-[#0D2E2B]/10 shadow-lg">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/servicii" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Servicii BMS Complete", "Complete BMS Services")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Parcursul complet de la consultanta la mentenanta", "The full journey from consultation to maintenance")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/servicii#proiectare" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Proiectare BMS", "BMS Design")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Proiectare completa a sistemelor de automatizare", "Full design of automation systems")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/servicii#executie" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Executie Sisteme", "System Installation")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Implementare profesionala sisteme BMS", "Professional BMS system implementation")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/servicii#integrare" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Integrare Sisteme", "Systems Integration")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Integrare KNX, DALI, Modbus, M-Bus", "KNX, DALI, Modbus, M-Bus integration")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+              {navGroups.slice(0, 1).map((group) => (
+                <NavigationMenuItem key={group.labelEn}>
+                  <NavigationMenuTrigger className={triggerClasses}>{t(group.labelRo, group.labelEn)}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className={`grid gap-1 p-2 ${group.twoColumns ? "w-[440px] md:w-[540px] md:grid-cols-2" : "w-[380px]"}`}>
+                      {group.links.map((link) => (
+                        <li key={link.href}>
+                          <NavigationMenuLink asChild className={itemLinkClasses}>
+                            <Link href={link.href} className="block select-none space-y-1 rounded-[1px] p-3 leading-none no-underline outline-none transition-colors duration-150">
+                              <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t(link.labelRo, link.labelEn)}</div>
+                              <p className="line-clamp-2 text-[13px] leading-snug text-[#0D2E2B]/60">{t(link.descRo!, link.descEn!)}</p>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link href="/produse" className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-[#0D2E2B]/70 transition hover:text-[#0D2E2B] hover:bg-transparent focus:bg-transparent focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                    {t("Produse SAUTER", "SAUTER Products")}
+                <NavigationMenuLink asChild className={itemLinkClasses}>
+                  <Link href={produseLink.href} className="group inline-flex h-9 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-[15px] font-medium text-[#0D2E2B]/80 transition-colors duration-300 hover:bg-[#F5F4F0] hover:text-[#0D2E2B] focus:bg-[#F5F4F0] focus:text-[#0D2E2B] focus:outline-none">
+                    {t(produseLink.labelRo, produseLink.labelEn)}
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-[#0D2E2B]/70 text-sm font-medium hover:text-[#0D2E2B] hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent transition">
-                  {t("Sectoare", "Sectors")}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 bg-white border border-[#0D2E2B]/10 shadow-lg">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/sectoare" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Toate Sectoarele", "All Sectors")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Expertiza BMS in toate industriile", "BMS expertise across all industries")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/sectoare/civil" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Civil & Birouri", "Civil & Office")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Cladiri de birouri si spatii comerciale", "Office buildings and commercial spaces")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/sectoare/medical" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Medical & Farma", "Medical & Pharma")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Facilitati medicale si productie farmaceutica", "Medical facilities and pharmaceutical production")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/sectoare/retail" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Retail & HORECA", "Retail & HORECA")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Centre comerciale si spatii hotel", "Shopping centres and hotel spaces")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/sectoare/industrial" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Industrial", "Industrial")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Depozite industriale si productie", "Industrial warehouses and production")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-[#0D2E2B]/70 text-sm font-medium hover:text-[#0D2E2B] hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent transition">
-                  {t("Resurse", "Resources")}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 bg-white border border-[#0D2E2B]/10 shadow-lg">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/resurse" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Toate Resursele", "All Resources")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Date, analize si ghiduri pentru profesionisti", "Data, analysis and guides for professionals")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/resurse/articole/eficienta-bms" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Eficienta BMS - Analiza Date", "BMS Efficiency - Data Analysis")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Cat de eficiente sunt sistemele BMS?", "How efficient are BMS systems?")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/resurse/referinte" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Proiecte & Referinte", "Projects & References")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Portofoliul nostru de proiecte BMS", "Our portfolio of BMS projects")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/ghid-bms" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Ghid BMS Gratuit", "Free BMS Guide")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Evalueaza potentialul cladirii tale", "Assess the potential of your building")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/resurse/raport-piata" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-[#F5F4F0]">
-                          <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t("Raport Piata BMS", "BMS Market Report")}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-[#0D2E2B]/50">{t("Analiza pietei de automatizare 2025", "Automation market analysis 2025")}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+              {navGroups.slice(1).map((group) => (
+                <NavigationMenuItem key={group.labelEn}>
+                  <NavigationMenuTrigger className={triggerClasses}>{t(group.labelRo, group.labelEn)}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className={`grid gap-1 p-2 ${group.twoColumns ? "w-[440px] md:w-[540px] md:grid-cols-2" : "w-[380px]"}`}>
+                      {group.links.map((link) => (
+                        <li key={link.href}>
+                          <NavigationMenuLink asChild className={itemLinkClasses}>
+                            <Link href={link.href} className="block select-none space-y-1 rounded-[1px] p-3 leading-none no-underline outline-none transition-colors duration-150">
+                              <div className="text-sm font-medium leading-none text-[#0D2E2B]">{t(link.labelRo, link.labelEn)}</div>
+                              <p className="line-clamp-2 text-[13px] leading-snug text-[#0D2E2B]/60">{t(link.descRo!, link.descEn!)}</p>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* RO / EN toggle */}
-          <div className="hidden sm:flex items-center rounded-full border border-[#0D2E2B]/15 overflow-hidden text-xs font-semibold">
-            <button
-              onClick={() => setLang("ro")}
-              className={`px-3 py-1.5 transition-colors ${lang === "ro" ? "bg-[#0D2E2B] text-white" : "text-[#0D2E2B]/50 hover:text-[#0D2E2B]"}`}
-            >
-              RO
-            </button>
-            <button
-              onClick={() => setLang("en")}
-              className={`px-3 py-1.5 transition-colors ${lang === "en" ? "bg-[#0D2E2B] text-white" : "text-[#0D2E2B]/50 hover:text-[#0D2E2B]"}`}
-            >
-              EN
-            </button>
-          </div>
+        {/* Right: utilities, CTA, burger */}
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex">{langToggle}</div>
 
           <Link
             href="/calculator-roi"
-            className="hidden sm:flex items-center gap-2 text-[#0D2E2B]/60 text-sm font-medium hover:text-[#0D2E2B] transition"
+            className="hidden xl:flex items-center gap-2 text-[#0D2E2B]/70 text-sm font-medium hover:text-[#0D2E2B] transition-colors duration-150"
           >
             <Calculator className="h-4 w-4" />
-            <span className="hidden lg:inline">{t("Calculator ROI", "ROI Calculator")}</span>
+            {t("Calculator ROI", "ROI Calculator")}
           </Link>
+
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-[#1F6B4A] transition-all"
+            className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-[#1F6B4A] transition-colors duration-300"
           >
             {t("Cerere oferta", "Request a quote")}
           </Link>
+
+          {/* Burger — circular chip from the same family as the RO/EN pill,
+              two hairline bars that fold into an X */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            aria-label={mobileOpen ? t("Inchide meniul", "Close menu") : t("Deschide meniul", "Open menu")}
+            className="lg:hidden relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0D2E2B]/15 transition-colors duration-300 hover:border-[#0D2E2B]/40 hover:bg-[#F5F4F0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40"
+          >
+            <span aria-hidden="true" className={`absolute h-[1.5px] w-4 bg-[#0D2E2B] transition-transform duration-300 ease-out ${mobileOpen ? "rotate-45" : "-translate-y-[3px]"}`} />
+            <span aria-hidden="true" className={`absolute h-[1.5px] w-4 bg-[#0D2E2B] transition-transform duration-300 ease-out ${mobileOpen ? "-rotate-45" : "translate-y-[3px]"}`} />
+          </button>
         </div>
+      </div>
+
+      {/* Mobile drawer — full-height sheet under the bar, structured like the
+          site's grouped link rails: tracked uppercase group labels, light
+          links, hairline dividers */}
+      <div
+        id="mobile-nav"
+        className={`lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white overflow-y-auto border-t border-[#0D2E2B]/10 transition-opacity duration-300 ${mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      >
+        <nav aria-label={t("Meniu mobil", "Mobile menu")} className="px-6 py-8 flex flex-col">
+          {navGroups.map((group) => (
+            <div key={group.labelEn} className="pb-7 mb-7 border-b border-[#0D2E2B]/10">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#1F6B4A] mb-4">
+                {t(group.labelRo, group.labelEn)}
+              </p>
+              <ul className="space-y-1">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block py-2 text-lg font-light text-[#0D2E2B]/80 hover:text-[#0D2E2B] transition-colors duration-150"
+                    >
+                      {t(link.labelRo, link.labelEn)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div className="pb-7 mb-7 border-b border-[#0D2E2B]/10">
+            <Link
+              href={produseLink.href}
+              onClick={() => setMobileOpen(false)}
+              className="block py-2 text-lg font-light text-[#0D2E2B]/80 hover:text-[#0D2E2B] transition-colors duration-150"
+            >
+              {t(produseLink.labelRo, produseLink.labelEn)}
+            </Link>
+            <Link
+              href="/calculator-roi"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2 py-2 text-lg font-light text-[#0D2E2B]/80 hover:text-[#0D2E2B] transition-colors duration-150"
+            >
+              <Calculator className="h-5 w-5" />
+              {t("Calculator ROI", "ROI Calculator")}
+            </Link>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            {langToggle}
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="flex-1 inline-flex items-center justify-center bg-[#0D2E2B] text-white text-sm font-medium px-5 py-3 rounded-full hover:bg-[#1F6B4A] transition-colors duration-300"
+            >
+              {t("Cerere oferta", "Request a quote")}
+            </Link>
+          </div>
+        </nav>
       </div>
     </header>
   )

@@ -27,7 +27,7 @@ export default function MultumimPage() {
           {/* Download Card */}
           <Card className="p-8 border-border bg-gradient-to-br from-primary/5 to-primary/10 mb-8">
             <div className="flex items-start gap-4 mb-6">
-              <div className="h-12 w-12 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+              <div className="h-12 w-12 rounded-[2px] bg-primary flex items-center justify-center flex-shrink-0">
                 <Download className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>

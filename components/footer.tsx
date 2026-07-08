@@ -2,28 +2,32 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="bg-[#F5F4F0] border-t border-[#0D2E2B]/10 bg-primary-foreground">
+    <footer className="bg-[#07201C] border-t border-white/10">
       {/* Top section */}
       <div className="flex flex-col lg:flex-row justify-between items-start py-16 px-8 gap-12 max-w-7xl mx-auto">
         {/* Left: logo + CTA buttons */}
         <div className="flex flex-col gap-6 flex-shrink-0">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex shrink-0 items-center">
+            {/* white logo variant on the dark footer surface — no CSS filter
+                hacks; fixed height + auto width + shrink-0 keeps proportions */}
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/placeholder%20%281%29-3DZXnJPEBcaC7XdneA9zScoygOkuFv.png"
+              src="/logo-white.svg"
               alt="SOVITECH Control"
-              className="h-9 w-auto"
+              width={200}
+              height={50}
+              className="h-9 w-auto shrink-0 select-none"
             />
           </Link>
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#1F6B4A] transition-all"
+              className="inline-flex items-center gap-2 bg-white text-[#07201C] text-sm font-medium px-5 py-2.5 rounded-[1px] hover:bg-[#C8E6C9] transition-colors duration-300"
             >
               Contact Us
             </Link>
             <Link
               href="/contact"
-              className="text-[#0D2E2B]/50 text-sm border border-[#0D2E2B]/20 px-4 py-2.5 rounded-full hover:text-[#0D2E2B] hover:border-[#0D2E2B]/40 transition-all"
+              className="text-white/50 text-sm border border-white/15 px-4 py-2.5 rounded-[1px] hover:text-white hover:border-white/40 transition-colors duration-300"
             >
               Sign in
             </Link>
@@ -34,30 +38,30 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full lg:w-auto">
           {/* Services */}
           <div>
-            <h3 className="text-[#0D2E2B] text-sm font-semibold mb-4">Services</h3>
+            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/servicii#proiectare" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/servicii#proiectare" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   BMS Design
                 </Link>
               </li>
               <li>
-                <Link href="/servicii#executie" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/servicii#executie" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   System Installation
                 </Link>
               </li>
               <li>
-                <Link href="/servicii#integrare" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/servicii#integrare" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Systems Integration
                 </Link>
               </li>
               <li>
-                <Link href="/servicii#mentenanta" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/servicii#mentenanta" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   BMS Maintenance
                 </Link>
               </li>
               <li>
-                <Link href="/servicii#consultanta" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/servicii#consultanta" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Consultancy
                 </Link>
               </li>
@@ -66,30 +70,30 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-[#0D2E2B] text-sm font-semibold mb-4">Resources</h3>
+            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/resurse/referinte" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/resurse/referinte" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Projects & References
                 </Link>
               </li>
               <li>
-                <Link href="/ghid-bms" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/ghid-bms" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Free BMS Guide
                 </Link>
               </li>
               <li>
-                <Link href="/resurse/raport-piata" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/resurse/raport-piata" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   BMS Market Report
                 </Link>
               </li>
               <li>
-                <Link href="/produse" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/produse" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   SAUTER Products
                 </Link>
               </li>
               <li>
-                <Link href="/calculator-roi" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/calculator-roi" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Calculator ROI
                 </Link>
               </li>
@@ -98,25 +102,25 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-[#0D2E2B] text-sm font-semibold mb-4">Company</h3>
+            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/servicii" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/servicii" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/sectoare" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/sectoare" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Sectors
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Careers
                 </Link>
               </li>
@@ -125,20 +129,20 @@ export function Footer() {
 
           {/* By SOVITECH */}
           <div>
-            <h3 className="text-[#0D2E2B] text-sm font-semibold mb-4">By SOVITECH</h3>
+            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">By SOVITECH</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/contact" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-[#0D2E2B]/50 text-sm hover:text-[#0D2E2B] transition">
+                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
                   Cookie Policy
                 </Link>
               </li>
@@ -148,8 +152,8 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#0D2E2B]/10 py-6 px-8 max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p className="text-[#0D2E2B]/40 text-xs">
+      <div className="border-t border-white/10 py-6 px-8 max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p className="text-white/40 text-xs">
           Terms · Privacy · Cookie Settings · &copy; {new Date().getFullYear()} SOVITECH Control
         </p>
         <div className="flex items-center gap-4">
@@ -158,7 +162,7 @@ export function Footer() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#0D2E2B]/40 hover:text-[#0D2E2B] transition-colors"
+            className="text-white/40 hover:text-white transition-colors duration-150"
             aria-label="LinkedIn"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -170,7 +174,7 @@ export function Footer() {
             href="https://x.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#0D2E2B]/40 hover:text-[#0D2E2B] transition-colors"
+            className="text-white/40 hover:text-white transition-colors duration-150"
             aria-label="X"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

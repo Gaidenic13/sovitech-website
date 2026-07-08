@@ -144,7 +144,7 @@ export default function CalculatorPage() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div className="p-6 bg-white rounded-lg border border-border">
+                      <div className="p-6 bg-white rounded-[2px] border border-border">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
                             <TrendingDown className="h-5 w-5 text-green-600" />
@@ -161,7 +161,7 @@ export default function CalculatorPage() {
                         </p>
                       </div>
 
-                      <div className="p-6 bg-white rounded-lg border border-border">
+                      <div className="p-6 bg-white rounded-[2px] border border-border">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
                             <Clock className="h-5 w-5 text-blue-600" />
@@ -176,7 +176,7 @@ export default function CalculatorPage() {
                         </p>
                       </div>
 
-                      <div className="p-6 bg-white rounded-lg border border-border">
+                      <div className="p-6 bg-white rounded-[2px] border border-border">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
                             <TrendingUp className="h-5 w-5 text-purple-600" />
@@ -191,7 +191,7 @@ export default function CalculatorPage() {
                         <p className="text-xs text-muted-foreground">Cumulative ROI after the payback period</p>
                       </div>
 
-                      <div className="p-6 bg-white rounded-lg border border-border">
+                      <div className="p-6 bg-white rounded-[2px] border border-border">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
                             <Leaf className="h-5 w-5 text-green-600" />
@@ -213,7 +213,7 @@ export default function CalculatorPage() {
                   <Card className="p-6 border-border">
                     <h3 className="text-lg font-semibold mb-4">Next Steps</h3>
                     <div className="space-y-3">
-                      <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg">
+                      <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-[2px]">
                         <div className="h-6 w-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-sm font-bold">
                           1
                         </div>
@@ -224,7 +224,7 @@ export default function CalculatorPage() {
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg">
+                      <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-[2px]">
                         <div className="h-6 w-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-sm font-bold">
                           2
                         </div>

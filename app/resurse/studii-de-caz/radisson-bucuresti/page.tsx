@@ -118,7 +118,7 @@ export default function RadissonBucurestiCaseStudy() {
               </p>
             </div>
             <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="rounded-[2px] border border-border bg-card p-6">
                 <div className="grid grid-cols-2 gap-6">
                   {metrics.map((m, i) => (
                     <div key={i} className={i < 2 ? "pb-6 border-b border-border" : ""}>
@@ -136,7 +136,7 @@ export default function RadissonBucurestiCaseStudy() {
       {/* Hero Image */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8">
-          <div className="relative aspect-[21/9] w-full overflow-hidden md:rounded-2xl md:my-8 -mx-4 md:mx-0">
+          <div className="relative aspect-[21/9] w-full overflow-hidden md:rounded-[2px] md:my-8 -mx-4 md:mx-0">
             <Image src="/luxury-hotel-lobby-modern-interior.jpg" alt="Radisson Blu Bucharest - Modern hotel lobby" fill className="object-cover" priority />
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function RadissonBucurestiCaseStudy() {
                 <div className="font-semibold text-foreground text-sm" style={{ letterSpacing: "-0.01em" }}>BREEAM In-Use Excellent (2025)</div>
               </div>
               <div className="pt-4 border-t border-border">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline hover:no-underline transition-all" style={{ letterSpacing: "-0.01em" }}>
+                <Link href="/contact" className="inline-flex items-center gap-2 rounded-[1px] bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline hover:no-underline transition-all" style={{ letterSpacing: "-0.01em" }}>
                   Request a Consultation
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
@@ -218,9 +218,9 @@ export default function RadissonBucurestiCaseStudy() {
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {challenges.map((c, i) => (
-                  <div key={i} className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/30">
+                  <div key={i} className="rounded-[2px] border border-border bg-card p-5 transition-colors hover:border-accent/30">
                     <div className="flex items-start gap-3.5">
-                      <div className="mt-0.5 h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <div className="mt-0.5 h-9 w-9 rounded-[2px] bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <c.icon className="h-4.5 w-4.5 text-accent" />
                       </div>
                       <div>
@@ -234,7 +234,7 @@ export default function RadissonBucurestiCaseStudy() {
             </section>
 
             {/* Testimonial */}
-            <div className="rounded-2xl bg-secondary p-8 md:p-10">
+            <div className="rounded-[2px] bg-secondary p-8 md:p-10">
               <blockquote>
                 <p className="text-foreground mb-6 text-pretty" style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.25rem)", lineHeight: 1.6, letterSpacing: "-0.02em", fontWeight: 500 }}>
                   {'"'}Achieving BREEAM certification is a proud moment that reflects our deep commitment to sustainable hospitality. Sovitech&apos;s automation solutions directly support that commitment, making hotel operations more efficient and environmentally friendly.{'"'}
@@ -259,9 +259,9 @@ export default function RadissonBucurestiCaseStudy() {
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {solutionFeatures.map((f, i) => (
-                  <div key={i} className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/30">
+                  <div key={i} className="rounded-[2px] border border-border bg-card p-5 transition-colors hover:border-accent/30">
                     <div className="flex items-start gap-3.5">
-                      <div className="mt-0.5 h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <div className="mt-0.5 h-9 w-9 rounded-[2px] bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <f.icon className="h-4.5 w-4.5 text-accent" />
                       </div>
                       <div>
@@ -316,9 +316,9 @@ export default function RadissonBucurestiCaseStudy() {
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {results.map((r, i) => (
-                  <div key={i} className="rounded-xl bg-secondary p-6">
+                  <div key={i} className="rounded-[2px] bg-secondary p-6">
                     <div className="flex items-center gap-2.5 mb-3">
-                      <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                      <div className="h-8 w-8 rounded-[2px] bg-accent/10 flex items-center justify-center">
                         <r.icon className="h-4 w-4 text-accent" />
                       </div>
                       <h4 className="font-semibold text-foreground" style={{ fontSize: "0.9375rem", letterSpacing: "-0.01em" }}>{r.title}</h4>
@@ -337,7 +337,7 @@ export default function RadissonBucurestiCaseStudy() {
               <p className="text-foreground/85 mb-6 max-w-[45rem]" style={{ fontSize: "clamp(0.9375rem, 1.2vw, 1rem)", lineHeight: 1.7, letterSpacing: "-0.01em" }}>
                 Sovitech was selected for its specialised expertise in HORECA automation and its proven portfolio of similar projects. Sovitech&apos;s client list includes renowned hotels: Radisson, Crowne Plaza, Hilton Athenee Palace, Novotel and others.
               </p>
-              <div className="rounded-xl border border-border bg-card p-6">
+              <div className="rounded-[2px] border border-border bg-card p-6">
                 <ul className="space-y-3 list-none p-0 m-0">
                   {whyReasons.map((reason, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -361,7 +361,7 @@ export default function RadissonBucurestiCaseStudy() {
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {hospitalityBenefits.map((b, i) => (
-                  <div key={i} className="rounded-xl bg-secondary p-5">
+                  <div key={i} className="rounded-[2px] bg-secondary p-5">
                     <h4 className="font-semibold text-foreground mb-1.5" style={{ fontSize: "0.9375rem", letterSpacing: "-0.01em" }}>{b.title}</h4>
                     <p className="text-muted-foreground" style={{ fontSize: "0.8125rem", lineHeight: 1.6 }}>{b.desc}</p>
                   </div>
@@ -370,7 +370,7 @@ export default function RadissonBucurestiCaseStudy() {
             </section>
 
             {/* Conclusion */}
-            <section className="rounded-2xl border border-border bg-card p-8 md:p-10">
+            <section className="rounded-[2px] border border-border bg-card p-8 md:p-10">
               <h3 className="font-semibold text-foreground mb-4" style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.25rem)", letterSpacing: "-0.02em" }}>
                 Conclusion
               </h3>
@@ -385,7 +385,7 @@ export default function RadissonBucurestiCaseStudy() {
             </section>
 
             {/* CTA */}
-            <div className="rounded-2xl bg-foreground p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="rounded-[2px] bg-foreground p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-background font-semibold mb-2" style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.25rem)", letterSpacing: "-0.02em" }}>
                   Want similar results for your hotel?
@@ -394,7 +394,7 @@ export default function RadissonBucurestiCaseStudy() {
                   Contact our team for a personalised consultation and efficiency plan.
                 </p>
               </div>
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white no-underline hover:no-underline whitespace-nowrap transition-all" style={{ letterSpacing: "-0.01em" }}>
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-[1px] bg-accent px-6 py-3 text-sm font-semibold text-white no-underline hover:no-underline whitespace-nowrap transition-all" style={{ letterSpacing: "-0.01em" }}>
                 Contact us
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -410,7 +410,7 @@ export default function RadissonBucurestiCaseStudy() {
             Other case studies
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <Link href="/resurse/studii-de-caz/therme-bucuresti" className="group rounded-xl border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all">
+            <Link href="/resurse/studii-de-caz/therme-bucuresti" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all">
               <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA - Spa &amp; Wellness</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)", letterSpacing: "-0.01em" }}>
                 Therme Bucharest
@@ -422,7 +422,7 @@ export default function RadissonBucurestiCaseStudy() {
                 Read the study <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
-            <Link href="/contact" className="group rounded-xl border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all">
+            <Link href="/contact" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all">
               <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">Your project</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)", letterSpacing: "-0.01em" }}>
                 The next case study could be yours

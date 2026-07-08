@@ -9,13 +9,13 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="bg-[#0D2E2B] min-h-[45vh] flex items-end pb-16 relative overflow-hidden">
+      <section className="bg-[#07201C] min-h-[45vh] flex items-end pb-16 relative overflow-hidden">
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg" alt="" className="h-[600px] w-auto" />
         </div>
         <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
-          <span className="text-[#1F6B4A] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Contact", "Contact")}</span>
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight">
+          <span className="text-[#C8E6C9] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Contact", "Contact")}</span>
+          <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
             {t("Sa vorbim.", "Let's talk.")}
           </h1>
           <p className="text-lg text-white/60 font-light mt-4 max-w-xl">
@@ -33,7 +33,7 @@ export default function ContactPage() {
             <div className="space-y-12">
               <div>
                 <p className="section-label mb-3">• {t("INFORMATII", "INFORMATION")}</p>
-                <h2 className="text-4xl font-black text-[#0D2E2B] tracking-tight mb-4">
+                <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-4">
                   {t("Venim la tine", "We come to you")}
                 </h2>
                 <p className="text-base text-[#888888] font-light leading-relaxed">
@@ -44,7 +44,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="aspect-video overflow-hidden rounded-2xl">
+              <div className="aspect-video overflow-hidden rounded-[2px]">
                 <img src="/services-commissioning-training.jpg" alt={t("Echipa Sovitech", "Sovitech team")} className="h-full w-full object-cover" />
               </div>
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   { icon: Clock, labelRo: "Program", labelEn: "Hours", valueRo: "Luni — Vineri: 09:00 – 18:00\nSambata — Duminica: Inchis", valueEn: "Monday — Friday: 09:00 – 18:00\nSaturday — Sunday: Closed" },
                 ].map(({ icon: Icon, labelRo, labelEn, value, valueRo, valueEn }) => (
                   <div key={labelRo} className="flex items-start gap-5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0D2E2B]/8 flex-shrink-0">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-[2px] bg-[#0D2E2B]/8 flex-shrink-0">
                       <Icon className="h-5 w-5 text-[#0D2E2B]" />
                     </div>
                     <div>
@@ -70,9 +70,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-10 shadow-sm">
+            <div className="bg-white rounded-[2px] p-10 border border-[#0D2E2B]/10">
               <p className="section-label mb-3">• {t("MESAJ", "MESSAGE")}</p>
-              <h2 className="text-3xl font-black text-[#0D2E2B] tracking-tight mb-8">
+              <h2 className="text-3xl font-light text-[#0D2E2B] tracking-tighter mb-8">
                 {t("Trimite-ne o cerere", "Send us a request")}
               </h2>
 
@@ -84,7 +84,7 @@ export default function ContactPage() {
                   ].map(({ id, labelRo, labelEn, placeholderRo, placeholderEn }) => (
                     <div key={id}>
                       <label htmlFor={id} className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t(labelRo, labelEn)}</label>
-                      <input type="text" id={id} placeholder={t(placeholderRo, placeholderEn)} className="w-full rounded-lg border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition" />
+                      <input type="text" id={id} placeholder={t(placeholderRo, placeholderEn)} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition" />
                     </div>
                   ))}
                 </div>
@@ -95,13 +95,13 @@ export default function ContactPage() {
                 ].map(({ id, type, labelRo, labelEn, placeholder }) => (
                   <div key={id}>
                     <label htmlFor={id} className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t(labelRo, labelEn)}</label>
-                    <input type={type} id={id} placeholder={placeholder} className="w-full rounded-lg border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition" />
+                    <input type={type} id={id} placeholder={placeholder} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition" />
                   </div>
                 ))}
 
                 <div>
                   <label htmlFor="subject" className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t("Subiect", "Subject")}</label>
-                  <select id="subject" className="w-full rounded-lg border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition">
+                  <select id="subject" className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition">
                     <option>{t("Cerere oferta", "Request a Quote")}</option>
                     <option>{t("Consultanta BMS", "BMS Consultation")}</option>
                     <option>{t("Suport tehnic", "Technical Support")}</option>
@@ -112,10 +112,10 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="message" className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t("Mesaj", "Message")}</label>
-                  <textarea id="message" rows={5} placeholder={t("Descrieti pe scurt proiectul sau intrebarea dumneavoastra...", "Briefly describe your project or question...")} className="w-full rounded-lg border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition resize-none" />
+                  <textarea id="message" rows={5} placeholder={t("Descrieti pe scurt proiectul sau intrebarea dumneavoastra...", "Briefly describe your project or question...")} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition resize-none" />
                 </div>
 
-                <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-[#1F6B4A] text-white text-sm font-medium px-6 py-3.5 rounded-lg hover:bg-[#185c3f] transition-colors">
+                <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-[#1F6B4A] text-white text-sm font-medium px-6 py-3.5 rounded-[2px] hover:bg-[#185c3f] transition-colors">
                   {t("Trimite Mesaj", "Send Message")}
                   <ArrowRight className="h-4 w-4" />
                 </button>
@@ -125,11 +125,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-[#0D2E2B] py-24">
+      <section className="bg-[#07201C] py-24">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="section-label text-[#1F6B4A] mb-2">• {t("CALCULATOR", "CALCULATOR")}</p>
-            <h2 className="text-3xl font-black text-white tracking-tight">
+            <h2 className="text-3xl font-light text-white tracking-tighter">
               {t("Calculeaza ROI-ul proiectului tau BMS", "Calculate the ROI of your BMS project")}
             </h2>
           </div>
