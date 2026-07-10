@@ -372,17 +372,17 @@ export default function ProdusePage() {
       </section>
 
       {/* Category Filter */}
-      <section className="sticky top-16 z-40 border-b border-border/40 bg-background/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <section className="sticky top-16 z-40 border-b border-[#0D2E2B]/10 bg-white/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-white/80">
         <div className="container mx-auto">
           <div className="flex gap-2 overflow-x-auto pb-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-medium transition-all ${
+                className={`whitespace-nowrap rounded-[1px] border px-5 py-2 text-sm font-medium transition-colors duration-150 ${
                   selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-[#0D2E2B] border-[#0D2E2B] text-white"
+                    : "bg-white border-[#0D2E2B]/15 text-[#0D2E2B]/60 hover:text-[#0D2E2B] hover:border-[#0D2E2B]/30"
                 }`}
               >
                 {category}
@@ -399,20 +399,28 @@ export default function ProdusePage() {
             {filteredProducts.map((product) => {
               const Icon = product.icon
               const isHovered = hoveredProduct === product.id
+              // staggered reveal for the specs rows: tiny 8px rises that settle
+              // to zero, so text lands pixel-crisp after the playful entrance
+              const reveal = (delay: string) =>
+                `transition-all duration-300 ease-out ${delay} ${
+                  isHovered ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+                }`
 
               return (
                 <div
                   key={product.id}
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
-                  className="group relative flex flex-col overflow-hidden rounded-[2px] border border-border/50 bg-gradient-to-br from-card to-muted/20 transition-all duration-500 hover:border-primary/50"
+                  className="group relative flex flex-col overflow-hidden rounded-[2px] border border-border/50 bg-gradient-to-br from-card to-muted/20 transition-colors duration-300 hover:border-primary/50"
                 >
                   {/* Product Image */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
                     <img
                       src={product.image || "/placeholder.svg"}
                       alt={product.name}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className={`h-full w-full object-cover transition-[opacity,scale] duration-500 ease-out ${
+                        isHovered ? "opacity-15 scale-[1.04]" : "opacity-100 scale-100"
+                      }`}
                     />
 
                     {/* Category Badge */}
@@ -425,49 +433,6 @@ export default function ProdusePage() {
                       <Icon className="h-6 w-6" />
                     </div>
 
-                    {/* Hover Overlay with Specs */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-t from-background via-background/95 to-background/80 p-6 backdrop-blur-sm transition-all duration-500 ${
-                        isHovered ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-                      }`}
-                    >
-                      <div className="flex h-full flex-col justify-end">
-                        <h4 className="mb-4 text-sm font-semibold text-primary">{t("Specificații Tehnice", "Technical Specifications")}</h4>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Model:</span>
-                            <span className="font-medium text-foreground">{product.specs.model}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">{t("Protocol:", "Protocol:")}</span>
-                            <span className="font-medium text-foreground">{product.specs.protocol}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">{t("Gamă:", "Range:")}</span>
-                            <span className="font-medium text-foreground">{product.specs.range}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">{t("Alimentare:", "Power:")}</span>
-                            <span className="font-medium text-foreground">{product.specs.power}</span>
-                          </div>
-                        </div>
-                        {product.modelCodes && (
-                          <div className="mt-4 border-t border-border/50 pt-4">
-                            <h5 className="mb-1 text-xs font-semibold text-muted-foreground">{t("Coduri model:", "Model codes:")}</h5>
-                            <p className="text-xs text-foreground/80 leading-relaxed">{product.modelCodes}</p>
-                          </div>
-                        )}
-                        <div className="mt-4 pt-4 border-t border-border/50">
-                          <a
-                            href="#"
-                            className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
-                          >
-                            {product.docs}
-                            <ChevronRight className="ml-1 h-4 w-4" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Product Info */}
@@ -496,9 +461,49 @@ export default function ProdusePage() {
                     </Button>
                   </div>
 
-                  {/* Shine effect on hover */}
-                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  {/* Hover Overlay with Specs — covers the whole card so long
+                      model-code lists never overflow the image area. The panel
+                      itself only fades (no transform), reading as the design
+                      system's glass surface; the image beneath goes transparent */}
+                  <div
+                    className={`absolute inset-0 z-10 flex flex-col justify-end overflow-y-auto bg-white/70 backdrop-blur-[2px] p-6 transition-opacity duration-300 ${
+                      isHovered ? "opacity-100" : "pointer-events-none opacity-0"
+                    }`}
+                  >
+                    <h4 className={`mb-4 text-sm font-semibold text-primary ${reveal("delay-75")}`}>{t("Specificații Tehnice", "Technical Specifications")}</h4>
+                    <div className={`space-y-2 text-sm ${reveal("delay-150")}`}>
+                      <div className="flex justify-between gap-4">
+                        <span className="text-muted-foreground">Model:</span>
+                        <span className="font-medium text-foreground text-right">{product.specs.model}</span>
+                      </div>
+                      <div className="flex justify-between gap-4">
+                        <span className="text-muted-foreground">{t("Protocol:", "Protocol:")}</span>
+                        <span className="font-medium text-foreground text-right">{product.specs.protocol}</span>
+                      </div>
+                      <div className="flex justify-between gap-4">
+                        <span className="text-muted-foreground">{t("Gamă:", "Range:")}</span>
+                        <span className="font-medium text-foreground text-right">{product.specs.range}</span>
+                      </div>
+                      <div className="flex justify-between gap-4">
+                        <span className="text-muted-foreground">{t("Alimentare:", "Power:")}</span>
+                        <span className="font-medium text-foreground text-right">{product.specs.power}</span>
+                      </div>
+                    </div>
+                    {product.modelCodes && (
+                      <div className={`mt-4 border-t border-border/50 pt-4 ${reveal("delay-200")}`}>
+                        <h5 className="mb-1 text-xs font-semibold text-muted-foreground">{t("Coduri model:", "Model codes:")}</h5>
+                        <p className="text-xs text-foreground/80 leading-relaxed">{product.modelCodes}</p>
+                      </div>
+                    )}
+                    <div className={`mt-4 pt-4 border-t border-border/50 ${reveal("delay-300")}`}>
+                      <a
+                        href="#"
+                        className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
+                      >
+                        {product.docs}
+                        <ChevronRight className="ml-1 h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               )

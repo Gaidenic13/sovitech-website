@@ -2,11 +2,11 @@
 
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { sectors } from "@/lib/sector-data"
+import { sectors, localizeSector } from "@/lib/sector-data"
 import { useLanguage } from "@/lib/language-context"
 
 export default function SectoarePage() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   return (
     <div className="min-h-screen bg-[#F5F4F0]">
@@ -35,7 +35,7 @@ export default function SectoarePage() {
             {t("Alege sectorul tau", "Choose your sector")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-32">
-            {sectors.map((s) => (
+            {sectors.map((raw) => localizeSector(raw, lang)).map((s) => (
               <Link key={s.id} href={`/sectoare/${s.slug}`} className="group rounded-[2px] p-8 flex flex-col justify-between min-h-[200px] hover:scale-[1.02] transition-transform duration-200" style={{ backgroundColor: s.accentColor }}>
                 <div>
                   <span className="text-xs tracking-widest uppercase font-semibold" style={{ color: s.accentTextDark ? "#0D2E2B" : "rgba(255,255,255,0.9)" }}>
@@ -56,7 +56,7 @@ export default function SectoarePage() {
           </div>
 
           <div className="space-y-32">
-            {sectors.map((sector, index) => (
+            {sectors.map((raw) => localizeSector(raw, lang)).map((sector, index) => (
               <div key={sector.id} id={sector.id} className={`flex flex-col gap-16 lg:flex-row lg:items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
                 <div className="flex-1">
                   <div className="aspect-[4/3] overflow-hidden rounded-[2px] bg-[#e0ddd7]">

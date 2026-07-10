@@ -20,7 +20,7 @@ const stats: Stat[] = [
     value: 42827,
     suffix: "€",
     separator: true,
-    labelRo: "economii medii in primul an dupa implementarea BMS",
+    labelRo: "economii medii în primul an după implementarea BMS",
     labelEn: "average savings in the first year after BMS implementation",
     colSpan: 2,
     size: "xl",
@@ -40,20 +40,20 @@ const stats: Stat[] = [
   {
     value: 2.1,
     decimals: 1,
-    labelRo: "ani perioada medie de amortizare",
+    labelRo: "ani perioadă medie de amortizare",
     labelEn: "years average payback period",
   },
   {
     value: 15,
     suffix: "+",
-    labelRo: "ani experienta in automatizare",
+    labelRo: "ani experiență în automatizare",
     labelEn: "years of experience in automation",
   },
   {
     value: 500000,
     suffix: "+",
     separator: true,
-    labelRo: "mp suprafata totala automatizata in Romania",
+    labelRo: "mp suprafață totală automatizată în România",
     labelEn: "sqm total automated area in Romania",
     colSpan: 2,
   },
@@ -140,10 +140,10 @@ export function StatsSection() {
     <section ref={sectionRef} className="bg-[#07201C] py-32">
       <div className="max-w-7xl mx-auto px-8">
         <p className="text-sm font-semibold mb-4 tracking-wider uppercase text-[#C8E6C9]">
-          • {t("In cifre", "By the numbers")}
+          • {t("În cifre", "By the numbers")}
         </p>
         <h2 className="text-5xl font-light mb-16 tracking-tighter text-white">
-          {t("Impact masurabil", "Measurable impact")}
+          {t("Impact măsurabil", "Measurable impact")}
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">

@@ -1,6 +1,58 @@
+"use client"
+
 import Link from "next/link"
+import { useLanguage } from "@/lib/language-context"
+
+type FooterLink = { href: string; labelRo: string; labelEn: string }
+type FooterColumn = { headingRo: string; headingEn: string; links: FooterLink[] }
+
+const columns: FooterColumn[] = [
+  {
+    headingRo: "Servicii",
+    headingEn: "Services",
+    links: [
+      { href: "/servicii#proiectare", labelRo: "Proiectare BMS", labelEn: "BMS Design" },
+      { href: "/servicii#executie", labelRo: "Execuție sisteme", labelEn: "System Installation" },
+      { href: "/servicii#integrare", labelRo: "Integrare sisteme", labelEn: "Systems Integration" },
+      { href: "/servicii#mentenanta", labelRo: "Mentenanță BMS", labelEn: "BMS Maintenance" },
+      { href: "/servicii#consultanta", labelRo: "Consultanță", labelEn: "Consultancy" },
+    ],
+  },
+  {
+    headingRo: "Resurse",
+    headingEn: "Resources",
+    links: [
+      { href: "/resurse/referinte", labelRo: "Proiecte & referințe", labelEn: "Projects & References" },
+      { href: "/ghid-bms", labelRo: "Ghid BMS gratuit", labelEn: "Free BMS Guide" },
+      { href: "/resurse/raport-piata", labelRo: "Raport de piață BMS", labelEn: "BMS Market Report" },
+      { href: "/produse", labelRo: "Produse SAUTER", labelEn: "SAUTER Products" },
+      { href: "/calculator-roi", labelRo: "Calculator ROI", labelEn: "ROI Calculator" },
+    ],
+  },
+  {
+    headingRo: "Companie",
+    headingEn: "Company",
+    links: [
+      { href: "/servicii", labelRo: "Despre noi", labelEn: "About Us" },
+      { href: "/sectoare", labelRo: "Sectoare", labelEn: "Sectors" },
+      { href: "/contact", labelRo: "Contact", labelEn: "Contact" },
+      { href: "/contact", labelRo: "Cariere", labelEn: "Careers" },
+    ],
+  },
+  {
+    headingRo: "Legal",
+    headingEn: "Legal",
+    links: [
+      { href: "/contact", labelRo: "Politica de confidențialitate", labelEn: "Privacy Policy" },
+      { href: "/contact", labelRo: "Termeni și condiții", labelEn: "Terms & Conditions" },
+      { href: "/contact", labelRo: "Politica de cookie-uri", labelEn: "Cookie Policy" },
+    ],
+  },
+]
 
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="bg-[#07201C] border-t border-white/10">
       {/* Top section */}
@@ -23,138 +75,43 @@ export function Footer() {
               href="/contact"
               className="inline-flex items-center gap-2 bg-white text-[#07201C] text-sm font-medium px-5 py-2.5 rounded-[1px] hover:bg-[#C8E6C9] transition-colors duration-300"
             >
-              Contact Us
+              {t("Contactează-ne", "Contact Us")}
             </Link>
             <Link
-              href="/contact"
+              href="/calculator-roi"
               className="text-white/50 text-sm border border-white/15 px-4 py-2.5 rounded-[1px] hover:text-white hover:border-white/40 transition-colors duration-300"
             >
-              Sign in
+              {t("Calculator ROI", "ROI Calculator")}
             </Link>
           </div>
         </div>
 
         {/* Right: link columns */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full lg:w-auto">
-          {/* Services */}
-          <div>
-            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Services</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/servicii#proiectare" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  BMS Design
-                </Link>
-              </li>
-              <li>
-                <Link href="/servicii#executie" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  System Installation
-                </Link>
-              </li>
-              <li>
-                <Link href="/servicii#integrare" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Systems Integration
-                </Link>
-              </li>
-              <li>
-                <Link href="/servicii#mentenanta" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  BMS Maintenance
-                </Link>
-              </li>
-              <li>
-                <Link href="/servicii#consultanta" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Consultancy
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Resources</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/resurse/referinte" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Projects & References
-                </Link>
-              </li>
-              <li>
-                <Link href="/ghid-bms" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Free BMS Guide
-                </Link>
-              </li>
-              <li>
-                <Link href="/resurse/raport-piata" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  BMS Market Report
-                </Link>
-              </li>
-              <li>
-                <Link href="/produse" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  SAUTER Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator-roi" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Calculator ROI
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">Company</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/servicii" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/sectoare" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Sectors
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Careers
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* By SOVITECH */}
-          <div>
-            <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">By SOVITECH</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-white/50 text-sm hover:text-white transition-colors duration-150">
-                  Cookie Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {columns.map((col) => (
+            <div key={col.headingEn}>
+              <h3 className="text-[#C8E6C9]/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+                {t(col.headingRo, col.headingEn)}
+              </h3>
+              <ul className="space-y-3">
+                {col.links.map((link) => (
+                  <li key={link.labelEn}>
+                    <Link href={link.href} className="text-white/50 text-sm hover:text-white transition-colors duration-150">
+                      {t(link.labelRo, link.labelEn)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Bottom bar */}
       <div className="border-t border-white/10 py-6 px-8 max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="text-white/40 text-xs">
-          Terms · Privacy · Cookie Settings · &copy; {new Date().getFullYear()} SOVITECH Control
+          {t("Termeni · Confidențialitate · Setări cookie ·", "Terms · Privacy · Cookie Settings ·")} &copy;{" "}
+          {new Date().getFullYear()} SOVITECH Control
         </p>
         <div className="flex items-center gap-4">
           {/* LinkedIn */}

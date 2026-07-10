@@ -25,9 +25,9 @@ const navGroups: NavGroup[] = [
     labelEn: "Services",
     twoColumns: true,
     links: [
-      { href: "/servicii", labelRo: "Servicii BMS Complete", labelEn: "Complete BMS Services", descRo: "Parcursul complet de la consultanta la mentenanta", descEn: "The full journey from consultation to maintenance" },
-      { href: "/servicii#proiectare", labelRo: "Proiectare BMS", labelEn: "BMS Design", descRo: "Proiectare completa a sistemelor de automatizare", descEn: "Full design of automation systems" },
-      { href: "/servicii#executie", labelRo: "Executie Sisteme", labelEn: "System Installation", descRo: "Implementare profesionala sisteme BMS", descEn: "Professional BMS system implementation" },
+      { href: "/servicii", labelRo: "Servicii BMS Complete", labelEn: "Complete BMS Services", descRo: "Parcursul complet, de la consultanță la mentenanță", descEn: "The full journey from consultation to maintenance" },
+      { href: "/servicii#proiectare", labelRo: "Proiectare BMS", labelEn: "BMS Design", descRo: "Proiectarea completă a sistemelor de automatizare", descEn: "Full design of automation systems" },
+      { href: "/servicii#executie", labelRo: "Execuție Sisteme", labelEn: "System Installation", descRo: "Implementare profesională a sistemelor BMS", descEn: "Professional BMS system implementation" },
       { href: "/servicii#integrare", labelRo: "Integrare Sisteme", labelEn: "Systems Integration", descRo: "Integrare KNX, DALI, Modbus, M-Bus", descEn: "KNX, DALI, Modbus, M-Bus integration" },
     ],
   },
@@ -35,22 +35,22 @@ const navGroups: NavGroup[] = [
     labelRo: "Sectoare",
     labelEn: "Sectors",
     links: [
-      { href: "/sectoare", labelRo: "Toate Sectoarele", labelEn: "All Sectors", descRo: "Expertiza BMS in toate industriile", descEn: "BMS expertise across all industries" },
-      { href: "/sectoare/civil", labelRo: "Civil & Birouri", labelEn: "Civil & Office", descRo: "Cladiri de birouri si spatii comerciale", descEn: "Office buildings and commercial spaces" },
-      { href: "/sectoare/medical", labelRo: "Medical & Farma", labelEn: "Medical & Pharma", descRo: "Facilitati medicale si productie farmaceutica", descEn: "Medical facilities and pharmaceutical production" },
-      { href: "/sectoare/retail", labelRo: "Retail & HoReCa", labelEn: "Retail & HoReCa", descRo: "Magazine, hoteluri si restaurante", descEn: "Shops, hotels and restaurants" },
-      { href: "/sectoare/industrial", labelRo: "Industrial", labelEn: "Industrial", descRo: "Depozite industriale si productie", descEn: "Industrial warehouses and production" },
+      { href: "/sectoare", labelRo: "Toate Sectoarele", labelEn: "All Sectors", descRo: "Expertiză BMS în toate industriile", descEn: "BMS expertise across all industries" },
+      { href: "/sectoare/civil", labelRo: "Civil & Birouri", labelEn: "Civil & Office", descRo: "Clădiri de birouri și spații comerciale", descEn: "Office buildings and commercial spaces" },
+      { href: "/sectoare/medical", labelRo: "Medical & Farma", labelEn: "Medical & Pharma", descRo: "Facilități medicale și producție farmaceutică", descEn: "Medical facilities and pharmaceutical production" },
+      { href: "/sectoare/retail", labelRo: "Retail & HoReCa", labelEn: "Retail & HoReCa", descRo: "Magazine, hoteluri și restaurante", descEn: "Shops, hotels and restaurants" },
+      { href: "/sectoare/industrial", labelRo: "Industrial", labelEn: "Industrial", descRo: "Depozite industriale și producție", descEn: "Industrial warehouses and production" },
     ],
   },
   {
     labelRo: "Resurse",
     labelEn: "Resources",
     links: [
-      { href: "/resurse", labelRo: "Toate Resursele", labelEn: "All Resources", descRo: "Date, analize si ghiduri pentru profesionisti", descEn: "Data, analysis and guides for professionals" },
-      { href: "/resurse/articole/eficienta-bms", labelRo: "Eficienta BMS - Analiza Date", labelEn: "BMS Efficiency - Data Analysis", descRo: "Cat de eficiente sunt sistemele BMS?", descEn: "How efficient are BMS systems?" },
-      { href: "/resurse/referinte", labelRo: "Proiecte & Referinte", labelEn: "Projects & References", descRo: "Portofoliul nostru de proiecte BMS", descEn: "Our portfolio of BMS projects" },
-      { href: "/ghid-bms", labelRo: "Ghid BMS Gratuit", labelEn: "Free BMS Guide", descRo: "Evalueaza potentialul cladirii tale", descEn: "Assess the potential of your building" },
-      { href: "/resurse/raport-piata", labelRo: "Raport Piata BMS", labelEn: "BMS Market Report", descRo: "Analiza pietei de automatizare 2025", descEn: "Automation market analysis 2025" },
+      { href: "/resurse", labelRo: "Toate Resursele", labelEn: "All Resources", descRo: "Date, analize și ghiduri pentru profesioniști", descEn: "Data, analysis and guides for professionals" },
+      { href: "/resurse/articole/eficienta-bms", labelRo: "Eficienta BMS - Analiza Date", labelEn: "BMS Efficiency - Data Analysis", descRo: "Cât de eficiente sunt sistemele BMS?", descEn: "How efficient are BMS systems?" },
+      { href: "/resurse/referinte", labelRo: "Proiecte & Referințe", labelEn: "Projects & References", descRo: "Portofoliul nostru de proiecte BMS", descEn: "Our portfolio of BMS projects" },
+      { href: "/ghid-bms", labelRo: "Ghid BMS Gratuit", labelEn: "Free BMS Guide", descRo: "Evaluează potențialul clădirii tale", descEn: "Assess the potential of your building" },
+      { href: "/resurse/raport-piata", labelRo: "Raport Piața BMS", labelEn: "BMS Market Report", descRo: "Analiza pieței de automatizare 2025", descEn: "Automation market analysis 2025" },
     ],
   },
 ]
@@ -60,7 +60,7 @@ const produseLink: NavLink = { href: "/produse", labelRo: "Produse SAUTER", labe
 // Trigger states: solid dark text + cream chip on hover/open/focus so the
 // hovered label is unmistakably darker and readable on the white bar
 const triggerClasses =
-  "bg-transparent text-[15px] font-medium text-[#0D2E2B]/80 rounded-full px-4 transition-colors duration-300 " +
+  "bg-transparent text-[15px] font-medium text-[#0D2E2B]/80 rounded-[1px] px-4 transition-colors duration-300 " +
   "hover:bg-[#F5F4F0] hover:text-[#0D2E2B] " +
   "focus:bg-[#F5F4F0] focus:text-[#0D2E2B] " +
   "data-[state=open]:bg-[#F5F4F0] data-[state=open]:text-[#0D2E2B] " +
@@ -90,7 +90,7 @@ export function Header() {
   }, [])
 
   const langToggle = (
-    <div className="flex items-center rounded-full border border-[#0D2E2B]/15 overflow-hidden text-xs font-semibold">
+    <div className="flex items-center rounded-[1px] border border-[#0D2E2B]/15 overflow-hidden text-xs font-semibold">
       {(["ro", "en"] as const).map((code) => (
         <button
           key={code}
@@ -137,7 +137,7 @@ export function Header() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={itemLinkClasses}>
-                  <Link href={produseLink.href} className="group inline-flex h-9 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-[15px] font-medium text-[#0D2E2B]/80 transition-colors duration-300 hover:bg-[#F5F4F0] hover:text-[#0D2E2B] focus:bg-[#F5F4F0] focus:text-[#0D2E2B] focus:outline-none">
+                  <Link href={produseLink.href} className="group inline-flex h-9 w-max items-center justify-center rounded-[1px] bg-transparent px-4 py-2 text-[15px] font-medium text-[#0D2E2B]/80 transition-colors duration-300 hover:bg-[#F5F4F0] hover:text-[#0D2E2B] focus:bg-[#F5F4F0] focus:text-[#0D2E2B] focus:outline-none">
                     {t(produseLink.labelRo, produseLink.labelEn)}
                   </Link>
                 </NavigationMenuLink>
@@ -180,9 +180,9 @@ export function Header() {
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-[#1F6B4A] transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
           >
-            {t("Cerere oferta", "Request a quote")}
+            {t("Cerere ofertă", "Request a quote")}
           </Link>
 
           {/* Burger — circular chip from the same family as the RO/EN pill,
@@ -192,8 +192,8 @@ export function Header() {
             onClick={() => setMobileOpen((v) => !v)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
-            aria-label={mobileOpen ? t("Inchide meniul", "Close menu") : t("Deschide meniul", "Open menu")}
-            className="lg:hidden relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#0D2E2B]/15 transition-colors duration-300 hover:border-[#0D2E2B]/40 hover:bg-[#F5F4F0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40"
+            aria-label={mobileOpen ? t("Închide meniul", "Close menu") : t("Deschide meniul", "Open menu")}
+            className="lg:hidden relative flex h-10 w-10 shrink-0 items-center justify-center rounded-[1px] border border-[#0D2E2B]/15 transition-colors duration-300 hover:border-[#0D2E2B]/40 hover:bg-[#F5F4F0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40"
           >
             <span aria-hidden="true" className={`absolute h-[1.5px] w-4 bg-[#0D2E2B] transition-transform duration-300 ease-out ${mobileOpen ? "rotate-45" : "-translate-y-[3px]"}`} />
             <span aria-hidden="true" className={`absolute h-[1.5px] w-4 bg-[#0D2E2B] transition-transform duration-300 ease-out ${mobileOpen ? "-rotate-45" : "translate-y-[3px]"}`} />
@@ -253,9 +253,9 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="flex-1 inline-flex items-center justify-center bg-[#0D2E2B] text-white text-sm font-medium px-5 py-3 rounded-full hover:bg-[#1F6B4A] transition-colors duration-300"
+              className="flex-1 inline-flex items-center justify-center bg-[#0D2E2B] text-white text-sm font-medium px-5 py-3 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
             >
-              {t("Cerere oferta", "Request a quote")}
+              {t("Cerere ofertă", "Request a quote")}
             </Link>
           </div>
         </nav>

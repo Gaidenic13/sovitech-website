@@ -36,6 +36,20 @@ export interface SectorTestimonial {
   company: string
 }
 
+export interface SectorL10n {
+  title: string
+  subtitle: string
+  description: string
+  heroHeadline: string
+  heroSubheadline: string
+  metricValues: string[]
+  metricLabels: string[]
+  features: { title: string; description: string }[]
+  capabilities: string[]
+  testimonialQuote: string
+  testimonialRole: string
+}
+
 export interface Sector {
   id: string
   slug: string
@@ -52,6 +66,7 @@ export interface Sector {
   testimonial: SectorTestimonial
   relatedSectors: string[]
   image: string
+  ro?: SectorL10n
 }
 
 export const sectors: Sector[] = [
@@ -125,6 +140,26 @@ export const sectors: Sector[] = [
       name: "Andrei Popescu",
       role: "Facilities Director",
       company: "Bucharest Business Park",
+    },
+    ro: {
+      title: "Civil & Birouri",
+      subtitle: "Clădiri de birouri și spații comerciale",
+      description: "Soluții BMS adaptate clădirilor moderne de birouri și spațiilor comerciale — confort maxim, costuri operaționale reduse și conformitate cu cerințele de certificare energetică.",
+      heroHeadline: "Birouri mai inteligente.\nEchipe mai mulțumite.",
+      heroSubheadline: "De la sedii single-tenant la turnuri de birouri multietajate, sistemele BMS SOVITECH oferă vizibilitate și control complet asupra fiecărui sistem al clădirii — de la HVAC la acces — într-o singură platformă unificată.",
+      metricValues: ["30–40%", "98%", "<18 luni", "A+"],
+      metricLabels: ["Reducere a costurilor operaționale", "Disponibilitate garantată a sistemului", "Perioadă medie de amortizare", "Certificare energetică obținută"],
+      features: [
+        { title: "Climatizare adaptivă", description: "Ajustează automat zonele HVAC în funcție de ocupare, nivelul de CO2 și datele meteo, pentru confort termic optim pe tot parcursul zilei." },
+        { title: "Iluminat inteligent", description: "Scenarii de iluminat bazate pe prezență, adaptate la lumina naturală, momentul zilei și programul de ocupare al fiecărei zone." },
+        { title: "Raportare energetică & certificare", description: "Dashboard-uri și rapoarte automate de consum energetic pentru conformitate LEED, BREEAM și EPBD, fără efort manual." },
+        { title: "Securitate & acces integrate", description: "Gestionare unificată a controlului de acces, CCTV și detecției de efracție, alături de sistemele clădirii, dintr-o singură interfață." },
+        { title: "Monitorizare de la distanță", description: "Acces remote 24/7 la toate sistemele clădirii, prin web sau mobil, cu alerte în timp real și notificări de mentenanță predictivă." },
+        { title: "Managementul vârfurilor de consum", description: "Deplasare automată a sarcinilor și demand response pentru reducerea consumului la vârf și tarife mai mici la energie." },
+      ],
+      capabilities: ["Management integrat al sistemelor HVAC pentru confort termic optim", "Monitorizare și control al iluminatului, cu scenarii automate bazate pe ocupare", "Integrarea sistemelor de securitate, control acces și management energetic", "Raportare automată a consumului și certificare energetică", "Programare multi-zonă aliniată programului de lucru și gradului de ocupare", "Integrare protocoale BACnet, KNX și Modbus"],
+      testimonialQuote: "Înainte de SOVITECH nu aveam nicio vizibilitate asupra consumului din cele trei clădiri de birouri. În șase luni de la implementare am redus factura de energie cu 34% și am obținut, în sfârșit, certificarea energetică clasa A.",
+      testimonialRole: "Director de Facilități",
     },
     relatedSectors: ["medical", "retail", "educational"],
     image: "/placeholder.svg?height=800&width=1200",
@@ -200,7 +235,27 @@ export const sectors: Sector[] = [
       role: "Quality Assurance Manager",
       company: "Antibiotice Iași",
     },
-    relatedSectors: ["pharma", "civil", "educational"],
+    ro: {
+      title: "Medical & Farma",
+      subtitle: "Spitale, clinici și producție farmaceutică",
+      description: "Sisteme BMS de precizie pentru unități medicale și medii farmaceutice — acolo unde controlul, conformitatea și siguranța pacienților nu sunt negociabile.",
+      heroHeadline: "Control de precizie.\nConform prin design.",
+      heroSubheadline: "Spitalele și fabricile farmaceutice cer cele mai înalte standarde de control al mediului. SOVITECH livrează soluții BMS certificate care asigură conformitatea, siguranța pacienților și continuitatea operațională.",
+      metricValues: ["GMP", "±0,5°C", "100%", "24/7"],
+      metricLabels: ["Medii conforme", "Precizie de temperatură în zonele critice", "Trasabilitate completă a modificărilor de parametri", "Monitorizare și alertare continuă"],
+      features: [
+        { title: "Climatizare în zone critice", description: "Control precis al temperaturii, umidității și presiunii diferențiale în sălile de operație, camerele curate și zonele de producție sterilă." },
+        { title: "Ventilație & calitatea aerului", description: "Monitorizare continuă și control automat al schimburilor de aer pe oră, al stării filtrelor HEPA și al prevenirii contaminării." },
+        { title: "Management conformitate GMP", description: "Înregistrare automată a parametrilor, alerte la deviații și rapoarte pregătite de audit, aliniate cu EU GMP Anexa 11 și FDA 21 CFR Part 11." },
+        { title: "Monitorizarea siguranței pacienților", description: "Monitorizare de mediu în timp real în saloane, cu alerte automate către stațiile de asistență și managementul clădirii." },
+        { title: "Raportare de conformitate", description: "Raportare complet automată pentru ISO 14644, medii GxP și standardele de acreditare spitalicească." },
+        { title: "Arhitectură redundantă", description: "Design fail-safe cu controlere redundante, integrare UPS și failover automat pentru zero întreruperi." },
+      ],
+      capabilities: ["Control precis al temperaturii, umidității și presiunii diferențiale în zonele critice", "Monitorizare continuă a calității aerului și managementul ventilației", "Gestionare automată a echipamentelor medicale și a instalațiilor de specialitate", "Alarme și raportare în timp real pentru conformitate cu standardele medicale", "Integrare cu sistemele informatice spitalicești (HIS/LIMS)", "Înregistrare de date conformă FDA 21 CFR Part 11 și EU GMP Anexa 11"],
+      testimonialQuote: "Nivelul de control și trasabilitate oferit de SOVITECH în camerele noastre curate ne-a transformat procesul de conformitate. Ultimul audit FDA s-a încheiat fără nicio observație legată de monitorizarea mediului.",
+      testimonialRole: "Manager Asigurarea Calității",
+    },
+    relatedSectors: ["industrial", "civil", "educational"],
     image: "/placeholder.svg?height=800&width=1200",
   },
   {
@@ -273,6 +328,26 @@ export const sectors: Sector[] = [
       name: "Mihai Constantin",
       role: "Operations Director",
       company: "Cora Romania",
+    },
+    ro: {
+      title: "Retail & Centre Comerciale",
+      subtitle: "Centre comerciale, hipermarketuri și lanțuri de retail",
+      description: "Automatizare BMS centralizată pentru spații de retail — confort constant pentru clienți în sute de locații și economii semnificative de energie.",
+      heroHeadline: "Confort mai bun.\nTrafic mai mare.",
+      heroSubheadline: "În retail, ambianța face parte din produs. Sistemele BMS SOVITECH mențin condiții perfecte pentru clienți și marfă, reducând totodată costurile cu energia cu până la 35% în întregul portofoliu.",
+      metricValues: ["25–35%", "Multi-locație", "+12%", "Timp real"],
+      metricLabels: ["Reducerea costurilor cu energia", "Management centralizat", "Creștere medie a timpului petrecut în magazin", "Monitorizarea instalațiilor frigorifice"],
+      features: [
+        { title: "Climat optimizat pentru confort", description: "Management climatic pe zone, adaptat la densitatea clienților, momentul zilei și sezon, pentru condiții de cumpărături ideale." },
+        { title: "Scenarii de iluminat adaptive", description: "Profiluri dinamice de iluminat pentru orele de deschidere, vârf și închidere, cu detecție de prezență în zonele cu trafic redus." },
+        { title: "Monitorizare frigorifică", description: "Monitorizare continuă a temperaturii în toate vitrinele frigorifice, cu alerte automate înainte de pierderea produselor." },
+        { title: "Dashboard energetic multi-locație", description: "Raportare energetică consolidată pentru toate locațiile, identificând ineficiențele și comparând performanța între magazine." },
+        { title: "Automatizare pe bază de program", description: "Rutine preprogramate de deschidere și închidere care ajustează automat toate sistemele clădirii — eliminând risipa în afara programului." },
+        { title: "Securitate & management acces", description: "Gestionare integrată a CCTV, sistemelor de alarmă și controlului de acces în toate locațiile, dintr-un singur centru de operațiuni." },
+      ],
+      capabilities: ["Management climatic integrat pentru confortul clienților și reducerea costurilor", "Control inteligent al iluminatului, cu scenarii adaptive pe zone și programe", "Monitorizarea și optimizarea instalațiilor frigorifice", "Integrarea sistemelor de securitate și acces pentru siguranță sporită", "Management centralizat al mai multor locații dintr-un singur dashboard", "Integrare BMS cu sisteme POS și analiză de trafic"],
+      testimonialQuote: "Să administrezi 14 hipermarketuri dintr-un singur dashboard era de neimaginat înainte de SOVITECH. Acum echipa noastră gestionează totul de la distanță, iar în primul an am redus cheltuielile cu energia cu 31%.",
+      testimonialRole: "Director de Operațiuni",
     },
     relatedSectors: ["horeca", "civil", "industrial"],
     image: "/placeholder.svg?height=800&width=1200",
@@ -348,12 +423,32 @@ export const sectors: Sector[] = [
       role: "General Manager",
       company: "Radisson Blu Bucharest",
     },
+    ro: {
+      title: "HoReCa",
+      subtitle: "Hoteluri, restaurante și facilități de agrement",
+      description: "Automatizare BMS dedicată hotelurilor, resorturilor și restaurantelor — experiență excepțională pentru oaspeți și costuri energetice și operaționale per cameră semnificativ mai mici.",
+      heroHeadline: "Confort de cinci stele.\nEficiență de patru stele.",
+      heroSubheadline: "În ospitalitate, experiența oaspetelui este totul. Sistemele BMS SOVITECH se integrează cu PMS-ul tău pentru a automatiza confortul camerelor, a reduce risipa de energie în perioadele neocupate și a oferi echipei vizibilitate completă asupra întregii proprietăți.",
+      metricValues: ["25–38%", "PMS", "+0,8★", "Per cameră"],
+      metricLabels: ["Reducere de energie per cameră", "Integrare completă (Opera, Fidelio)", "Creștere medie a scorului recenziilor", "Raportarea consumului"],
+      features: [
+        { title: "Integrare PMS", description: "Integrare bidirecțională completă cu Opera, Fidelio și alte sisteme PMS — ajustând automat condițiile din cameră la check-in și check-out." },
+        { title: "Profiluri de confort pentru oaspeți", description: "Control climatic individual per cameră, cu preferințele oaspeților salvate și aplicate automat la vizitele următoare." },
+        { title: "Management energetic la neocupare", description: "Reducere automată a HVAC, iluminatului și celorlalte sisteme în perioadele neocupate — fără a compromite pregătirea camerei." },
+        { title: "Raportarea consumului per cameră", description: "Date detaliate de consum de energie și apă per cameră și per centru de cost, pentru bugetare operațională precisă." },
+        { title: "Integrare spa & wellness", description: "Control specializat pentru piscină, spa, saună și zonele de fitness, cu management automat al temperaturii, umidității și ventilației." },
+        { title: "Automatizare evenimente & banchete", description: "Scenarii preconfigurate de climat și iluminat pentru sălile de conferințe și banchete, activate automat din calendarul de evenimente." },
+      ],
+      capabilities: ["Control individual al camerelor prin integrare PMS (Fidelio, Opera)", "Scenarii automate de check-in/check-out pentru economii garantate", "Monitorizarea consumului per cameră și centru de cost", "Integrarea sistemelor pentru spa, piscină și centru de fitness", "Automatizarea ventilației pentru restaurant și bucătărie", "Integrare cu aplicația pentru oaspeți, pentru personalizare în cameră"],
+      testimonialQuote: "Oaspeții noștri remarcă frecvent cât de confortabile sunt camerele încă de la intrare. Integrarea SOVITECH cu PMS-ul Opera înseamnă că fiecare cameră este perfect pregătită înainte de sosirea oaspetelui — cu 32% mai puțină energie decât înainte.",
+      testimonialRole: "Director General",
+    },
     relatedSectors: ["retail", "civil", "educational"],
     image: "/placeholder.svg?height=800&width=1200",
   },
   {
-    id: "pharma",
-    slug: "pharma",
+    id: "industrial",
+    slug: "industrial",
     title: "Industrial",
     subtitle: "Warehouses, logistics & manufacturing",
     description:
@@ -421,6 +516,26 @@ export const sectors: Sector[] = [
       name: "Ionut Popa",
       role: "Plant Manager",
       company: "Ursus Breweries Cluj",
+    },
+    ro: {
+      title: "Industrial",
+      subtitle: "Depozite, logistică și producție",
+      description: "Automatizare BMS de înaltă performanță pentru facilități industriale — condiții optime de lucru, eficiență a proceselor și reduceri semnificative ale costurilor de energie și mentenanță.",
+      heroHeadline: "Scară industrială.\nPrecizie inginerească.",
+      heroSubheadline: "Mediile industriale cer, înainte de toate, fiabilitate. SOVITECH livrează sisteme BMS robuste, integrate cu SCADA și platformele de producție, pentru disponibilitate maximă, calitate a proceselor și eficiență energetică.",
+      metricValues: ["SCADA", "20–30%", "Predictivă", "24/7"],
+      metricLabels: ["Capabilitate de integrare completă", "Reducerea costurilor cu energia", "Planificarea mentenanței", "Monitorizare și intervenție de la distanță"],
+      features: [
+        { title: "Automatizare HVAC industrial", description: "Automatizare completă a sistemelor de ventilație, încălzire și răcire de mare capacitate, aliniată programelor de producție și cerințelor de proces." },
+        { title: "Monitorizarea mediului de proces", description: "Monitorizare continuă a temperaturii, umidității, prafului și expunerii chimice, critice pentru calitatea producției." },
+        { title: "Integrare SCADA & MES", description: "Integrare nativă cu SCADA și sistemele MES, pentru suprapunerea datelor de producție în timp real peste sistemele clădirii." },
+        { title: "Raportare energetică pe centre de cost", description: "Date granulare de consum, defalcate pe linie de producție, zonă și schimb — pentru atribuirea precisă a costurilor." },
+        { title: "Siguranță & conformitate", description: "Monitorizare automată a zonelor periculoase, integrare cu detecția de gaze și activarea ventilației de urgență." },
+        { title: "Mentenanță predictivă", description: "Detecție de anomalii asistată de AI pentru echipamentele critice — compresoare, chillere, CTA-uri — prevenind opririle neplanificate." },
+      ],
+      capabilities: ["Automatizare completă a sistemelor HVAC industriale de mare capacitate", "Monitorizare continuă a parametrilor de mediu pentru procesele de producție", "Integrare cu sistemele de producție și SCADA pentru eficiență maximă", "Management energetic avansat și raportare pe centre de cost", "Integrarea ventilației de urgență și a detecției de gaze", "Suport pentru sisteme de management energetic ISO 50001"],
+      testimonialQuote: "SOVITECH ne-a oferit ceva ce nu am avut niciodată — vizibilitate completă asupra întregii facilități de producție. Am identificat trei puncte majore de risipă energetică în prima lună și am recuperat întreaga investiție în 14 luni.",
+      testimonialRole: "Director de Fabrică",
     },
     relatedSectors: ["medical", "civil", "retail"],
     image: "/placeholder.svg?height=800&width=1200",
@@ -496,10 +611,58 @@ export const sectors: Sector[] = [
       role: "Campus Operations Director",
       company: "Politehnica University of Bucharest",
     },
+    ro: {
+      title: "Educațional",
+      subtitle: "Școli, universități și campusuri",
+      description: "Automatizare BMS gândită în ritmul educației — medii de învățare sănătoase, management simplificat al campusului și conformitate cu țintele de sustenabilitate.",
+      heroHeadline: "Spații sănătoase.\nMinți concentrate.",
+      heroSubheadline: "Calitatea mediului de învățare influențează direct performanța academică. Sistemele BMS SOVITECH mențin automat niveluri optime de CO2, temperatură și iluminat pe toată durata programului școlar.",
+      metricValues: ["20–30%", "CO2", "Multi-campus", "EPBD"],
+      metricLabels: ["Economii de energie față de sistemele convenționale", "Monitorizare continuă în sălile de clasă", "Management centralizat", "Conformitate și raportare"],
+      features: [
+        { title: "Programare după orar", description: "Ajustare automată a climatizării și iluminatului după orarul școlii — sălile sunt pregătite înainte de sosirea elevilor și oprite după plecare." },
+        { title: "Monitorizare CO2 & calitatea aerului", description: "Monitorizare continuă a nivelului de CO2 în sălile de clasă, cu intensificarea automată a ventilației atunci când aerul afectează concentrarea." },
+        { title: "Control campus multi-clădire", description: "Management unificat al tuturor clădirilor din campus — săli de clasă, laboratoare, săli de sport, cantine și cămine — dintr-o singură platformă." },
+        { title: "Raportare de sustenabilitate", description: "Raportare automată de energie și carbon pentru conformitate EPBD, ținte ESG și angajamentele instituționale de sustenabilitate." },
+        { title: "Iluminat adaptat luminii naturale", description: "Iluminat adaptiv care răspunde la lumina naturală și prezență, asigurând condiții ideale de studiu fără risipă." },
+        { title: "Managementul costurilor cu utilitățile", description: "Raportare detaliată a consumului per clădire și departament, oferind administratorilor vizibilitate clară asupra bugetelor." },
+      ],
+      capabilities: ["Programe automate adaptate orarelor școlare", "Monitorizarea calității aerului și a CO2 în sălile de clasă", "Management centralizat al campusurilor cu mai multe clădiri", "Raportare de conformitate energetică și sustenabilitate", "Regimuri reduse automate în vacanțe, pentru zero risipă", "Integrare cu contorizare inteligentă și sisteme de facturare"],
+      testimonialQuote: "De la implementarea SOVITECH în campus, nivelul de CO2 din săli a scăzut cu 40%, prezența a crescut, iar factura de energie s-a redus cu 27%. Sistemul practic se administrează singur — echipa de mentenanță se poate concentra pe problemele reale.",
+      testimonialRole: "Director Operațiuni Campus",
+    },
     relatedSectors: ["civil", "medical", "horeca"],
     image: "/placeholder.svg?height=800&width=1200",
   },
 ]
+
+export function localizeSector(sector: Sector, lang: "ro" | "en"): Sector {
+  if (lang !== "ro" || !sector.ro) return sector
+  const r = sector.ro
+  return {
+    ...sector,
+    title: r.title,
+    subtitle: r.subtitle,
+    description: r.description,
+    heroHeadline: r.heroHeadline,
+    heroSubheadline: r.heroSubheadline,
+    metrics: sector.metrics.map((m, i) => ({
+      value: r.metricValues[i] ?? m.value,
+      label: r.metricLabels[i] ?? m.label,
+    })),
+    features: sector.features.map((f, i) => ({
+      ...f,
+      title: r.features[i]?.title ?? f.title,
+      description: r.features[i]?.description ?? f.description,
+    })),
+    capabilities: r.capabilities,
+    testimonial: {
+      ...sector.testimonial,
+      quote: r.testimonialQuote,
+      role: r.testimonialRole,
+    },
+  }
+}
 
 export function getSectorBySlug(slug: string): Sector | undefined {
   return sectors.find((s) => s.slug === slug)

@@ -190,7 +190,7 @@ function DotMatrixField() {
 
 const testimonials = [
   {
-    quoteRo: "Sistemul BMS implementat de Sovitech a redus costurile noastre energetice cu 38% in primul an. ROI-ul a fost atins in mai putin de 2 ani.",
+    quoteRo: "Sistemul BMS implementat de Sovitech ne-a redus costurile energetice cu 38% în primul an. ROI-ul a fost atins în mai puțin de 2 ani.",
     quoteEn: "The BMS system implemented by Sovitech reduced our energy costs by 38% in the first year. ROI was achieved in less than 2 years.",
     author: "Alexandru Ionescu",
     roleRo: "Director Tehnic, Therme Bucharest",
@@ -200,7 +200,7 @@ const testimonials = [
     statLabelEn: "energy costs",
   },
   {
-    quoteRo: "Colaborarea cu Sovitech ne-a adus nu doar tehnologie de top, ci si o echipa care intelege nevoile specifice ale industriei hoteliere.",
+    quoteRo: "Colaborarea cu Sovitech ne-a adus nu doar tehnologie de top, ci și o echipă care înțelege nevoile specifice ale industriei hoteliere.",
     quoteEn: "Working with Sovitech gave us not only top technology, but also a team that understands the specific needs of the hotel industry.",
     author: "Maria Popescu",
     roleRo: "Facility Manager, Radisson Blu",
@@ -210,7 +210,7 @@ const testimonials = [
     statLabelEn: "dedicated support",
   },
   {
-    quoteRo: "Monitorizarea in timp real si alertele automate ne-au permis sa prevenim probleme costisitoare inainte sa apara.",
+    quoteRo: "Monitorizarea în timp real și alertele automate ne-au permis să prevenim probleme costisitoare înainte să apară.",
     quoteEn: "Real-time monitoring and automated alerts allowed us to prevent costly problems before they occurred.",
     author: "Dan Georgescu",
     roleRo: "Director Operatiuni, Rompharm",
@@ -258,9 +258,9 @@ export function AethelTestimonials() {
             className="font-light text-white mb-16 lg:mb-24"
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 1, letterSpacing: "-0.05em" }}
           >
-            {t("Clientii vorbesc.", "Clients speak.")}
+            {t("Clienții vorbesc.", "Clients speak.")}
             <br />
-            <span className="text-[#A3A3A3]">{t("Cifrele confirma.", "The numbers confirm.")}</span>
+            <span className="text-[#A3A3A3]">{t("Cifrele confirmă.", "The numbers confirm.")}</span>
           </h2>
         </div>
 

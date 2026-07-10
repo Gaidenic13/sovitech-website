@@ -44,29 +44,94 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="aspect-video overflow-hidden rounded-[2px]">
-                <img src="/services-commissioning-training.jpg" alt={t("Echipa Sovitech", "Sovitech team")} className="h-full w-full object-cover" />
-              </div>
+              {/* Headquarters map — the whole map opens Google Maps at our
+                  location; the bbox is centred on Staicovici 35 so our
+                  building mark sits exactly on the point (no OSM pin) */}
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=44.43177,26.07940"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t("Deschide sediul SOVITECH în Google Maps", "Open SOVITECH headquarters in Google Maps")}
+                className="group relative block aspect-[16/9] overflow-hidden rounded-[2px] border border-[#0D2E2B]/10 bg-[#0D2E2B]/5"
+              >
+                <iframe
+                  title={t("Harta — sediul SOVITECH CONTROL, București", "Map — SOVITECH CONTROL headquarters, Bucharest")}
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=26.0734%2C44.4288%2C26.0854%2C44.4348&layer=mapnik"
+                  className="pointer-events-none absolute inset-0 h-full w-full border-0"
+                  loading="lazy"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                />
+                {/* our building mark as the location pin */}
+                <div className="pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-full flex-col items-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-[#07201C]">
+                    <img src="/building.svg" alt="" aria-hidden="true" className="h-9 w-auto select-none" />
+                  </div>
+                  <div className="h-0 w-0 border-x-8 border-x-transparent border-t-8 border-t-[#07201C]" />
+                </div>
+                {/* click-through hint */}
+                <div className="absolute bottom-3 right-3 rounded-[1px] border border-[#0D2E2B]/10 bg-white/95 px-2.5 py-1 text-[10px] font-semibold text-[#0D2E2B]/70 transition-colors duration-150 group-hover:text-[#0D2E2B]">
+                  {t("Deschide în Google Maps", "Open in Google Maps")} ↗
+                </div>
+              </a>
 
               <div className="space-y-8">
-                {[
-                  { icon: MapPin, labelRo: "Adresa", labelEn: "Address", value: "Str. Dr. Nicolae D. Staicovici, nr 35\nBucuresti, Sector 5, Romania" },
-                  { icon: Phone, labelRo: "Telefon", labelEn: "Phone", value: "+40 21 XXX XXXX" },
-                  { icon: Mail, labelRo: "Email", labelEn: "Email", value: "office@sovitech.ro" },
-                  { icon: Clock, labelRo: "Program", labelEn: "Hours", valueRo: "Luni — Vineri: 09:00 – 18:00\nSambata — Duminica: Inchis", valueEn: "Monday — Friday: 09:00 – 18:00\nSaturday — Sunday: Closed" },
-                ].map(({ icon: Icon, labelRo, labelEn, value, valueRo, valueEn }) => (
-                  <div key={labelRo} className="flex items-start gap-5">
+                {/* Program with the address in text to its right */}
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="flex items-start gap-5">
                     <div className="flex h-11 w-11 items-center justify-center rounded-[2px] bg-[#0D2E2B]/8 flex-shrink-0">
-                      <Icon className="h-5 w-5 text-[#0D2E2B]" />
+                      <Clock className="h-5 w-5 text-[#0D2E2B]" />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] mb-1">{t(labelRo, labelEn)}</p>
+                      <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] mb-1">{t("Program", "Hours")}</p>
                       <p className="text-sm text-[#0D2E2B] font-light leading-relaxed whitespace-pre-line">
-                        {valueRo ? t(valueRo, valueEn!) : value}
+                        {t("Luni — Vineri: 09:00 – 18:00\nSambata — Duminica: Inchis", "Monday — Friday: 09:00 – 18:00\nSaturday — Sunday: Closed")}
                       </p>
                     </div>
                   </div>
-                ))}
+                  <div className="flex items-start gap-5">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-[2px] bg-[#0D2E2B]/8 flex-shrink-0">
+                      <MapPin className="h-5 w-5 text-[#0D2E2B]" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] mb-1">{t("Adresa", "Address")}</p>
+                      <p className="text-sm text-[#0D2E2B] font-light leading-relaxed whitespace-pre-line">
+                        {"SOVITECH CONTROL SRL\nStr. Dr. Nicolae D. Staicovici, nr. 35\n" + t("București, Sector 5, România", "Bucharest, Sector 5, Romania")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Department contacts */}
+              <div>
+                <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] mb-4">
+                  • {t("Contact direct", "Direct contact")}
+                </p>
+                <div className="flex flex-col divide-y divide-[#0D2E2B]/10 border-y border-[#0D2E2B]/10">
+                  {[
+                    { deptRo: "Tehnic", deptEn: "Technical", name: "Mihai Sorica", phone: "+40720547802", phoneDisplay: "+40 720 547 802", email: "mihai@sovitech.ro" },
+                    { deptRo: "Vânzări", deptEn: "Sales", name: "Cristina Vitalariu", phone: "+40731338414", phoneDisplay: "+40 731 338 414", email: "cristina@sovitech.ro" },
+                    { deptRo: "Media", deptEn: "Media", name: "Cristian Gaidenic", phone: "+40740527366", phoneDisplay: "+40 740 527 366", email: "media@sovitech.ro" },
+                  ].map((person) => (
+                    <div key={person.email} className="py-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                      <div className="sm:w-32 shrink-0">
+                        <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1F6B4A]">{t(person.deptRo, person.deptEn)}</p>
+                        <p className="text-sm font-medium text-[#0D2E2B] mt-0.5">{person.name}</p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+                        <a href={`tel:${person.phone}`} className="inline-flex items-center gap-2 text-sm font-light text-[#0D2E2B]/70 hover:text-[#0D2E2B] transition-colors duration-150">
+                          <Phone className="h-3.5 w-3.5 text-[#1F6B4A]" />
+                          {person.phoneDisplay}
+                        </a>
+                        <a href={`mailto:${person.email}`} className="inline-flex items-center gap-2 text-sm font-light text-[#0D2E2B]/70 hover:text-[#0D2E2B] transition-colors duration-150">
+                          <Mail className="h-3.5 w-3.5 text-[#1F6B4A]" />
+                          {person.email}
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 

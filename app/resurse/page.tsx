@@ -61,6 +61,22 @@ const translations = {
       { category: "Ghid tehnic",    title: "Alegerea senzorilor potriviti pentru proiectul tau BMS",                        description: "Ghid complet pentru selectarea senzorilor de temperatura, umiditate si calitate a aerului.", date: "20 NOV 2025", readTime: "9 MIN CITIRE" },
       { category: "Date & Analize", title: "Conformitatea EPBD in 2026: Ce trebuie sa stie proprietarii de cladiri",        description: "Cerinte obligatorii si cum te poate ajuta un BMS sa le indeplinesti in avans.", date: "10 NOV 2025", readTime: "8 MIN CITIRE" },
     ],
+    guideBand: {
+      label: "• GHID BMS",
+      title: "Ghid BMS Gratuit",
+      sub: "Evalueaza potentialul cladirii tale",
+      cta: "Descarca ghidul",
+    },
+    caseBand: {
+      label: "• STUDIU DE CAZ",
+      quote: "Sovitech Control a implementat un sistem BMS complet pentru complexul nostru. Automatizarea HVAC și managementul energetic au redus consumul cu 35%.",
+    },
+    toolDescs: [
+      "Cât poți economisi cu un BMS?",
+      "Evalueaza potentialul cladirii tale",
+      "Analiza pietei de automatizare 2025",
+      "Portofoliul nostru de proiecte BMS",
+    ],
   },
   en: {
     label: "• Resources",
@@ -114,28 +130,50 @@ const translations = {
       { category: "Technical Guide",   title: "Choosing the right sensors for your BMS project",                      description: "Complete guide to selecting temperature, humidity and air quality sensors.", date: "NOV 20, 2025", readTime: "9 MIN READ" },
       { category: "Data & Analysis",   title: "EPBD compliance in 2026: What building owners need to know",           description: "Mandatory requirements and how a BMS can help you meet them ahead of time.", date: "NOV 10, 2025", readTime: "8 MIN READ" },
     ],
+    guideBand: {
+      label: "• BMS GUIDE",
+      title: "Free BMS Guide",
+      sub: "Assess the potential of your building",
+      cta: "Download the guide",
+    },
+    caseBand: {
+      label: "• CASE STUDY",
+      quote: "Sovitech Control implemented a full BMS system for our complex. HVAC automation and energy management reduced our consumption by 35%.",
+    },
+    toolDescs: [
+      "How much could you save with a BMS?",
+      "Assess the potential of your building",
+      "Automation market analysis 2025",
+      "Our portfolio of BMS projects",
+    ],
   },
 }
 
 // ── Static data (images / hrefs don't change with lang) ─────────────────────
 
-const featuredImage   = "/modern-building-automation-dashboard-with-energy-e.jpg"
-const featuredAuthorImage = "/professional-male-engineer-headshot.jpg"
-const featuredHref    = "/resurse/articole/eficienta-bms"
+const featuredImage = "/placeholder.svg"
+const featuredAuthorImage = "/placeholder-user.jpg"
+const featuredHref = "/resurse/articole/eficienta-bms"
 
-const secondaryImages = [
-  { image: "/therme-bucuresti-spa-exterior-modern.jpg",   href: "/resurse/studii-de-caz/therme-bucuresti" },
-  { image: "/luxury-hotel-lobby-modern-interior.jpg",      href: "/resurse/studii-de-caz/radisson-bucuresti" },
-  { image: "/bucharest-modern-skyline-office-buildings.jpg", href: "/resurse/raport-piata" },
+const secondaryStatic = [
+  { image: "/placeholder.svg", href: "/resurse/studii-de-caz/therme-bucuresti" },
+  { image: "/placeholder.svg", href: "/resurse/studii-de-caz/radisson-bucuresti" },
+  { image: "/placeholder.svg", href: "/resurse/raport-piata" },
 ]
 
-const articleImages = [
-  { image: "/luxury-hotel-lobby-modern-interior.jpg",                    href: "/resurse/articole/optimizare-hotel-bms" },
-  { image: "/building-automation-protocols-technical-diagram.jpg",        href: "#" },
-  { image: "/financial-charts-and-graphs-data-analysis.jpg",             href: "#" },
-  { image: "/building-automation-sensors-equipment-close-up.jpg",        href: "#" },
-  { image: "/modern-building-automation-dashboard-with-energy-c.jpg",    href: "#" },
+const articleStatic = [
+  { image: "/placeholder.svg", href: "/resurse/articole/optimizare-hotel-bms" },
+  { image: "/placeholder.svg", href: "#" },
+  { image: "/placeholder.svg", href: "#" },
+  { image: "/placeholder.svg", href: "#" },
+  { image: "/placeholder.svg", href: "#" },
 ]
+
+const caseBandHref = "/resurse/studii-de-caz/therme-bucuresti"
+const caseBandThumb = "/placeholder.svg"
+const guideBandCover = "/placeholder.svg"
+
+const toolCardColors = ["#C5C0F5", "#C8E6C9", "#E8C5B8", "#E8E8C0"]
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
   "Data & Analysis":    { bg: "#C5C0F5", text: "#5C5FD4" },
@@ -172,167 +210,230 @@ export default function ResursePage() {
   const [activeCategory, setActiveCategory] = useState("featured")
   const t = translations[lang]
 
+  // "latest" row = the 3 secondary posts + the first long-form article (4-up
+  // row per the editorial layout); the remaining articles feed the archive list
+  const latestRow = [
+    ...t.secondary.map((post, i) => ({ ...post, ...secondaryStatic[i] })),
+    { ...t.articles[0], ...articleStatic[0] },
+  ]
+  const archiveRows = t.articles.slice(1).map((article, i) => ({ ...article, ...articleStatic[i + 1] }))
+
   return (
     <div className="min-h-screen bg-[#F5F4F0]">
 
-      {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="bg-[#07201C] pt-20 pb-0 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 pb-16">
-          <div className="flex items-start justify-between gap-6">
-            <div>
-              <p className="section-label text-[#1F6B4A] mb-4">{t.label}</p>
-              <h1 className="text-5xl md:text-6xl font-light text-white leading-tight tracking-tighter mb-4 max-w-2xl text-balance">
-                {t.hero}
-              </h1>
-              <p className="text-white/50 font-light text-lg max-w-lg leading-relaxed">
-                {t.heroSub}
-              </p>
-            </div>
+      {/* ── Hero: compact editorial masthead + filter chips ────── */}
+      <section className="bg-[#F5F4F0] border-b border-[#0D2E2B]/10">
+        <div className="max-w-7xl mx-auto px-8 pt-20 pb-10">
+          <p className="section-label text-[#1F6B4A] mb-4">{t.label}</p>
+          <h1 className="text-5xl md:text-6xl font-light text-[#0D2E2B] leading-none tracking-tighter mb-4 max-w-3xl text-balance">
+            {t.hero}
+          </h1>
+          <p className="text-[#888888] font-light text-lg max-w-lg leading-relaxed">
+            {t.heroSub}
+          </p>
 
-
-          </div>
-        </div>
-
-        {/* Category filter bar */}
-        <div className="bg-[#0D2E2B] border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-8">
-            <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-1">
-              {t.categories.map((cat) => (
-                <button
-                  key={cat.slug}
-                  onClick={() => setActiveCategory(cat.slug)}
-                  className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-3 text-xs font-semibold tracking-wide transition-colors border-b-2 ${
-                    activeCategory === cat.slug
-                      ? "border-[#1F6B4A] text-white"
-                      : "border-transparent text-white/40 hover:text-white/70"
-                  }`}
-                >
-                  {cat.name}
-                  {"count" in cat && cat.count !== undefined && (
-                    <span className={`text-[10px] ${activeCategory === cat.slug ? "text-[#1F6B4A]" : "text-white/25"}`}>
-                      {cat.count}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
+          {/* Category filter chips */}
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none mt-10">
+            {t.categories.map((cat) => (
+              <button
+                key={cat.slug}
+                onClick={() => setActiveCategory(cat.slug)}
+                className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 text-xs font-semibold tracking-wide rounded-[1px] border transition-colors duration-150 ${
+                  activeCategory === cat.slug
+                    ? "bg-[#0D2E2B] border-[#0D2E2B] text-white"
+                    : "bg-white border-[#0D2E2B]/15 text-[#0D2E2B]/60 hover:text-[#0D2E2B] hover:border-[#0D2E2B]/30"
+                }`}
+              >
+                {cat.name}
+                {"count" in cat && cat.count !== undefined && (
+                  <span className={`text-[10px] ${activeCategory === cat.slug ? "text-[#C8E6C9]" : "text-[#0D2E2B]/30"}`}>
+                    {cat.count}
+                  </span>
+                )}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Featured + Secondary ──────────────────────────────── */}
+      {/* ── Featured: split card, visual left / editorial right ── */}
       <section className="bg-white border-b border-[#0D2E2B]/8">
         <div className="max-w-7xl mx-auto px-8 py-16">
-          <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start">
-
-            {/* Featured large card */}
-            <Link href={featuredHref} className="group block">
-              <div className="relative aspect-[16/10] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 mb-6">
-                <Image
-                  src={featuredImage}
-                  alt={t.featured.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0D2E2B]/60 via-transparent to-transparent" />
-                <div className="absolute bottom-5 left-5">
-                  <CategoryBadge category={t.featured.category} />
-                </div>
-              </div>
-              <h2 className="text-2xl font-light text-[#0D2E2B] leading-snug tracking-tighter mb-3 group-hover:text-[#1F6B4A] transition-colors text-balance">
+          <Link href={featuredHref} className="group grid lg:grid-cols-[1.15fr_1fr] gap-10 items-center">
+            <div className="relative aspect-[16/10] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 border border-[#0D2E2B]/8">
+              <Image
+                src={featuredImage}
+                alt={t.featured.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
+            <div>
+              <CategoryBadge category={t.featured.category} />
+              <h2 className="text-3xl md:text-4xl font-light text-[#0D2E2B] leading-tight tracking-tighter mt-4 mb-4 group-hover:text-[#1F6B4A] transition-colors text-balance">
                 {t.featured.title}
               </h2>
-              <p className="text-[#888888] font-light leading-relaxed mb-4 text-sm max-w-xl">
+              <p className="text-[#888888] font-light leading-relaxed mb-5 text-sm max-w-xl">
                 {t.featured.description}
               </p>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative h-8 w-8 overflow-hidden rounded-full bg-[#F5F4F0] flex-shrink-0">
-                    <Image
-                      src={featuredAuthorImage}
-                      alt={t.featured.authorName}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-[#0D2E2B]">{t.featured.authorName}</p>
-                    <p className="text-[10px] text-[#888888]">{t.featured.authorRole}</p>
-                  </div>
+              <p className="text-xs text-[#888888] mb-6">
+                {t.featured.date} &nbsp;·&nbsp;{" "}
+                <span className="text-[#1F6B4A] font-medium">{t.featured.readTime}</span>
+              </p>
+              <div className="flex items-center gap-2.5 pt-5 border-t border-[#0D2E2B]/8">
+                <div className="relative h-8 w-8 overflow-hidden rounded-full bg-[#F5F4F0] flex-shrink-0">
+                  <Image src={featuredAuthorImage} alt={t.featured.authorName} fill className="object-cover" />
                 </div>
-                <span className="text-[#0D2E2B]/15">·</span>
-                <p className="text-xs text-[#888888]">
-                  {t.featured.date} &nbsp;·&nbsp;{" "}
-                  <span className="text-[#1F6B4A] font-medium">{t.featured.readTime}</span>
-                </p>
+                <div>
+                  <p className="text-xs font-semibold text-[#0D2E2B]">{t.featured.authorName}</p>
+                  <p className="text-[10px] text-[#888888]">{t.featured.authorRole}</p>
+                </div>
               </div>
-            </Link>
-
-            {/* Secondary stack */}
-            <div className="flex flex-col divide-y divide-[#0D2E2B]/8">
-              {t.secondary.map((post, i) => (
-                <Link key={i} href={secondaryImages[i].href} className="group flex gap-4 py-5 first:pt-0 last:pb-0 items-start">
-                  <div className="relative h-20 w-28 flex-shrink-0 rounded-[2px] overflow-hidden bg-[#F5F4F0]">
-                    <Image
-                      src={secondaryImages[i].image}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <CategoryBadge category={post.category} />
-                    <h3 className="font-light text-sm text-[#0D2E2B] leading-snug mt-2 mb-1.5 group-hover:text-[#1F6B4A] transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-[10px] text-[#888888]">
-                      {post.date} &nbsp;·&nbsp; {post.readTime}
-                    </p>
-                  </div>
-                  <ArrowUpRight className="h-4 w-4 text-[#0D2E2B]/20 group-hover:text-[#1F6B4A] transition-colors mt-1 flex-shrink-0" />
-                </Link>
-              ))}
             </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Latest: compact 4-up row ───────────────────────────── */}
+      <section className="py-16 bg-[#F5F4F0] border-b border-[#0D2E2B]/8">
+        <div className="max-w-7xl mx-auto px-8">
+          <p className="section-label mb-8">{t.latest}</p>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {latestRow.map((post, i) => (
+              <Link key={i} href={post.href} className="group flex flex-col">
+                <div className="relative aspect-[16/10] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 border border-[#0D2E2B]/8 mb-4">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <CategoryBadge category={post.category} />
+                <h3 className="font-light text-[#0D2E2B] leading-snug text-base mt-3 mb-3 group-hover:text-[#1F6B4A] transition-colors line-clamp-2 flex-1">
+                  {post.title}
+                </h3>
+                <p className="text-[10px] text-[#888888] pt-3 border-t border-[#0D2E2B]/8">
+                  {post.date} &nbsp;·&nbsp; {post.readTime}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Latest articles grid ──────────────────────────────── */}
-      <section className="py-20 bg-[#F5F4F0]">
-        <div className="max-w-7xl mx-auto px-8">
-          <p className="section-label mb-10">{t.latest}</p>
+      {/* ── Guide: full-bleed dark promo band ──────────────────── */}
+      <section className="bg-[#07201C]">
+        <div className="max-w-7xl mx-auto px-8 py-20 grid lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
+          <div>
+            <p className="section-label text-[#C8E6C9] mb-6">{t.guideBand.label}</p>
+            <h2 className="text-4xl md:text-5xl font-light text-white leading-tight tracking-tighter mb-4 max-w-xl">
+              {t.guideBand.title}
+            </h2>
+            <p className="text-white/50 font-light text-lg leading-relaxed mb-8">
+              {t.guideBand.sub}
+            </p>
+            <Link
+              href="/ghid-bms"
+              className="inline-flex items-center gap-2 bg-white text-[#07201C] text-sm font-semibold px-6 py-3.5 rounded-[1px] hover:bg-[#C8E6C9] transition-colors duration-300"
+            >
+              {t.guideBand.cta}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <Link href="/ghid-bms" className="group justify-self-center lg:justify-self-end">
+            <div className="relative w-64 md:w-72 aspect-[3/4] rounded-[2px] overflow-hidden border border-white/10 bg-white/5">
+              <Image
+                src={guideBandCover}
+                alt={t.guideBand.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
+          </Link>
+        </div>
+      </section>
 
-          <div className="grid gap-px bg-[#0D2E2B]/8 rounded-[2px] overflow-hidden md:grid-cols-2 lg:grid-cols-3">
-            {t.articles.map((article, i) => (
+      {/* ── Case study: centered pull-quote + source row ────────── */}
+      <section className="bg-white border-b border-[#0D2E2B]/8">
+        <div className="max-w-4xl mx-auto px-8 py-20">
+          <p className="section-label mb-10 text-center">{t.caseBand.label}</p>
+          <blockquote className="text-2xl md:text-3xl font-light text-[#0D2E2B] leading-tight tracking-tighter text-center text-balance mb-12">
+            &ldquo;{t.caseBand.quote}&rdquo;
+          </blockquote>
+          <Link href={caseBandHref} className="group flex items-center gap-5 max-w-xl mx-auto pt-8 border-t border-[#0D2E2B]/8">
+            <div className="relative h-14 w-14 rounded-[2px] overflow-hidden bg-[#F5F4F0] border border-[#0D2E2B]/8 flex-shrink-0">
+              <Image src={caseBandThumb} alt={t.secondary[0].title} fill className="object-cover" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-light text-sm text-[#0D2E2B] leading-snug group-hover:text-[#1F6B4A] transition-colors">
+                {t.secondary[0].title}
+              </h3>
+              <p className="text-[10px] text-[#888888] mt-1">
+                {t.secondary[0].date} &nbsp;·&nbsp; {t.secondary[0].readTime}
+              </p>
+            </div>
+            <ArrowUpRight className="h-4 w-4 text-[#0D2E2B]/20 group-hover:text-[#1F6B4A] transition-colors flex-shrink-0" />
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Tools: dark band with pastel utility cards ──────────── */}
+      <section className="bg-[#07201C]">
+        <div className="max-w-7xl mx-auto px-8 py-20">
+          <p className="section-label text-[#C8E6C9] mb-10">• {t.tools}</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {t.toolItems.map((tool, i) => (
               <Link
-                key={i}
-                href={articleImages[i].href}
-                className="group bg-white p-6 flex flex-col hover:bg-[#F5F4F0] transition-colors"
+                key={tool.label}
+                href={tool.href}
+                className="group rounded-[2px] p-6 flex flex-col justify-between min-h-[180px]"
+                style={{ backgroundColor: toolCardColors[i % toolCardColors.length] }}
               >
-                <div className="relative aspect-[16/9] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 mb-5">
+                <div>
+                  <h3 className="text-lg font-light text-[#0D2E2B] tracking-tighter leading-snug">
+                    {tool.label}
+                  </h3>
+                  <p className="text-sm text-[#0D2E2B]/60 font-light mt-1.5 leading-snug">
+                    {t.toolDescs[i]}
+                  </p>
+                </div>
+                <div className="flex justify-end">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0D2E2B]/10 transition-colors duration-300 group-hover:bg-[#0D2E2B]/20">
+                    <ArrowRight className="h-4 w-4 text-[#0D2E2B]" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Archive: editorial list rows ─────────────────────────── */}
+      <section className="py-16 bg-[#F5F4F0]">
+        <div className="max-w-5xl mx-auto px-8">
+          <p className="section-label mb-8">• {t.catItems[0].toUpperCase()}</p>
+          <div className="flex flex-col divide-y divide-[#0D2E2B]/8 border-y border-[#0D2E2B]/8">
+            {archiveRows.map((article, i) => (
+              <Link key={i} href={article.href} className="group flex gap-6 py-6 items-center">
+                <div className="relative h-24 w-40 flex-shrink-0 rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 border border-[#0D2E2B]/8 hidden sm:block">
                   <Image
-                    src={articleImages[i].image}
+                    src={article.image}
                     alt={article.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex-1 min-w-0">
                   <CategoryBadge category={article.category} />
-                  <span className="text-[10px] text-[#888888]">{article.readTime}</span>
+                  <h3 className="font-light text-[#0D2E2B] leading-snug text-lg mt-2 mb-1.5 group-hover:text-[#1F6B4A] transition-colors">
+                    {article.title}
+                  </h3>
+                  <p className="text-[10px] text-[#888888]">
+                    {article.date} &nbsp;·&nbsp; {article.readTime}
+                  </p>
                 </div>
-                <h3 className="font-light text-[#0D2E2B] leading-snug text-base mb-2 group-hover:text-[#1F6B4A] transition-colors line-clamp-2 flex-1">
-                  {article.title}
-                </h3>
-                <p className="text-sm text-[#888888] font-light line-clamp-2 leading-relaxed mb-4">
-                  {article.description}
-                </p>
-                <div className="flex items-center justify-between mt-auto">
-                  <p className="text-[10px] text-[#888888]">{article.date}</p>
-                  <span className="text-[#1F6B4A] flex items-center gap-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    {t.readLabel} <ArrowRight className="h-3 w-3" />
-                  </span>
-                </div>
+                <ArrowUpRight className="h-4 w-4 text-[#0D2E2B]/20 group-hover:text-[#1F6B4A] transition-colors flex-shrink-0" />
               </Link>
             ))}
           </div>

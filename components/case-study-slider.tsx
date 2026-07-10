@@ -37,7 +37,7 @@ const caseStudies: CaseStudy[] = [
     clientCompany: "Therme Bucharest",
     industryRo: "HORECA — Spa & Wellness",
     industryEn: "HORECA — Spa & Wellness",
-    quoteRo: "Sovitech Control a implementat un sistem BMS complet pentru complexul nostru. Automatizarea HVAC si managementul energetic au redus consumul cu 35%.",
+    quoteRo: "Sovitech Control a implementat un sistem BMS complet pentru complexul nostru. Automatizarea HVAC și managementul energetic au redus consumul cu 35%.",
     quoteEn: "Sovitech Control implemented a full BMS system for our complex. HVAC automation and energy management reduced our consumption by 35%.",
     stat1: "35%",
     stat1LabelRo: "Reducere consum",
@@ -59,16 +59,16 @@ const caseStudies: CaseStudy[] = [
     clientCompany: "Radisson Blu Bucharest",
     industryRo: "HORECA — Hotel",
     industryEn: "HORECA — Hotel",
-    quoteRo: "Sistemul BMS de la Sovitech a transformat complet modul in care operam. Controlul integrat ne ofera transparenta totala si economii substantiale.",
+    quoteRo: "Sistemul BMS de la Sovitech a transformat complet modul în care operăm. Controlul integrat ne oferă transparență totală și economii substanțiale.",
     quoteEn: "The BMS system from Sovitech completely transformed how we operate. Integrated control gives us total transparency and substantial savings.",
     stat1: "40%",
-    stat1LabelRo: "Eficienta operationala",
+    stat1LabelRo: "Eficiență operațională",
     stat1LabelEn: "Operational efficiency",
     stat2: "200+",
     stat2LabelRo: "Puncte monitorizare",
     stat2LabelEn: "Monitoring points",
     stat3: "2 ani",
-    stat3LabelRo: "Perioada ROI",
+    stat3LabelRo: "Perioadă ROI",
     stat3LabelEn: "ROI period",
     image: "/luxury-hotel-lobby-modern-interior.jpg",
     accentColor: "#C5C0F5",
@@ -81,7 +81,7 @@ const caseStudies: CaseStudy[] = [
     clientCompany: "Rompharm Company",
     industryRo: "Farmaceutic",
     industryEn: "Pharmaceutical",
-    quoteRo: "In industria farmaceutica, precizia este esentiala. Sistemul Sovitech asigura conditii optime de temperatura si umiditate, cu raportare completa conform GMP.",
+    quoteRo: "În industria farmaceutică, precizia este esențială. Sistemul Sovitech asigură condiții optime de temperatură și umiditate, cu raportare completă conform GMP.",
     quoteEn: "In the pharmaceutical industry, precision is essential. The Sovitech system ensures optimal temperature and humidity conditions, with full GMP-compliant reporting.",
     stat1: "99.9%",
     stat1LabelRo: "Disponibilitate sistem",
@@ -109,7 +109,7 @@ export function CaseStudySlider() {
           <div>
             <p className="text-sm text-[#888888] font-semibold tracking-wider uppercase mb-2">• {t("Studii de caz", "Case studies")}</p>
             <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter">
-              {t("Povesti de succes", "Success stories")}
+              {t("Povești de succes", "Success stories")}
             </h2>
           </div>
           <Link href="/resurse/referinte" className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-[#1F6B4A] hover:gap-3 transition-all">
@@ -163,7 +163,7 @@ export function CaseStudySlider() {
 
               <div className="pt-4">
                 <Link href={`/resurse/studii-de-caz/${current.slug}`} className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2.5 rounded-[1px] transition-colors duration-300 hover:bg-[#1F6B4A]">
-                  {t("Citeste studiul de caz complet", "Read the full case study")}
+                  {t("Citește studiul de caz complet", "Read the full case study")}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -181,7 +181,7 @@ export function CaseStudySlider() {
             <button onClick={() => setCurrentIndex((p) => (p === 0 ? caseStudies.length - 1 : p - 1))} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0D2E2B]/15 bg-white hover:bg-[#F5F4F0] transition-colors" aria-label={t("Anterior", "Previous")}>
               <ChevronLeft className="h-4 w-4 text-[#0D2E2B]" />
             </button>
-            <button onClick={() => setCurrentIndex((p) => (p === caseStudies.length - 1 ? 0 : p + 1))} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0D2E2B]/15 bg-white hover:bg-[#F5F4F0] transition-colors" aria-label={t("Urmator", "Next")}>
+            <button onClick={() => setCurrentIndex((p) => (p === caseStudies.length - 1 ? 0 : p + 1))} className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0D2E2B]/15 bg-white hover:bg-[#F5F4F0] transition-colors" aria-label={t("Următor", "Next")}>
               <ChevronRight className="h-4 w-4 text-[#0D2E2B]" />
             </button>
           </div>

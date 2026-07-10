@@ -9,9 +9,9 @@ import { useLanguage } from "@/lib/language-context"
 const blogPosts = [
   {
     id: 1,
-    titleRo: "Cat de eficiente sunt sistemele BMS la reducerea costurilor?",
+    titleRo: "Cât de eficiente sunt sistemele BMS la reducerea costurilor?",
     titleEn: "How efficient are BMS systems at reducing costs?",
-    categoryRo: "Date & Analiza",
+    categoryRo: "Date & Analiză",
     categoryEn: "Data & Analysis",
     date: "15 IAN 2026",
     readTime: "12 MIN",
@@ -21,9 +21,9 @@ const blogPosts = [
   },
   {
     id: 2,
-    titleRo: "Piata BMS din Romania: Tendinte si Previziuni 2026",
+    titleRo: "Piața BMS din România: tendințe și previziuni 2026",
     titleEn: "The Romanian BMS Market: Trends and Forecasts 2026",
-    categoryRo: "Raport de Piata",
+    categoryRo: "Raport de piață",
     categoryEn: "Market Report",
     date: "10 DEC 2025",
     readTime: "10 MIN",
@@ -33,7 +33,7 @@ const blogPosts = [
   },
   {
     id: 3,
-    titleRo: "Cum Therme Bucuresti a redus costurile cu 38%",
+    titleRo: "Cum a redus Therme București costurile cu 38%",
     titleEn: "How Therme Bucharest cut costs by 38%",
     categoryRo: "Studii de Caz",
     categoryEn: "Case Studies",
@@ -45,7 +45,7 @@ const blogPosts = [
   },
   {
     id: 4,
-    titleRo: "Radisson Blu Bucuresti: automatizare hotel 5 stele",
+    titleRo: "Radisson Blu București: automatizare de hotel 5 stele",
     titleEn: "Radisson Blu Bucharest: 5-star hotel automation",
     categoryRo: "Studii de Caz",
     categoryEn: "Case Studies",
@@ -69,7 +69,7 @@ export function BlogSlider() {
   return (
     <section className="bg-[#07201C] py-24">
       <div className="max-w-7xl mx-auto px-8">
-        <p className="text-sm font-semibold tracking-wider uppercase mb-2 text-white/40">• {t("Educatie", "Education")}</p>
+        <p className="text-sm font-semibold tracking-wider uppercase mb-2 text-white/40">• {t("Educație", "Education")}</p>
         <h2 className="text-5xl font-light mb-12 tracking-tighter text-white">
           {t("Resurse & Articole", "Resources & Articles")}
         </h2>
@@ -127,7 +127,7 @@ export function BlogSlider() {
               variant="ghost"
               size="icon"
               className="h-10 w-10 rounded-full border border-white/20 bg-transparent hover:bg-white/10 disabled:opacity-30 text-white"
-              aria-label={t("Articole urmatoare", "Next articles")}
+              aria-label={t("Articole următoare", "Next articles")}
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
