@@ -336,7 +336,7 @@ export default function ServiciiPage() {
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg" alt="" className="h-[600px] w-auto" />
         </div>
-        <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
+        <div className="container-site w-full relative z-10">
           <span className="text-[#C8E6C9] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Servicii", "Services")}</span>
           <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
             {t("Servicii complete.", "Complete services.")}<br />{t("Rezultate garantate.", "Guaranteed results.")}
@@ -349,7 +349,7 @@ export default function ServiciiPage() {
 
       {/* ── Sticky nav tabs ── */}
       <section className="sticky top-16 z-30 bg-[#07201C]/95 backdrop-blur border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="flex items-center gap-1 py-4">
             {serviceCategories.map((cat) => (
               <button
@@ -366,7 +366,7 @@ export default function ServiciiPage() {
 
       {/* ── Per-tab content ── */}
       <section className="bg-[#F5F4F0] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
 
           {/* Tab header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
@@ -378,7 +378,7 @@ export default function ServiciiPage() {
                 {active.icon}
                 {t(active.heroRo, active.heroEn)}
               </div>
-              <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
                 {t(active.heroRo, active.heroEn)}
               </h2>
               <p className="mt-4 text-base text-[#555555] font-light max-w-2xl leading-relaxed">
@@ -461,10 +461,10 @@ export default function ServiciiPage() {
 
       {/* ── Pricing packages ── */}
       <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="mb-16">
             <p className="section-label mb-3">• {t("PACHETE DE SERVICII", "SERVICE PACKAGES")}</p>
-            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("Solicita o oferta personalizata", "Request a personalised quote")}</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("Solicita o oferta personalizata", "Request a personalised quote")}</h2>
             <p className="text-base text-[#888888] font-light max-w-xl">{t("Servicii activate prin software cu planuri construite pentru nevoile specifice ale cladirilor comerciale si industriale. Fiecare oferta este adaptata suprafetei si complexitatii proiectului tau.", "Software-enabled services with plans built for the specific needs of commercial and industrial buildings. Every quote is tailored to your project's area and complexity.")}</p>
           </div>
           <div className="grid max-w-5xl gap-6 lg:grid-cols-2">
@@ -506,10 +506,10 @@ export default function ServiciiPage() {
 
       {/* ── Feature comparison ── */}
       <section className="bg-[#F5F4F0] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="mb-12">
             <p className="section-label mb-3">• {t("CE ESTE INCLUS", "WHAT IS INCLUDED")}</p>
-            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("50+ servicii BMS", "50+ BMS services")}</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("50+ servicii BMS", "50+ BMS services")}</h2>
             <p className="text-base text-[#888888] font-light max-w-xl">{t("De la management standard la infrastructura completa, Sovitech combina software modern si servicii de expert.", "From standard management to full infrastructure, Sovitech combines modern software and expert services.")}</p>
           </div>
           <div className="mb-10 flex items-center gap-2">
@@ -549,9 +549,9 @@ export default function ServiciiPage() {
 
       {/* ── Additional services ── */}
       <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="section-label mb-3">• {t("SERVICII ADITIONALE", "ADDITIONAL SERVICES")}</p>
-          <h2 className="text-4xl font-light text-[#0D2E2B] mb-12 tracking-tighter">{t("Solutii specializate", "Specialised solutions")}</h2>
+          <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] mb-12 tracking-tighter">{t("Solutii specializate", "Specialised solutions")}</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {additionalServices.map((service, idx) => (
               <div key={idx} className="rounded-[2px] bg-[#F5F4F0] border border-[#0D2E2B]/10 p-8 hover:border-[#0D2E2B]/25 transition-colors duration-300">
@@ -565,11 +565,11 @@ export default function ServiciiPage() {
 
       {/* ── Trusted CTA band ── */}
       <section className="bg-[#07201C] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div>
               <p className="section-label text-[#1F6B4A] mb-2">• {t("DE INCREDERE", "TRUSTED")}</p>
-              <h2 className="text-4xl font-light text-white tracking-tighter max-w-xl">{t("Blocheaza costurile de management BMS pentru 10 ani", "Lock in your BMS management costs for 10 years")}</h2>
+              <h2 className="text-3xl lg:text-4xl font-light text-white tracking-tighter max-w-xl">{t("Blocheaza costurile de management BMS pentru 10 ani", "Lock in your BMS management costs for 10 years")}</h2>
               <p className="mt-4 text-white/60 font-light max-w-lg">{t("Lanseaza, opereaza si scaloneaza sistemul tau BMS fara griji legate de costurile in crestere.", "Launch, operate and scale your BMS system without worrying about rising costs.")}</p>
             </div>
             <Link href="/contact" className="btn-sovitech flex-shrink-0">
@@ -582,9 +582,9 @@ export default function ServiciiPage() {
 
       {/* ── FAQ ── */}
       <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="section-label mb-3">• FAQ</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">{t("Intrebari frecvente", "Frequently asked questions")}</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">{t("Intrebari frecvente", "Frequently asked questions")}</h2>
           <div className="max-w-3xl">
             {faqs.map((faq, idx) => (
               <div key={idx} className="border-b border-[#0D2E2B]/10">
@@ -611,9 +611,9 @@ export default function ServiciiPage() {
 
       {/* ── Testimonials ── */}
       <section className="bg-[#F5F4F0] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• {t("Clienti", "Clients")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-16">{t("Ce spun clientii nostri", "What our clients say")}</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter mb-16">{t("Ce spun clientii nostri", "What our clients say")}</h2>
           <div className="max-w-3xl">
             <div className="relative bg-white rounded-[2px] p-10 border border-[#0D2E2B]/8">
               <div className="absolute top-0 left-8 right-8 h-1 rounded-b-full transition-colors duration-300" style={{ backgroundColor: ["#C8E6C9", "#C5C0F5", "#8B7B5C"][currentTestimonial] }} />

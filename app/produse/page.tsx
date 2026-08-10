@@ -11,7 +11,7 @@ export default function ProdusePage() {
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>("Toate")
   const { t, lang } = useLanguage()
-  const spec = (v: string) => (v === "NU ESTE SPECIFICAT" ? t("Nu este specificat", "Not specified") : v)
+  const spec = (v: string, en?: string) => (v === "NU ESTE SPECIFICAT" ? t("Nu este specificat", "Not specified") : t(v, en ?? v))
 
   const categories = lang === "ro"
     ? ["Toate", "Controllere & PLC", "Senzori Presiune", "Senzori Ambient", "Actuatori", "Panouri Operare", "Software BMS", "Gateway & Integrare", "Alimentare & Accesorii"]
@@ -45,8 +45,8 @@ export default function ProdusePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-white/10 bg-[#07201C] px-4 py-20">
-        <div className="container mx-auto relative z-10">
+      <section className="relative overflow-hidden border-b border-white/10 bg-[#07201C] py-16 lg:py-20">
+        <div className="container-site relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-medium text-[#C8E6C9]">
               <span className="relative flex h-2 w-2">
@@ -114,8 +114,8 @@ export default function ProdusePage() {
       </section>
 
       {/* Category Filter */}
-      <section className="sticky top-16 z-40 border-b border-[#0D2E2B]/10 bg-white/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-        <div className="container mx-auto">
+      <section className="sticky top-16 z-40 border-b border-[#0D2E2B]/10 bg-white/95 py-4 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+        <div className="container-site">
           <div className="flex gap-2 overflow-x-auto pb-2">
             {categories.map((category) => (
               <button
@@ -135,8 +135,8 @@ export default function ProdusePage() {
       </section>
 
       {/* Products Grid */}
-      <section className="px-4 py-16">
-        <div className="container mx-auto">
+      <section className="py-16">
+        <div className="container-site">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredProducts.map((product) => {
               const Icon = product.icon
@@ -206,12 +206,13 @@ export default function ProdusePage() {
                     </Button>
                   </div>
 
-                  {/* Hover Overlay with Specs — covers the whole card so long
-                      model-code lists never overflow the image area. The panel
+                  {/* Hover Overlay with Specs — desktop-pointer only: touch
+                      devices can't hover, so they go straight to the detail
+                      page (same data) via the always-visible button. The panel
                       itself only fades (no transform), reading as the design
                       system's glass surface; the image beneath goes transparent */}
                   <div
-                    className={`absolute inset-0 z-10 flex flex-col justify-end overflow-y-auto bg-white/70 backdrop-blur-[2px] p-6 transition-opacity duration-300 ${
+                    className={`absolute inset-0 z-10 hidden pointer-fine:flex flex-col justify-end overflow-y-auto bg-white/70 backdrop-blur-[2px] p-6 transition-opacity duration-300 ${
                       isHovered ? "opacity-100" : "pointer-events-none opacity-0"
                     }`}
                   >
@@ -223,15 +224,15 @@ export default function ProdusePage() {
                       </div>
                       <div className="flex justify-between gap-4">
                         <span className="text-muted-foreground">{t("Protocol:", "Protocol:")}</span>
-                        <span className="font-medium text-foreground text-right">{spec(product.specs.protocol)}</span>
+                        <span className="font-medium text-foreground text-right">{spec(product.specs.protocol, product.specsEn?.protocol)}</span>
                       </div>
                       <div className="flex justify-between gap-4">
                         <span className="text-muted-foreground">{t("Gamă:", "Range:")}</span>
-                        <span className="font-medium text-foreground text-right">{spec(product.specs.range)}</span>
+                        <span className="font-medium text-foreground text-right">{spec(product.specs.range, product.specsEn?.range)}</span>
                       </div>
                       <div className="flex justify-between gap-4">
                         <span className="text-muted-foreground">{t("Alimentare:", "Power:")}</span>
-                        <span className="font-medium text-foreground text-right">{spec(product.specs.power)}</span>
+                        <span className="font-medium text-foreground text-right">{spec(product.specs.power, product.specsEn?.power)}</span>
                       </div>
                     </div>
                     {product.modelCodes && (
@@ -258,8 +259,8 @@ export default function ProdusePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border/40 bg-gradient-to-br from-primary/10 via-background to-primary/5 px-4 py-20">
-        <div className="container mx-auto">
+      <section className="border-t border-border/40 bg-gradient-to-br from-primary/10 via-background to-primary/5 py-16 lg:py-20">
+        <div className="container-site">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">{t("Ai nevoie de consultanță tehnică?", "Need technical consultancy?")}</h2>
             <p className="mb-8 text-pretty text-lg text-muted-foreground">

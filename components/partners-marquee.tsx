@@ -15,7 +15,7 @@ export function PartnersMarquee() {
 
   return (
     <section className="py-14 bg-[#F5F4F0] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 mb-8">
+      <div className="container-site mb-8">
         <p className="text-sm text-[#888888] font-semibold tracking-wider uppercase mb-2">
           • {t("De încredere", "Trusted by")}
         </p>

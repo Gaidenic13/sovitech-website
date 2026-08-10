@@ -14,7 +14,7 @@ export default function SectoarePage() {
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg" alt="" className="h-[600px] w-auto" />
         </div>
-        <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
+        <div className="container-site w-full relative z-10">
           <span className="text-[#C8E6C9] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Sectoare", "Sectors")}</span>
           <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
             {t("Expertiza BMS", "BMS expertise")}<br />{t("pentru fiecare industrie.", "for every industry.")}
@@ -29,9 +29,9 @@ export default function SectoarePage() {
       </section>
 
       <section className="bg-[#F5F4F0] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="section-label mb-3">• {t("INDUSTRII", "INDUSTRIES")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">
             {t("Alege sectorul tau", "Choose your sector")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-32">
@@ -68,7 +68,7 @@ export default function SectoarePage() {
                     <div className="inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-widest uppercase mb-4" style={{ backgroundColor: sector.accentColor, color: sector.accentTextDark ? "#0D2E2B" : "rgba(255,255,255,0.9)" }}>
                       {sector.title}
                     </div>
-                    <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-3">{sector.title}</h2>
+                    <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] tracking-tighter mb-3">{sector.title}</h2>
                     <p className="text-base text-[#888888] font-light">{sector.description}</p>
                   </div>
                   <div>
@@ -109,7 +109,7 @@ export default function SectoarePage() {
       </section>
 
       <section className="bg-[#07201C] py-24">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="section-label text-[#1F6B4A] mb-2">• {t("PROIECTE", "PROJECTS")}</p>
             <h2 className="text-3xl font-light text-white tracking-tighter">

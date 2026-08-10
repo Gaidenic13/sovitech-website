@@ -63,7 +63,7 @@ export function ServicesShowcase() {
 
   return (
     <section className="relative z-10 py-24">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <p className="text-sm font-semibold tracking-wider uppercase mb-3 text-[#C8E6C9]">
           • {t("Ce facem", "What we do")}
         </p>

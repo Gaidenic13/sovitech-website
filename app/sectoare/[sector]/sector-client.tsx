@@ -27,7 +27,7 @@ export function SectorPageClient({ slug }: { slug: string }) {
         {/* Accent colour bar top */}
         <div className="h-1 w-full" style={{ backgroundColor: accentBg }} />
 
-        <div className="max-w-7xl mx-auto px-8 pt-20 pb-24">
+        <div className="container-site pt-20 pb-24">
           {/* Breadcrumb */}
           <div className="flex items-center gap-3 mb-12">
             <Link
@@ -95,7 +95,7 @@ export function SectorPageClient({ slug }: { slug: string }) {
 
       {/* ── TRUSTED BY strip ── */}
       <section className="bg-white border-b border-[#0D2E2B]/8 py-8">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col sm:flex-row items-center gap-6">
+        <div className="container-site flex flex-col sm:flex-row items-center gap-6">
           <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] whitespace-nowrap">
             {t("De încredere pentru", "Trusted by")}
           </p>
@@ -112,12 +112,12 @@ export function SectorPageClient({ slug }: { slug: string }) {
 
       {/* ── FEATURES GRID ── */}
       <section className="py-28 bg-[#F5F4F0]">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="max-w-2xl mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: accentOnLight }}>
               • {t("Capabilități", "Capabilities")}
             </p>
-            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
               {t("Software premium,", "Premier software,")}<br />{t("servicii premium.", "premier service.")}
             </h2>
             <p className="text-base text-[#888888] font-light mt-4 leading-relaxed">
@@ -150,13 +150,13 @@ export function SectorPageClient({ slug }: { slug: string }) {
 
       {/* ── CAPABILITIES LIST + IMAGE ── */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="container-site grid lg:grid-cols-2 gap-16 items-center">
           {/* List */}
           <div>
             <p className="text-xs font-semibold tracking-widest uppercase mb-4 text-[#888888]">
               • {t("Ce livrăm", "What we deliver")}
             </p>
-            <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-10">
+            <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] tracking-tighter mb-10">
               {t("Tot ce are nevoie clădirea ta.", `Everything your ${sector.title.toLowerCase()} needs.`)}
             </h2>
             <ul className="space-y-4">
@@ -187,7 +187,7 @@ export function SectorPageClient({ slug }: { slug: string }) {
 
       {/* ── TESTIMONIAL ── */}
       <section className="bg-[#07201C] py-28">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="max-w-3xl mx-auto text-center">
             <Quote className="h-10 w-10 mx-auto mb-8 opacity-20 text-white" />
             <blockquote className="text-2xl md:text-3xl font-light text-white leading-tight tracking-tighter mb-10">
@@ -212,11 +212,11 @@ export function SectorPageClient({ slug }: { slug: string }) {
       {/* ── RELATED SECTORS ── */}
       {related.length > 0 && (
         <section className="py-24 bg-[#F5F4F0]">
-          <div className="max-w-7xl mx-auto px-8">
+          <div className="container-site">
             <p className="text-xs font-semibold tracking-widest uppercase mb-3 text-[#888888]">
               • {t("Alte sectoare", "Other sectors")}
             </p>
-            <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-12">
+            <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] tracking-tighter mb-12">
               {t("Explorează industrii conexe", "Explore related industries")}
             </h2>
             <div className="grid md:grid-cols-3 gap-5">
@@ -262,12 +262,12 @@ export function SectorPageClient({ slug }: { slug: string }) {
 
       {/* ── CTA ── */}
       <section className="bg-white border-t border-[#0D2E2B]/8 py-20">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="container-site flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="max-w-xl">
             <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: accentOnLight }}>
               • {t("Începe acum", "Get started")}
             </p>
-            <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] tracking-tighter leading-tight">
               {t("Pregătit să-ți optimizezi clădirea?", `Ready to optimise your ${sector.title.toLowerCase()} building?`)}
             </h2>
             <p className="text-[#888888] font-light mt-3 text-base leading-relaxed">

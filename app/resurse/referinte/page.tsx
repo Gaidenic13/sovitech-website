@@ -92,7 +92,7 @@ export default function ReferintePage() {
             className="h-[600px] w-auto"
           />
         </div>
-        <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
+        <div className="container-site w-full relative z-10">
           <span className="text-[#C8E6C9] text-xs font-semibold tracking-widest uppercase mb-4 block">• {t("Portofoliu", "Portfolio")}</span>
           <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
             {t("Referințele noastre", "Our references")}<br />{t("— cartea noastră de vizită.", "— our calling card.")}
@@ -108,9 +108,9 @@ export default function ReferintePage() {
 
       {/* Impact metrics */}
       <section className="py-24 bg-[#F5F4F0]">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• {t("Impact", "Impact")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-12">{t("Impact măsurabil", "Measurable impact")}</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter mb-12">{t("Impact măsurabil", "Measurable impact")}</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             {[
@@ -143,9 +143,9 @@ export default function ReferintePage() {
 
       {/* Projects by category */}
       <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• {t("Proiecte", "Projects")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-16">{t("Proiecte finalizate", "Completed projects")}</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter mb-16">{t("Proiecte finalizate", "Completed projects")}</h2>
 
           <div className="space-y-20">
             {Object.entries(references).map(([category, projects]) => {
@@ -214,9 +214,9 @@ export default function ReferintePage() {
 
       {/* Trust section */}
       <section className="bg-[#F5F4F0] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">• {t("Încredere", "Trust")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-6">{t("Creștere prin încredere", "Growth through trust")}</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter mb-6">{t("Creștere prin încredere", "Growth through trust")}</h2>
           <p className="text-base text-[#888888] font-light max-w-2xl mb-12 leading-relaxed">
             {t(
               "Numărul tot mai mare de clienți noi care ajung la noi prin recomandări confirmă calitatea serviciilor noastre. Colaborarea strânsă cu fiecare client și rezultatele măsurabile ne-au făcut partenerul de încredere pentru automatizarea BMS în România.",
@@ -238,7 +238,7 @@ export default function ReferintePage() {
       <section className="bg-[#C5C0F5] py-24 text-center">
         <div className="max-w-2xl mx-auto px-8">
           <p className="text-xs text-[#0D2E2B]/50 font-semibold tracking-widest uppercase mb-4">• {t("Proiect nou", "New project")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] leading-tight mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] leading-tight mb-4 text-balance">
             {t("Ai în minte un proiect de automatizare?", "Do you have an automation project in mind?")}
           </h2>
           <p className="text-base text-[#0D2E2B]/60 font-light mb-8">

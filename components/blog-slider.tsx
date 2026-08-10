@@ -68,9 +68,9 @@ export function BlogSlider() {
 
   return (
     <section className="bg-[#07201C] py-24">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <p className="text-sm font-semibold tracking-wider uppercase mb-2 text-white/40">• {t("Educație", "Education")}</p>
-        <h2 className="text-5xl font-light mb-12 tracking-tighter text-white">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-12 tracking-tighter text-white">
           {t("Resurse & Articole", "Resources & Articles")}
         </h2>
 

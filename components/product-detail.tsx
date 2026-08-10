@@ -14,20 +14,20 @@ export function ProductDetail({ id }: { id: string }) {
 
   const codes = articleCodes(product)
   const related = products.filter((p) => p.familyTitle === product.familyTitle && p.id !== product.id)
-  const specValue = (v: string) => (v === NOT_SPECIFIED ? t("Nu este specificat", "Not specified") : v)
+  const specValue = (v: string, en?: string) => (v === NOT_SPECIFIED ? t("Nu este specificat", "Not specified") : t(v, en ?? v))
 
   const specs = [
-    { labelRo: "Model", labelEn: "Model", value: product.specs.model },
-    { labelRo: "Protocol / Semnal", labelEn: "Protocol / Signal", value: product.specs.protocol },
-    { labelRo: "Gamă", labelEn: "Range", value: product.specs.range },
-    { labelRo: "Alimentare", labelEn: "Power", value: product.specs.power },
+    { labelRo: "Model", labelEn: "Model", value: product.specs.model, valueEn: undefined as string | undefined },
+    { labelRo: "Protocol / Semnal", labelEn: "Protocol / Signal", value: product.specs.protocol, valueEn: product.specsEn?.protocol },
+    { labelRo: "Gamă", labelEn: "Range", value: product.specs.range, valueEn: product.specsEn?.range },
+    { labelRo: "Alimentare", labelEn: "Power", value: product.specs.power, valueEn: product.specsEn?.power },
   ]
 
   return (
     <>
       {/* Breadcrumb + header */}
       <section className="bg-[#07201C] pt-10 pb-14">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-white/50 mb-10 flex-wrap">
             <Link href="/produse" className="hover:text-white transition-colors duration-150">{t("Produse", "Products")}</Link>
             <ChevronRight className="h-3.5 w-3.5" />
@@ -49,7 +49,7 @@ export function ProductDetail({ id }: { id: string }) {
 
       {/* Content */}
       <section className="bg-[#F5F4F0] py-16">
-        <div className="max-w-7xl mx-auto px-8 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
+        <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           {/* Image */}
           <div className="bg-white rounded-[2px] border border-[#0D2E2B]/10 p-10 flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
             <img
@@ -69,7 +69,7 @@ export function ProductDetail({ id }: { id: string }) {
               {specs.map((s) => (
                 <div key={s.labelEn} className="flex justify-between gap-6 px-6 py-4">
                   <span className="text-sm text-[#888888]">{t(s.labelRo, s.labelEn)}</span>
-                  <span className="text-sm font-medium text-[#0D2E2B] text-right">{specValue(s.value)}</span>
+                  <span className="text-sm font-medium text-[#0D2E2B] text-right">{specValue(s.value, s.valueEn)}</span>
                 </div>
               ))}
             </div>
@@ -111,7 +111,7 @@ export function ProductDetail({ id }: { id: string }) {
       {/* Related products */}
       {related.length > 0 && (
         <section className="bg-white py-16">
-          <div className="max-w-7xl mx-auto px-8">
+          <div className="container-site">
             <p className="section-label mb-3">• {t("Din aceeași familie", "From the same family")}</p>
             <h2 className="text-3xl font-light text-[#0D2E2B] tracking-tighter mb-10">
               {t(product.familyTitle, product.familyTitleEn ?? product.familyTitle)}
@@ -137,7 +137,7 @@ export function ProductDetail({ id }: { id: string }) {
 
       {/* CTA */}
       <section className="bg-[#07201C] py-16">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="container-site flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-3xl font-light text-white tracking-tighter mb-2">
               {t("Ai nevoie de acest produs în proiectul tău?", "Need this product in your project?")}

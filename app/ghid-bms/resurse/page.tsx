@@ -1,19 +1,28 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Calculator, Download, TrendingUp, BookOpen } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/lib/language-context"
 
 export default function ResurseSuplimentarePage() {
+  const { t } = useLanguage()
+
   return (
     <div className="flex flex-col">
       {/* Hero */}
       <section className="bg-gradient-to-br from-[#0D4D4D] to-[#0A3939] py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Resurse Suplimentare BMS</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              {t("Resurse Suplimentare BMS", "Additional BMS Resources")}
+            </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Instrumente, calculatoare și conținut educațional pentru a vă ajuta să luați cea mai bună decizie despre
-              automatizarea clădirii.
+              {t(
+                "Instrumente, calculatoare și conținut educațional pentru a vă ajuta să luați cea mai bună decizie despre automatizarea clădirii.",
+                "Tools, calculators and educational content to help you make the best decision about building automation.",
+              )}
             </p>
           </div>
         </div>
@@ -22,24 +31,28 @@ export default function ResurseSuplimentarePage() {
       {/* Tools & Calculators */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Instrumente Interactive</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            {t("Instrumente Interactive", "Interactive Tools")}
+          </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card className="p-8 border-border hover:border-primary/50 transition-colors">
               <div className="h-14 w-14 rounded-[2px] bg-primary/10 flex items-center justify-center mb-6">
                 <Calculator className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Calculator ROI BMS</h3>
+              <h3 className="text-2xl font-bold mb-3">{t("Calculator ROI BMS", "BMS ROI Calculator")}</h3>
               <p className="text-muted-foreground mb-6">
-                Estimați economiile potențiale și perioada de recuperare a investiției în automatizare BMS pentru
-                clădirea dumneavoastră.
+                {t(
+                  "Estimați economiile potențiale și perioada de recuperare a investiției în automatizare BMS pentru clădirea dumneavoastră.",
+                  "Estimate the potential savings and payback period of the BMS automation investment for your building.",
+                )}
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li>✓ Calcul economii energetice anuale</li>
-                <li>✓ Estimare perioadă recuperare investiție</li>
-                <li>✓ Comparație scenarii de implementare</li>
+                <li>{t("✓ Calcul economii energetice anuale", "✓ Annual energy savings calculation")}</li>
+                <li>{t("✓ Estimare perioadă recuperare investiție", "✓ Investment payback period estimate")}</li>
+                <li>{t("✓ Comparație scenarii de implementare", "✓ Implementation scenario comparison")}</li>
               </ul>
               <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Deschide Calculatorul
+                {t("Deschide Calculatorul", "Open the Calculator")}
               </Button>
             </Card>
 
@@ -47,17 +60,20 @@ export default function ResurseSuplimentarePage() {
               <div className="h-14 w-14 rounded-[2px] bg-primary/10 flex items-center justify-center mb-6">
                 <TrendingUp className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Quiz Pregătire BMS</h3>
+              <h3 className="text-2xl font-bold mb-3">{t("Quiz Pregătire BMS", "BMS Readiness Quiz")}</h3>
               <p className="text-muted-foreground mb-6">
-                Evaluați în 5 minute gradul de pregătire al clădirii pentru implementarea unui sistem BMS performant.
+                {t(
+                  "Evaluați în 5 minute gradul de pregătire al clădirii pentru implementarea unui sistem BMS performant.",
+                  "Assess in 5 minutes how ready your building is for implementing a high-performance BMS.",
+                )}
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li>✓ 15 întrebări despre infrastructură</li>
-                <li>✓ Rezultat instant cu scorare</li>
-                <li>✓ Recomandări personalizate</li>
+                <li>{t("✓ 15 întrebări despre infrastructură", "✓ 15 questions about infrastructure")}</li>
+                <li>{t("✓ Rezultat instant cu scorare", "✓ Instant result with scoring")}</li>
+                <li>{t("✓ Recomandări personalizate", "✓ Personalised recommendations")}</li>
               </ul>
               <Button variant="outline" className="w-full bg-transparent">
-                Începe Quiz-ul
+                {t("Începe Quiz-ul", "Start the Quiz")}
               </Button>
             </Card>
           </div>
@@ -68,9 +84,14 @@ export default function ResurseSuplimentarePage() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Studii de Caz Detaliate</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {t("Studii de Caz Detaliate", "Detailed Case Studies")}
+            </h2>
             <p className="text-lg text-muted-foreground">
-              Rezultate măsurabile din proiectele noastre de automatizare BMS
+              {t(
+                "Rezultate măsurabile din proiectele noastre de automatizare BMS",
+                "Measurable results from our BMS automation projects",
+              )}
             </p>
           </div>
 
@@ -84,10 +105,13 @@ export default function ResurseSuplimentarePage() {
               <span className="text-xs font-semibold text-primary">HORECA</span>
               <h3 className="text-xl font-bold mt-2 mb-2">Therme București</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Reducere cu 35% a costurilor energetice pentru cel mai mare complex wellness din Europa.
+                {t(
+                  "Reducere cu 35% a costurilor energetice pentru cel mai mare complex wellness din Europa.",
+                  "35% reduction in energy costs for the largest wellness complex in Europe.",
+                )}
               </p>
               <Button variant="link" className="p-0 h-auto" asChild>
-                <Link href="/resurse/studii-de-caz/therme-bucuresti">Citește studiul →</Link>
+                <Link href="/resurse/studii-de-caz/therme-bucuresti">{t("Citește studiul →", "Read the case study →")}</Link>
               </Button>
             </Card>
 
@@ -97,13 +121,16 @@ export default function ResurseSuplimentarePage() {
                 alt="Radisson Blu"
                 className="w-full h-48 object-cover rounded-[2px] mb-4"
               />
-              <span className="text-xs font-semibold text-primary">HOTEL</span>
+              <span className="text-xs font-semibold text-primary">{t("HOTEL", "HOTEL")}</span>
               <h3 className="text-xl font-bold mt-2 mb-2">Radisson Blu București</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Optimizare confort și eficiență energetică pentru hotel 5 stele cu 428 camere.
+                {t(
+                  "Optimizare confort și eficiență energetică pentru hotel 5 stele cu 428 camere.",
+                  "Comfort and energy efficiency optimisation for a 5-star hotel with 428 rooms.",
+                )}
               </p>
               <Button variant="link" className="p-0 h-auto" asChild>
-                <Link href="/resurse/studii-de-caz/radisson-bucuresti">Citește studiul →</Link>
+                <Link href="/resurse/studii-de-caz/radisson-bucuresti">{t("Citește studiul →", "Read the case study →")}</Link>
               </Button>
             </Card>
 
@@ -116,17 +143,20 @@ export default function ResurseSuplimentarePage() {
               <span className="text-xs font-semibold text-primary">PHARMA</span>
               <h3 className="text-xl font-bold mt-2 mb-2">Rompharm Company</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Control precis mediu productie pentru facilitati farmaceutice certificate GMP.
+                {t(
+                  "Control precis mediu productie pentru facilitati farmaceutice certificate GMP.",
+                  "Precise production environment control for GMP-certified pharmaceutical facilities.",
+                )}
               </p>
               <Button variant="link" className="p-0 h-auto" asChild>
-                <Link href="/resurse/referinte">Citește studiul →</Link>
+                <Link href="/resurse/referinte">{t("Citește studiul →", "Read the case study →")}</Link>
               </Button>
             </Card>
           </div>
 
           <div className="text-center mt-8">
             <Button variant="outline" size="lg" asChild>
-              <Link href="/resurse/referinte">Vezi Toate Proiectele</Link>
+              <Link href="/resurse/referinte">{t("Vezi Toate Proiectele", "View All Projects")}</Link>
             </Button>
           </div>
         </div>
@@ -136,9 +166,14 @@ export default function ResurseSuplimentarePage() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Serie de Articole: Ghid Complet BMS</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {t("Serie de Articole: Ghid Complet BMS", "Article Series: Complete BMS Guide")}
+            </h2>
             <p className="text-lg text-muted-foreground">
-              Conținut educațional aprofundat despre sisteme de automatizare
+              {t(
+                "Conținut educațional aprofundat despre sisteme de automatizare",
+                "In-depth educational content about automation systems",
+              )}
             </p>
           </div>
 
@@ -149,13 +184,18 @@ export default function ResurseSuplimentarePage() {
                   <BookOpen className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-primary">PARTEA 1</span>
-                  <h3 className="text-lg font-bold mt-1 mb-2">Fundamentele BMS: Ce Trebuie să Știți</h3>
+                  <span className="text-xs font-semibold text-primary">{t("PARTEA 1", "PART 1")}</span>
+                  <h3 className="text-lg font-bold mt-1 mb-2">
+                    {t("Fundamentele BMS: Ce Trebuie să Știți", "BMS Fundamentals: What You Need to Know")}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Introducere completă în sistemele de management clădiri: componente, beneficii și tehnologii.
+                    {t(
+                      "Introducere completă în sistemele de management clădiri: componente, beneficii și tehnologii.",
+                      "A complete introduction to building management systems: components, benefits and technologies.",
+                    )}
                   </p>
                   <Button variant="link" className="p-0 h-auto text-sm">
-                    Citește articolul →
+                    {t("Citește articolul →", "Read the article →")}
                   </Button>
                 </div>
               </div>
@@ -167,14 +207,18 @@ export default function ResurseSuplimentarePage() {
                   <BookOpen className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-primary">PARTEA 2</span>
-                  <h3 className="text-lg font-bold mt-1 mb-2">Evaluarea ROI: Merită Investiția?</h3>
+                  <span className="text-xs font-semibold text-primary">{t("PARTEA 2", "PART 2")}</span>
+                  <h3 className="text-lg font-bold mt-1 mb-2">
+                    {t("Evaluarea ROI: Merită Investiția?", "ROI Assessment: Is the Investment Worth It?")}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Metodologie detaliată pentru calculul rentabilității investiției în BMS pentru diferite tipuri de
-                    clădiri.
+                    {t(
+                      "Metodologie detaliată pentru calculul rentabilității investiției în BMS pentru diferite tipuri de clădiri.",
+                      "A detailed methodology for calculating the return on BMS investment for different building types.",
+                    )}
                   </p>
                   <Button variant="link" className="p-0 h-auto text-sm">
-                    Citește articolul →
+                    {t("Citește articolul →", "Read the article →")}
                   </Button>
                 </div>
               </div>
@@ -186,13 +230,18 @@ export default function ResurseSuplimentarePage() {
                   <BookOpen className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-primary">PARTEA 3</span>
-                  <h3 className="text-lg font-bold mt-1 mb-2">Procesul de Implementare Pas cu Pas</h3>
+                  <span className="text-xs font-semibold text-primary">{t("PARTEA 3", "PART 3")}</span>
+                  <h3 className="text-lg font-bold mt-1 mb-2">
+                    {t("Procesul de Implementare Pas cu Pas", "The Step-by-Step Implementation Process")}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    De la audit inițial la punerea în funcțiune: ghid complet pentru implementarea cu succes a BMS.
+                    {t(
+                      "De la audit inițial la punerea în funcțiune: ghid complet pentru implementarea cu succes a BMS.",
+                      "From the initial audit to commissioning: a complete guide to a successful BMS implementation.",
+                    )}
                   </p>
                   <Button variant="link" className="p-0 h-auto text-sm">
-                    Citește articolul →
+                    {t("Citește articolul →", "Read the article →")}
                   </Button>
                 </div>
               </div>
@@ -204,13 +253,18 @@ export default function ResurseSuplimentarePage() {
                   <BookOpen className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-primary">PARTEA 4</span>
-                  <h3 className="text-lg font-bold mt-1 mb-2">Mentenanță și Optimizare Continuă</h3>
+                  <span className="text-xs font-semibold text-primary">{t("PARTEA 4", "PART 4")}</span>
+                  <h3 className="text-lg font-bold mt-1 mb-2">
+                    {t("Mentenanță și Optimizare Continuă", "Maintenance and Continuous Optimisation")}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Cum să mențineți performanța sistemului BMS și să maximizați economiile pe termen lung.
+                    {t(
+                      "Cum să mențineți performanța sistemului BMS și să maximizați economiile pe termen lung.",
+                      "How to maintain your BMS performance and maximise savings in the long run.",
+                    )}
                   </p>
                   <Button variant="link" className="p-0 h-auto text-sm">
-                    Citește articolul →
+                    {t("Citește articolul →", "Read the article →")}
                   </Button>
                 </div>
               </div>
@@ -224,19 +278,23 @@ export default function ResurseSuplimentarePage() {
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-8 md:p-12 border-border bg-gradient-to-br from-primary/5 to-primary/10">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Aveți Întrebări despre BMS?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {t("Aveți Întrebări despre BMS?", "Do You Have Questions about BMS?")}
+              </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Echipa noastră de specialiști este pregătită să vă ajute cu informații personalizate pentru proiectul
-                dumneavoastră.
+                {t(
+                  "Echipa noastră de specialiști este pregătită să vă ajute cu informații personalizate pentru proiectul dumneavoastră.",
+                  "Our team of specialists is ready to help you with personalised information for your project.",
+                )}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                  <Link href="/contact">Programează Consultație</Link>
+                  <Link href="/contact">{t("Programează Consultație", "Schedule a Consultation")}</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="/ghid-bms/descarca">
                     <Download className="mr-2 h-5 w-5" />
-                    Descarcă Ghidul
+                    {t("Descarcă Ghidul", "Download the Guide")}
                   </Link>
                 </Button>
               </div>

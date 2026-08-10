@@ -105,7 +105,7 @@ export function ReferencesMarquee() {
 
   return (
     <section className="bg-[#F5F4F0] py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 mb-8 flex items-end justify-between gap-4">
+      <div className="container-site mb-8 flex items-end justify-between gap-4">
         <div>
           <p className="section-label mb-2">• {t("Referințe", "References")}</p>
           <h2 className="text-3xl md:text-4xl font-light text-[#0D2E2B] tracking-tighter">

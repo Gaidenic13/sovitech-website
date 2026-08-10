@@ -95,7 +95,7 @@ export function Header() {
         <button
           key={code}
           onClick={() => setLang(code)}
-          className={`px-3 py-1.5 transition-colors duration-150 ${lang === code ? "bg-[#0D2E2B] text-white" : "text-[#0D2E2B]/60 hover:text-[#0D2E2B]"}`}
+          className={`px-3 py-2.5 lg:py-1.5 transition-colors duration-150 ${lang === code ? "bg-[#0D2E2B] text-white" : "text-[#0D2E2B]/60 hover:text-[#0D2E2B]"}`}
         >
           {code.toUpperCase()}
         </button>
@@ -105,7 +105,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-[#0D2E2B]/10">
-      <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-4 md:px-6">
+      <div className="container-site flex h-16 items-center justify-between gap-4">
         {/* Left: logo + desktop nav */}
         <div className="flex items-center gap-6 min-w-0">
           <Link href="/" className="flex shrink-0 items-center">
@@ -166,9 +166,11 @@ export function Header() {
           </NavigationMenu>
         </div>
 
-        {/* Right: utilities, CTA, burger */}
-        <div className="flex items-center gap-3 shrink-0">
-          <div className="hidden lg:flex">{langToggle}</div>
+        {/* Right: utilities, CTA, burger — the RO/EN toggle stays visible at
+            every width; the CTA yields on the smallest screens (it also lives
+            in the drawer) so the bar never crowds */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {langToggle}
 
           <Link
             href="/calculator-roi"
@@ -180,7 +182,7 @@ export function Header() {
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
+            className="hidden sm:inline-flex items-center gap-2 bg-[#0D2E2B] text-white text-sm font-medium px-5 py-2 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
           >
             {t("Cerere ofertă", "Request a quote")}
           </Link>
@@ -248,16 +250,13 @@ export function Header() {
             </Link>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
-            {langToggle}
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="flex-1 inline-flex items-center justify-center bg-[#0D2E2B] text-white text-sm font-medium px-5 py-3 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
-            >
-              {t("Cerere ofertă", "Request a quote")}
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
+            className="inline-flex items-center justify-center bg-[#0D2E2B] text-white text-sm font-medium px-5 py-3 rounded-[1px] hover:bg-[#1F6B4A] transition-colors duration-300"
+          >
+            {t("Cerere ofertă", "Request a quote")}
+          </Link>
         </nav>
       </div>
     </header>

@@ -9,65 +9,79 @@ import { CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-
-const questions = [
-  {
-    id: 1,
-    question: "Care este suprafața totală a clădirii dumneavoastră?",
-    options: [
-      { value: "small", label: "Sub 1.000 m²", points: 1 },
-      { value: "medium", label: "1.000 - 5.000 m²", points: 2 },
-      { value: "large", label: "5.000 - 10.000 m²", points: 3 },
-      { value: "xlarge", label: "Peste 10.000 m²", points: 4 },
-    ],
-  },
-  {
-    id: 2,
-    question: "Cât de vechi sunt sistemele HVAC actuale?",
-    options: [
-      { value: "new", label: "Mai puțin de 5 ani", points: 1 },
-      { value: "medium", label: "5-10 ani", points: 2 },
-      { value: "old", label: "10-15 ani", points: 3 },
-      { value: "very-old", label: "Peste 15 ani", points: 4 },
-    ],
-  },
-  {
-    id: 3,
-    question: "Cât cheltuiți lunar pe energie (electricitate + gaze)?",
-    options: [
-      { value: "low", label: "Sub 5.000 lei", points: 1 },
-      { value: "medium", label: "5.000 - 15.000 lei", points: 2 },
-      { value: "high", label: "15.000 - 30.000 lei", points: 3 },
-      { value: "very-high", label: "Peste 30.000 lei", points: 4 },
-    ],
-  },
-  {
-    id: 4,
-    question: "Aveți deja senzori sau automatizări instalate?",
-    options: [
-      { value: "none", label: "Nu, nimic", points: 4 },
-      { value: "basic", label: "Termostate simple", points: 3 },
-      { value: "medium", label: "Câțiva senzori și timere", points: 2 },
-      { value: "advanced", label: "Sistem parțial automatizat", points: 1 },
-    ],
-  },
-  {
-    id: 5,
-    question: "Cât de des primiți plângeri despre confortul termic?",
-    options: [
-      { value: "never", label: "Niciodată", points: 1 },
-      { value: "rare", label: "Rar (o dată pe trimestru)", points: 2 },
-      { value: "sometimes", label: "Ocazional (lunar)", points: 3 },
-      { value: "often", label: "Frecvent (săptămânal)", points: 4 },
-    ],
-  },
-]
+import { useLanguage } from "@/lib/language-context"
 
 export default function QuizPage() {
   const router = useRouter()
+  const { t } = useLanguage()
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [showResults, setShowResults] = useState(false)
+
+  const questions = [
+    {
+      id: 1,
+      question: t(
+        "Care este suprafața totală a clădirii dumneavoastră?",
+        "What is the total floor area of your building?",
+      ),
+      options: [
+        { value: "small", label: t("Sub 1.000 m²", "Under 1,000 m²"), points: 1 },
+        { value: "medium", label: t("1.000 - 5.000 m²", "1,000 - 5,000 m²"), points: 2 },
+        { value: "large", label: t("5.000 - 10.000 m²", "5,000 - 10,000 m²"), points: 3 },
+        { value: "xlarge", label: t("Peste 10.000 m²", "Over 10,000 m²"), points: 4 },
+      ],
+    },
+    {
+      id: 2,
+      question: t("Cât de vechi sunt sistemele HVAC actuale?", "How old are your current HVAC systems?"),
+      options: [
+        { value: "new", label: t("Mai puțin de 5 ani", "Less than 5 years"), points: 1 },
+        { value: "medium", label: t("5-10 ani", "5-10 years"), points: 2 },
+        { value: "old", label: t("10-15 ani", "10-15 years"), points: 3 },
+        { value: "very-old", label: t("Peste 15 ani", "Over 15 years"), points: 4 },
+      ],
+    },
+    {
+      id: 3,
+      question: t(
+        "Cât cheltuiți lunar pe energie (electricitate + gaze)?",
+        "How much do you spend monthly on energy (electricity + gas)?",
+      ),
+      options: [
+        { value: "low", label: t("Sub 5.000 lei", "Under 5,000 lei"), points: 1 },
+        { value: "medium", label: t("5.000 - 15.000 lei", "5,000 - 15,000 lei"), points: 2 },
+        { value: "high", label: t("15.000 - 30.000 lei", "15,000 - 30,000 lei"), points: 3 },
+        { value: "very-high", label: t("Peste 30.000 lei", "Over 30,000 lei"), points: 4 },
+      ],
+    },
+    {
+      id: 4,
+      question: t(
+        "Aveți deja senzori sau automatizări instalate?",
+        "Do you already have sensors or automation installed?",
+      ),
+      options: [
+        { value: "none", label: t("Nu, nimic", "No, nothing"), points: 4 },
+        { value: "basic", label: t("Termostate simple", "Simple thermostats"), points: 3 },
+        { value: "medium", label: t("Câțiva senzori și timere", "A few sensors and timers"), points: 2 },
+        { value: "advanced", label: t("Sistem parțial automatizat", "Partially automated system"), points: 1 },
+      ],
+    },
+    {
+      id: 5,
+      question: t(
+        "Cât de des primiți plângeri despre confortul termic?",
+        "How often do you receive complaints about thermal comfort?",
+      ),
+      options: [
+        { value: "never", label: t("Niciodată", "Never"), points: 1 },
+        { value: "rare", label: t("Rar (o dată pe trimestru)", "Rarely (once a quarter)"), points: 2 },
+        { value: "sometimes", label: t("Ocazional (lunar)", "Occasionally (monthly)"), points: 3 },
+        { value: "often", label: t("Frecvent (săptămânal)", "Frequently (weekly)"), points: 4 },
+      ],
+    },
+  ]
 
   const progress = ((currentQuestion + 1) / questions.length) * 100
   const isLastQuestion = currentQuestion === questions.length - 1
@@ -100,22 +114,38 @@ export default function QuizPage() {
   const getReadinessLevel = (score: number) => {
     if (score >= 75)
       return {
-        level: "Excelent",
+        level: t("Excelent", "Excellent"),
         color: "text-green-600",
-        description: "Clădirea dumneavoastră are un potențial ridicat pentru economii prin BMS",
+        description: t(
+          "Clădirea dumneavoastră are un potențial ridicat pentru economii prin BMS",
+          "Your building has a high potential for savings through BMS",
+        ),
       }
     if (score >= 50)
-      return { level: "Bun", color: "text-blue-600", description: "Există oportunități semnificative de îmbunătățire" }
+      return {
+        level: t("Bun", "Good"),
+        color: "text-blue-600",
+        description: t(
+          "Există oportunități semnificative de îmbunătățire",
+          "There are significant opportunities for improvement",
+        ),
+      }
     if (score >= 25)
       return {
-        level: "Moderat",
+        level: t("Moderat", "Moderate"),
         color: "text-yellow-600",
-        description: "BMS-ul ar aduce beneficii, dar necesită investiție inițială mai mare",
+        description: t(
+          "BMS-ul ar aduce beneficii, dar necesită investiție inițială mai mare",
+          "A BMS would bring benefits, but requires a larger initial investment",
+        ),
       }
     return {
-      level: "Scăzut",
+      level: t("Scăzut", "Low"),
       color: "text-orange-600",
-      description: "Recomandăm o evaluare detaliată înainte de a continua",
+      description: t(
+        "Recomandăm o evaluare detaliată înainte de a continua",
+        "We recommend a detailed assessment before proceeding",
+      ),
     }
   }
 
@@ -131,35 +161,52 @@ export default function QuizPage() {
               <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 mb-6 animate-bounce">
                 <CheckCircle2 className="h-12 w-12" />
               </div>
-              <h1 className="text-4xl font-bold mb-4">Evaluare Completată!</h1>
-              <p className="text-lg text-muted-foreground">Felicitări! Ai câștigat +150 puncte</p>
+              <h1 className="text-4xl font-bold mb-4">{t("Evaluare Completată!", "Assessment Completed!")}</h1>
+              <p className="text-lg text-muted-foreground">
+                {t("Felicitări! Ai câștigat +150 puncte", "Congratulations! You earned +150 points")}
+              </p>
             </div>
 
             <Card className="p-8 border-border mb-8">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center h-32 w-32 rounded-full bg-gradient-to-br from-primary to-primary/60 mb-4">
-                  <span className="text-5xl font-bold text-white">{score}</span>
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">{score}</span>
                 </div>
-                <h2 className="text-2xl font-bold mb-2">Scor Pregătire BMS</h2>
+                <h2 className="text-2xl font-bold mb-2">{t("Scor Pregătire BMS", "BMS Readiness Score")}</h2>
                 <p className={`text-xl font-semibold ${readiness.color}`}>{readiness.level}</p>
                 <p className="text-muted-foreground mt-2">{readiness.description}</p>
               </div>
 
               <div className="space-y-6">
                 <div className="p-4 bg-muted/30 rounded-[2px]">
-                  <h3 className="font-semibold mb-3">Recomandările Noastre:</h3>
+                  <h3 className="font-semibold mb-3">{t("Recomandările Noastre:", "Our Recommendations:")}</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Folosește calculatorul ROI pentru a estima economiile exacte</span>
+                      <span>
+                        {t(
+                          "Folosește calculatorul ROI pentru a estima economiile exacte",
+                          "Use the ROI calculator to estimate your exact savings",
+                        )}
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Programează o consultație gratuită cu specialiștii noștri</span>
+                      <span>
+                        {t(
+                          "Programează o consultație gratuită cu specialiștii noștri",
+                          "Schedule a free consultation with our specialists",
+                        )}
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Explorează studiile de caz relevante pentru sectorul tău</span>
+                      <span>
+                        {t(
+                          "Explorează studiile de caz relevante pentru sectorul tău",
+                          "Explore the case studies relevant to your sector",
+                        )}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -167,12 +214,12 @@ export default function QuizPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button size="lg" className="flex-1" asChild>
                     <Link href="/ghid-bms/calculator">
-                      Calculează ROI Personalizat
+                      {t("Calculează ROI Personalizat", "Calculate Personalised ROI")}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                   <Button size="lg" variant="outline" className="flex-1 bg-transparent" asChild>
-                    <Link href="/ghid-bms/dashboard">Vezi Dashboard</Link>
+                    <Link href="/ghid-bms/dashboard">{t("Vezi Dashboard", "View Dashboard")}</Link>
                   </Button>
                 </div>
               </div>
@@ -192,7 +239,7 @@ export default function QuizPage() {
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h1 className="text-3xl font-bold">Evaluare Pregătire BMS</h1>
+              <h1 className="text-3xl font-bold">{t("Evaluare Pregătire BMS", "BMS Readiness Assessment")}</h1>
               <span className="text-sm text-muted-foreground">
                 {currentQuestion + 1} / {questions.length}
               </span>
@@ -227,10 +274,10 @@ export default function QuizPage() {
           <div className="flex items-center justify-between">
             <Button variant="outline" onClick={handlePrevious} disabled={currentQuestion === 0}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Înapoi
+              {t("Înapoi", "Back")}
             </Button>
             <Button onClick={handleNext} disabled={!hasAnswer}>
-              {isLastQuestion ? "Vezi Rezultatele" : "Următoarea"}
+              {isLastQuestion ? t("Vezi Rezultatele", "See Results") : t("Următoarea", "Next")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

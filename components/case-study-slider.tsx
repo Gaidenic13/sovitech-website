@@ -104,11 +104,11 @@ export function CaseStudySlider() {
 
   return (
     <section className="bg-[#F5F4F0] py-24">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="text-sm text-[#888888] font-semibold tracking-wider uppercase mb-2">• {t("Studii de caz", "Case studies")}</p>
-            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] tracking-tighter">
               {t("Povești de succes", "Success stories")}
             </h2>
           </div>

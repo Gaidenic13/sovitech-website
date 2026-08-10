@@ -74,9 +74,9 @@ export default function Home() {
       <ReferencesMarquee />
 
       <section className="py-24 bg-[#F5F4F0]">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="text-sm text-[#888888] font-semibold tracking-wider uppercase mb-2">• {t("Servicii", "Services")}</p>
-          <h2 className="text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0D2E2B] mb-16 tracking-tighter">
             {t("Sectoare Industriale", "Industry Sectors")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -107,11 +107,11 @@ export default function Home() {
       <PartnersMarquee />
 
       <section className="bg-[#07201C] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="grid gap-16 lg:grid-cols-2 items-center">
             <div>
               <p className="text-sm text-[#C8E6C9] font-semibold tracking-wider uppercase mb-3">• {t("Despre noi", "About us")}</p>
-              <h2 className="text-5xl font-light text-white tracking-tighter leading-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tighter leading-tight mb-6">
                 {t("Soluții complete de automatizare BMS", "Complete BMS Automation Solutions")}
               </h2>
               <p className="text-base text-white/60 font-light leading-relaxed mb-4">
@@ -143,7 +143,7 @@ export default function Home() {
       <AethelTestimonials />
 
       <section className="bg-[#07201C] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] items-end">
             <div>
               <p className="text-sm font-semibold tracking-wider uppercase mb-4 text-[#C8E6C9]">

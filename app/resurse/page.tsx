@@ -223,7 +223,7 @@ export default function ResursePage() {
 
       {/* ── Hero: compact editorial masthead + filter chips ────── */}
       <section className="bg-[#F5F4F0] border-b border-[#0D2E2B]/10">
-        <div className="max-w-7xl mx-auto px-8 pt-20 pb-10">
+        <div className="container-site pt-20 pb-10">
           <p className="section-label text-[#1F6B4A] mb-4">{t.label}</p>
           <h1 className="text-5xl md:text-6xl font-light text-[#0D2E2B] leading-none tracking-tighter mb-4 max-w-3xl text-balance">
             {t.hero}
@@ -258,7 +258,7 @@ export default function ResursePage() {
 
       {/* ── Featured: split card, visual left / editorial right ── */}
       <section className="bg-white border-b border-[#0D2E2B]/8">
-        <div className="max-w-7xl mx-auto px-8 py-16">
+        <div className="container-site py-16">
           <Link href={featuredHref} className="group grid lg:grid-cols-[1.15fr_1fr] gap-10 items-center">
             <div className="relative aspect-[16/10] rounded-[2px] overflow-hidden bg-[#0D2E2B]/5 border border-[#0D2E2B]/8">
               <Image
@@ -296,7 +296,7 @@ export default function ResursePage() {
 
       {/* ── Latest: compact 4-up row ───────────────────────────── */}
       <section className="py-16 bg-[#F5F4F0] border-b border-[#0D2E2B]/8">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <p className="section-label mb-8">{t.latest}</p>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {latestRow.map((post, i) => (
@@ -324,7 +324,7 @@ export default function ResursePage() {
 
       {/* ── Guide: full-bleed dark promo band ──────────────────── */}
       <section className="bg-[#07201C]">
-        <div className="max-w-7xl mx-auto px-8 py-20 grid lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
+        <div className="container-site py-20 grid lg:grid-cols-[1.3fr_1fr] gap-16 items-center">
           <div>
             <p className="section-label text-[#C8E6C9] mb-6">{t.guideBand.label}</p>
             <h2 className="text-4xl md:text-5xl font-light text-white leading-tight tracking-tighter mb-4 max-w-xl">
@@ -380,7 +380,7 @@ export default function ResursePage() {
 
       {/* ── Tools: dark band with pastel utility cards ──────────── */}
       <section className="bg-[#07201C]">
-        <div className="max-w-7xl mx-auto px-8 py-20">
+        <div className="container-site py-20">
           <p className="section-label text-[#C8E6C9] mb-10">• {t.tools}</p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {t.toolItems.map((tool, i) => (
@@ -449,7 +449,7 @@ export default function ResursePage() {
 
       {/* ── Explore footer ────────────────────────────────────── */}
       <section className="bg-white border-t border-[#0D2E2B]/8 py-16">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="grid md:grid-cols-[1fr_1fr_1fr_1fr] gap-12">
 
             <div>

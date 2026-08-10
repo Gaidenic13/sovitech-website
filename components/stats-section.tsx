@@ -119,14 +119,14 @@ export function StatsSection() {
 
   return (
     <section ref={sectionRef} className="bg-[#07201C] py-32">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <div className="grid lg:grid-cols-[340px_1fr] gap-12 lg:gap-20">
           {/* Left — label, heading, description */}
           <div>
             <p className="text-sm font-semibold mb-4 tracking-wider uppercase text-[#C8E6C9]">
               • {t("În cifre", "By the numbers")}
             </p>
-            <h2 className="text-5xl font-light mb-6 tracking-tighter text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 tracking-tighter text-white">
               {t("Impact măsurabil", "Measurable impact")}
             </h2>
             <p className="text-base font-light leading-relaxed text-white/60 max-w-sm">

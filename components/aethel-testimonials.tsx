@@ -150,7 +150,7 @@ export function AethelTestimonials() {
 
   return (
     <section className="bg-[#F5F4F0] py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <p className="text-sm font-semibold tracking-wider uppercase mb-6 text-[#1F6B4A]">
           • {t("Clienți din portofoliu", "Customer spotlight")}
         </p>
@@ -165,7 +165,7 @@ export function AethelTestimonials() {
       </div>
 
       {/* Carousel */}
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <div className="overflow-hidden">
           <div
             ref={trackRef}

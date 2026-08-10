@@ -13,7 +13,7 @@ export default function ContactPage() {
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg" alt="" className="h-[600px] w-auto" />
         </div>
-        <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
+        <div className="container-site w-full relative z-10">
           <span className="text-[#C8E6C9] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Contact", "Contact")}</span>
           <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
             {t("Sa vorbim.", "Let's talk.")}
@@ -28,12 +28,12 @@ export default function ContactPage() {
       </section>
 
       <section className="bg-[#F5F4F0] py-24">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="container-site">
           <div className="grid gap-16 lg:grid-cols-2">
             <div className="space-y-12">
               <div>
                 <p className="section-label mb-3">• {t("INFORMATII", "INFORMATION")}</p>
-                <h2 className="text-4xl font-light text-[#0D2E2B] tracking-tighter mb-4">
+                <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] tracking-tighter mb-4">
                   {t("Venim la tine", "We come to you")}
                 </h2>
                 <p className="text-base text-[#888888] font-light leading-relaxed">
@@ -191,7 +191,7 @@ export default function ContactPage() {
       </section>
 
       <section className="bg-[#07201C] py-24">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="section-label text-[#1F6B4A] mb-2">• {t("CALCULATOR", "CALCULATOR")}</p>
             <h2 className="text-3xl font-light text-white tracking-tighter">

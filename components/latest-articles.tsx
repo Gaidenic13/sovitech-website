@@ -58,7 +58,7 @@ export function LatestArticles() {
 
   return (
     <section className="py-16 bg-[#F5F4F0]">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="container-site">
         <p className="section-label mb-8">• {t("ULTIMELE ARTICOLE", "LATEST ARTICLES")}</p>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {articles.map((a, i) => (
