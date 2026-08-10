@@ -1,310 +1,289 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
+import { ArrowLeft, ArrowRight, User } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 
-// ─── Aethel Forge design tokens ───────────────────────────────────────────────
-// surface #07201C · accent #C8E6C9 · text #A3A3A3 / #FFFFFF · radii 1-2px
-// spacing 4px rhythm · motion 300ms/150ms ease · glass surfaces, hairline borders
+// ─── Customer spotlight carousel ──────────────────────────────────────────────
+// One spotlight card at a time (with a peek of the next), coloured per customer
+// type from our portfolio. Photos and logos are placeholders — swap in real
+// assets later via the `photo` / `logo` slots.
 
-const VERT = `
-attribute vec2 aGrid;
-uniform float uTime;
-uniform vec2 uPointer;
-uniform vec2 uViewport;
-uniform float uDpr;
-varying float vDepth;
+type Detail = { labelRo: string; labelEn: string; valueRo: string; valueEn: string }
 
-void main() {
-  vec2 pos = aGrid;
-  // soft wave motion: two crossed sine fields
-  float wave = sin(pos.x * 6.0 + uTime * 0.6) * 0.35
-             + sin(pos.y * 4.0 - uTime * 0.4) * 0.35
-             + sin((pos.x + pos.y) * 3.0 + uTime * 0.25) * 0.3;
-  vDepth = wave * 0.5 + 0.5;
-  // pointer-reactive drift, subtle only
-  pos += uPointer * 0.03 * (0.4 + vDepth);
-  gl_Position = vec4(pos, 0.0, 1.0);
-  gl_PointSize = (1.0 + vDepth * 2.0) * uDpr;
-}
-`
-
-const FRAG = `
-precision mediump float;
-varying float vDepth;
-
-void main() {
-  vec2 uv = gl_PointCoord - 0.5;
-  float d = length(uv);
-  if (d > 0.5) discard;
-  float soft = smoothstep(0.5, 0.1, d);
-  // depth fade: far dots green-grey, near dots lift toward #C8E6C9
-  vec3 grey = vec3(0.28, 0.38, 0.34);
-  vec3 cyan = vec3(0.784, 0.902, 0.788);
-  vec3 color = mix(grey, cyan, smoothstep(0.55, 1.0, vDepth) * 0.8);
-  gl_FragColor = vec4(color, soft * (0.08 + vDepth * 0.22));
-}
-`
-
-function DotMatrixField() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const gl = canvas.getContext("webgl", { alpha: true, antialias: false })
-    if (!gl) return // DOM fallback: section reads fine on plain dark green
-
-    const pointer = { x: 0, y: 0, tx: 0, ty: 0 }
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    let raf = 0
-    let disposed = false
-    let teardownScene: (() => void) | null = null
-
-    const setupScene = () => {
-      if (disposed || gl.isContextLost()) return
-
-      const compile = (type: number, src: string) => {
-        const s = gl.createShader(type)!
-        gl.shaderSource(s, src)
-        gl.compileShader(s)
-        return s
-      }
-      const program = gl.createProgram()!
-      gl.attachShader(program, compile(gl.VERTEX_SHADER, VERT))
-      gl.attachShader(program, compile(gl.FRAGMENT_SHADER, FRAG))
-      gl.linkProgram(program)
-      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return
-      gl.useProgram(program)
-
-      // sparse dot grid in clip space
-      const COLS = 90
-      const ROWS = 50
-      const grid = new Float32Array(COLS * ROWS * 2)
-      let i = 0
-      for (let y = 0; y < ROWS; y++) {
-        for (let x = 0; x < COLS; x++) {
-          grid[i++] = (x / (COLS - 1)) * 2 - 1
-          grid[i++] = (y / (ROWS - 1)) * 2 - 1
-        }
-      }
-      const buf = gl.createBuffer()
-      gl.bindBuffer(gl.ARRAY_BUFFER, buf)
-      gl.bufferData(gl.ARRAY_BUFFER, grid, gl.STATIC_DRAW)
-      const aGrid = gl.getAttribLocation(program, "aGrid")
-      gl.enableVertexAttribArray(aGrid)
-      gl.vertexAttribPointer(aGrid, 2, gl.FLOAT, false, 0, 0)
-
-      const uTime = gl.getUniformLocation(program, "uTime")
-      const uPointer = gl.getUniformLocation(program, "uPointer")
-      const uDpr = gl.getUniformLocation(program, "uDpr")
-
-      gl.enable(gl.BLEND)
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
-      gl.clearColor(0, 0, 0, 0)
-
-      const dpr = Math.min(window.devicePixelRatio || 1, 2) // DPR clamp
-      const resize = () => {
-        canvas.width = canvas.clientWidth * dpr
-        canvas.height = canvas.clientHeight * dpr
-        gl.viewport(0, 0, canvas.width, canvas.height)
-      }
-      resize()
-      window.addEventListener("resize", resize)
-      gl.uniform1f(uDpr, dpr)
-
-      const start = performance.now()
-      const frame = () => {
-        if (disposed || gl.isContextLost()) return
-        const t = (performance.now() - start) / 1000
-        pointer.x += (pointer.tx - pointer.x) * 0.04
-        pointer.y += (pointer.ty - pointer.y) * 0.04
-        gl.uniform1f(uTime, t)
-        gl.uniform2f(uPointer, pointer.x, pointer.y)
-        gl.clear(gl.COLOR_BUFFER_BIT)
-        gl.drawArrays(gl.POINTS, 0, COLS * ROWS)
-        if (!reducedMotion) raf = requestAnimationFrame(frame)
-      }
-      frame()
-
-      teardownScene = () => {
-        cancelAnimationFrame(raf)
-        window.removeEventListener("resize", resize)
-      }
-    }
-
-    const onPointer = (e: PointerEvent) => {
-      const r = canvas.getBoundingClientRect()
-      pointer.tx = ((e.clientX - r.left) / r.width) * 2 - 1
-      pointer.ty = -(((e.clientY - r.top) / r.height) * 2 - 1)
-    }
-    window.addEventListener("pointermove", onPointer)
-
-    // context-loss recovery: preventDefault marks the context restorable, then
-    // we proactively request restoration; on restore, rebuild the whole scene
-    // (all GL resources are gone)
-    const requestRestore = () => {
-      setTimeout(() => {
-        if (disposed) return
-        try {
-          gl.getExtension("WEBGL_lose_context")?.restoreContext()
-        } catch {
-          // not restorable (event wasn't preventDefault-ed) — nothing to do
-        }
-      }, 0)
-    }
-    const onLost = (e: Event) => {
-      e.preventDefault()
-      teardownScene?.()
-      teardownScene = null
-      requestRestore()
-    }
-    const onRestored = () => setupScene()
-    canvas.addEventListener("webglcontextlost", onLost)
-    canvas.addEventListener("webglcontextrestored", onRestored)
-
-    if (gl.isContextLost()) {
-      // context was lost before this mount (browser eviction) — try to revive
-      requestRestore()
-    } else {
-      setupScene()
-    }
-
-    return () => {
-      // Do NOT loseContext() here: React StrictMode remounts reuse the same
-      // canvas, and a context lost during cleanup (with its restore listener
-      // already removed) can never be restored — the section stays blank on
-      // route re-entry. Unreferenced canvases release their contexts on GC.
-      disposed = true
-      teardownScene?.()
-      window.removeEventListener("pointermove", onPointer)
-      canvas.removeEventListener("webglcontextlost", onLost)
-      canvas.removeEventListener("webglcontextrestored", onRestored)
-    }
-  }, [])
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden="true" />
+type Spotlight = {
+  typeRo: string
+  typeEn: string
+  name: string
+  quoteRo: string
+  quoteEn: string
+  author?: string
+  roleRo?: string
+  roleEn?: string
+  caseStudy?: string
+  details: Detail[]
+  // colour recipe per customer type
+  bg: string
+  text: string
+  muted: string
+  divider: string
+  badgeBg: string
+  badgeText: string
+  chipBg: string // photo / logo placeholder tint
 }
 
-// ─── Testimonial section ──────────────────────────────────────────────────────
-
-const testimonials = [
+const spotlights: Spotlight[] = [
   {
+    typeRo: "HoReCa & Wellness",
+    typeEn: "HoReCa & Wellness",
+    name: "Therme Bucharest",
     quoteRo: "Sistemul BMS implementat de Sovitech ne-a redus costurile energetice cu 38% în primul an. ROI-ul a fost atins în mai puțin de 2 ani.",
     quoteEn: "The BMS system implemented by Sovitech reduced our energy costs by 38% in the first year. ROI was achieved in less than 2 years.",
     author: "Alexandru Ionescu",
-    roleRo: "Director Tehnic, Therme Bucharest",
-    roleEn: "Technical Director, Therme Bucharest",
-    stat: "-38%",
-    statLabelRo: "costuri energetice",
-    statLabelEn: "energy costs",
+    roleRo: "Director Tehnic",
+    roleEn: "Technical Director",
+    caseStudy: "/resurse/studii-de-caz/therme-bucuresti",
+    details: [
+      { labelRo: "Persoană de contact", labelEn: "Contact", valueRo: "Alexandru Ionescu", valueEn: "Alexandru Ionescu" },
+      { labelRo: "Sector", labelEn: "Sector", valueRo: "HoReCa & Wellness", valueEn: "HoReCa & Wellness" },
+      { labelRo: "Rezultat", labelEn: "Result", valueRo: "−38% costuri energetice", valueEn: "−38% energy costs" },
+    ],
+    bg: "#8B7B5C", text: "#ffffff", muted: "rgba(255,255,255,0.7)", divider: "rgba(255,255,255,0.2)",
+    badgeBg: "#C8E6C9", badgeText: "#0D2E2B", chipBg: "rgba(255,255,255,0.12)",
   },
   {
-    quoteRo: "Colaborarea cu Sovitech ne-a adus nu doar tehnologie de top, ci și o echipă care înțelege nevoile specifice ale industriei hoteliere.",
-    quoteEn: "Working with Sovitech gave us not only top technology, but also a team that understands the specific needs of the hotel industry.",
-    author: "Maria Popescu",
-    roleRo: "Facility Manager, Radisson Blu",
-    roleEn: "Facilities Manager, Radisson Blu",
-    stat: "24/7",
-    statLabelRo: "suport dedicat",
-    statLabelEn: "dedicated support",
+    typeRo: "Birouri & Office",
+    typeEn: "Office Buildings",
+    name: "Floreasca Business Park",
+    quoteRo: "Controlul centralizat ne oferă vizibilitate completă asupra celor 45.000 m² și ne ajută să menținem certificarea energetică clasa A.",
+    quoteEn: "Centralised control gives us full visibility across 45,000 m² and helps us maintain our class-A energy certification.",
+    caseStudy: undefined,
+    details: [
+      { labelRo: "Sector", labelEn: "Sector", valueRo: "Birouri & Office", valueEn: "Office Buildings" },
+      { labelRo: "Suprafață", labelEn: "Area", valueRo: "45.000 m²", valueEn: "45,000 m²" },
+      { labelRo: "Certificare", labelEn: "Certification", valueRo: "Clasa A", valueEn: "Class A" },
+    ],
+    bg: "#C5C0F5", text: "#0D2E2B", muted: "rgba(13,46,43,0.6)", divider: "rgba(13,46,43,0.15)",
+    badgeBg: "#0D2E2B", badgeText: "#ffffff", chipBg: "rgba(13,46,43,0.08)",
   },
   {
+    typeRo: "Medical & Farma",
+    typeEn: "Medical & Pharma",
+    name: "Rompharm",
     quoteRo: "Monitorizarea în timp real și alertele automate ne-au permis să prevenim probleme costisitoare înainte să apară.",
     quoteEn: "Real-time monitoring and automated alerts allowed us to prevent costly problems before they occurred.",
     author: "Dan Georgescu",
-    roleRo: "Director Operatiuni, Rompharm",
-    roleEn: "Operations Director, Rompharm",
-    stat: "0",
-    statLabelRo: "avarii neplanificate",
-    statLabelEn: "unplanned outages",
+    roleRo: "Director Operațiuni",
+    roleEn: "Operations Director",
+    caseStudy: undefined,
+    details: [
+      { labelRo: "Persoană de contact", labelEn: "Contact", valueRo: "Dan Georgescu", valueEn: "Dan Georgescu" },
+      { labelRo: "Sector", labelEn: "Sector", valueRo: "Medical & Farma", valueEn: "Medical & Pharma" },
+      { labelRo: "Rezultat", labelEn: "Result", valueRo: "0 avarii neplanificate", valueEn: "0 unplanned outages" },
+    ],
+    bg: "#C8E6C9", text: "#0D2E2B", muted: "rgba(13,46,43,0.6)", divider: "rgba(13,46,43,0.15)",
+    badgeBg: "#0D2E2B", badgeText: "#ffffff", chipBg: "rgba(13,46,43,0.08)",
+  },
+  {
+    typeRo: "Retail & Shopping",
+    typeEn: "Retail & Shopping",
+    name: "Mega Mall",
+    quoteRo: "Automatizarea BMS menține confortul vizitatorilor în tot mall-ul, reducând în același timp costurile energetice pe cei 80.000 m².",
+    quoteEn: "BMS automation keeps shoppers comfortable across the entire mall while cutting energy costs over 80,000 m².",
+    caseStudy: undefined,
+    details: [
+      { labelRo: "Sector", labelEn: "Sector", valueRo: "Retail & Shopping", valueEn: "Retail & Shopping" },
+      { labelRo: "Suprafață", labelEn: "Area", valueRo: "80.000 m²", valueEn: "80,000 m²" },
+      { labelRo: "Sistem", labelEn: "System", valueRo: "HVAC, iluminat, energie", valueEn: "HVAC, lighting, energy" },
+    ],
+    bg: "#5C5FD4", text: "#ffffff", muted: "rgba(255,255,255,0.7)", divider: "rgba(255,255,255,0.2)",
+    badgeBg: "#C8E6C9", badgeText: "#0D2E2B", chipBg: "rgba(255,255,255,0.12)",
+  },
+  {
+    typeRo: "HoReCa & Wellness",
+    typeEn: "HoReCa & Wellness",
+    name: "Radisson Blu",
+    quoteRo: "Colaborarea cu Sovitech ne-a adus nu doar tehnologie de top, ci și o echipă care înțelege nevoile specifice ale industriei hoteliere.",
+    quoteEn: "Working with Sovitech gave us not only top technology, but also a team that understands the specific needs of the hotel industry.",
+    author: "Maria Popescu",
+    roleRo: "Facility Manager",
+    roleEn: "Facilities Manager",
+    caseStudy: "/resurse/studii-de-caz/radisson-bucuresti",
+    details: [
+      { labelRo: "Persoană de contact", labelEn: "Contact", valueRo: "Maria Popescu", valueEn: "Maria Popescu" },
+      { labelRo: "Sector", labelEn: "Sector", valueRo: "HoReCa & Wellness", valueEn: "HoReCa & Wellness" },
+      { labelRo: "Amploare", labelEn: "Scale", valueRo: "428 camere", valueEn: "428 rooms" },
+    ],
+    bg: "#8B7B5C", text: "#ffffff", muted: "rgba(255,255,255,0.7)", divider: "rgba(255,255,255,0.2)",
+    badgeBg: "#C8E6C9", badgeText: "#0D2E2B", chipBg: "rgba(255,255,255,0.12)",
   },
 ]
 
 export function AethelTestimonials() {
   const { t } = useLanguage()
-  const sectionRef = useRef<HTMLElement>(null)
-  const [visible, setVisible] = useState(false)
+  const [index, setIndex] = useState(0)
+  const [offset, setOffset] = useState(0)
+  const trackRef = useRef<HTMLDivElement>(null)
 
+  // translate the track by the measured slide pitch (slide width + gap) so the
+  // peek + gap are always pixel-accurate regardless of viewport
   useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+    const track = trackRef.current
+    if (!track) return
+    const measure = () => {
+      const slides = track.children
+      if (slides.length < 2) {
+        setOffset(0)
+        return
+      }
+      const pitch = (slides[1] as HTMLElement).offsetLeft - (slides[0] as HTMLElement).offsetLeft
+      setOffset(-index * pitch)
+    }
+    measure()
+    window.addEventListener("resize", measure)
+    return () => window.removeEventListener("resize", measure)
+  }, [index])
+
+  const prev = () => setIndex((i) => Math.max(0, i - 1))
+  const next = () => setIndex((i) => Math.min(spotlights.length - 1, i + 1))
 
   return (
-    <section ref={sectionRef} className="relative bg-[#07201C] overflow-hidden">
-      <DotMatrixField />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-8 py-24 lg:py-32">
-        <div
-          className="transition-all duration-300 ease-out"
-          style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(24px)" }}
+    <section className="bg-[#F5F4F0] py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-8">
+        <p className="text-sm font-semibold tracking-wider uppercase mb-6 text-[#1F6B4A]">
+          • {t("Clienți din portofoliu", "Customer spotlight")}
+        </p>
+        <h2
+          className="font-light text-[#0D2E2B] mb-16 lg:mb-20 tracking-tighter"
+          style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", lineHeight: 1 }}
         >
-          <p className="text-sm font-semibold tracking-wider uppercase mb-6 text-[#C8E6C9]">
-            • {t("Dovezi, nu promisiuni", "Proof, not promises")}
-          </p>
-          <h2
-            className="font-light text-white mb-16 lg:mb-24"
-            style={{ fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 1, letterSpacing: "-0.05em" }}
+          {t("Clienții vorbesc.", "Clients speak.")}
+          <br />
+          <span className="text-[#888888]">{t("Cifrele confirmă.", "The numbers confirm.")}</span>
+        </h2>
+      </div>
+
+      {/* Carousel */}
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="overflow-hidden">
+          <div
+            ref={trackRef}
+            className="flex gap-6 transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(${offset}px)` }}
           >
-            {t("Clienții vorbesc.", "Clients speak.")}
-            <br />
-            <span className="text-[#A3A3A3]">{t("Cifrele confirmă.", "The numbers confirm.")}</span>
-          </h2>
+            {spotlights.map((card) => (
+              <article
+                key={card.name + card.typeEn}
+                className="shrink-0 basis-full lg:basis-[92%] rounded-[2px] p-8 md:p-10"
+                style={{ backgroundColor: card.bg, color: card.text }}
+              >
+                <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-14">
+                  {/* Left — narrative */}
+                  <div className="flex flex-col">
+                    <span
+                      className="inline-flex w-max items-center rounded-[1px] px-3 py-1.5 text-xs font-semibold tracking-wide"
+                      style={{ backgroundColor: card.badgeBg, color: card.badgeText }}
+                    >
+                      {t(card.typeRo, card.typeEn)}
+                    </span>
+
+                    <h3 className="text-3xl md:text-4xl font-light tracking-tighter mt-5 mb-5 leading-none">
+                      {card.name}
+                    </h3>
+
+                    <blockquote className="text-base md:text-lg font-light leading-relaxed max-w-xl">
+                      &ldquo;{t(card.quoteRo, card.quoteEn)}&rdquo;
+                    </blockquote>
+
+                    <div className="mt-6">
+                      {card.author ? (
+                        <p className="text-sm font-semibold">{card.author}</p>
+                      ) : (
+                        <p className="text-sm font-semibold" style={{ color: card.muted }}>
+                          {t("Client din portofoliul Sovitech", "From the Sovitech portfolio")}
+                        </p>
+                      )}
+                      {card.caseStudy && (
+                        <Link
+                          href={card.caseStudy}
+                          className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium underline underline-offset-4 transition-opacity duration-150 hover:opacity-70"
+                        >
+                          {t("Vezi studiul de caz", "Read case study")}
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      )}
+                    </div>
+
+                    {/* Logo placeholder — replace with client logo */}
+                    <div
+                      className="mt-auto pt-8 inline-flex w-max items-center rounded-[2px] border px-4 py-2.5 text-xs font-bold tracking-[0.15em] uppercase"
+                      style={{ borderColor: card.divider, color: card.muted }}
+                      aria-hidden="true"
+                    >
+                      {card.name}
+                    </div>
+                  </div>
+
+                  {/* Right — photo placeholder + details */}
+                  <div>
+                    <div
+                      className="w-full max-w-[140px] aspect-square rounded-[2px] flex items-center justify-center mb-6"
+                      style={{ backgroundColor: card.chipBg }}
+                    >
+                      <User className="h-10 w-10" style={{ color: card.muted }} aria-hidden="true" />
+                    </div>
+
+                    <dl className="space-y-4">
+                      {card.details.map((d, di) => (
+                        <div key={di} className={di > 0 ? "pt-4 border-t" : ""} style={di > 0 ? { borderColor: card.divider } : undefined}>
+                          <dt className="text-[11px] font-semibold tracking-[0.15em] uppercase mb-1" style={{ color: card.muted }}>
+                            {t(d.labelRo, d.labelEn)}
+                          </dt>
+                          <dd className="text-base font-light">{t(d.valueRo, d.valueEn)}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-3">
-          {testimonials.map((item, idx) => (
-            <div
-              key={item.author}
-              className="transition-all duration-300 ease-out"
-              style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "none" : "translateY(24px)",
-                transitionDelay: `${150 + idx * 150}ms`,
-              }}
+        {/* Controls */}
+        <div className="flex items-center justify-between mt-8">
+          <div className="flex items-center gap-2">
+            {spotlights.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                aria-label={`${t("Spre cardul", "Go to card")} ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === index ? "w-8 bg-[#1F6B4A]" : "w-2 bg-[#0D2E2B]/20 hover:bg-[#0D2E2B]/40"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prev}
+              disabled={index === 0}
+              aria-label={t("Anterior", "Previous")}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#0D2E2B]/15 bg-white text-[#0D2E2B] transition-colors duration-150 hover:bg-[#F5F4F0] disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              {/* gradient border shell: hairline frame, content surface inset */}
-              <div
-                className="h-full p-px rounded-[2px]"
-                style={{
-                  background:
-                    "linear-gradient(to right bottom, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 49%, rgba(200,230,201,0.28) 51%, rgba(255,255,255,0.03) 100%)",
-                }}
-              >
-                <figure className="group h-full flex flex-col justify-between rounded-[1px] bg-[#07201C]/70 backdrop-blur-[2px] p-[18px] lg:p-6 transition-colors duration-300 ease-out hover:bg-[#C8E6C9]/[0.04]">
-                  <div>
-                    <p className="text-4xl font-light text-[#C8E6C9] mb-1" style={{ letterSpacing: "-0.03em" }}>
-                      {item.stat}
-                    </p>
-                    <p className="text-xs uppercase tracking-widest text-[#A3A3A3] mb-6">
-                      {t(item.statLabelRo, item.statLabelEn)}
-                    </p>
-                    <blockquote className="text-base leading-6 text-[#A3A3A3] transition-colors duration-300 group-hover:text-white">
-                      &ldquo;{t(item.quoteRo, item.quoteEn)}&rdquo;
-                    </blockquote>
-                  </div>
-                  <figcaption className="mt-8 pt-4 border-t border-white/10">
-                    <p className="text-sm text-white transition-colors duration-150 group-hover:text-[#C8E6C9]">
-                      {item.author}
-                    </p>
-                    <p className="text-sm text-[#A3A3A3]">{t(item.roleRo, item.roleEn)}</p>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          ))}
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={next}
+              disabled={index === spotlights.length - 1}
+              aria-label={t("Următor", "Next")}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#0D2E2B]/15 bg-white text-[#0D2E2B] transition-colors duration-150 hover:bg-[#F5F4F0] disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

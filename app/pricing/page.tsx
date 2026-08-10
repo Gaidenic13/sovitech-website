@@ -19,7 +19,7 @@ export default function PricingPage() {
               {t("Pachete de servicii BMS", "BMS service packages")}
             </h1>
             <p className="mb-8 text-xl text-foreground/80 text-pretty">
-              {t("Alege pachetul potrivit pentru proiectul tău de automatizare. Prețuri transparente, fără costuri ascunse.", "Choose the right package for your automation project. Transparent pricing, no hidden costs.")}
+              {t("Alege pachetul potrivit pentru proiectul tău de automatizare. Primești o ofertă personalizată, adaptată nevoilor tale.", "Choose the right package for your automation project. Get a personalised quote tailored to your needs.")}
             </p>
           </div>
         </div>
@@ -32,9 +32,6 @@ export default function PricingPage() {
             <Card className="flex h-full flex-col border-border/40 bg-card">
               <CardHeader className="border-b border-border/40 p-8">
                 <h3 className="mb-2 text-2xl font-bold text-foreground">{t("Esențial", "Essential")}</h3>
-                <div className="mb-4">
-                  <span className="text-4xl font-bold text-foreground">{t("De bază", "Basic")}</span>
-                </div>
                 <p className="text-sm text-foreground/70">{t("Pentru proiecte BMS la scară mică", "For small-scale BMS projects")}</p>
               </CardHeader>
               <CardContent className="flex flex-1 flex-col p-8">
@@ -57,7 +54,7 @@ export default function PricingPage() {
                   </li>
                 </ul>
                 <Button className="w-full bg-transparent" variant="outline" asChild>
-                  <Link href="/contact">{t("Cerere ofertă", "Request a quote")}</Link>
+                  <Link href="/cerere-oferta">{t("Solicită o ofertă", "Request a quote")}</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -68,9 +65,6 @@ export default function PricingPage() {
                   {t("CEL MAI POPULAR", "MOST POPULAR")}
                 </div>
                 <h3 className="mb-2 text-2xl font-bold text-foreground">{t("Profesional", "Professional")}</h3>
-                <div className="mb-4">
-                  <span className="text-4xl font-bold text-foreground">{t("Avansat", "Advanced")}</span>
-                </div>
                 <p className="text-sm text-foreground/70">{t("Pentru clădiri comerciale și de birouri", "For commercial and office buildings")}</p>
               </CardHeader>
               <CardContent className="flex flex-1 flex-col p-8">
@@ -97,7 +91,7 @@ export default function PricingPage() {
                   </li>
                 </ul>
                 <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-                  <Link href="/contact">{t("Cerere ofertă", "Request a quote")}</Link>
+                  <Link href="/cerere-oferta">{t("Solicită o ofertă", "Request a quote")}</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -105,9 +99,6 @@ export default function PricingPage() {
             <Card className="flex h-full flex-col border-border/40 bg-card">
               <CardHeader className="border-b border-border/40 p-8">
                 <h3 className="mb-2 text-2xl font-bold text-foreground">{t("Enterprise", "Enterprise")}</h3>
-                <div className="mb-4">
-                  <span className="text-4xl font-bold text-foreground">{t("Complex", "Complex")}</span>
-                </div>
                 <p className="text-sm text-foreground/70">{t("Pentru campusuri și complexe mari", "For campuses and large complexes")}</p>
               </CardHeader>
               <CardContent className="flex flex-1 flex-col p-8">
@@ -134,7 +125,7 @@ export default function PricingPage() {
                   </li>
                 </ul>
                 <Button className="w-full bg-transparent" variant="outline" asChild>
-                  <Link href="/contact">{t("Contactează vânzări", "Contact sales")}</Link>
+                  <Link href="/cerere-oferta">{t("Solicită o ofertă", "Request a quote")}</Link>
                 </Button>
               </CardContent>
             </Card>

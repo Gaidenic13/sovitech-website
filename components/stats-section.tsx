@@ -11,19 +11,15 @@ interface Stat {
   separator?: boolean
   labelRo: string
   labelEn: string
-  colSpan?: 2 | 1
-  size?: "xl" | "lg"
 }
 
 const stats: Stat[] = [
   {
-    value: 42827,
-    suffix: "€",
+    value: 250000,
+    suffix: "+",
     separator: true,
-    labelRo: "economii medii în primul an după implementarea BMS",
-    labelEn: "average savings in the first year after BMS implementation",
-    colSpan: 2,
-    size: "xl",
+    labelRo: "mp suprafață automatizată în portofoliul de proiecte",
+    labelEn: "sqm automated area across our project portfolio",
   },
   {
     value: 38,
@@ -32,13 +28,13 @@ const stats: Stat[] = [
     labelEn: "average energy consumption reduction",
   },
   {
-    value: 100,
+    value: 30,
     suffix: "+",
     labelRo: "proiecte finalizate cu succes",
     labelEn: "successfully completed projects",
   },
   {
-    value: 2.1,
+    value: 6.1,
     decimals: 1,
     labelRo: "ani perioadă medie de amortizare",
     labelEn: "years average payback period",
@@ -48,14 +44,6 @@ const stats: Stat[] = [
     suffix: "+",
     labelRo: "ani experiență în automatizare",
     labelEn: "years of experience in automation",
-  },
-  {
-    value: 500000,
-    suffix: "+",
-    separator: true,
-    labelRo: "mp suprafață totală automatizată în România",
-    labelEn: "sqm total automated area in Romania",
-    colSpan: 2,
   },
 ]
 
@@ -96,28 +84,21 @@ function useCountUp(target: number, duration: number, started: boolean, decimals
   return current
 }
 
-function StatCell({ stat, started, accent, lang }: { stat: Stat; started: boolean; accent?: string; lang: "ro" | "en" }) {
+function StatCell({ stat, started, lang, size = "lg" }: { stat: Stat; started: boolean; lang: "ro" | "en"; size?: "xl" | "lg" }) {
   const val = useCountUp(stat.value, 600, started, stat.decimals ?? 0)
   const display = formatNumber(val, stat)
-  const colClass = stat.colSpan === 2 ? "col-span-2" : "col-span-1"
-  const textSize = stat.size === "xl" ? "text-6xl sm:text-7xl md:text-8xl" : "text-5xl sm:text-6xl md:text-7xl"
+  const textSize = size === "xl" ? "text-6xl sm:text-7xl md:text-8xl" : "text-5xl sm:text-6xl md:text-7xl"
 
   return (
-    <div className={`${colClass} bg-[#07201C] flex flex-col justify-end py-10 px-8 min-h-[180px] relative overflow-hidden`}>
-      {accent && <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: accent }} />}
-      <span className={`font-light tabular-nums leading-none my-0 ${textSize}`} style={{ color: accent ?? "#ffffff" }}>
+    <div>
+      <span className={`font-light tabular-nums leading-none ${textSize}`} style={{ color: "#C8E6C9" }}>
         {display}
       </span>
-      <span className="text-sm font-light mt-3 leading-snug text-white/60" style={{ maxWidth: stat.colSpan === 2 ? 220 : 140 }}>
+      <p className="text-sm font-light mt-3 leading-snug max-w-[240px] text-white/60">
         {lang === "ro" ? stat.labelRo : stat.labelEn}
-      </span>
+      </p>
     </div>
   )
-}
-
-function CountUp({ stat, started }: { stat: Stat; started: boolean }) {
-  const val = useCountUp(stat.value, 600, started, stat.decimals ?? 0)
-  return <>{formatNumber(val, stat)}</>
 }
 
 export function StatsSection() {
@@ -139,35 +120,36 @@ export function StatsSection() {
   return (
     <section ref={sectionRef} className="bg-[#07201C] py-32">
       <div className="max-w-7xl mx-auto px-8">
-        <p className="text-sm font-semibold mb-4 tracking-wider uppercase text-[#C8E6C9]">
-          • {t("În cifre", "By the numbers")}
-        </p>
-        <h2 className="text-5xl font-light mb-16 tracking-tighter text-white">
-          {t("Impact măsurabil", "Measurable impact")}
-        </h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">
-          <div className="col-span-2 bg-[#07201C] flex flex-col justify-end py-10 px-8 min-h-[180px] relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: "#C8E6C9" }} />
-            <span className="font-light tabular-nums leading-none text-6xl sm:text-7xl md:text-8xl" style={{ color: "#C8E6C9" }}>
-              <CountUp stat={stats[0]} started={started} />
-            </span>
-            <span className="text-sm font-light mt-3 leading-snug max-w-[220px] text-white/60">
-              {lang === "ro" ? stats[0].labelRo : stats[0].labelEn}
-            </span>
+        <div className="grid lg:grid-cols-[340px_1fr] gap-12 lg:gap-20">
+          {/* Left — label, heading, description */}
+          <div>
+            <p className="text-sm font-semibold mb-4 tracking-wider uppercase text-[#C8E6C9]">
+              • {t("În cifre", "By the numbers")}
+            </p>
+            <h2 className="text-5xl font-light mb-6 tracking-tighter text-white">
+              {t("Impact măsurabil", "Measurable impact")}
+            </h2>
+            <p className="text-base font-light leading-relaxed text-white/60 max-w-sm">
+              {t(
+                "Cifrele din spatele fiecărui proiect BMS pe care l-am livrat — verificate și actualizate constant.",
+                "The numbers behind every BMS project we've delivered — verified and continuously updated.",
+              )}
+            </p>
           </div>
-          <StatCell stat={stats[1]} started={started} accent="#C8E6C9" lang={lang} />
-          <StatCell stat={stats[2]} started={started} lang={lang} />
-          <StatCell stat={stats[3]} started={started} accent="#C8E6C9" lang={lang} />
-          <StatCell stat={stats[4]} started={started} lang={lang} />
-          <div className="col-span-2 bg-[#07201C] flex flex-col justify-end py-10 px-8 min-h-[180px] relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ backgroundColor: "#C8E6C9" }} />
-            <span className="font-light tabular-nums leading-none text-5xl sm:text-6xl md:text-7xl" style={{ color: "#C8E6C9" }}>
-              <CountUp stat={stats[5]} started={started} />
-            </span>
-            <span className="text-sm font-light mt-3 leading-snug max-w-[220px] text-white/60">
-              {lang === "ro" ? stats[5].labelRo : stats[5].labelEn}
-            </span>
+
+          {/* Right — hero stat, then a 2×2 grid, all sharing one consistent style */}
+          <div className="divide-y divide-white/10 border-t border-white/10">
+            <div className="py-10">
+              <StatCell stat={stats[0]} started={started} lang={lang} size="xl" />
+            </div>
+            <div className="grid grid-cols-2 gap-x-12 py-10">
+              <StatCell stat={stats[1]} started={started} lang={lang} />
+              <StatCell stat={stats[2]} started={started} lang={lang} />
+            </div>
+            <div className="grid grid-cols-2 gap-x-12 py-10">
+              <StatCell stat={stats[3]} started={started} lang={lang} />
+              <StatCell stat={stats[4]} started={started} lang={lang} />
+            </div>
           </div>
         </div>
       </div>

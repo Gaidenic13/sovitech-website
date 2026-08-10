@@ -228,9 +228,6 @@ export default function ServiciiPage() {
       taglineRo: "Ideal pentru proiecte mici si medii", taglineEn: "Ideal for small and medium projects",
       descRo: "Servicii BMS esentiale pentru cladiri cu nevoi standard de automatizare.",
       descEn: "Essential BMS services for buildings with standard automation needs.",
-      priceTypeRo: "De la", priceTypeEn: "From",
-      price: "15.000", priceUnit: "€",
-      pricePeriodRo: "/ proiect", pricePeriodEn: "/ project",
       ctaRo: "Cerere oferta", ctaEn: "Request a quote",
       features: [
         { nameRo: "Consultatie initiala", nameEn: "Initial consultation", included: true },
@@ -252,10 +249,6 @@ export default function ServiciiPage() {
       taglineHighlight: true,
       descRo: "Solutie completa cu suport continuu pentru cladiri care necesita performanta maxima.",
       descEn: "Complete solution with continuous support for buildings requiring maximum performance.",
-      priceTypeRo: "De la", priceTypeEn: "From",
-      price: "25.000", priceUnit: "€",
-      pricePeriodRo: "/ proiect", pricePeriodEn: "/ project",
-      additionalPriceRo: "+ mentenanta anuala", additionalPriceEn: "+ annual maintenance",
       ctaRo: "Cerere oferta", ctaEn: "Request a quote",
       recommended: true,
       features: [
@@ -471,8 +464,8 @@ export default function ServiciiPage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-16">
             <p className="section-label mb-3">• {t("PACHETE DE SERVICII", "SERVICE PACKAGES")}</p>
-            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("Preturi transparente", "Transparent pricing")}</h2>
-            <p className="text-base text-[#888888] font-light max-w-xl">{t("Servicii activate prin software cu planuri construite pentru nevoile specifice ale cladirilor comerciale si industriale.", "Software-enabled services with plans built for the specific needs of commercial and industrial buildings.")}</p>
+            <h2 className="text-5xl font-light text-[#0D2E2B] tracking-tighter mb-4">{t("Solicita o oferta personalizata", "Request a personalised quote")}</h2>
+            <p className="text-base text-[#888888] font-light max-w-xl">{t("Servicii activate prin software cu planuri construite pentru nevoile specifice ale cladirilor comerciale si industriale. Fiecare oferta este adaptata suprafetei si complexitatii proiectului tau.", "Software-enabled services with plans built for the specific needs of commercial and industrial buildings. Every quote is tailored to your project's area and complexity.")}</p>
           </div>
           <div className="grid max-w-5xl gap-6 lg:grid-cols-2">
             {offerings.map((offering) => (
@@ -487,15 +480,6 @@ export default function ServiciiPage() {
                   <p className={`mt-1 text-sm ${offering.recommended ? "text-[#C8E6C9]" : "text-[#888888]"}`}>{t(offering.taglineRo, offering.taglineEn)}</p>
                 </div>
                 <p className={`mb-6 text-sm font-light ${offering.recommended ? "text-white/60" : "text-[#888888]"}`}>{t(offering.descRo, offering.descEn)}</p>
-                <div className={`mb-6 border-t border-b py-6 ${offering.recommended ? "border-white/10" : "border-[#0D2E2B]/10"}`}>
-                  <span className={`text-xs font-semibold tracking-widest uppercase ${offering.recommended ? "text-white/40" : "text-[#888888]"}`}>{t(offering.priceTypeRo, offering.priceTypeEn)}</span>
-                  <div className="flex items-baseline gap-1 mt-1">
-                    <span className={`text-5xl font-light tracking-tighter ${offering.recommended ? "text-white" : "text-[#0D2E2B]"}`}>{offering.price}</span>
-                    <span className={`text-xl ${offering.recommended ? "text-white/60" : "text-[#888888]"}`}>{offering.priceUnit}</span>
-                    <span className={`text-sm ${offering.recommended ? "text-white/40" : "text-[#888888]"}`}>{t(offering.pricePeriodRo, offering.pricePeriodEn)}</span>
-                  </div>
-                  {offering.additionalPriceRo && <p className={`mt-2 text-sm ${offering.recommended ? "text-white/40" : "text-[#888888]"}`}>{t(offering.additionalPriceRo, offering.additionalPriceEn!)}</p>}
-                </div>
                 <ul className="mb-8 flex-1 space-y-3">
                   {offering.features.map((feature, fidx) => (
                     <li key={fidx} className="flex items-center gap-3">
@@ -509,13 +493,14 @@ export default function ServiciiPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/contact" className={`w-full inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-3 rounded-[2px] transition-colors ${offering.recommended ? "bg-[#1F6B4A] text-white hover:bg-[#185c3f]" : "bg-[#0D2E2B] text-white hover:bg-[#0D2E2B]/90"}`}>
+                <div className={`mb-6 border-t ${offering.recommended ? "border-white/10" : "border-[#0D2E2B]/10"}`} />
+                <Link href="/cerere-oferta" className={`w-full inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-3 rounded-[2px] transition-colors ${offering.recommended ? "bg-[#1F6B4A] text-white hover:bg-[#185c3f]" : "bg-[#0D2E2B] text-white hover:bg-[#0D2E2B]/90"}`}>
                   {t(offering.ctaRo, offering.ctaEn)}
                 </Link>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-sm text-[#888888] font-light">{t("Ambele pachete includ o consultatie initiala gratuita. Pretul final depinde de suprafata si complexitatea proiectului.", "Both packages include a free initial consultation. The final price depends on the area and complexity of the project.")}</p>
+          <p className="mt-8 text-sm text-[#888888] font-light">{t("Ambele pachete includ o consultatie initiala gratuita. Oferta finala este personalizata in functie de suprafata si complexitatea proiectului.", "Both packages include a free initial consultation. Every quote is personalised based on the area and complexity of the project.")}</p>
         </div>
       </section>
 

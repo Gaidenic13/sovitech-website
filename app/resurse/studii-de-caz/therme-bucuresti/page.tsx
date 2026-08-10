@@ -4,29 +4,38 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowUpRight, Share2, Check, ArrowRight } from "lucide-react"
 import { useState } from "react"
+import { useLanguage } from "@/lib/language-context"
 
 const metrics = [
-  { value: "35%", label: "Energy consumption reduction" },
-  { value: "\u20AC158K", label: "Annual savings" },
-  { value: "8,000 m\u00B2", label: "Area implemented" },
-  { value: "6 wks", label: "Implementation time" },
+  { value: "35%", ro: "Reducere consum energetic", en: "Energy consumption reduction" },
+  { value: "€158K", ro: "Economii anuale", en: "Annual savings" },
+  { value: "8.000 m²", ro: "Suprafață implementată", en: "Area implemented" },
+  { value: "6 săpt.", ro: "Durată implementare", en: "Implementation time" },
 ]
 
 const timeline = [
-  { phase: "Audit & Analysis", duration: "Week 1–2", desc: "Assessment of existing infrastructure and identification of optimisation opportunities." },
-  { phase: "System Design", duration: "Week 2–3", desc: "BMS architecture configuration and selection of SAUTER equipment." },
-  { phase: "Installation & Integration", duration: "Week 3–5", desc: "Sensor and controller installation, integration with existing HVAC systems." },
-  { phase: "Testing & Training", duration: "Week 5–6", desc: "Commissioning, calibration, and training for the Therme technical team." },
+  { phaseRo: "Audit & analiză", phaseEn: "Audit & Analysis", durRo: "Săptămâna 1–2", durEn: "Week 1–2", descRo: "Evaluarea infrastructurii existente și identificarea oportunităților de optimizare.", descEn: "Assessment of existing infrastructure and identification of optimisation opportunities." },
+  { phaseRo: "Proiectare sistem", phaseEn: "System Design", durRo: "Săptămâna 2–3", durEn: "Week 2–3", descRo: "Configurarea arhitecturii BMS și selecția echipamentelor SAUTER.", descEn: "BMS architecture configuration and selection of SAUTER equipment." },
+  { phaseRo: "Instalare & integrare", phaseEn: "Installation & Integration", durRo: "Săptămâna 3–5", durEn: "Week 3–5", descRo: "Instalarea senzorilor și controlerelor, integrarea cu sistemele HVAC existente.", descEn: "Sensor and controller installation, integration with existing HVAC systems." },
+  { phaseRo: "Testare & instruire", phaseEn: "Testing & Training", durRo: "Săptămâna 5–6", durEn: "Week 5–6", descRo: "Punere în funcțiune, calibrare și instruirea echipei tehnice Therme.", descEn: "Commissioning, calibration, and training for the Therme technical team." },
 ]
 
 const results = [
-  { icon: "bolt", title: "Energy efficiency", desc: "35% reduction in energy consumption through intelligent HVAC and lighting control." },
-  { icon: "shield", title: "99.9% reliability", desc: "Round-the-clock monitoring with predictive alerts and proactive intervention." },
-  { icon: "chart", title: "Real-time reporting", desc: "Centralised dashboard with full visibility of all consumption data." },
-  { icon: "users", title: "Enhanced comfort", desc: "Optimal temperature and humidity maintained across all areas of the complex." },
+  { titleRo: "Eficiență energetică", titleEn: "Energy efficiency", descRo: "Reducere de 35% a consumului de energie prin control inteligent HVAC și iluminat.", descEn: "35% reduction in energy consumption through intelligent HVAC and lighting control." },
+  { titleRo: "Fiabilitate 99,9%", titleEn: "99.9% reliability", descRo: "Monitorizare non-stop cu alerte predictive și intervenție proactivă.", descEn: "Round-the-clock monitoring with predictive alerts and proactive intervention." },
+  { titleRo: "Raportare în timp real", titleEn: "Real-time reporting", descRo: "Dashboard centralizat cu vizibilitate completă asupra tuturor datelor de consum.", descEn: "Centralised dashboard with full visibility of all consumption data." },
+  { titleRo: "Confort sporit", titleEn: "Enhanced comfort", descRo: "Temperatură și umiditate optime, menținute în toate zonele complexului.", descEn: "Optimal temperature and humidity maintained across all areas of the complex." },
+]
+
+const solutions = [
+  { titleRo: "Consultanță strategică", titleEn: "Strategic consultancy", descRo: "Audit complet al infrastructurii și recomandări personalizate pentru arhitectura BMS optimă.", descEn: "Comprehensive infrastructure audit and tailored recommendations for the optimal BMS architecture." },
+  { titleRo: "Integrare multi-sistem", titleEn: "Multi-system integration", descRo: "Conectarea tuturor sistemelor prin protocoale deschise BACnet și Modbus într-o singură platformă unificată.", descEn: "Connecting all systems through open BACnet and Modbus protocols into a single unified platform." },
+  { titleRo: "Control HVAC inteligent", titleEn: "Intelligent HVAC control", descRo: "Algoritmi de optimizare care ajustează automat temperatura în funcție de ocupare și condițiile meteo.", descEn: "Optimisation algorithms that automatically adjust temperature based on occupancy and weather conditions." },
+  { titleRo: "Instruire & suport", titleEn: "Training & support", descRo: "Instruire intensivă pentru echipa tehnică Therme și suport continuu 24/7 după implementare.", descEn: "Intensive training for the Therme technical team and continuous 24/7 post-implementation support." },
 ]
 
 export default function ThermeBucurestiCaseStudy() {
+  const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
 
   const handleShare = () => {
@@ -41,9 +50,9 @@ export default function ThermeBucurestiCaseStudy() {
       <div className="border-b border-border bg-secondary/50">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm">
-            <Link href="/resurse" className="text-muted-foreground hover:text-foreground transition-colors no-underline">Resources</Link>
+            <Link href="/resurse" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Resurse", "Resources")}</Link>
             <span className="text-muted-foreground">/</span>
-            <Link href="/resurse/referinte" className="text-muted-foreground hover:text-foreground transition-colors no-underline">Case Studies</Link>
+            <Link href="/resurse/referinte" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Studii de caz", "Case Studies")}</Link>
             <span className="text-muted-foreground">/</span>
             <span className="text-foreground font-medium">Therme Bucharest</span>
           </div>
@@ -52,7 +61,7 @@ export default function ThermeBucurestiCaseStudy() {
             className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             {copied ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
-            {copied ? "Copied" : "Share"}
+            {copied ? t("Copiat", "Copied") : t("Distribuie", "Share")}
           </button>
         </div>
       </div>
@@ -65,7 +74,7 @@ export default function ThermeBucurestiCaseStudy() {
             className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-accent no-underline hover:no-underline"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            Back to Case Studies
+            {t("Înapoi la studii de caz", "Back to Case Studies")}
           </Link>
 
           <div className="grid lg:grid-cols-12 gap-12 items-start">
@@ -74,10 +83,10 @@ export default function ThermeBucurestiCaseStudy() {
                 HORECA &mdash; Spa &amp; Wellness
               </div>
               <h1 className="text-foreground mb-6 text-balance" style={{ fontSize: "var(--font-size-4xl)", lineHeight: "var(--line-height-tight)", letterSpacing: "-0.03em", fontWeight: 600 }}>
-                Therme Bucharest cut energy costs by 35% through BMS automation
+                {t("Therme București a redus costurile energetice cu 35% prin automatizare BMS", "Therme Bucharest cut energy costs by 35% through BMS automation")}
               </h1>
               <p className="text-muted-foreground max-w-xl" style={{ fontSize: "var(--font-size-lg)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.01em" }}>
-                How Europe&apos;s largest spa complex implemented an integrated building management system for energy efficiency and operational comfort.
+                {t("Cum cel mai mare complex spa din Europa a implementat un sistem integrat de management al clădirii pentru eficiență energetică și confort operațional.", "How Europe's largest spa complex implemented an integrated building management system for energy efficiency and operational comfort.")}
               </p>
             </div>
 
@@ -91,7 +100,7 @@ export default function ThermeBucurestiCaseStudy() {
                         {m.value}
                       </div>
                       <div className="text-muted-foreground mt-1.5" style={{ fontSize: "var(--font-size-sm)", letterSpacing: "-0.01em" }}>
-                        {m.label}
+                        {t(m.ro, m.en)}
                       </div>
                     </div>
                   ))}
@@ -108,7 +117,7 @@ export default function ThermeBucurestiCaseStudy() {
           <div className="relative aspect-[21/9] w-full overflow-hidden rounded-none md:rounded-[2px] md:my-8 -mx-4 md:mx-0">
             <Image
               src="/thermal-spa-modern-building.jpg"
-              alt="Therme Bucharest - Spa and wellness complex"
+              alt={t("Therme București — complex spa și wellness", "Therme Bucharest - Spa and wellness complex")}
               fill
               className="object-cover"
               priority
@@ -125,19 +134,19 @@ export default function ThermeBucurestiCaseStudy() {
           <aside className="lg:col-span-3 order-2 lg:order-1">
             <div className="sticky top-24 space-y-8">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>Client</div>
-                <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>Therme Bucharest</div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Client", "Client")}</div>
+                <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>Therme București</div>
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>Industry</div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Industrie", "Industry")}</div>
                 <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>HORECA - Spa &amp; Wellness</div>
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>Service</div>
-                <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>Full BMS Implementation</div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Serviciu", "Service")}</div>
+                <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>{t("Implementare BMS completă", "Full BMS Implementation")}</div>
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>Technology</div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Tehnologie", "Technology")}</div>
                 <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>SAUTER - BACnet / Modbus</div>
               </div>
               <div className="pt-4 border-t border-border">
@@ -146,7 +155,7 @@ export default function ThermeBucurestiCaseStudy() {
                   className="inline-flex items-center gap-2 rounded-[1px] bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground no-underline hover:no-underline transition-all"
                   style={{ letterSpacing: "-0.01em" }}
                 >
-                  Request a Consultation
+                  {t("Cere o consultanță", "Request a Consultation")}
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
@@ -160,7 +169,10 @@ export default function ThermeBucurestiCaseStudy() {
             <div className="mb-16 rounded-[2px] bg-secondary p-8 md:p-10">
               <blockquote>
                 <p className="text-foreground mb-6 text-pretty" style={{ fontSize: "var(--font-size-xl)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.02em", fontWeight: 500 }}>
-                  {'"'}Sovitech was an outstanding partner. Their real-time reporting, premium service for our technical team, and intuitive platform allowed us to meet international standards with confidence.{'"'}
+                  {t(
+                    "„Sovitech a fost un partener excepțional. Raportarea în timp real, serviciul premium pentru echipa noastră tehnică și platforma intuitivă ne-au permis să atingem standardele internaționale cu încredere.”",
+                    "\"Sovitech was an outstanding partner. Their real-time reporting, premium service for our technical team, and intuitive platform allowed us to meet international standards with confidence.\"",
+                  )}
                 </p>
                 <footer className="flex items-center gap-4">
                   <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center text-accent font-semibold text-lg">
@@ -168,7 +180,7 @@ export default function ThermeBucurestiCaseStudy() {
                   </div>
                   <div>
                     <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-sm)", letterSpacing: "-0.01em" }}>Ion Popescu</div>
-                    <div className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)" }}>Technical Director, Therme Bucharest</div>
+                    <div className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)" }}>{t("Director Tehnic, Therme București", "Technical Director, Therme Bucharest")}</div>
                   </div>
                 </footer>
               </blockquote>
@@ -177,14 +189,20 @@ export default function ThermeBucurestiCaseStudy() {
             {/* The challenge */}
             <div className="mb-16">
               <h2 className="text-foreground mb-6" style={{ fontSize: "var(--font-size-2xl)", letterSpacing: "-0.02em", fontWeight: 600 }}>
-                The Challenge
+                {t("Provocarea", "The Challenge")}
               </h2>
               <div className="space-y-4">
                 <p className="text-foreground/85" style={{ fontSize: "var(--font-size-base)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.01em", maxWidth: "45rem" }}>
-                  Therme Bucharest, Europe&apos;s largest spa complex, was facing high energy costs and a fragmented monitoring system. With over 8,000 m² of climate-controlled spaces, thermal pools and wellness areas, efficient energy management was essential.
+                  {t(
+                    "Therme București, cel mai mare complex spa din Europa, se confrunta cu costuri energetice ridicate și un sistem de monitorizare fragmentat. Cu peste 8.000 m² de spații climatizate, piscine termale și zone de wellness, managementul eficient al energiei era esențial.",
+                    "Therme Bucharest, Europe's largest spa complex, was facing high energy costs and a fragmented monitoring system. With over 8,000 m² of climate-controlled spaces, thermal pools and wellness areas, efficient energy management was essential.",
+                  )}
                 </p>
                 <p className="text-foreground/85" style={{ fontSize: "var(--font-size-base)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.01em", maxWidth: "45rem" }}>
-                  The previous automation provider was not meeting expectations on energy efficiency and reporting. As the complex prepared for expansion, a partner capable of delivering international operating standards was needed.
+                  {t(
+                    "Furnizorul anterior de automatizare nu se ridica la nivelul așteptărilor privind eficiența energetică și raportarea. Pe măsură ce complexul se pregătea pentru extindere, era nevoie de un partener capabil să livreze standarde internaționale de operare.",
+                    "The previous automation provider was not meeting expectations on energy efficiency and reporting. As the complex prepared for expansion, a partner capable of delivering international operating standards was needed.",
+                  )}
                 </p>
               </div>
             </div>
@@ -192,19 +210,17 @@ export default function ThermeBucurestiCaseStudy() {
             {/* Solution */}
             <div className="mb-16">
               <h2 className="text-foreground mb-6" style={{ fontSize: "var(--font-size-2xl)", letterSpacing: "-0.02em", fontWeight: 600 }}>
-                The Solution
+                {t("Soluția", "The Solution")}
               </h2>
               <p className="text-foreground/85 mb-8" style={{ fontSize: "var(--font-size-base)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.01em", maxWidth: "45rem" }}>
-                Sovitech Control implemented an integrated SAUTER BMS platform that unifies HVAC control, lighting, and energy management under a single centralised system:
+                {t(
+                  "Sovitech Control a implementat o platformă BMS SAUTER integrată, care unifică controlul HVAC, iluminatul și managementul energetic într-un singur sistem centralizat:",
+                  "Sovitech Control implemented an integrated SAUTER BMS platform that unifies HVAC control, lighting, and energy management under a single centralised system:",
+                )}
               </p>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  { title: "Strategic consultancy", desc: "Comprehensive infrastructure audit and tailored recommendations for the optimal BMS architecture." },
-                  { title: "Multi-system integration", desc: "Connecting all systems through open BACnet and Modbus protocols into a single unified platform." },
-                  { title: "Intelligent HVAC control", desc: "Optimisation algorithms that automatically adjust temperature based on occupancy and weather conditions." },
-                  { title: "Training & support", desc: "Intensive training for the Therme technical team and continuous 24/7 post-implementation support." },
-                ].map((item, i) => (
+                {solutions.map((item, i) => (
                   <div key={i} className="rounded-[2px] border border-border bg-card p-5 hover-lift">
                     <div className="flex items-start gap-3">
                       <div className="mt-0.5 h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
@@ -212,10 +228,10 @@ export default function ThermeBucurestiCaseStudy() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-foreground mb-1" style={{ fontSize: "var(--font-size-sm)", letterSpacing: "-0.01em" }}>
-                          {item.title}
+                          {t(item.titleRo, item.titleEn)}
                         </h4>
                         <p className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)", lineHeight: "var(--line-height-relaxed)" }}>
-                          {item.desc}
+                          {t(item.descRo, item.descEn)}
                         </p>
                       </div>
                     </div>
@@ -227,7 +243,7 @@ export default function ThermeBucurestiCaseStudy() {
             {/* Timeline */}
             <div className="mb-16">
               <h2 className="text-foreground mb-8" style={{ fontSize: "var(--font-size-2xl)", letterSpacing: "-0.02em", fontWeight: 600 }}>
-                Implementation Process
+                {t("Procesul de implementare", "Implementation Process")}
               </h2>
               <div className="space-y-0">
                 {timeline.map((step, i) => (
@@ -241,14 +257,14 @@ export default function ThermeBucurestiCaseStudy() {
                     <div className="pt-0.5">
                       <div className="flex items-center gap-3 mb-1">
                         <h4 className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>
-                          {step.phase}
+                          {t(step.phaseRo, step.phaseEn)}
                         </h4>
                         <span className="text-xs font-medium text-muted-foreground bg-secondary rounded-full px-2.5 py-0.5">
-                          {step.duration}
+                          {t(step.durRo, step.durEn)}
                         </span>
                       </div>
                       <p className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)", lineHeight: "var(--line-height-relaxed)" }}>
-                        {step.desc}
+                        {t(step.descRo, step.descEn)}
                       </p>
                     </div>
                   </div>
@@ -259,16 +275,16 @@ export default function ThermeBucurestiCaseStudy() {
             {/* Results */}
             <div className="mb-16">
               <h2 className="text-foreground mb-8" style={{ fontSize: "var(--font-size-2xl)", letterSpacing: "-0.02em", fontWeight: 600 }}>
-                Results &amp; Impact
+                {t("Rezultate & impact", "Results & Impact")}
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {results.map((r, i) => (
                   <div key={i} className="rounded-[2px] bg-secondary p-6">
                     <h4 className="font-semibold text-foreground mb-2" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>
-                      {r.title}
+                      {t(r.titleRo, r.titleEn)}
                     </h4>
                     <p className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)", lineHeight: "var(--line-height-relaxed)" }}>
-                      {r.desc}
+                      {t(r.descRo, r.descEn)}
                     </p>
                   </div>
                 ))}
@@ -278,10 +294,13 @@ export default function ThermeBucurestiCaseStudy() {
             {/* About Company */}
             <div className="mb-16 rounded-[2px] border border-border bg-card p-8">
               <h3 className="font-semibold text-foreground mb-3" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
-                About Therme Bucharest
+                {t("Despre Therme București", "About Therme Bucharest")}
               </h3>
               <p className="text-muted-foreground" style={{ fontSize: "var(--font-size-base)", lineHeight: "var(--line-height-relaxed)", maxWidth: "45rem" }}>
-                Therme Bucharest is Europe&apos;s largest spa wellness complex, welcoming more than 3 million visitors annually. It encompasses spa zones, thermal pools, saunas and wellness facilities, operating to international standards with institutional investment backing.
+                {t(
+                  "Therme București este cel mai mare complex spa de wellness din Europa, primind peste 3 milioane de vizitatori anual. Cuprinde zone de spa, piscine termale, saune și facilități de wellness, operând la standarde internaționale cu susținere investițională instituțională.",
+                  "Therme Bucharest is Europe's largest spa wellness complex, welcoming more than 3 million visitors annually. It encompasses spa zones, thermal pools, saunas and wellness facilities, operating to international standards with institutional investment backing.",
+                )}
               </p>
             </div>
 
@@ -289,10 +308,10 @@ export default function ThermeBucurestiCaseStudy() {
             <div className="rounded-[2px] bg-foreground p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <h3 className="text-background font-semibold mb-2" style={{ fontSize: "var(--font-size-xl)", letterSpacing: "-0.02em" }}>
-                  Want similar results?
+                  {t("Vrei rezultate similare?", "Want similar results?")}
                 </h3>
                 <p className="text-background/60" style={{ fontSize: "var(--font-size-sm)" }}>
-                  Contact our team for a personalised consultation.
+                  {t("Contactează echipa noastră pentru o consultanță personalizată.", "Contact our team for a personalised consultation.")}
                 </p>
               </div>
               <Link
@@ -300,7 +319,7 @@ export default function ThermeBucurestiCaseStudy() {
                 className="inline-flex items-center gap-2 rounded-[1px] bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground no-underline hover:no-underline whitespace-nowrap transition-all"
                 style={{ letterSpacing: "-0.01em" }}
               >
-                Contact us
+                {t("Contactează-ne", "Contact us")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -312,31 +331,31 @@ export default function ThermeBucurestiCaseStudy() {
       <section className="border-t border-border bg-secondary/50 py-16">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8">
           <h2 className="text-foreground mb-8" style={{ fontSize: "var(--font-size-2xl)", letterSpacing: "-0.02em", fontWeight: 600 }}>
-            Other case studies
+            {t("Alte studii de caz", "Other case studies")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Link href="/resurse/studii-de-caz/radisson-bucuresti" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA - Hotel</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA - {t("Hotel", "Hotel")}</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
-                Radisson Blu Bucharest
+                Radisson Blu București
               </h3>
               <p className="text-muted-foreground mb-4" style={{ fontSize: "var(--font-size-sm)", lineHeight: "var(--line-height-relaxed)" }}>
-                40% increase in operational efficiency through integrated BMS control.
+                {t("Creștere de 40% a eficienței operaționale prin control BMS integrat.", "40% increase in operational efficiency through integrated BMS control.")}
               </p>
               <span className="text-sm font-semibold text-accent inline-flex items-center gap-1">
-                Read the study <ArrowRight className="h-3.5 w-3.5" />
+                {t("Citește studiul", "Read the study")} <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
             <Link href="/contact" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">Your project</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">{t("Proiectul tău", "Your project")}</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
-                The next case study could be yours
+                {t("Următorul studiu de caz poate fi al tău", "The next case study could be yours")}
               </h3>
               <p className="text-muted-foreground mb-4" style={{ fontSize: "var(--font-size-sm)", lineHeight: "var(--line-height-relaxed)" }}>
-                Contact us and find out how we can help your building achieve similar results.
+                {t("Contactează-ne și află cum putem ajuta clădirea ta să obțină rezultate similare.", "Contact us and find out how we can help your building achieve similar results.")}
               </p>
               <span className="text-sm font-semibold text-accent inline-flex items-center gap-1">
-                Schedule a consultation <ArrowRight className="h-3.5 w-3.5" />
+                {t("Programează o consultanță", "Schedule a consultation")} <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
           </div>

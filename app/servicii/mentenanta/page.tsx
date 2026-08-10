@@ -203,7 +203,7 @@ export default function MentenantaPage() {
                   href="/pricing"
                   className="inline-flex items-center justify-center bg-transparent border border-white/15 text-white text-sm font-medium px-6 py-3 rounded-[2px] hover:bg-white/5 transition-colors"
                 >
-                  View packages and pricing
+                  View service packages
                 </Link>
               </div>
             </section>

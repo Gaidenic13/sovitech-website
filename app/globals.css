@@ -293,3 +293,21 @@
     display: none !important;
   }
 }
+
+/* ── References marquee (homepage) ───────────────────────────────────────────
+   Continuous right-to-left scroll. Cards use uniform margin-right (not flex
+   gap) so translateX(-50%) lands seamlessly on the duplicated set. */
+@keyframes sovitech-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: sovitech-marquee 45s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+}

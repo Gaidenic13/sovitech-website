@@ -73,7 +73,7 @@ export const sectors: Sector[] = [
   {
     id: "civil",
     slug: "civil",
-    title: "Civil & Office",
+    title: "Offices",
     subtitle: "Office buildings & commercial spaces",
     description:
       "BMS solutions tailored for modern office buildings and commercial spaces — maximising comfort, reducing operational costs, and meeting energy certification requirements.",
@@ -142,7 +142,7 @@ export const sectors: Sector[] = [
       company: "Bucharest Business Park",
     },
     ro: {
-      title: "Civil & Birouri",
+      title: "Birouri",
       subtitle: "Clădiri de birouri și spații comerciale",
       description: "Soluții BMS adaptate clădirilor moderne de birouri și spațiilor comerciale — confort maxim, costuri operaționale reduse și conformitate cu cerințele de certificare energetică.",
       heroHeadline: "Birouri mai inteligente.\nEchipe mai mulțumite.",
@@ -261,7 +261,7 @@ export const sectors: Sector[] = [
   {
     id: "retail",
     slug: "retail",
-    title: "Retail & Shopping",
+    title: "Retail",
     subtitle: "Shopping centres, hypermarkets & retail chains",
     description:
       "Centralised BMS automation for retail environments — delivering consistent customer comfort across hundreds of locations while driving significant energy savings.",
@@ -330,7 +330,7 @@ export const sectors: Sector[] = [
       company: "Cora Romania",
     },
     ro: {
-      title: "Retail & Centre Comerciale",
+      title: "Retail",
       subtitle: "Centre comerciale, hipermarketuri și lanțuri de retail",
       description: "Automatizare BMS centralizată pentru spații de retail — confort constant pentru clienți în sute de locații și economii semnificative de energie.",
       heroHeadline: "Confort mai bun.\nTrafic mai mare.",
@@ -355,7 +355,7 @@ export const sectors: Sector[] = [
   {
     id: "horeca",
     slug: "horeca",
-    title: "HoReCa",
+    title: "HoReCa & Wellness",
     subtitle: "Hotels, restaurants & leisure facilities",
     description:
       "Dedicated BMS automation for hotels, resorts and restaurants — delivering exceptional guest experience while dramatically reducing energy and operational costs per room.",
@@ -424,7 +424,7 @@ export const sectors: Sector[] = [
       company: "Radisson Blu Bucharest",
     },
     ro: {
-      title: "HoReCa",
+      title: "HoReCa & Wellness",
       subtitle: "Hoteluri, restaurante și facilități de agrement",
       description: "Automatizare BMS dedicată hotelurilor, resorturilor și restaurantelor — experiență excepțională pentru oaspeți și costuri energetice și operaționale per cameră semnificativ mai mici.",
       heroHeadline: "Confort de cinci stele.\nEficiență de patru stele.",

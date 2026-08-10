@@ -15,6 +15,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sovitech-website-gaidenic.vercel.app"),
   title: "Sovitech Control - Sisteme de automatizare si BMS",
   description:
     "Sovitech Control ofera solutii complete pentru automatizare si Building Management Systems (BMS). Proiectare, executie si intretinere sisteme BMS cu tehnologie SAUTER din Elvetia.",
