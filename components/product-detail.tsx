@@ -26,7 +26,7 @@ export function ProductDetail({ id }: { id: string }) {
   return (
     <>
       {/* Breadcrumb + header */}
-      <section className="bg-[#07201C] pt-10 pb-14">
+      <section className="bg-[#07201C] pt-6 pb-10 sm:pt-10 sm:pb-14">
         <div className="container-site">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-white/50 mb-10 flex-wrap">
             <Link href="/produse" className="hover:text-white transition-colors duration-150">{t("Produse", "Products")}</Link>
@@ -38,7 +38,7 @@ export function ProductDetail({ id }: { id: string }) {
           <p className="text-sm font-semibold tracking-wider uppercase text-[#C8E6C9] mb-3">
             SAUTER {product.code}
           </p>
-          <h1 className="text-4xl md:text-5xl font-light text-white tracking-tighter leading-tight max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tighter leading-tight max-w-3xl break-words text-balance">
             {t(product.name, product.nameEn ?? product.name)}
           </h1>
           {product.nameEn && (
@@ -48,28 +48,31 @@ export function ProductDetail({ id }: { id: string }) {
       </section>
 
       {/* Content */}
-      <section className="bg-[#F5F4F0] py-16">
-        <div className="container-site grid gap-10 lg:grid-cols-[1fr_1.2fr]">
+      <section className="bg-[#F5F4F0] py-10 sm:py-16">
+        <div className="container-site grid gap-6 sm:gap-10 lg:grid-cols-[1fr_1.2fr]">
           {/* Image */}
-          <div className="bg-white rounded-[2px] border border-[#0D2E2B]/10 p-10 flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
+          <div className="bg-white rounded-[2px] border border-[#0D2E2B]/10 p-5 sm:p-6 lg:p-10 flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
             <img
               src={product.image || "/placeholder.svg"}
               alt={`SAUTER ${product.code} — ${product.name}`}
-              className="max-h-[340px] w-auto max-w-full object-contain"
+              className="max-h-[260px] sm:max-h-[340px] w-auto max-w-full object-contain"
             />
           </div>
 
           {/* Details */}
           <div>
-            <p className="text-base text-[#555555] font-light leading-relaxed mb-8">
+            <p className="text-base text-[#555555] font-light leading-relaxed mb-6 sm:mb-8">
               {t(product.shortDesc, product.shortDescEn ?? product.shortDesc)}
             </p>
 
-            <div className="bg-white rounded-[2px] border border-[#0D2E2B]/10 divide-y divide-[#0D2E2B]/8 mb-8">
+            {/* Specs: stacked label-over-value on phones — a narrow screen can't
+                fit a label and a long technical value on one row; two-column
+                from sm up */}
+            <div className="bg-white rounded-[2px] border border-[#0D2E2B]/10 divide-y divide-[#0D2E2B]/8 mb-6 sm:mb-8">
               {specs.map((s) => (
-                <div key={s.labelEn} className="flex justify-between gap-6 px-6 py-4">
-                  <span className="text-sm text-[#888888]">{t(s.labelRo, s.labelEn)}</span>
-                  <span className="text-sm font-medium text-[#0D2E2B] text-right">{specValue(s.value, s.valueEn)}</span>
+                <div key={s.labelEn} className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:justify-between sm:gap-6 sm:px-6 sm:py-4">
+                  <span className="text-xs sm:text-sm text-[#888888] shrink-0">{t(s.labelRo, s.labelEn)}</span>
+                  <span className="text-sm font-medium text-[#0D2E2B] break-words sm:text-right min-w-0">{specValue(s.value, s.valueEn)}</span>
                 </div>
               ))}
             </div>
@@ -110,13 +113,13 @@ export function ProductDetail({ id }: { id: string }) {
 
       {/* Related products */}
       {related.length > 0 && (
-        <section className="bg-white py-16">
+        <section className="bg-white py-10 sm:py-16">
           <div className="container-site">
             <p className="section-label mb-3">• {t("Din aceeași familie", "From the same family")}</p>
-            <h2 className="text-3xl font-light text-[#0D2E2B] tracking-tighter mb-10">
+            <h2 className="text-2xl sm:text-3xl font-light text-[#0D2E2B] tracking-tighter mb-6 sm:mb-10">
               {t(product.familyTitle, product.familyTitleEn ?? product.familyTitle)}
             </h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 sm:gap-4 min-[420px]:grid-cols-2 lg:grid-cols-4">
               {related.map((r) => (
                 <Link
                   key={r.id}
@@ -136,10 +139,10 @@ export function ProductDetail({ id }: { id: string }) {
       )}
 
       {/* CTA */}
-      <section className="bg-[#07201C] py-16">
+      <section className="bg-[#07201C] py-10 sm:py-16">
         <div className="container-site flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <h2 className="text-3xl font-light text-white tracking-tighter mb-2">
+            <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tighter mb-2">
               {t("Ai nevoie de acest produs în proiectul tău?", "Need this product in your project?")}
             </h2>
             <p className="text-white/60 font-light text-sm">
@@ -148,7 +151,7 @@ export function ProductDetail({ id }: { id: string }) {
           </div>
           <Link
             href="/cerere-oferta"
-            className="shrink-0 inline-flex items-center gap-2 bg-white text-[#07201C] text-sm font-semibold px-6 py-3 rounded-[1px] hover:bg-[#C8E6C9] transition-colors duration-300"
+            className="shrink-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-white text-[#07201C] text-sm font-semibold px-6 py-3.5 sm:py-3 rounded-[1px] hover:bg-[#C8E6C9] transition-colors duration-300"
           >
             {t("Cere ofertă", "Request a quote")}
             <ArrowRight className="h-4 w-4" />
