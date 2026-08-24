@@ -32,19 +32,19 @@ const caseStudies: CaseStudy[] = [
   {
     id: 1,
     slug: "therme-bucuresti",
-    clientName: "Ion Popescu",
-    clientRole: "Director Tehnic",
+    clientName: "Studiu de caz",
+    clientRole: "Proiect livrat",
     clientCompany: "Therme Bucharest",
-    industryRo: "HORECA — Spa & Wellness",
-    industryEn: "HORECA — Spa & Wellness",
-    quoteRo: "Sovitech Control a implementat un sistem BMS complet pentru complexul nostru. Automatizarea HVAC și managementul energetic au redus consumul cu 35%.",
-    quoteEn: "Sovitech Control implemented a full BMS system for our complex. HVAC automation and energy management reduced our consumption by 35%.",
-    stat1: "35%",
-    stat1LabelRo: "Reducere consum",
-    stat1LabelEn: "Consumption reduction",
-    stat2: "€158K",
-    stat2LabelRo: "Economii anuale",
-    stat2LabelEn: "Annual savings",
+    industryRo: "HORECA / Spa & Wellness",
+    industryEn: "HORECA / Spa & Wellness",
+    quoteRo: "Sistem BMS complet pentru cel mai mare complex de wellness din Europa: tratare aer, piscine și centrala termică, sub o singură supervizare.",
+    quoteEn: "A complete BMS for Europe's largest wellness complex: air handling, pools and the heating plant under one supervision layer.",
+    stat1: "1.400",
+    stat1LabelRo: "Puncte de date",
+    stat1LabelEn: "Data points",
+    stat2: "6",
+    stat2LabelRo: "Centrale de tratare aer",
+    stat2LabelEn: "Air handling units",
     stat3: "6 sapt",
     stat3LabelRo: "Implementare",
     stat3LabelEn: "Implementation",
@@ -54,30 +54,30 @@ const caseStudies: CaseStudy[] = [
   {
     id: 2,
     slug: "radisson-bucuresti",
-    clientName: "Maria Ionescu",
-    clientRole: "Facility Manager",
+    clientName: "Studiu de caz",
+    clientRole: "Proiect livrat",
     clientCompany: "Radisson Blu Bucharest",
-    industryRo: "HORECA — Hotel",
-    industryEn: "HORECA — Hotel",
-    quoteRo: "Sistemul BMS de la Sovitech a transformat complet modul în care operăm. Controlul integrat ne oferă transparență totală și economii substanțiale.",
-    quoteEn: "The BMS system from Sovitech completely transformed how we operate. Integrated control gives us total transparency and substantial savings.",
-    stat1: "40%",
-    stat1LabelRo: "Eficiență operațională",
-    stat1LabelEn: "Operational efficiency",
+    industryRo: "HORECA / Hotel",
+    industryEn: "HORECA / Hotel",
+    quoteRo: "Automatizare BMS pentru un hotel de 5 stele: control temperatură și ventilație pentru camere și peste 1.800 m² de spații de evenimente.",
+    quoteEn: "BMS automation for a 5-star hotel: temperature and ventilation control for rooms and over 1,800 m² of event space.",
+    stat1: "424",
+    stat1LabelRo: "Camere",
+    stat1LabelEn: "Rooms",
     stat2: "200+",
     stat2LabelRo: "Puncte monitorizare",
     stat2LabelEn: "Monitoring points",
-    stat3: "2 ani",
-    stat3LabelRo: "Perioadă ROI",
-    stat3LabelEn: "ROI period",
+    stat3: "1.800 m²",
+    stat3LabelRo: "Spații evenimente",
+    stat3LabelEn: "Event space",
     image: "/luxury-hotel-lobby-modern-interior.jpg",
     accentColor: "#C5C0F5",
   },
   {
     id: 3,
     slug: "therme-bucuresti",
-    clientName: "Andrei Vasile",
-    clientRole: "Director Operatiuni",
+    clientName: "Proiect livrat",
+    clientRole: "Monitorizare farmaceutică",
     clientCompany: "Rompharm Company",
     industryRo: "Farmaceutic",
     industryEn: "Pharmaceutical",
@@ -103,7 +103,7 @@ export function CaseStudySlider() {
   const current = caseStudies[currentIndex]
 
   return (
-    <section className="bg-[#F5F4F0] py-24">
+    <section className="bg-[#F5F4F0] section-l">
       <div className="container-site">
         <div className="flex items-end justify-between mb-12">
           <div>
@@ -112,7 +112,7 @@ export function CaseStudySlider() {
               {t("Povești de succes", "Success stories")}
             </h2>
           </div>
-          <Link href="/resurse/referinte" className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-[#1F6B4A] hover:gap-3 transition-all">
+          <Link href="/referinte" className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-[#1F6B4A] hover:gap-3 transition-all">
             {t("Toate studiile de caz", "All case studies")}
             <ArrowRight className="h-4 w-4" />
           </Link>
@@ -188,7 +188,7 @@ export function CaseStudySlider() {
         </div>
 
         <div className="mt-6 sm:hidden">
-          <Link href="/resurse/referinte" className="inline-flex items-center gap-2 text-sm font-medium text-[#1F6B4A] hover:gap-3 transition-all">
+          <Link href="/referinte" className="inline-flex items-center gap-2 text-sm font-medium text-[#1F6B4A] hover:gap-3 transition-all">
             {t("Toate studiile de caz", "All case studies")}
             <ArrowRight className="h-4 w-4" />
           </Link>

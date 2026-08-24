@@ -23,6 +23,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { useLanguage } from "@/lib/language-context"
+import { useScrollToSection } from "@/hooks/use-scroll-to-section"
+import { HeroField } from "@/components/hero-field"
 
 const TOTAL_STEPS = 6
 
@@ -168,6 +170,8 @@ export default function CerereOfertaPage() {
   const [step, setStep] = useState(1)
   const [data, setData] = useState<FormData>(initialData)
   const [submitted, setSubmitted] = useState(false)
+  // Guides the user to each new step and to the confirmation screen.
+  const stepRef = useScrollToSection<HTMLDivElement>(submitted ? "done" : step)
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) => setData((p) => ({ ...p, [key]: value }))
   const toggle = (key: "systems" | "services", id: string) =>
@@ -212,25 +216,32 @@ export default function CerereOfertaPage() {
   if (submitted) {
     return (
       <main className="min-h-screen bg-[#F5F4F0]">
-        <section className="bg-[#07201C] py-16">
-          <div className="max-w-4xl mx-auto px-8">
+        <section className="bg-[#07201C] section-m relative overflow-hidden">
+          <HeroField />
+          <div className="max-w-4xl mx-auto px-8 relative z-10">
             <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• {t("Cerere ofertă", "Offer request")}</p>
             <h1 className="text-3xl md:text-5xl font-light text-white tracking-tighter">{t("Mulțumim!", "Thank you!")}</h1>
           </div>
         </section>
-        <section className="py-16">
+        <section className="section-m">
           <div className="max-w-4xl mx-auto px-6 md:px-8">
-            <div className="bg-white rounded-[2px] p-10 border border-[#0D2E2B]/10 text-center">
+            <div
+              ref={stepRef}
+              tabIndex={-1}
+              role="group"
+              aria-label={t("Confirmare trimitere", "Submission confirmation")}
+              className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40 bg-white rounded-[2px] p-10 border border-[#0D2E2B]/10 text-center"
+            >
               <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#C8E6C9]">
                 <CheckCircle2 className="h-7 w-7 text-[#1F6B4A]" />
               </div>
               <h2 className="text-2xl font-light text-[#0D2E2B] tracking-tighter mb-3">
-                {t("Cererea ta a fost trimisă", "Your request has been sent")}
+                {t("Cererea a fost înregistrată", "Your request has been registered")}
               </h2>
               <p className="text-sm text-[#888888] font-light max-w-lg mx-auto leading-relaxed mb-8">
                 {t(
-                  "Un specialist Sovitech va analiza cerințele proiectului tău și te va contacta cu o propunere personalizată în cel mult 48 de ore.",
-                  "A Sovitech specialist will review your project requirements and get back to you with a tailored proposal within 48 hours.",
+                  "Un inginer Sovitech Control citește cererea și răspunde în ziua lucrătoare următoare, cu confirmarea primirii și cu întrebările de clarificare, dacă sunt necesare. Estimarea de buget pe interval vine în 3-5 zile lucrătoare de la clarificarea datelor.",
+                  "A Sovitech Control engineer reads the request and answers the next working day, confirming receipt and asking any clarification questions. The budget estimate, as a range, follows within 3-5 working days of clarifying the data.",
                 )}
               </p>
               <Link
@@ -253,22 +264,26 @@ export default function CerereOfertaPage() {
     <main className="min-h-screen bg-[#F5F4F0]">
       {/* Hero */}
       <section className="bg-[#07201C] pt-12 pb-10 relative overflow-hidden">
+        <HeroField />
         <div className="absolute bottom-0 left-0 h-[3px] bg-[#1F6B4A] transition-all duration-500" style={{ width: `${progress}%` }} />
-        <div className="max-w-4xl mx-auto px-6 md:px-8">
-          <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• {t("Cerere ofertă personalizată", "Custom offer request")}</p>
+        <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
+          <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• {t("Cerere de ofertă", "Offer request")}</p>
           <h1 className="text-3xl md:text-5xl font-light text-white leading-tight tracking-tighter mb-3 text-balance">
-            {t("Spune-ne despre proiectul tău", "Tell us about your project")}
+            {t(
+              "Cerere de ofertă pentru un sistem BMS: șase pași și un răspuns în ziua lucrătoare următoare",
+              "BMS offer request: six steps and an answer the next working day",
+            )}
           </h1>
           <p className="text-white/50 font-light text-base max-w-xl leading-relaxed">
             {t(
-              "Completează cei 6 pași și primești o propunere adaptată exact nevoilor clădirii tale.",
-              "Complete the 6 steps and receive a proposal tailored to your building's exact needs.",
+              "Formularul cere aproximativ cinci minute. Primii cinci pași descriu clădirea, scopul lucrării și documentația disponibilă, al șaselea datele de contact. Cu cât sunt mai precise instalațiile descrise, cu atât intervalul de buget rezultat este mai strâns.",
+              "The form takes about five minutes. The first five steps describe the building, the scope of the work and the available documentation; the sixth asks for contact details. The more precisely the plant is described, the tighter the resulting budget range.",
             )}
           </p>
         </div>
       </section>
 
-      <section className="py-10">
+      <section className="section-s">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           {/* Progress steps */}
           <div className="bg-white rounded-[2px] p-5 mb-5 border border-[#0D2E2B]/10">
@@ -304,14 +319,22 @@ export default function CerereOfertaPage() {
           </div>
 
           {/* Step content */}
-          <div className="bg-white rounded-[2px] p-6 md:p-10 border border-[#0D2E2B]/10 min-h-[360px]">
+          <div
+            ref={stepRef}
+            tabIndex={-1}
+            role="group"
+            aria-label={`${t("Pasul", "Step")} ${step} ${t("din", "of")} ${TOTAL_STEPS}`}
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40 bg-white rounded-[2px] p-6 md:p-10 border border-[#0D2E2B]/10 min-h-[360px]">
             {/* Step 1 — Industry */}
             {step === 1 && (
               <div>
                 <StepHeading
                   label={`• ${t("Pasul 1 din 6", "Step 1 of 6")}`}
-                  title={t("Ce tip de clădire ai?", "What type of building do you have?")}
-                  subtitle={t("Alege industria care descrie cel mai bine proiectul tău.", "Choose the industry that best describes your project.")}
+                  title={t("Ce tip de clădire este", "What type of building is it")}
+                  subtitle={t(
+                    "Tipul clădirii decide densitatea de puncte și, implicit, ordinul de mărime al bugetului. Pentru clădirile cu funcțiuni mixte se alege funcțiunea dominantă.",
+                    "The building type decides the point density and, with it, the order of magnitude of the budget. For mixed-use buildings, choose the dominant use.",
+                  )}
                 />
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {industries.map((ind) => {
@@ -344,8 +367,11 @@ export default function CerereOfertaPage() {
               <div className="max-w-lg">
                 <StepHeading
                   label={`• ${t("Pasul 2 din 6", "Step 2 of 6")}`}
-                  title={t("Detalii proiect", "Project details")}
-                  subtitle={t("Câteva informații despre amploarea proiectului.", "A few details about the scope of the project.")}
+                  title={t("Ce dimensiune are proiectul", "How big is the project")}
+                  subtitle={t(
+                    "Diferența dintre o clădire fără automatizare și una cu un sistem existent schimbă complet scopul lucrării. O modernizare costă 40-60% din prețul unui sistem nou.",
+                    "The difference between a building with no automation and one with an existing system completely changes the scope of the work. A modernisation costs 40-60% of the price of a new system.",
+                  )}
                 />
                 <div className="space-y-6">
                   <div className="space-y-2">
@@ -383,8 +409,11 @@ export default function CerereOfertaPage() {
               <div>
                 <StepHeading
                   label={`• ${t("Pasul 3 din 6", "Step 3 of 6")}`}
-                  title={t("Ce sisteme te interesează?", "Which systems are you interested in?")}
-                  subtitle={t("Selectează toate sistemele relevante pentru proiect.", "Select all systems relevant to your project.")}
+                  title={t("Ce instalații deservește sistemul", "Which plant does the system serve")}
+                  subtitle={t(
+                    "Numărul de echipamente contează mai mult decât suprafața. Două clădiri de aceeași mărime pot avea bugete diferite cu 50%, în funcție de instalațiile deservite.",
+                    "The number of pieces of equipment matters more than the floor area. Two buildings of the same size can have budgets that differ by 50%, depending on the plant served.",
+                  )}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   {systemOptions.map((s) => (
@@ -400,7 +429,10 @@ export default function CerereOfertaPage() {
                 <StepHeading
                   label={`• ${t("Pasul 4 din 6", "Step 4 of 6")}`}
                   title={t("Servicii, termen și buget", "Services, timeline and budget")}
-                  subtitle={t("Ce servicii îți dorești și când vrei să începi.", "Which services you need and when you want to start.")}
+                  subtitle={t(
+                    "Scopul lucrării decide și soluția, și ordinul de mărime al amortizării. Optimizarea unui sistem existent se amortizează în 1-3 ani, o modernizare de capital în 3-6 ani.",
+                    "The scope decides both the solution and the order of magnitude of the payback. Optimising an existing system pays back in 1-3 years, a capital modernisation in 3-6 years.",
+                  )}
                 />
                 <div className="space-y-8">
                   <div className="space-y-2">
@@ -436,8 +468,11 @@ export default function CerereOfertaPage() {
               <div className="max-w-2xl">
                 <StepHeading
                   label={`• ${t("Pasul 5 din 6", "Step 5 of 6")}`}
-                  title={t("Documentație & cerințe", "Documentation & requirements")}
-                  subtitle={t("Adaugă planuri, caiete de sarcini sau orice document util și descrie nevoile tale.", "Add plans, specifications or any useful documents, and describe your needs.")}
+                  title={t("Documentație și cerințe", "Documentation and requirements")}
+                  subtitle={t(
+                    "Lipsa documentelor nu blochează cererea. Pentru clădirile fără listă de puncte, primul pas este oricum un releveu. Un exemplu concret spune mai mult decât o formulare generală.",
+                    "Missing documents do not block the request. For buildings without a point list, the first step is a survey anyway. A concrete example says more than a general phrase.",
+                  )}
                 />
                 <div className="space-y-6">
                   <div className="space-y-2">
@@ -445,7 +480,7 @@ export default function CerereOfertaPage() {
                     <label className="flex flex-col items-center justify-center gap-2 p-8 rounded-[2px] border border-dashed border-[#0D2E2B]/25 bg-[#F5F4F0] cursor-pointer hover:border-[#1F6B4A]/50 transition-colors">
                       <Upload className="h-6 w-6 text-[#888]" />
                       <span className="text-sm font-medium text-[#0D2E2B]">{t("Adaugă documentație", "Add documentation")}</span>
-                      <span className="text-xs text-[#888]">{t("PDF, DWG, imagini — până la 20 MB fiecare", "PDF, DWG, images — up to 20 MB each")}</span>
+                      <span className="text-xs text-[#888]">{t("PDF, DWG, imagini (până la 20 MB fiecare)", "PDF, DWG, images (up to 20 MB each)")}</span>
                       <input type="file" multiple className="hidden" onChange={onFiles} accept=".pdf,.dwg,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" />
                     </label>
                     {data.files.length > 0 && (
@@ -482,14 +517,17 @@ export default function CerereOfertaPage() {
               <div className="max-w-lg">
                 <StepHeading
                   label={`• ${t("Pasul 6 din 6", "Step 6 of 6")}`}
-                  title={t("Date de contact", "Contact details")}
-                  subtitle={t("Cum te putem contacta cu propunerea personalizată.", "How we can reach you with the tailored proposal.")}
+                  title={t("Cui se trimite răspunsul", "Where the answer goes")}
+                  subtitle={t(
+                    "Răspunsul ajunge în ziua lucrătoare următoare. Pentru situațiile urgente, telefonul este mai rapid decât formularul.",
+                    "The answer arrives the next working day. For urgent situations, the phone is faster than the form.",
+                  )}
                 />
                 <div className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-sm font-semibold text-[#0D2E2B]">{t("Nume complet *", "Full name *")}</Label>
-                      <Input id="name" value={data.name} onChange={(e) => set("name", e.target.value)} placeholder={t("Ion Popescu", "John Smith")} className="rounded-[2px] bg-[#F5F4F0] border-[#0D2E2B]/15" />
+                      <Input id="name" value={data.name} onChange={(e) => set("name", e.target.value)} placeholder={t("Nume și prenume", "Full name")} className="rounded-[2px] bg-[#F5F4F0] border-[#0D2E2B]/15" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company" className="text-sm font-semibold text-[#0D2E2B]">{t("Companie", "Company")}</Label>

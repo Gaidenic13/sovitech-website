@@ -10,6 +10,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
+import { useScrollToSection } from "@/hooks/use-scroll-to-section"
 
 export default function QuizPage() {
   const router = useRouter()
@@ -17,6 +18,8 @@ export default function QuizPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [showResults, setShowResults] = useState(false)
+  // Guides the user to each new question and to the results screen.
+  const questionRef = useScrollToSection<HTMLDivElement>(showResults ? "results" : currentQuestion)
 
   const questions = [
     {
@@ -155,8 +158,14 @@ export default function QuizPage() {
 
     return (
       <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-3xl mx-auto">
+        <div className="container mx-auto px-4 section-l">
+          <div
+            ref={questionRef}
+            tabIndex={-1}
+            role="group"
+            aria-label={t("Rezultatul evaluării", "Assessment result")}
+            className="max-w-3xl mx-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40"
+          >
             <div className="text-center mb-12">
               <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 mb-6 animate-bounce">
                 <CheckCircle2 className="h-12 w-12" />
@@ -234,7 +243,7 @@ export default function QuizPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 section-l">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="mb-8">
@@ -248,7 +257,13 @@ export default function QuizPage() {
           </div>
 
           {/* Question Card */}
-          <Card className="p-8 border-border mb-6">
+          <Card
+            ref={questionRef}
+            tabIndex={-1}
+            role="group"
+            aria-label={`${t("Întrebarea", "Question")} ${currentQuestion + 1} ${t("din", "of")} ${questions.length}`}
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40 p-8 border-border mb-6"
+          >
             <h2 className="text-2xl font-bold mb-6">{question.question}</h2>
             <RadioGroup
               value={answers[question.id]}

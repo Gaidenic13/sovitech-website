@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { CheckCircle2, Download, FileText, LineChart, ListChecks, Calculator, ArrowRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { HeroField } from "@/components/hero-field"
 
 export default function GhidBMSPage() {
   const { t } = useLanguage()
@@ -122,7 +123,8 @@ export default function GhidBMSPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#F5F4F0]">
       {/* Hero Section */}
-      <section className="bg-[#07201C] py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-[#07201C] section-xl relative overflow-hidden">
+        <HeroField />
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg"
@@ -169,7 +171,7 @@ export default function GhidBMSPage() {
       </section>
 
       {/* Benefits */}
-      <section className="bg-white py-20 md:py-24">
+      <section className="bg-white section-l">
         <div className="container-site">
           <div className="max-w-2xl mb-14">
             <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">
@@ -201,7 +203,7 @@ export default function GhidBMSPage() {
       </section>
 
       {/* Content Overview */}
-      <section id="continut" className="bg-[#F5F4F0] py-20 md:py-24">
+      <section id="continut" className="bg-[#F5F4F0] section-l">
         <div className="container-site">
           <div className="max-w-2xl mb-14">
             <p className="text-xs text-[#888888] font-semibold tracking-widest uppercase mb-3">
@@ -237,7 +239,7 @@ export default function GhidBMSPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#07201C] py-20">
+      <section className="bg-[#07201C] section-l">
         <div className="container-site">
           <div className="max-w-2xl">
             <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">

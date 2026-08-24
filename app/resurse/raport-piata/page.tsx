@@ -1,3 +1,0 @@
-export default function RaportPiataPage() {
-  // ... rest of code here ...
-}

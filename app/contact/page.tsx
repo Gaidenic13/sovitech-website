@@ -3,43 +3,48 @@
 import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
+import { HeroField } from "@/components/hero-field"
 
 export default function ContactPage() {
   const { t } = useLanguage()
 
   return (
     <>
-      <section className="bg-[#07201C] min-h-[45vh] flex items-end pb-16 relative overflow-hidden">
+      <section className="bg-[#07201C] min-h-[45vh] flex items-end pt-28 pb-16 relative overflow-hidden">
+        <HeroField />
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fingerprint-59QWj1Ik1Fd1hqzZduTrEqLz2j557z.svg" alt="" className="h-[600px] w-auto" />
         </div>
         <div className="container-site w-full relative z-10">
           <span className="text-[#C8E6C9] text-sm font-semibold tracking-wider uppercase mb-4 block">• {t("Contact", "Contact")}</span>
-          <h1 className="text-5xl md:text-7xl font-light text-white leading-tight tracking-tighter">
-            {t("Sa vorbim.", "Let's talk.")}
-          </h1>
-          <p className="text-lg text-white/60 font-light mt-4 max-w-xl">
+          <h1 className="text-4xl md:text-6xl font-light text-white leading-tight tracking-tighter max-w-4xl">
             {t(
-              "Echipa noastra de specialisti BMS este disponibila pentru consultatii, oferte personalizate si suport tehnic.",
-              "Our team of BMS specialists is available for consultations, personalised quotes and technical support."
+              "Contact Sovitech Control: București, Str. Dr. Niculae D. Staicovici nr. 35",
+              "Contact Sovitech Control: Bucharest, Str. Dr. Niculae D. Staicovici no. 35"
+            )}
+          </h1>
+          <p className="text-lg text-white/60 font-light mt-4 max-w-2xl">
+            {t(
+              "Sovitech Control răspunde la cereri de evaluare a clădirii, la cereri de ofertă pentru sisteme de automatizare și BMS, la solicitări de suport tehnic pentru sistemele instalate și la întrebări despre echipamentele SAUTER. Sediul este în București, Sector 5, iar programul este luni până vineri, 09:00-18:00. Cererile trimise prin formular primesc răspuns în maximum două zile lucrătoare.",
+              "Sovitech Control answers building assessment requests, quote requests for automation and BMS systems, technical support requests for installed systems and questions about SAUTER equipment. The office is in Bucharest, Sector 5, and working hours are Monday to Friday, 09:00-18:00. Requests sent through the form receive an answer within two working days at most."
             )}
           </p>
         </div>
       </section>
 
-      <section className="bg-[#F5F4F0] py-24">
+      <section className="bg-[#F5F4F0] section-l">
         <div className="container-site">
           <div className="grid gap-16 lg:grid-cols-2">
             <div className="space-y-12">
               <div>
-                <p className="section-label mb-3">• {t("INFORMATII", "INFORMATION")}</p>
+                <p className="section-label mb-3">• {t("INFORMAȚII", "INFORMATION")}</p>
                 <h2 className="text-3xl lg:text-4xl font-light text-[#0D2E2B] tracking-tighter mb-4">
-                  {t("Venim la tine", "We come to you")}
+                  {t("Sediu, program și acces", "Office, hours and access")}
                 </h2>
                 <p className="text-base text-[#888888] font-light leading-relaxed">
                   {t(
-                    "Suntem disponibili pentru orice tip de proiect BMS — de la consultatie initiala pana la implementare si mentenanta pe termen lung.",
-                    "We are available for any type of BMS project — from initial consultation through to implementation and long-term maintenance."
+                    "Vizitele la sediu se fac numai pe bază de programare prealabilă, pentru că echipa lucrează în cea mai mare parte a timpului pe șantiere și în clădirile clienților. Pentru urgențe pe sisteme aflate în contract de întreținere, telefonul direct al echipei tehnice este mai rapid decât formularul.",
+                    "Office visits are by prior appointment only, because the team spends most of its time on construction sites and in clients' buildings. For emergencies on systems under a maintenance contract, the technical team's direct phone line is faster than the form."
                   )}
                 </p>
               </div>
@@ -55,7 +60,7 @@ export default function ContactPage() {
                 className="group relative block aspect-[16/9] overflow-hidden rounded-[2px] border border-[#0D2E2B]/10 bg-[#0D2E2B]/5"
               >
                 <iframe
-                  title={t("Harta — sediul SOVITECH CONTROL, București", "Map — SOVITECH CONTROL headquarters, Bucharest")}
+                  title={t("Harta sediului SOVITECH CONTROL, București", "Map of SOVITECH CONTROL headquarters, Bucharest")}
                   src="https://www.openstreetmap.org/export/embed.html?bbox=26.0734%2C44.4288%2C26.0854%2C44.4348&layer=mapnik"
                   className="pointer-events-none absolute inset-0 h-full w-full border-0"
                   loading="lazy"
@@ -85,7 +90,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] mb-1">{t("Program", "Hours")}</p>
                       <p className="text-sm text-[#0D2E2B] font-light leading-relaxed whitespace-pre-line">
-                        {t("Luni — Vineri: 09:00 – 18:00\nSambata — Duminica: Inchis", "Monday — Friday: 09:00 – 18:00\nSaturday — Sunday: Closed")}
+                        {t("Luni-vineri: 09:00-18:00\nSâmbătă și duminică: închis", "Monday-Friday: 09:00-18:00\nSaturday and Sunday: closed")}
                       </p>
                     </div>
                   </div>
@@ -96,7 +101,9 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs font-semibold tracking-widest uppercase text-[#888888] mb-1">{t("Adresa", "Address")}</p>
                       <p className="text-sm text-[#0D2E2B] font-light leading-relaxed whitespace-pre-line">
-                        {"SOVITECH CONTROL SRL\nStr. Dr. Nicolae D. Staicovici, nr. 35\n" + t("București, Sector 5, România", "Bucharest, Sector 5, Romania")}
+                        {"SOVITECH CONTROL SRL\nStr. Dr. Niculae D. Staicovici nr. 35\n" +
+                          t("Sector 5, București, România", "Sector 5, Bucharest, Romania") +
+                          "\nCUI 38500895, Reg. Com. J40/19288/2017"}
                       </p>
                     </div>
                   </div>
@@ -109,10 +116,11 @@ export default function ContactPage() {
                   • {t("Contact direct", "Direct contact")}
                 </p>
                 <div className="flex flex-col divide-y divide-[#0D2E2B]/10 border-y border-[#0D2E2B]/10">
+                  {/* TODO(contact): roles below to be confirmed against the Despre noi page before publication (copy doc C1 note) */}
                   {[
-                    { deptRo: "Tehnic", deptEn: "Technical", name: "Mihai Sorica", phone: "+40720547802", phoneDisplay: "+40 720 547 802", email: "mihai@sovitech.ro" },
-                    { deptRo: "Vânzări", deptEn: "Sales", name: "Cristina Vitalariu", phone: "+40731338414", phoneDisplay: "+40 731 338 414", email: "cristina@sovitech.ro" },
-                    { deptRo: "Media", deptEn: "Media", name: "Cristian Gaidenic", phone: "+40740527366", phoneDisplay: "+40 740 527 366", email: "media@sovitech.ro" },
+                    { deptRo: "Tehnic, proiecte și suport", deptEn: "Technical, projects and support", name: "Mihai Sorica", phone: "+40720547802", phoneDisplay: "+40 720 547 802", email: "mihai@sovitech.ro" },
+                    { deptRo: "Vânzări și oferte", deptEn: "Sales and quotes", name: "Cristina Vitalariu", phone: "+40731338414", phoneDisplay: "+40 731 338 414", email: "cristina@sovitech.ro" },
+                    { deptRo: "Media și comunicare", deptEn: "Media and communication", name: "Cristian Gaidenic", phone: "+40740527366", phoneDisplay: "+40 740 527 366", email: "media@sovitech.ro" },
                   ].map((person) => (
                     <div key={person.email} className="py-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
                       <div className="sm:w-32 shrink-0">
@@ -132,20 +140,31 @@ export default function ContactPage() {
                     </div>
                   ))}
                 </div>
+                <p className="mt-4 text-sm font-light text-[#0D2E2B]/70">
+                  {t("Adresă generală: ", "General address: ")}
+                  <a href="mailto:office@sovitech.ro" className="text-[#1F6B4A] hover:underline">office@sovitech.ro</a>
+                </p>
               </div>
             </div>
 
             <div className="bg-white rounded-[2px] p-10 border border-[#0D2E2B]/10">
               <p className="section-label mb-3">• {t("MESAJ", "MESSAGE")}</p>
-              <h2 className="text-3xl font-light text-[#0D2E2B] tracking-tighter mb-8">
-                {t("Trimite-ne o cerere", "Send us a request")}
+              <h2 className="text-3xl font-light text-[#0D2E2B] tracking-tighter mb-4">
+                {t("Trimiteți o cerere", "Send a request")}
               </h2>
+              <p className="text-sm text-[#888888] font-light leading-relaxed mb-8">
+                {t(
+                  "Trei informații scurtează cel mai mult drumul până la un răspuns util: tipul clădirii, suprafața aproximativă și ce sistem de automatizare există astăzi, dacă există. Restul se clarifică la telefon.",
+                  "Three pieces of information shorten the road to a useful answer the most: the building type, the approximate area and what automation system exists today, if any. The rest is clarified over the phone."
+                )}
+              </p>
 
+              {/* Copy doc C1 rule: no personal names in placeholders, field descriptions only. */}
               <form className="space-y-6">
                 <div className="grid gap-5 sm:grid-cols-2">
                   {[
-                    { id: "firstName", labelRo: "Prenume", labelEn: "First name", placeholderRo: "Ion", placeholderEn: "John" },
-                    { id: "lastName", labelRo: "Nume", labelEn: "Last name", placeholderRo: "Popescu", placeholderEn: "Smith" },
+                    { id: "firstName", labelRo: "Prenume", labelEn: "First name", placeholderRo: "Prenumele persoanei de contact", placeholderEn: "Contact person's first name" },
+                    { id: "lastName", labelRo: "Nume", labelEn: "Last name", placeholderRo: "Numele persoanei de contact", placeholderEn: "Contact person's last name" },
                   ].map(({ id, labelRo, labelEn, placeholderRo, placeholderEn }) => (
                     <div key={id}>
                       <label htmlFor={id} className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t(labelRo, labelEn)}</label>
@@ -155,51 +174,62 @@ export default function ContactPage() {
                 </div>
 
                 {[
-                  { id: "email", type: "email", labelRo: "Email", labelEn: "Email", placeholder: "ion.popescu@exemplu.ro" },
-                  { id: "phone", type: "tel", labelRo: "Telefon", labelEn: "Phone", placeholder: "+40 XXX XXX XXX" },
-                ].map(({ id, type, labelRo, labelEn, placeholder }) => (
+                  { id: "email", type: "email", labelRo: "Adresă de email", labelEn: "Email address", placeholderRo: "adresa de email de serviciu", placeholderEn: "work email address" },
+                  { id: "phone", type: "tel", labelRo: "Telefon", labelEn: "Phone", placeholderRo: "număr de telefon cu prefix", placeholderEn: "phone number with country code" },
+                ].map(({ id, type, labelRo, labelEn, placeholderRo, placeholderEn }) => (
                   <div key={id}>
                     <label htmlFor={id} className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t(labelRo, labelEn)}</label>
-                    <input type={type} id={id} placeholder={placeholder} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition" />
+                    <input type={type} id={id} placeholder={t(placeholderRo, placeholderEn)} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition" />
                   </div>
                 ))}
 
                 <div>
-                  <label htmlFor="subject" className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t("Subiect", "Subject")}</label>
+                  <label htmlFor="subject" className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t("Subiectul cererii", "Request subject")}</label>
                   <select id="subject" className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition">
-                    <option>{t("Cerere oferta", "Request a Quote")}</option>
-                    <option>{t("Consultanta BMS", "BMS Consultation")}</option>
-                    <option>{t("Suport tehnic", "Technical Support")}</option>
-                    <option>{t("Informatii produs", "Product Information")}</option>
-                    <option>{t("Altele", "Other")}</option>
+                    <option>{t("Evaluare a clădirii", "Building assessment")}</option>
+                    <option>{t("Cerere de ofertă", "Quote request")}</option>
+                    <option>{t("Suport tehnic pentru un sistem existent", "Technical support for an existing system")}</option>
+                    <option>{t("Întrebare despre produse SAUTER", "Question about SAUTER products")}</option>
+                    <option>{t("Colaborare ca proiectant sau antreprenor", "Collaboration as a designer or contractor")}</option>
+                    <option>{t("Altul", "Other")}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t("Mesaj", "Message")}</label>
-                  <textarea id="message" rows={5} placeholder={t("Descrieti pe scurt proiectul sau intrebarea dumneavoastra...", "Briefly describe your project or question...")} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition resize-none" />
+                  <label htmlFor="message" className="block text-xs font-semibold tracking-widest uppercase text-[#888888] mb-2">{t("Detalii despre cerere", "Request details")}</label>
+                  <textarea id="message" rows={5} placeholder={t("Ce sisteme tehnice există în clădire, ce funcționează prost astăzi, ce termen aveți", "What technical systems the building has, what works poorly today, what deadline you have")} className="w-full rounded-[2px] border border-[#0D2E2B]/15 bg-[#F5F4F0] px-4 py-3 text-sm text-[#0D2E2B] placeholder:text-[#0D2E2B]/30 focus:border-[#1F6B4A] focus:outline-none focus:ring-1 focus:ring-[#1F6B4A] transition resize-none" />
                 </div>
 
                 <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-[#1F6B4A] text-white text-sm font-medium px-6 py-3.5 rounded-[2px] hover:bg-[#185c3f] transition-colors">
-                  {t("Trimite Mesaj", "Send Message")}
+                  {t("Trimite cererea", "Send the request")}
                   <ArrowRight className="h-4 w-4" />
                 </button>
+                <p className="text-xs text-[#888888] font-light leading-relaxed">
+                  {t(
+                    "Datele din formular se folosesc pentru a răspunde la această cerere și pentru a pregăti o eventuală ofertă. Nu se vând și nu se transmit către terți în scop de marketing. Detalii în ",
+                    "The data in this form is used to answer this request and to prepare a possible quote. It is not sold and not passed to third parties for marketing. Details in the "
+                  )}
+                  <Link href="/confidentialitate" className="text-[#1F6B4A] underline underline-offset-2">
+                    {t("Politica de confidențialitate", "Privacy Policy")}
+                  </Link>
+                  .
+                </p>
               </form>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#07201C] py-24">
+      <section className="bg-[#07201C] section-l">
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="section-label text-[#1F6B4A] mb-2">• {t("CALCULATOR", "CALCULATOR")}</p>
             <h2 className="text-3xl font-light text-white tracking-tighter">
-              {t("Calculeaza ROI-ul proiectului tau BMS", "Calculate the ROI of your BMS project")}
+              {t("Estimați ordinul de mărime al investiției într-un sistem BMS", "Estimate the order of magnitude of a BMS investment")}
             </h2>
           </div>
           <Link href="/calculator-roi" className="btn-sovitech-ghost flex-shrink-0">
-            {t("Deschide Calculatorul", "Open the Calculator")}
+            {t("Deschide calculatorul", "Open the calculator")}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

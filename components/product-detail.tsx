@@ -41,20 +41,17 @@ export function ProductDetail({ id }: { id: string }) {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tighter leading-tight max-w-3xl break-words text-balance">
             {t(product.name, product.nameEn ?? product.name)}
           </h1>
-          {product.nameEn && (
-            <p className="mt-2 text-base text-white/50 font-light">{t(product.nameEn, product.name)}</p>
-          )}
         </div>
       </section>
 
       {/* Content */}
-      <section className="bg-[#F5F4F0] py-10 sm:py-16">
+      <section className="bg-[#F5F4F0] section-m">
         <div className="container-site grid gap-6 sm:gap-10 lg:grid-cols-[1fr_1.2fr]">
           {/* Image */}
           <div className="bg-white rounded-[2px] border border-[#0D2E2B]/10 p-5 sm:p-6 lg:p-10 flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
             <img
               src={product.image || "/placeholder.svg"}
-              alt={`SAUTER ${product.code} — ${product.name}`}
+              alt={`SAUTER ${product.code} ${product.name}`}
               className="max-h-[260px] sm:max-h-[340px] w-auto max-w-full object-contain"
             />
           </div>
@@ -113,7 +110,7 @@ export function ProductDetail({ id }: { id: string }) {
 
       {/* Related products */}
       {related.length > 0 && (
-        <section className="bg-white py-10 sm:py-16">
+        <section className="bg-white section-m">
           <div className="container-site">
             <p className="section-label mb-3">• {t("Din aceeași familie", "From the same family")}</p>
             <h2 className="text-2xl sm:text-3xl font-light text-[#0D2E2B] tracking-tighter mb-6 sm:mb-10">
@@ -139,7 +136,7 @@ export function ProductDetail({ id }: { id: string }) {
       )}
 
       {/* CTA */}
-      <section className="bg-[#07201C] py-10 sm:py-16">
+      <section className="bg-[#07201C] section-m">
         <div className="container-site flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tighter mb-2">

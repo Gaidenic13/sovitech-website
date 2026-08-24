@@ -5,57 +5,21 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
+import { coverArticleCards } from "@/lib/article-cards"
 
-const blogPosts = [
-  {
-    id: 1,
-    titleRo: "Cât de eficiente sunt sistemele BMS la reducerea costurilor?",
-    titleEn: "How efficient are BMS systems at reducing costs?",
-    categoryRo: "Date & Analiză",
-    categoryEn: "Data & Analysis",
-    date: "15 IAN 2026",
-    readTime: "12 MIN",
-    image: "/modern-building-automation-dashboard-with-energy-c.jpg",
-    href: "/resurse/articole/eficienta-bms",
-    bgColor: "bg-[#C5C0F5]",
-  },
-  {
-    id: 2,
-    titleRo: "Piața BMS din România: tendințe și previziuni 2026",
-    titleEn: "The Romanian BMS Market: Trends and Forecasts 2026",
-    categoryRo: "Raport de piață",
-    categoryEn: "Market Report",
-    date: "10 DEC 2025",
-    readTime: "10 MIN",
-    image: "/bucharest-modern-skyline-office-buildings.jpg",
-    href: "/resurse/raport-piata",
-    bgColor: "bg-[#E8C5B8]",
-  },
-  {
-    id: 3,
-    titleRo: "Cum a redus Therme București costurile cu 38%",
-    titleEn: "How Therme Bucharest cut costs by 38%",
-    categoryRo: "Studii de Caz",
-    categoryEn: "Case Studies",
-    date: "20 DEC 2025",
-    readTime: "8 MIN",
-    image: "/therme-bucuresti-spa-exterior-modern.jpg",
-    href: "/resurse/studii-de-caz/therme-bucuresti",
-    bgColor: "bg-[#E8E8C0]",
-  },
-  {
-    id: 4,
-    titleRo: "Radisson Blu București: automatizare de hotel 5 stele",
-    titleEn: "Radisson Blu Bucharest: 5-star hotel automation",
-    categoryRo: "Studii de Caz",
-    categoryEn: "Case Studies",
-    date: "5 DEC 2025",
-    readTime: "7 MIN",
-    image: "/luxury-hotel-lobby-modern-interior.jpg",
-    href: "/resurse/studii-de-caz/radisson-bucuresti",
-    bgColor: "bg-[#D4C4A8]",
-  },
-]
+// The first four cover-backed registry articles, on the pastel card cycle.
+const cardBg = ["bg-[#C5C0F5]", "bg-[#E8C5B8]", "bg-[#E8E8C0]", "bg-[#C8E6C9]"]
+const blogPosts = coverArticleCards()
+  .slice(0, 4)
+  .map((c, i) => ({
+    id: c.slug,
+    titleRo: c.titleRo,
+    titleEn: c.titleEn,
+    categoryRo: c.categoryRo,
+    categoryEn: c.categoryEn,
+    href: c.href,
+    bgColor: cardBg[i % cardBg.length],
+  }))
 
 export function BlogSlider() {
   const [startIndex, setStartIndex] = useState(0)
@@ -67,7 +31,7 @@ export function BlogSlider() {
   const canGoNext = startIndex < blogPosts.length - cardsPerView
 
   return (
-    <section className="bg-[#07201C] py-24">
+    <section className="bg-[#07201C] section-l">
       <div className="container-site">
         <p className="text-sm font-semibold tracking-wider uppercase mb-2 text-white/40">• {t("Educație", "Education")}</p>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-12 tracking-tighter text-white">

@@ -7,9 +7,9 @@ import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
 
 const metrics = [
-  { value: "35%", ro: "Reducere consum energetic", en: "Energy consumption reduction" },
-  { value: "€158K", ro: "Economii anuale", en: "Annual savings" },
-  { value: "8.000 m²", ro: "Suprafață implementată", en: "Area implemented" },
+  { value: "1.400", ro: "Puncte de date", en: "Data points" },
+  { value: "6", ro: "Centrale de tratare a aerului", en: "Air handling units" },
+  { value: "34.000 m²", ro: "Suprafață construită a complexului", en: "Complex built area" },
   { value: "6 săpt.", ro: "Durată implementare", en: "Implementation time" },
 ]
 
@@ -21,7 +21,7 @@ const timeline = [
 ]
 
 const results = [
-  { titleRo: "Eficiență energetică", titleEn: "Energy efficiency", descRo: "Reducere de 35% a consumului de energie prin control inteligent HVAC și iluminat.", descEn: "35% reduction in energy consumption through intelligent HVAC and lighting control." },
+  { titleRo: "Control centralizat", titleEn: "Centralised control", descRo: "Control inteligent HVAC și iluminat, cu supervizare unificată pentru toate instalațiile complexului.", descEn: "Intelligent HVAC and lighting control, with unified supervision for every system in the complex." },
   { titleRo: "Fiabilitate 99,9%", titleEn: "99.9% reliability", descRo: "Monitorizare non-stop cu alerte predictive și intervenție proactivă.", descEn: "Round-the-clock monitoring with predictive alerts and proactive intervention." },
   { titleRo: "Raportare în timp real", titleEn: "Real-time reporting", descRo: "Dashboard centralizat cu vizibilitate completă asupra tuturor datelor de consum.", descEn: "Centralised dashboard with full visibility of all consumption data." },
   { titleRo: "Confort sporit", titleEn: "Enhanced comfort", descRo: "Temperatură și umiditate optime, menținute în toate zonele complexului.", descEn: "Optimal temperature and humidity maintained across all areas of the complex." },
@@ -52,7 +52,7 @@ export default function ThermeBucurestiCaseStudy() {
           <div className="flex items-center gap-2 text-sm">
             <Link href="/resurse" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Resurse", "Resources")}</Link>
             <span className="text-muted-foreground">/</span>
-            <Link href="/resurse/referinte" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Studii de caz", "Case Studies")}</Link>
+            <Link href="/referinte" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Studii de caz", "Case Studies")}</Link>
             <span className="text-muted-foreground">/</span>
             <span className="text-foreground font-medium">Therme Bucharest</span>
           </div>
@@ -70,7 +70,7 @@ export default function ThermeBucurestiCaseStudy() {
       <section className="bg-background border-b border-border">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8 pt-12 pb-16 md:pt-16 md:pb-20">
           <Link
-            href="/resurse/referinte"
+            href="/referinte"
             className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-accent no-underline hover:no-underline"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
@@ -80,10 +80,10 @@ export default function ThermeBucurestiCaseStudy() {
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold tracking-wide text-accent uppercase mb-6">
-                HORECA &mdash; Spa &amp; Wellness
+                HORECA / Spa &amp; Wellness
               </div>
               <h1 className="text-foreground mb-6 text-balance" style={{ fontSize: "var(--font-size-4xl)", lineHeight: "var(--line-height-tight)", letterSpacing: "-0.03em", fontWeight: 600 }}>
-                {t("Therme București a redus costurile energetice cu 35% prin automatizare BMS", "Therme Bucharest cut energy costs by 35% through BMS automation")}
+                {t("Therme București: automatizare BMS pentru cel mai mare complex de wellness din Europa", "Therme Bucharest: BMS automation for Europe's largest wellness complex")}
               </h1>
               <p className="text-muted-foreground max-w-xl" style={{ fontSize: "var(--font-size-lg)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.01em" }}>
                 {t("Cum cel mai mare complex spa din Europa a implementat un sistem integrat de management al clădirii pentru eficiență energetică și confort operațional.", "How Europe's largest spa complex implemented an integrated building management system for energy efficiency and operational comfort.")}
@@ -117,7 +117,7 @@ export default function ThermeBucurestiCaseStudy() {
           <div className="relative aspect-[21/9] w-full overflow-hidden rounded-none md:rounded-[2px] md:my-8 -mx-4 md:mx-0">
             <Image
               src="/thermal-spa-modern-building.jpg"
-              alt={t("Therme București — complex spa și wellness", "Therme Bucharest - Spa and wellness complex")}
+              alt={t("Therme București, complex spa și wellness", "Therme Bucharest - Spa and wellness complex")}
               fill
               className="object-cover"
               priority
@@ -127,7 +127,7 @@ export default function ThermeBucurestiCaseStudy() {
       </section>
 
       {/* Content */}
-      <div className="mx-auto max-w-[1220px] px-4 sm:px-8 py-16 md:py-20">
+      <div className="mx-auto max-w-[1220px] px-4 sm:px-8 section-l">
         <div className="grid lg:grid-cols-12 gap-16">
 
           {/* Sidebar */}
@@ -139,7 +139,7 @@ export default function ThermeBucurestiCaseStudy() {
               </div>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Industrie", "Industry")}</div>
-                <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>HORECA - Spa &amp; Wellness</div>
+                <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-base)", letterSpacing: "-0.01em" }}>HORECA / Spa &amp; Wellness</div>
               </div>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Serviciu", "Service")}</div>
@@ -165,25 +165,18 @@ export default function ThermeBucurestiCaseStudy() {
           {/* Main Content */}
           <main className="lg:col-span-9 order-1 lg:order-2">
 
-            {/* Testimonial */}
+            {/* Delivery summary (replaces a testimonial attributed to a person who could not be verified) */}
             <div className="mb-16 rounded-[2px] bg-secondary p-8 md:p-10">
-              <blockquote>
-                <p className="text-foreground mb-6 text-pretty" style={{ fontSize: "var(--font-size-xl)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.02em", fontWeight: 500 }}>
-                  {t(
-                    "„Sovitech a fost un partener excepțional. Raportarea în timp real, serviciul premium pentru echipa noastră tehnică și platforma intuitivă ne-au permis să atingem standardele internaționale cu încredere.”",
-                    "\"Sovitech was an outstanding partner. Their real-time reporting, premium service for our technical team, and intuitive platform allowed us to meet international standards with confidence.\"",
-                  )}
-                </p>
-                <footer className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center text-accent font-semibold text-lg">
-                    IP
-                  </div>
-                  <div>
-                    <div className="font-semibold text-foreground" style={{ fontSize: "var(--font-size-sm)", letterSpacing: "-0.01em" }}>Ion Popescu</div>
-                    <div className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)" }}>{t("Director Tehnic, Therme București", "Technical Director, Therme Bucharest")}</div>
-                  </div>
-                </footer>
-              </blockquote>
+              <p className="text-foreground mb-4 text-pretty" style={{ fontSize: "var(--font-size-xl)", lineHeight: "var(--line-height-relaxed)", letterSpacing: "-0.02em", fontWeight: 500 }}>
+                {t(
+                  "Automatizare și supervizare pentru instalațiile de tratare a aerului, sistemul de piscine și centrala termică, livrate fără întreruperea activității complexului.",
+                  "Automation and supervision for the air-handling plant, the pool systems and the heating plant, delivered without interrupting the complex's operation.",
+                )}
+              </p>
+              <p className="text-muted-foreground" style={{ fontSize: "var(--font-size-sm)" }}>
+                {t("1.400 de puncte de date · 6 centrale de tratare a aerului · control umiditate și temperatură pe zone · integrare cu contorizarea de energie",
+                   "1,400 data points · 6 air handling units · zone-level humidity and temperature control · integration with energy metering")}
+              </p>
             </div>
 
             {/* The challenge */}
@@ -328,14 +321,14 @@ export default function ThermeBucurestiCaseStudy() {
       </div>
 
       {/* Related Case Studies */}
-      <section className="border-t border-border bg-secondary/50 py-16">
+      <section className="border-t border-border bg-secondary/50 section-m">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8">
           <h2 className="text-foreground mb-8" style={{ fontSize: "var(--font-size-2xl)", letterSpacing: "-0.02em", fontWeight: 600 }}>
             {t("Alte studii de caz", "Other case studies")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Link href="/resurse/studii-de-caz/radisson-bucuresti" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all hover-lift">
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA - {t("Hotel", "Hotel")}</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA / {t("Hotel", "Hotel")}</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "var(--font-size-lg)", letterSpacing: "-0.01em" }}>
                 Radisson Blu București
               </h3>

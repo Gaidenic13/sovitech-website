@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const description = `${p.shortDesc}${codesPreview ? ` Coduri: ${codesPreview}.` : ""}`.slice(0, 160)
 
   return {
-    title: `${p.code} — ${p.name} | SAUTER | Sovitech Control`,
+    title: `${p.code} ${p.name} | SAUTER | Sovitech Control`,
     description,
     keywords: [
       ...codes,
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     ].filter(Boolean),
     alternates: { canonical: `/produse/${p.id}` },
     openGraph: {
-      title: `SAUTER ${p.code} — ${p.name}`,
+      title: `SAUTER ${p.code} ${p.name}`,
       description: p.shortDesc,
       images: p.image && p.image !== "/placeholder.svg" ? [p.image] : undefined,
       type: "website",
@@ -52,7 +52,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `SAUTER ${p.code} — ${p.name}`,
+    name: `SAUTER ${p.code} ${p.name}`,
     ...(p.nameEn ? { alternateName: p.nameEn } : {}),
     ...(codes.length ? { sku: codes[0] } : {}),
     mpn: p.code,

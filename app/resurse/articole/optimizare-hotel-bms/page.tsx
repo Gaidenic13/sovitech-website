@@ -194,7 +194,7 @@ export default function OptimizareHotelBMSPage() {
       </div>
 
       {/* Article */}
-      <article className="container mx-auto px-4 py-12">
+      <article className="container mx-auto px-4 section-s">
         <div className="grid gap-12 lg:grid-cols-[280px_1fr]">
           {/* Left Sidebar */}
           <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
@@ -216,10 +216,10 @@ export default function OptimizareHotelBMSPage() {
               </p>
               <div className="flex items-center gap-3">
                 <div className="relative h-12 w-12 overflow-hidden rounded-full bg-muted">
-                  <Image src="/professional-male-engineer-headshot.jpg" alt="Andrei Popescu" fill className="object-cover" />
+                  <span className="flex h-full w-full items-center justify-center bg-[#0D2E2B] text-xs font-semibold text-[#C8E6C9]">SC</span>
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Andrei Popescu</p>
+                  <p className="font-medium text-foreground">Echipa de inginerie Sovitech Control</p>
                   <p className="text-sm text-muted-foreground">{t("Director Tehnic, Sovitech", "Technical Director, Sovitech")}</p>
                 </div>
               </div>
@@ -278,12 +278,12 @@ export default function OptimizareHotelBMSPage() {
               </h1>
               <p className="mb-6 text-xl text-muted-foreground leading-relaxed">
                 {t(
-                  "Cum pot hotelurile moderne să reducă costurile energetice cu 25-65% menținând confortul oaspeților la cele mai înalte standarde prin sisteme BMS integrate.",
-                  "How modern hotels can reduce energy costs by 25-65% while keeping guest comfort at the highest standards through integrated BMS systems.",
+                  "Cum pot hotelurile moderne să reducă consumul HVAC cu 10-20% acolo unde reglajul era deficitar, menținând confortul oaspeților prin sisteme BMS integrate.",
+                  "How modern hotels can cut HVAC consumption by 10-20% where controls were deficient, and by 15-25% in unoccupied rooms while keeping guest comfort at the highest standards through integrated BMS systems.",
                 )}
               </p>
               <p className="text-sm text-muted-foreground">
-                {t("Feb 20, 2026 — 18 min citire", "Feb 20, 2026 — 18 min read")}
+                {t("Feb 20, 2026 · 18 min citire", "Feb 20, 2026 · 18 min read")}
               </p>
             </header>
 
@@ -318,8 +318,8 @@ export default function OptimizareHotelBMSPage() {
                   )}
                 </strong>
                 {t(
-                  ". De exemplu, Radisson Blu Hotel București — un hotel de 5 stele cu 424 de camere și facilități extinse (restaurante, spa, sală de fitness, piscine interioare și exterioare) — a adoptat automatizarea inteligentă pentru a-și îndeplini certificarea Green Key și standardele ridicate de eficiență energetică.",
-                  ". For example, the Radisson Blu Hotel Bucharest — a 5-star hotel with 424 rooms and extensive facilities (restaurants, spa, fitness room, indoor and outdoor pools) — adopted intelligent automation to meet its Green Key certification and high energy efficiency standards.",
+                  ". De exemplu, Radisson Blu Hotel București, un hotel de 5 stele cu 424 de camere și facilități extinse (restaurante, spa, sală de fitness, piscine interioare și exterioare), a adoptat automatizarea inteligentă pentru a-și îndeplini certificarea Green Key și standardele ridicate de eficiență energetică.",
+                  ". For example, the Radisson Blu Hotel Bucharest, a 5-star hotel with 424 rooms and extensive facilities (restaurants, spa, fitness room, indoor and outdoor pools), adopted intelligent automation to meet its Green Key certification and high energy efficiency standards.",
                 )}
               </p>
 
@@ -442,8 +442,8 @@ export default function OptimizareHotelBMSPage() {
 
               <p className="text-muted-foreground leading-relaxed">
                 {t(
-                  "Proprietatea de 5 stele — cu 12 săli de conferințe, un ballroom pentru 500+ invitați, multiple restaurante și facilități spa — reprezintă o provocare complexă de control. Implementarea Sovitech a oferit Radisson Blu supraveghere centralizată a sistemelor HVAC, apei calde, încălzirii piscinelor și iluminatului.",
-                  "The 5-star property — with 12 conference rooms, a ballroom for 500+ guests, multiple restaurants and spa facilities — is a complex control challenge. The Sovitech implementation gave Radisson Blu centralised oversight of the HVAC systems, hot water, pool heating and lighting.",
+                  "Proprietatea de 5 stele (12 săli de conferințe, un ballroom pentru 500+ invitați, multiple restaurante și facilități spa) reprezintă o provocare complexă de control. Implementarea Sovitech a oferit Radisson Blu supraveghere centralizată a sistemelor HVAC, apei calde, încălzirii piscinelor și iluminatului.",
+                  "The 5-star property (12 conference rooms, a ballroom for 500+ guests, multiple restaurants and spa facilities) is a complex control challenge. The Sovitech implementation gave Radisson Blu centralised oversight of the HVAC systems, hot water, pool heating and lighting.",
                 )}
               </p>
 
@@ -611,8 +611,8 @@ export default function OptimizareHotelBMSPage() {
 
               <p className="text-muted-foreground leading-relaxed">
                 {t(
-                  "Pentru managerii de facilități hoteliere, investiția în automatizare avansată este o cale către experiențe mai bune pentru oaspeți și marje de profit mai sănătoase. După cum demonstrează Radisson Blu București și alții, integrarea BMS inteligentă poate reduce dramatic consumul energetic (adesea în intervalul 25-65%) asigurând în același timp confort fiabil.",
-                  "For hotel facilities managers, investing in advanced automation is a path to better guest experiences and healthier profit margins. As Radisson Blu Bucharest and others demonstrate, intelligent BMS integration can dramatically reduce energy consumption (often in the 25-65% range) while ensuring reliable comfort.",
+                  "Pentru managerii de facilități hoteliere, investiția în automatizare avansată este o cale către experiențe mai bune pentru oaspeți și marje de profit mai sănătoase. După cum demonstrează Radisson Blu București și alții, integrarea BMS inteligentă poate reduce consumul HVAC cu 10-20% acolo unde reglajul era deficitar asigurând în același timp confort fiabil.",
+                  "For hotel facilities managers, investing in advanced automation is a path to better guest experiences and healthier profit margins. As Radisson Blu Bucharest and others demonstrate, intelligent BMS integration can cut HVAC consumption by 10-20% where controls were deficient while ensuring reliable comfort.",
                 )}
               </p>
 
@@ -675,7 +675,7 @@ export default function OptimizareHotelBMSPage() {
                     )}
                   </h4>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    {t("Ian 15, 2026 — 12 min citire", "Jan 15, 2026 — 12 min read")}
+                    {t("Ian 15, 2026 · 12 min citire", "Jan 15, 2026 · 12 min read")}
                   </p>
                 </Link>
                 <Link href="/resurse/studii-de-caz/therme-bucuresti" className="group">
@@ -692,12 +692,12 @@ export default function OptimizareHotelBMSPage() {
                   </div>
                   <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                     {t(
-                      "Cum a redus Therme București costurile cu 38% prin automatizare BMS",
-                      "How Therme București cut costs by 38% through BMS automation",
+                      "Automatizare BMS la Therme București, pas cu pas",
+                      "BMS automation at Therme Bucharest, step by step",
                     )}
                   </h4>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    {t("Dec 20, 2025 — 8 min citire", "Dec 20, 2025 — 8 min read")}
+                    {t("Dec 20, 2025 · 8 min citire", "Dec 20, 2025 · 8 min read")}
                   </p>
                 </Link>
               </div>

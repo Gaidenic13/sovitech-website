@@ -31,7 +31,7 @@ export default function DescarcaGhidPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 section-l">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-5 gap-8">
             {/* Left: Benefits */}

@@ -12,7 +12,7 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="py-20 md:py-32">
+      <section className="section-xl">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tighter text-foreground md:text-6xl text-balance">
@@ -26,7 +26,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-16">
+      <section className="section-m">
         <div className="container mx-auto px-4">
           <div className="grid gap-8 md:grid-cols-3">
             <Card className="flex h-full flex-col border-border/40 bg-card">
@@ -134,7 +134,7 @@ export default function PricingPage() {
       </section>
 
       {/* Additional Info */}
-      <section className="py-16 md:py-24">
+      <section className="section-l">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-8 text-center text-3xl font-bold text-foreground">{t("Întrebări frecvente", "Frequently asked questions")}</h2>

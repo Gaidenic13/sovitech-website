@@ -88,7 +88,7 @@ export default function RadissonBucurestiCaseStudy() {
           <div className="flex items-center gap-2 text-sm">
             <Link href="/resurse" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Resurse", "Resources")}</Link>
             <span className="text-muted-foreground/50">/</span>
-            <Link href="/resurse/referinte" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Studii de caz", "Case Studies")}</Link>
+            <Link href="/referinte" className="text-muted-foreground hover:text-foreground transition-colors no-underline">{t("Studii de caz", "Case Studies")}</Link>
             <span className="text-muted-foreground/50">/</span>
             <span className="text-foreground font-medium">Radisson Blu</span>
           </div>
@@ -102,20 +102,20 @@ export default function RadissonBucurestiCaseStudy() {
       {/* Hero */}
       <section className="bg-background border-b border-border">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8 pt-12 pb-16 md:pt-16 md:pb-20">
-          <Link href="/resurse/referinte" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-accent no-underline hover:no-underline">
+          <Link href="/referinte" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-accent no-underline hover:no-underline">
             <ArrowLeft className="h-3.5 w-3.5" />
             {t("Înapoi la studii de caz", "Back to Case Studies")}
           </Link>
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold tracking-wide text-accent uppercase mb-6">
-                HORECA &mdash; {t("Hotel 5 stele", "5-Star Hotel")}
+                HORECA / {t("Hotel 5 stele", "5-Star Hotel")}
               </div>
               <h1 className="text-foreground mb-6 text-balance" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.03em", fontWeight: 600 }}>
                 {t("Cum a obținut Radisson Blu București certificarea BREEAM Excellent prin automatizare BMS integrată", "How Radisson Blu Bucharest achieved BREEAM Excellent certification through integrated BMS automation")}
               </h1>
               <p className="text-muted-foreground max-w-xl" style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)", lineHeight: 1.6, letterSpacing: "-0.01em" }}>
-                {t("424 de camere, 12 săli de conferință, restaurant, spa, piscină — toate unificate într-o singură platformă inteligentă de control cu tehnologie SAUTER din Elveția.", "424 rooms, 12 conference halls, restaurant, spa, pool — all unified in a single intelligent control platform with SAUTER technology from Switzerland.")}
+                {t("424 de camere, 12 săli de conferință, restaurant, spa, piscină: toate unificate într-o singură platformă inteligentă de control cu tehnologie SAUTER din Elveția.", "424 rooms, 12 conference halls, restaurant, spa, pool: all unified in a single intelligent control platform with SAUTER technology from Switzerland.")}
               </p>
             </div>
             <div className="lg:col-span-5">
@@ -138,13 +138,13 @@ export default function RadissonBucurestiCaseStudy() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8">
           <div className="relative aspect-[21/9] w-full overflow-hidden md:rounded-[2px] md:my-8 -mx-4 md:mx-0">
-            <Image src="/luxury-hotel-lobby-modern-interior.jpg" alt={t("Radisson Blu București — lobby de hotel modern", "Radisson Blu Bucharest - Modern hotel lobby")} fill className="object-cover" priority />
+            <Image src="/luxury-hotel-lobby-modern-interior.jpg" alt={t("Radisson Blu București, lobby de hotel modern", "Radisson Blu Bucharest - Modern hotel lobby")} fill className="object-cover" priority />
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <div className="mx-auto max-w-[1220px] px-4 sm:px-8 py-16 md:py-20">
+      <div className="mx-auto max-w-[1220px] px-4 sm:px-8 section-l">
         <div className="grid lg:grid-cols-12 gap-16">
 
           {/* Sidebar */}
@@ -168,7 +168,7 @@ export default function RadissonBucurestiCaseStudy() {
               </div>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Industrie", "Industry")}</div>
-                <div className="font-semibold text-foreground text-sm" style={{ letterSpacing: "-0.01em" }}>HORECA - {t("Hotel 5 stele", "5-Star Hotel")}</div>
+                <div className="font-semibold text-foreground text-sm" style={{ letterSpacing: "-0.01em" }}>HORECA / {t("Hotel 5 stele", "5-Star Hotel")}</div>
               </div>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2" style={{ letterSpacing: "0.06em" }}>{t("Serviciu", "Service")}</div>
@@ -441,14 +441,14 @@ export default function RadissonBucurestiCaseStudy() {
       </div>
 
       {/* Related */}
-      <section className="border-t border-border bg-secondary/50 py-16">
+      <section className="border-t border-border bg-secondary/50 section-m">
         <div className="mx-auto max-w-[1220px] px-4 sm:px-8">
           <h2 className="text-foreground mb-8" style={{ fontSize: "clamp(1.25rem, 2vw, 1.5rem)", letterSpacing: "-0.02em", fontWeight: 600 }}>
             {t("Alte studii de caz", "Other case studies")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Link href="/resurse/studii-de-caz/therme-bucuresti" className="group rounded-[2px] border border-border bg-card p-6 no-underline hover:no-underline hover:border-accent/40 transition-all">
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA - Spa &amp; Wellness</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-3">HORECA / Spa &amp; Wellness</div>
               <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors" style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)", letterSpacing: "-0.01em" }}>
                 Therme București
               </h3>

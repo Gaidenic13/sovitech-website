@@ -8,11 +8,14 @@ interface Stat {
   decimals?: number
   prefix?: string
   suffix?: string
+  suffixEn?: string
   separator?: boolean
   labelRo: string
   labelEn: string
 }
 
+// Figures follow the editorial register (doc 12, Variant A): every percentage
+// carries its domain in the label, measured bands only — no bare superlatives.
 const stats: Stat[] = [
   {
     value: 250000,
@@ -22,10 +25,11 @@ const stats: Stat[] = [
     labelEn: "sqm automated area across our project portfolio",
   },
   {
-    value: 38,
+    value: 15,
+    prefix: "5-",
     suffix: "%",
-    labelRo: "reducere medie a consumului de energie",
-    labelEn: "average energy consumption reduction",
+    labelRo: "reducere a consumului total al clădirii, documentată în studii independente",
+    labelEn: "reduction in whole-building consumption, documented in independent studies",
   },
   {
     value: 30,
@@ -34,10 +38,12 @@ const stats: Stat[] = [
     labelEn: "successfully completed projects",
   },
   {
-    value: 6.1,
-    decimals: 1,
-    labelRo: "ani perioadă medie de amortizare",
-    labelEn: "years average payback period",
+    value: 3,
+    prefix: "1-",
+    suffix: " ani",
+    suffixEn: " yrs",
+    labelRo: "amortizare pentru optimizarea unui sistem existent",
+    labelEn: "payback when optimising an existing system",
   },
   {
     value: 15,
@@ -47,23 +53,27 @@ const stats: Stat[] = [
   },
 ]
 
-function formatNumber(val: number, stat: Stat): string {
+function formatNumber(val: number, stat: Stat, lang: "ro" | "en" = "ro"): string {
   const fixed = stat.decimals !== undefined ? val.toFixed(stat.decimals) : Math.round(val).toString()
   const parts = fixed.split(".")
   if (stat.separator) {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
   const formatted = parts.join(".")
-  return `${stat.prefix ?? ""}${formatted}${stat.suffix ?? ""}`
+  const suffix = lang === "en" && stat.suffixEn !== undefined ? stat.suffixEn : (stat.suffix ?? "")
+  return `${stat.prefix ?? ""}${formatted}${suffix}`
 }
 
 function useCountUp(target: number, duration: number, started: boolean, decimals = 0) {
-  const [current, setCurrent] = useState(0)
+  // Initialised at the target so the prerendered HTML shows the real figure;
+  // the animation resets to 0 and counts up only once the observer fires.
+  const [current, setCurrent] = useState(target)
   const rafRef = useRef<number | null>(null)
   const startTimeRef = useRef<number | null>(null)
 
   useEffect(() => {
     if (!started) return
+    setCurrent(0)
     const ease = (t: number) => 1 - Math.pow(1 - t, 4)
     const tick = (timestamp: number) => {
       if (!startTimeRef.current) startTimeRef.current = timestamp
@@ -86,7 +96,7 @@ function useCountUp(target: number, duration: number, started: boolean, decimals
 
 function StatCell({ stat, started, lang, size = "lg" }: { stat: Stat; started: boolean; lang: "ro" | "en"; size?: "xl" | "lg" }) {
   const val = useCountUp(stat.value, 600, started, stat.decimals ?? 0)
-  const display = formatNumber(val, stat)
+  const display = formatNumber(val, stat, lang)
   const textSize = size === "xl" ? "text-6xl sm:text-7xl md:text-8xl" : "text-5xl sm:text-6xl md:text-7xl"
 
   return (
@@ -118,7 +128,7 @@ export function StatsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-[#07201C] py-32">
+    <section ref={sectionRef} className="bg-[#07201C] section-xl">
       <div className="container-site">
         <div className="grid lg:grid-cols-[340px_1fr] gap-12 lg:gap-20">
           {/* Left — label, heading, description */}
@@ -131,22 +141,22 @@ export function StatsSection() {
             </h2>
             <p className="text-base font-light leading-relaxed text-white/60 max-w-sm">
               {t(
-                "Cifrele din spatele fiecărui proiect BMS pe care l-am livrat — verificate și actualizate constant.",
-                "The numbers behind every BMS project we've delivered — verified and continuously updated.",
+                "Cifrele din spatele fiecărui proiect BMS pe care l-am livrat, verificate și actualizate constant.",
+                "The numbers behind every BMS project we've delivered, verified and continuously updated.",
               )}
             </p>
           </div>
 
           {/* Right — hero stat, then a 2×2 grid, all sharing one consistent style */}
           <div className="divide-y divide-white/10 border-t border-white/10">
-            <div className="py-10">
+            <div className="section-s">
               <StatCell stat={stats[0]} started={started} lang={lang} size="xl" />
             </div>
-            <div className="grid grid-cols-2 gap-x-12 py-10">
+            <div className="grid grid-cols-2 gap-x-12 section-s">
               <StatCell stat={stats[1]} started={started} lang={lang} />
               <StatCell stat={stats[2]} started={started} lang={lang} />
             </div>
-            <div className="grid grid-cols-2 gap-x-12 py-10">
+            <div className="grid grid-cols-2 gap-x-12 section-s">
               <StatCell stat={stats[3]} started={started} lang={lang} />
               <StatCell stat={stats[4]} started={started} lang={lang} />
             </div>

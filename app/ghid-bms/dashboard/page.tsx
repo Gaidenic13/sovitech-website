@@ -159,7 +159,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 section-l">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-12">
@@ -364,7 +364,7 @@ export default function DashboardPage() {
                     </Link>
                   </Button>
                   <Button variant="outline" className="w-full justify-start bg-transparent" asChild>
-                    <Link href="/resurse/referinte">
+                    <Link href="/referinte">
                       <FileText className="mr-2 h-4 w-4" />
                       {t("Vezi Proiecte", "View Projects")}
                     </Link>

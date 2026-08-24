@@ -11,20 +11,20 @@ const columns: FooterColumn[] = [
     headingRo: "Servicii",
     headingEn: "Services",
     links: [
-      { href: "/servicii#proiectare", labelRo: "Proiectare BMS", labelEn: "BMS Design" },
-      { href: "/servicii#executie", labelRo: "Execuție sisteme", labelEn: "System Installation" },
-      { href: "/servicii#integrare", labelRo: "Integrare sisteme", labelEn: "Systems Integration" },
-      { href: "/servicii#mentenanta", labelRo: "Mentenanță BMS", labelEn: "BMS Maintenance" },
-      { href: "/servicii#consultanta", labelRo: "Consultanță", labelEn: "Consultancy" },
+      { href: "/servicii/proiectare-automatizari-bms", labelRo: "Proiectare BMS", labelEn: "BMS Design" },
+      { href: "/servicii/executie-sisteme-bms", labelRo: "Execuție sisteme", labelEn: "System Installation" },
+      { href: "/servicii/integrare-sisteme-knx-dali-modbus-mbus", labelRo: "Integrare sisteme", labelEn: "Systems Integration" },
+      { href: "/servicii/intretinere-sisteme-bms", labelRo: "Întreținere sisteme BMS", labelEn: "BMS Maintenance" },
+      { href: "/servicii/consultanta", labelRo: "Consultanță", labelEn: "Consultancy" },
     ],
   },
   {
     headingRo: "Resurse",
     headingEn: "Resources",
     links: [
-      { href: "/resurse/referinte", labelRo: "Proiecte & referințe", labelEn: "Projects & References" },
+      { href: "/referinte", labelRo: "Proiecte & referințe", labelEn: "Projects & References" },
       { href: "/ghid-bms", labelRo: "Ghid BMS gratuit", labelEn: "Free BMS Guide" },
-      { href: "/resurse/raport-piata", labelRo: "Raport de piață BMS", labelEn: "BMS Market Report" },
+      { href: "/ghid", labelRo: "Ghiduri de referință", labelEn: "Reference Guides" },
       { href: "/produse", labelRo: "Produse SAUTER", labelEn: "SAUTER Products" },
       { href: "/calculator-roi", labelRo: "Calculator ROI", labelEn: "ROI Calculator" },
     ],
@@ -33,19 +33,19 @@ const columns: FooterColumn[] = [
     headingRo: "Companie",
     headingEn: "Company",
     links: [
-      { href: "/servicii", labelRo: "Despre noi", labelEn: "About Us" },
-      { href: "/sectoare", labelRo: "Sectoare", labelEn: "Sectors" },
+      { href: "/despre-noi", labelRo: "Despre noi", labelEn: "About Us" },
+      { href: "/expertiza", labelRo: "Expertiză", labelEn: "Expertise" },
+      { href: "/referinte", labelRo: "Referințe", labelEn: "References" },
       { href: "/contact", labelRo: "Contact", labelEn: "Contact" },
-      { href: "/contact", labelRo: "Cariere", labelEn: "Careers" },
     ],
   },
   {
     headingRo: "Legal",
     headingEn: "Legal",
     links: [
-      { href: "/contact", labelRo: "Politica de confidențialitate", labelEn: "Privacy Policy" },
-      { href: "/contact", labelRo: "Termeni și condiții", labelEn: "Terms & Conditions" },
-      { href: "/contact", labelRo: "Politica de cookie-uri", labelEn: "Cookie Policy" },
+      { href: "/confidentialitate", labelRo: "Politica de confidențialitate", labelEn: "Privacy Policy" },
+      { href: "/termeni", labelRo: "Termeni și condiții", labelEn: "Terms & Conditions" },
+      { href: "/cookies", labelRo: "Politica de cookies", labelEn: "Cookie Policy" },
     ],
   },
 ]
@@ -56,7 +56,7 @@ export function Footer() {
   return (
     <footer className="bg-[#07201C] border-t border-white/10">
       {/* Top section */}
-      <div className="flex flex-col lg:flex-row justify-between items-start py-16 px-8 gap-12 max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row justify-between items-start section-m px-8 gap-12 max-w-7xl mx-auto">
         {/* Left: logo + CTA buttons */}
         <div className="flex flex-col gap-6 flex-shrink-0">
           <Link href="/" className="flex shrink-0 items-center">
@@ -75,7 +75,7 @@ export function Footer() {
               href="/contact"
               className="inline-flex items-center gap-2 bg-white text-[#07201C] text-sm font-medium px-5 py-2.5 rounded-[1px] hover:bg-[#C8E6C9] transition-colors duration-300"
             >
-              {t("Contactează-ne", "Contact Us")}
+              {t("Cere o evaluare", "Request an assessment")}
             </Link>
             <Link
               href="/calculator-roi"
@@ -83,6 +83,26 @@ export function Footer() {
             >
               {t("Calculator ROI", "ROI Calculator")}
             </Link>
+          </div>
+          {/* Company identification data (copy doc C2, footer column 5) */}
+          <div className="text-white/40 text-xs leading-relaxed">
+            <p className="text-white/60 font-medium">SOVITECH CONTROL SRL</p>
+            <p>Str. Dr. Niculae D. Staicovici nr. 35</p>
+            <p>{t("Sector 5, București, România", "Sector 5, Bucharest, Romania")}</p>
+            <p>CUI 38500895 · Reg. Com. J40/19288/2017</p>
+            <p>
+              {t("Telefon: ", "Phone: ")}
+              <a href="tel:+40720547802" className="hover:text-white transition-colors duration-150">+40 720 547 802</a>
+              {" · "}
+              <a href="mailto:office@sovitech.ro" className="hover:text-white transition-colors duration-150">office@sovitech.ro</a>
+            </p>
+            <p>{t("Program: luni-vineri, 09:00-18:00", "Hours: Monday-Friday, 09:00-18:00")}</p>
+            <p className="mt-3 max-w-xs">
+              {t(
+                "Integrator independent de sisteme de automatizare a clădirilor. Partener autorizat SAUTER din 2017.",
+                "Independent building automation systems integrator. Authorised SAUTER partner since 2017."
+              )}
+            </p>
           </div>
         </div>
 
@@ -107,38 +127,28 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Bottom bar.
+          Social links removed per copy doc C2: the old linkedin.com / x.com
+          anchors pointed at the platforms' start pages, not company profiles.
+          TODO(social): restore a LinkedIn icon once the real company page URL
+          is provided. */}
       <div className="border-t border-white/10 py-6 px-8 max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="text-white/40 text-xs">
-          {t("Termeni · Confidențialitate · Setări cookie ·", "Terms · Privacy · Cookie Settings ·")} &copy;{" "}
-          {new Date().getFullYear()} SOVITECH Control
+          &copy; {new Date().getFullYear()} SOVITECH CONTROL SRL. {t("Toate drepturile rezervate.", "All rights reserved.")}
         </p>
-        <div className="flex items-center gap-4">
-          {/* LinkedIn */}
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/40 hover:text-white transition-colors duration-150"
-            aria-label="LinkedIn"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </a>
-          {/* X / Twitter */}
-          <a
-            href="https://x.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/40 hover:text-white transition-colors duration-150"
-            aria-label="X"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </a>
-        </div>
+        <p className="text-white/40 text-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+          <Link href="/termeni" className="hover:text-white transition-colors duration-150">
+            {t("Termeni și condiții", "Terms & Conditions")}
+          </Link>
+          <span aria-hidden="true">·</span>
+          <Link href="/confidentialitate" className="hover:text-white transition-colors duration-150">
+            {t("Politica de confidențialitate", "Privacy Policy")}
+          </Link>
+          <span aria-hidden="true">·</span>
+          <Link href="/cookies" className="hover:text-white transition-colors duration-150">
+            {t("Politica de cookies", "Cookie Policy")}
+          </Link>
+        </p>
       </div>
     </footer>
   )

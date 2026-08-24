@@ -12,7 +12,7 @@ export default function ResurseSuplimentarePage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0D4D4D] to-[#0A3939] py-16 md:py-20">
+      <section className="bg-gradient-to-br from-[#0D4D4D] to-[#0A3939] section-l">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -29,7 +29,7 @@ export default function ResurseSuplimentarePage() {
       </section>
 
       {/* Tools & Calculators */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="section-l bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             {t("Instrumente Interactive", "Interactive Tools")}
@@ -81,89 +81,7 @@ export default function ResurseSuplimentarePage() {
       </section>
 
       {/* Case Studies */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t("Studii de Caz Detaliate", "Detailed Case Studies")}
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              {t(
-                "Rezultate măsurabile din proiectele noastre de automatizare BMS",
-                "Measurable results from our BMS automation projects",
-              )}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <Card className="p-6 border-border hover:border-primary/40 transition-colors duration-300">
-              <img
-                src="/modern-spa-building-thermal-pools.jpg"
-                alt="Therme Bucuresti"
-                className="w-full h-48 object-cover rounded-[2px] mb-4"
-              />
-              <span className="text-xs font-semibold text-primary">HORECA</span>
-              <h3 className="text-xl font-bold mt-2 mb-2">Therme București</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {t(
-                  "Reducere cu 35% a costurilor energetice pentru cel mai mare complex wellness din Europa.",
-                  "35% reduction in energy costs for the largest wellness complex in Europe.",
-                )}
-              </p>
-              <Button variant="link" className="p-0 h-auto" asChild>
-                <Link href="/resurse/studii-de-caz/therme-bucuresti">{t("Citește studiul →", "Read the case study →")}</Link>
-              </Button>
-            </Card>
-
-            <Card className="p-6 border-border hover:border-primary/40 transition-colors duration-300">
-              <img
-                src="/luxury-hotel-modern-building.jpg"
-                alt="Radisson Blu"
-                className="w-full h-48 object-cover rounded-[2px] mb-4"
-              />
-              <span className="text-xs font-semibold text-primary">{t("HOTEL", "HOTEL")}</span>
-              <h3 className="text-xl font-bold mt-2 mb-2">Radisson Blu București</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {t(
-                  "Optimizare confort și eficiență energetică pentru hotel 5 stele cu 428 camere.",
-                  "Comfort and energy efficiency optimisation for a 5-star hotel with 428 rooms.",
-                )}
-              </p>
-              <Button variant="link" className="p-0 h-auto" asChild>
-                <Link href="/resurse/studii-de-caz/radisson-bucuresti">{t("Citește studiul →", "Read the case study →")}</Link>
-              </Button>
-            </Card>
-
-            <Card className="p-6 border-border hover:border-primary/40 transition-colors duration-300">
-              <img
-                src="/pharmaceutical-manufacturing.png"
-                alt="Rompharm"
-                className="w-full h-48 object-cover rounded-[2px] mb-4"
-              />
-              <span className="text-xs font-semibold text-primary">PHARMA</span>
-              <h3 className="text-xl font-bold mt-2 mb-2">Rompharm Company</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {t(
-                  "Control precis mediu productie pentru facilitati farmaceutice certificate GMP.",
-                  "Precise production environment control for GMP-certified pharmaceutical facilities.",
-                )}
-              </p>
-              <Button variant="link" className="p-0 h-auto" asChild>
-                <Link href="/resurse/referinte">{t("Citește studiul →", "Read the case study →")}</Link>
-              </Button>
-            </Card>
-          </div>
-
-          <div className="text-center mt-8">
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/resurse/referinte">{t("Vezi Toate Proiectele", "View All Projects")}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Series */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="section-l bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -274,7 +192,7 @@ export default function ResurseSuplimentarePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="section-l bg-muted/30">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-8 md:p-12 border-border bg-gradient-to-br from-primary/5 to-primary/10">
             <div className="text-center">

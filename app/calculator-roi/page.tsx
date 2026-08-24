@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Slider } from "@/components/ui/slider"
+import { HeroField } from "@/components/hero-field"
 import {
   ArrowRight,
   ArrowLeft,
@@ -32,6 +33,7 @@ import {
   Mail,
   Linkedin,
   MessageCircle,
+  BookOpen,
 } from "lucide-react"
 import {
   type FormData,
@@ -39,9 +41,12 @@ import {
   type ROIResults,
   industryDefaults,
   calculateROI,
+  SAVINGS_BANDS,
+  type SavingsDomain,
   initialFormData,
 } from "@/lib/roi-calculator"
 import { useLanguage } from "@/lib/language-context"
+import { useScrollToSection } from "@/hooks/use-scroll-to-section"
 
 const TOTAL_STEPS = 6 // steps 1–6, results on step 7
 
@@ -382,7 +387,7 @@ function PainPoints({ formData, onInputChange, onArrayToggle }: {
       )}
 
       {(formData.industry === "healthcare" || formData.industry === "industrial" || formData.industry === "dataCenter") && accent && (
-        <div className="text-center py-12 rounded-[2px] border-2 border-dashed" style={{ borderColor: accent.bg + "30", backgroundColor: industryTint[formData.industry!] }}>
+        <div className="text-center section-s rounded-[2px] border-2 border-dashed" style={{ borderColor: accent.bg + "30", backgroundColor: industryTint[formData.industry!] }}>
           <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: accent.bg }}>
             <Check className="h-7 w-7 text-white" />
           </div>
@@ -510,8 +515,8 @@ function ImplementationPrefs({ formData, onInputChange }: {
       />
       <div className="space-y-6">
         <FormField
-          label={t("Buget disponibil pentru implementare (EUR) — opțional", "Available implementation budget (EUR) — optional")}
-          hint={t("Dacă nu este specificat, estimăm pe baza suprafeței și numărului de clădiri (aprox. 25 EUR/m²).", "If not specified, we estimate based on area and building count (approx. €25/m²).")}
+          label={t("Buget disponibil pentru implementare (EUR, opțional)", "Available implementation budget (EUR, optional)")}
+          hint={t("Dacă nu este specificat, estimăm pe baza suprafeței, a numărului de clădiri și a benzii de cost pentru tipul clădirii.", "If not specified, we estimate based on area, building count and the cost band for the building type.")}
         >
           <Input
             type="number"
@@ -542,7 +547,7 @@ function ImplementationPrefs({ formData, onInputChange }: {
 
 // ─── Step 7: Results ──────────────────────────────────────────────────────────
 
-function ResultsReport({ results, formData, onReset }: { results: ROIResults; formData: FormData; onReset: () => void }) {
+function ResultsReport({ results, formData, onReset, onDomainChange }: { results: ROIResults; formData: FormData; onReset: () => void; onDomainChange: (d: SavingsDomain) => void }) {
   const { t } = useLanguage()
   const accent = formData.industry ? industryAccent[formData.industry] : null
   const tint = formData.industry ? industryTint[formData.industry] : "#F5F4F0"
@@ -555,8 +560,8 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
   const shareUrl = () => `${window.location.origin}/calculator-roi`
   const shareText = () =>
     t(
-      `Am estimat cu calculatorul Sovitech economii anuale de ${fmt(results.totalAnnualSavings)} EUR cu un sistem BMS, cu amortizare în ${results.paybackYears} ani. Calculează și tu:`,
-      `I estimated ${fmt(results.totalAnnualSavings)} EUR in annual savings with a BMS using the Sovitech calculator, with payback in ${results.paybackYears} years. Try it yourself:`
+      `Am estimat cu calculatorul Sovitech economii anuale de ${fmt(results.totalAnnualSavingsLow)}-${fmt(results.totalAnnualSavingsHigh)} EUR cu un sistem BMS, cu amortizare în ${results.paybackYearsLow}-${results.paybackYearsHigh} ani. Calculează și tu:`,
+      `I estimated ${fmt(results.totalAnnualSavingsLow)}-${fmt(results.totalAnnualSavingsHigh)} EUR in annual savings with a BMS using the Sovitech calculator, with payback in ${results.paybackYearsLow}-${results.paybackYearsHigh} years. Try it yourself:`
     )
 
   const handleCopyLink = async () => {
@@ -574,8 +579,8 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
       icon: <Zap className="h-5 w-5 text-[#1F6B4A]" />,
       tint: "#C8E6C9",
       label: t("Economii energie/an", "Energy savings/yr"),
-      sub: `${results.energySavingsPercent}% ${t("reducere", "reduction")}`,
-      value: `${fmt(results.annualEnergySavings)} EUR`,
+      sub: `${results.energySavingsPercentLow}-${results.energySavingsPercentHigh}% ${t(SAVINGS_BANDS[formData.savingsDomain].labelRo, SAVINGS_BANDS[formData.savingsDomain].labelEn)}`,
+      value: `${fmt(results.annualEnergySavingsLow)}-${fmt(results.annualEnergySavingsHigh)} EUR`,
     },
     {
       icon: <Wrench className="h-5 w-5 text-[#8B7B5C]" />,
@@ -624,11 +629,11 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
           </div>
           <div>
             <p className="text-xs text-white/40 font-semibold tracking-widest uppercase mb-2">{t("Recuperare invest.", "Payback")}</p>
-            <p className="text-3xl md:text-4xl font-light text-white">{results.paybackYears} {t("ani", "yrs")}</p>
+            <p className="text-3xl md:text-4xl font-light text-white">{results.paybackYearsLow}-{results.paybackYearsHigh} {t("ani", "yrs")}</p>
           </div>
           <div>
             <p className="text-xs text-white/40 font-semibold tracking-widest uppercase mb-2">{t("Economii/an", "Savings/yr")}</p>
-            <p className="text-3xl md:text-4xl font-light text-white">{fmt(results.totalAnnualSavings)}</p>
+            <p className="text-3xl md:text-4xl font-light text-white">{fmt(results.totalAnnualSavingsLow)}-{fmt(results.totalAnnualSavingsHigh)}</p>
             <p className="text-xs text-white/40 mt-1">EUR</p>
           </div>
           <div>
@@ -637,11 +642,50 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
             <p className="text-xs text-white/40 mt-1">EUR</p>
           </div>
         </div>
+
+        {/* Methodology disclosure — the estimate never appears without its basis */}
+        <div className="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-xs text-white/50 font-light leading-relaxed max-w-xl">
+            {t(
+              "Estimare bazată pe intervale publicate în studii măsurate și pe standardul EN ISO 52120-1, nu o ofertă. Cifra reală rezultă din lista de puncte și din datele de consum ale clădirii.",
+              "An estimate based on published measured ranges and EN ISO 52120-1, not an offer. The real figure comes from the point list and the building\u0027s consumption data.",
+            )}
+          </p>
+          <Link
+            href="/calculator-roi/metodologie"
+            className="print-hide group inline-flex shrink-0 items-center gap-2 rounded-[1px] border border-white/20 px-4 py-2.5 text-xs font-semibold text-white transition-colors duration-300 hover:bg-white/10"
+          >
+            <BookOpen className="h-3.5 w-3.5" />
+            {t("Cum am calculat", "How we calculated this")}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
+          </Link>
+        </div>
       </div>
 
       {/* Savings breakdown */}
       <div className="bg-white rounded-[2px] p-6 border border-[#0D2E2B]/8">
-        <p className="text-xs text-[#888] font-semibold tracking-widest uppercase mb-5">• {t("Detaliu economii", "Savings breakdown")}</p>
+        <p className="text-xs text-[#888] font-semibold tracking-widest uppercase mb-3">• {t("Detaliu economii", "Savings breakdown")}</p>
+
+        {/* Domain selector: a percentage means nothing without "percent of what" */}
+        <div className="print-hide mb-5">
+          <p className="text-xs text-[#888] font-light mb-2">{t("Economia se estimează pe:", "The savings estimate refers to:")}</p>
+          <div className="flex flex-wrap gap-2">
+            {(Object.keys(SAVINGS_BANDS) as SavingsDomain[]).map((d) => (
+              <button
+                key={d}
+                onClick={() => onDomainChange(d)}
+                className="rounded-[2px] border px-3 py-2 text-xs font-medium transition-colors duration-300"
+                style={
+                  formData.savingsDomain === d
+                    ? { backgroundColor: "#0D2E2B", color: "#ffffff", borderColor: "#0D2E2B" }
+                    : { backgroundColor: "#ffffff", color: "#0D2E2B", borderColor: "rgba(13,46,43,0.2)" }
+                }
+              >
+                {t(SAVINGS_BANDS[d].labelRo, SAVINGS_BANDS[d].labelEn)}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="space-y-4">
           {savings.map((s, i) => (
             <div key={i} className="flex items-center justify-between gap-4">
@@ -667,7 +711,7 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
                 <p className="text-xs text-[#888] font-light">{t("Investiție inițială", "Initial investment")}</p>
               </div>
             </div>
-            <p className="text-lg font-light text-[#0D2E2B] shrink-0">{fmt(results.implementationCost)} EUR</p>
+            <p className="text-lg font-light text-[#0D2E2B] shrink-0">{fmt(results.implementationCostLow)}-{fmt(results.implementationCostHigh)} EUR</p>
           </div>
         </div>
       </div>
@@ -779,6 +823,8 @@ function ResultsReport({ results, formData, onReset }: { results: ROIResults; fo
 
 export default function CalculatorROIPage() {
   const [currentStep, setCurrentStep] = useState(1)
+  // Guides the user to the new step (and to the results) after each transition.
+  const stepRef = useScrollToSection<HTMLDivElement>(currentStep)
   const [formData, setFormData] = useState<FormData>(initialFormData)
   const [results, setResults] = useState<ROIResults | null>(null)
   const { t, lang } = useLanguage()
@@ -827,24 +873,31 @@ export default function CalculatorROIPage() {
     <main className="min-h-screen bg-[#F5F4F0]">
       {/* Hero */}
       <section className="bg-[#07201C] pt-12 pb-10 relative overflow-hidden">
+        <HeroField />
         {/* Progress stripe */}
         <div
           className="absolute bottom-0 left-0 h-[3px] transition-all duration-500"
           style={{ width: `${progressPercent}%`, backgroundColor: accent?.bg ?? "#1F6B4A" }}
         />
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
-          <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• Calculator ROI</p>
+          <p className="text-xs text-[#C8E6C9] font-semibold tracking-widest uppercase mb-3">• {t("Calculator de economie", "Savings calculator")}</p>
           <h1 className="text-3xl md:text-5xl font-light text-white leading-tight tracking-tighter mb-3 text-balance">
-            {t("Cât poți economisi cu un BMS?", "How much could you save with a BMS?")}
+            {t(
+              "Calculator de economie și amortizare: rezultate ca interval, cu domeniul declarat",
+              "Savings and payback calculator: results as ranges, with the domain declared",
+            )}
           </h1>
           <p className="text-white/50 font-light text-base max-w-xl leading-relaxed">
-            {t("Completează cei 6 pași și primești o estimare personalizată bazată pe tipul și dimensiunea clădirii tale.", "Complete 6 steps and receive a personalised estimate based on your building type and size.")}
+            {t(
+              "Calculatorul estimează investiția, economia anuală și perioada de amortizare pentru un sistem BMS, pornind de la tipul clădirii, dimensiune și consum. Toate rezultatele apar ca interval, nu ca cifră unică, iar procentul de economie apare întotdeauna cu domeniul lui: din consumul total al clădirii sau din consumul HVAC. Estimarea nu este ofertă.",
+              "The calculator estimates the investment, the annual savings and the payback period for a BMS, starting from building type, size and consumption. All results appear as ranges, not single figures, and the savings percentage always carries its domain: of the building's total consumption or of HVAC consumption. The estimate is not an offer.",
+            )}
           </p>
         </div>
       </section>
 
       {/* Wizard */}
-      <section className="py-10">
+      <section className="section-s">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           {/* Progress bar — only visible on steps 1-6 */}
           {currentStep <= TOTAL_STEPS && (
@@ -853,15 +906,59 @@ export default function CalculatorROIPage() {
             </div>
           )}
 
+          {/* Transparency link — present throughout the flow, not just on results,
+              so the methodology is available before the number is, not after */}
+          <Link
+            href="/calculator-roi/metodologie"
+            className="group mb-5 flex items-center justify-between gap-4 rounded-[2px] border border-[#0D2E2B]/10 bg-white px-5 py-4 transition-colors duration-300 hover:border-[#1F6B4A]/40 hover:bg-[#C8E6C9]/20"
+          >
+            <div className="flex items-start gap-3 min-w-0">
+              <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-[#1F6B4A]" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-[#0D2E2B]">
+                  {t("Cum calculăm estimarea", "How we calculate the estimate")}
+                </p>
+                <p className="text-xs text-[#888888] font-light leading-relaxed">
+                  {t(
+                    "Bazat pe standardul european EN ISO 52120-1. Vezi formula, sursele și ce economii s-au măsurat în proiecte reale.",
+                    "Based on the European standard EN ISO 52120-1. See the formula, the sources, and what field studies actually measured.",
+                  )}
+                </p>
+              </div>
+            </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-[#1F6B4A] transition-transform duration-150 group-hover:translate-x-0.5" />
+          </Link>
+
           {/* Step content */}
-          <div className="bg-white rounded-[2px] p-6 md:p-10 border border-[#0D2E2B]/10 min-h-[400px]">
+          <div
+            ref={stepRef}
+            tabIndex={-1}
+            role="group"
+            aria-label={
+              currentStep > TOTAL_STEPS
+                ? t("Rezultatele analizei ROI", "ROI analysis results")
+                : `${t("Pasul", "Step")} ${currentStep} ${t("din", "of")} ${TOTAL_STEPS}`
+            }
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F6B4A]/40 bg-white rounded-[2px] p-6 md:p-10 border border-[#0D2E2B]/10 min-h-[400px]"
+          >
             {currentStep === 1 && <IndustrySelect formData={formData} onSelect={(id) => setFormData((p) => ({ ...p, industry: id }))} />}
             {currentStep === 2 && <CurrentSituation formData={formData} onInputChange={onInputChange} />}
             {currentStep === 3 && <PainPoints formData={formData} onInputChange={onInputChange} onArrayToggle={onArrayToggle} />}
             {currentStep === 4 && <MaintenanceData formData={formData} onInputChange={onInputChange} />}
             {currentStep === 5 && <GoalsSelection formData={formData} onArrayToggle={onArrayToggle} />}
             {currentStep === 6 && <ImplementationPrefs formData={formData} onInputChange={onInputChange} />}
-            {currentStep === 7 && results && <ResultsReport results={results} formData={formData} onReset={handleReset} />}
+            {currentStep === 7 && results && (
+              <ResultsReport
+                results={results}
+                formData={formData}
+                onReset={handleReset}
+                onDomainChange={(d) => {
+                  const next = { ...formData, savingsDomain: d }
+                  setFormData(next)
+                  setResults(calculateROI(next))
+                }}
+              />
+            )}
           </div>
 
           {/* Navigation — hidden on results */}

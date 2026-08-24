@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { HeroField } from "@/components/hero-field"
 import { products, categoryEn } from "@/lib/product-data"
 
 export default function ProdusePage() {
@@ -45,7 +46,8 @@ export default function ProdusePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-white/10 bg-[#07201C] py-16 lg:py-20">
+      <section className="relative overflow-hidden border-b border-white/10 bg-[#07201C] section-l">
+        <HeroField />
         <div className="container-site relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-medium text-[#C8E6C9]">
@@ -65,11 +67,13 @@ export default function ProdusePage() {
 
           <div className="mx-auto mt-10 max-w-5xl">
             <div className="grid gap-4 md:grid-cols-3">
-              {/* Technical documentation — informational */}
+              {/* Technical documentation — informational.
+                  No PDFs are hosted on the site yet, so the copy promises
+                  documentation on request, not downloadable files. */}
               <div className="rounded-[2px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
                 <h3 className="mb-2 font-semibold text-white">{t("Documentație tehnică", "Technical Documentation")}</h3>
                 <p className="text-sm text-white/60">
-                  {t("Fișe tehnice și manuale în format PDF disponibile pentru fiecare produs în secțiunea de detalii.", "Technical data sheets and manuals in PDF format available for each product in the details section.")}
+                  {t("Specificațiile principale sunt pe pagina fiecărui produs. Fișele tehnice și manualele complete se trimit la cerere, pentru orice produs din gamă.", "The main specifications are on each product page. Full data sheets and manuals are sent on request, for any product in the range.")}
                 </p>
               </div>
 
@@ -135,7 +139,7 @@ export default function ProdusePage() {
       </section>
 
       {/* Products Grid */}
-      <section className="py-16">
+      <section className="section-m">
         <div className="container-site">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredProducts.map((product) => {
@@ -259,7 +263,7 @@ export default function ProdusePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border/40 bg-gradient-to-br from-primary/10 via-background to-primary/5 py-16 lg:py-20">
+      <section className="border-t border-border/40 bg-gradient-to-br from-primary/10 via-background to-primary/5 section-l">
         <div className="container-site">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">{t("Ai nevoie de consultanță tehnică?", "Need technical consultancy?")}</h2>
@@ -267,12 +271,20 @@ export default function ProdusePage() {
               {t("Specialiștii noștri sunt disponibili pentru a oferi informații despre gama de produse, prețuri și disponibilitate. Te ajutăm să alegi echipamentele potrivite pentru proiectul tău BMS.", "Our specialists are available to provide information about the product range, pricing and availability. We help you choose the right equipment for your BMS project.")}
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                {t("Contactează un specialist", "Contact a specialist")}
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                <Link href="/contact">
+                  {t("Contactează un specialist", "Contact a specialist")}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
-              <Button size="lg" variant="outline">
-                {t("Descarcă catalog complet PDF", "Download full PDF catalogue")}
+              <Button size="lg" variant="outline" asChild>
+                <a
+                  href="https://issuu.com/sauter/docs/2026_2027_catalogue_product_and_sys_6fc437e2aa86d2?fr=sZWRkMjg0Mjg1NTI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("Răsfoiește catalogul complet SAUTER", "Browse the full SAUTER catalogue")}
+                </a>
               </Button>
             </div>
           </div>

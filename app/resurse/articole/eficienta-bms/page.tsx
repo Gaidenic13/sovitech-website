@@ -13,32 +13,35 @@ export default function EficientaBMSArticlePage() {
     {
       category: t("Studiu de Caz", "Case Study"),
       title: t(
-        "Cum a redus Therme București costurile cu 38% prin automatizare BMS",
-        "How Therme București cut costs by 38% through BMS automation",
+        "Automatizare BMS la Therme București, pas cu pas",
+        "BMS automation at Therme Bucharest, step by step",
       ),
       date: t("Dec 20, 2025", "Dec 20, 2025"),
       readTime: "8 min",
       image: "/thermal-spa-modern-building.jpg",
+      href: "/resurse/studii-de-caz/therme-bucuresti",
     },
     {
       category: t("Ghid Tehnic", "Technical Guide"),
       title: t(
-        "Integrarea protocoalelor BACnet și KNX: Ghid complet 2026",
-        "Integrating the BACnet and KNX protocols: Complete 2026 guide",
+        "Sistem BMS pentru clădiri: ghidul complet 2026",
+        "Building management systems: the complete 2026 guide",
       ),
       date: t("Dec 15, 2025", "Dec 15, 2025"),
       readTime: "15 min",
       image: "/building-automation-technical-diagram.jpg",
+      href: "/ghid/sisteme-bms-cladiri",
     },
     {
-      category: t("Analiză Piață", "Market Analysis"),
+      category: t("Ghid", "Guide"),
       title: t(
-        "Piața BMS din România: Tendințe și previziuni 2026",
-        "The BMS market in Romania: Trends and forecasts for 2026",
+        "Cât costă un sistem BMS în România: structura de preț",
+        "What a BMS costs in Romania: the price structure",
       ),
-      date: t("Dec 10, 2025", "Dec 10, 2025"),
+      date: t("Aug 19, 2026", "Aug 19, 2026"),
       readTime: "10 min",
       image: "/romania-cityscape-modern-buildings.jpg",
+      href: "/resurse/cost-sistem-bms",
     },
   ]
 
@@ -58,7 +61,7 @@ export default function EficientaBMSArticlePage() {
       </div>
 
       {/* Article Header */}
-      <article className="container mx-auto px-4 py-12">
+      <article className="container mx-auto px-4 section-s">
         <div className="grid gap-12 lg:grid-cols-[280px_1fr]">
           {/* Left Sidebar */}
           <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
@@ -80,17 +83,17 @@ export default function EficientaBMSArticlePage() {
               <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">
                 {t("Scris de", "Written by")}
               </p>
-              <Link href="#" className="group flex items-center gap-3">
-                <div className="relative h-12 w-12 overflow-hidden rounded-full bg-muted">
-                  <Image src="/professional-male-engineer-headshot.jpg" alt="Andrei Popescu" fill className="object-cover" />
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#0D2E2B] text-xs font-semibold text-[#C8E6C9]">
+                  SC
                 </div>
                 <div>
                   <p className="font-medium text-foreground group-hover:text-primary transition-colors">
-                    Andrei Popescu
+                    Echipa de inginerie Sovitech Control
                   </p>
                   <p className="text-sm text-muted-foreground">{t("Director Tehnic, Sovitech", "Technical Director, Sovitech")}</p>
                 </div>
-              </Link>
+              </div>
             </div>
 
             {/* Share */}
@@ -130,12 +133,12 @@ export default function EficientaBMSArticlePage() {
               </h1>
               <p className="mb-6 text-xl text-muted-foreground leading-relaxed">
                 {t(
-                  "Analiza datelor din 150+ proiecte BMS implementate în România arată economii semnificative - dar rezultatele variază în funcție de sector și complexitate.",
+                  "Studiile independente, pe peste 1.000 de proiecte măsurate, arată economii reale, dar rezultatele variază în funcție de sector și complexitate.",
                   "An analysis of data from 150+ BMS projects implemented in Romania shows significant savings - but results vary by sector and complexity.",
                 )}
               </p>
               <p className="text-sm text-muted-foreground">
-                {t("Ian 15, 2026 — 12 min citire", "Jan 15, 2026 — 12 min read")}
+                {t("Ian 15, 2026 · 12 min citire", "Jan 15, 2026 · 12 min read")}
               </p>
             </header>
 
@@ -165,8 +168,8 @@ export default function EficientaBMSArticlePage() {
 
               <p className="text-muted-foreground leading-relaxed">
                 {t(
-                  "Bazându-ne pe analiza a peste 150 de proiecte implementate în ultimii 15 ani, am identificat trei probleme structurale în studiile existente:",
-                  "Based on our analysis of over 150 projects implemented in the last 15 years, we have identified three structural problems in the existing studies:",
+                  "Bazându-ne pe analiza a studii independente pe peste 1.000 de proiecte măsurate, am identificat trei probleme structurale în studiile existente:",
+                  "Based on our analysis of independent studies across more than 1,000 measured projects, we have identified three structural problems in the existing studies:",
                 )}
               </p>
 
@@ -333,11 +336,11 @@ export default function EficientaBMSArticlePage() {
                   </li>
                   <li>
                     • <strong className="text-foreground">{t("Celelalte sectoare:", "The other sectors:")}</strong>{" "}
-                    {t("28-38% reducere medie", "28-38% average reduction")}
+                    {t("10-20% reducere pe consumul HVAC, acolo unde reglajul era deficitar", "10-20% reduction in HVAC consumption where controls were deficient")}
                   </li>
                 </ul>
                 <p className="mt-4 text-muted-foreground">
-                  {t("Deci: da, o îmbunătățire semnificativă —", "So: yes, a significant improvement —")}{" "}
+                  {t("Deci: da, o îmbunătățire semnificativă,", "So: yes, a significant improvement,")}{" "}
                   <strong className="text-foreground">{t("nu", "not")}</strong>{" "}
                   {t(
                     "prăpastia enormă de 20-30 puncte procentuale raportată în alte studii.",
@@ -514,8 +517,8 @@ export default function EficientaBMSArticlePage() {
                       )}
                     </strong>{" "}
                     {t(
-                      "Proiectele de succes — cele care contează — nu depind de un singur sector.",
-                      "Successful projects — the ones that matter — do not depend on a single sector.",
+                      "Proiectele de succes, cele care contează, nu depind de un singur sector.",
+                      "Successful projects, the ones that matter, do not depend on a single sector.",
                     )}
                   </span>
                 </li>
@@ -591,8 +594,8 @@ export default function EficientaBMSArticlePage() {
                   <span>
                     <strong className="text-foreground">{t("Piața BMS este eficientă.", "The BMS market is efficient.")}</strong>{" "}
                     {t(
-                      "Prețurile reflectă valoarea reală. Sistemele BMS nu sunt soluții magice — sunt investiții solide cu ROI previzibil.",
-                      "Prices reflect real value. BMS systems are not magic solutions — they are solid investments with predictable ROI.",
+                      "Prețurile reflectă valoarea reală. Sistemele BMS nu sunt soluții magice, ci investiții solide cu ROI previzibil.",
+                      "Prices reflect real value. BMS systems are not magic solutions, but solid investments with predictable ROI.",
                     )}
                   </span>
                 </li>
@@ -620,7 +623,7 @@ export default function EficientaBMSArticlePage() {
             <h2 className="mb-12 text-2xl font-bold text-foreground">{t("Ultimele articole", "Latest articles")}</h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {latestArticles.map((article, index) => (
-                <Link key={index} href="#" className="group">
+                <Link key={index} href={article.href} className="group">
                   <div className="relative mb-4 aspect-[2/1] overflow-hidden rounded-[2px] bg-muted">
                     <Image
                       src={article.image || "/placeholder.svg"}
@@ -636,7 +639,7 @@ export default function EficientaBMSArticlePage() {
                     {article.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {article.date} —{" "}
+                    {article.date} ·{" "}
                     <span className="text-primary">
                       {article.readTime} {t("citire", "read")}
                     </span>
