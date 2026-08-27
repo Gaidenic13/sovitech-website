@@ -23,19 +23,21 @@ export function LatestArticles() {
             const colors = badgeColorsFor(category)
             return (
               <Link key={a.slug} href={a.href} className="group flex flex-col">
-                <div
-                  className="relative aspect-[16/10] rounded-[2px] overflow-hidden border border-[#0D2E2B]/8 mb-4"
-                  style={{ backgroundColor: a.imageBg }}
-                >
-                  <div className="absolute inset-[10%]">
-                    <Image
-                      src={a.image}
-                      alt={t(a.titleRo, a.titleEn)}
-                      fill
-                      className="object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
+                {a.image && (
+                  <div
+                    className="relative aspect-[16/10] rounded-[2px] overflow-hidden border border-[#0D2E2B]/8 mb-4"
+                    style={{ backgroundColor: a.imageBg }}
+                  >
+                    <div className="absolute inset-[10%]">
+                      <Image
+                        src={a.image}
+                        alt={t(a.titleRo, a.titleEn)}
+                        fill
+                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
                 <span
                   className="inline-block self-start text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full"
                   style={{ backgroundColor: colors.bg, color: colors.text }}

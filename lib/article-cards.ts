@@ -1,17 +1,19 @@
 import { coverBgFor, coverFor } from "./article-covers"
 import { categories, hrefFor, publishedIn, type Category } from "./site-routes"
 
-// Card-ready metadata for every published article that has a cover — the
-// only articles listed on the site for now (pieces without a cover and the
-// unwritten case studies are deliberately kept out of all listings until
-// real content exists). Titles and categories come from the route registry;
-// dates are each article's datePublished and the read times are word count
-// divided by 200 wpm.
+// Card-ready metadata for every published article. Titles and categories come
+// from the route registry; dates are each article's datePublished and the read
+// times are word count divided by 200 wpm.
+//
+// `image` is undefined while cover artwork is being reworked (see
+// lib/article-covers.ts). Listings stay complete either way — every surface
+// renders the cover frame only when there is an image to put in it.
 
 export interface ArticleCard {
   slug: string
   href: string
-  image: string
+  /** Cover path, or undefined when no artwork is set for this slug. */
+  image?: string
   /** Cover artwork background, painted behind the inset image. */
   imageBg: string
   /** Registry category key, for filtering. */
@@ -46,13 +48,13 @@ const info: Record<string, { iso: string; dateRo: string; dateEn: string; min: n
 /** Every listed article, pillar guide first, in registry order. */
 export function coverArticleCards(): ArticleCard[] {
   return [...publishedIn("ghid"), ...publishedIn("resurse")]
-    .filter((e) => !e.archive && coverFor(e.slug))
+    .filter((e) => !e.archive && info[e.slug])
     .map((e) => {
       const i = info[e.slug]
       return {
         slug: e.slug,
         href: hrefFor(e),
-        image: coverFor(e.slug)!,
+        image: coverFor(e.slug),
         imageBg: coverBgFor(e.slug),
         category: e.category,
         titleRo: e.titleRo,

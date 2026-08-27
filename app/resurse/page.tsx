@@ -230,19 +230,21 @@ export default function ResursePage() {
             {/* The whole card is clickable via the title link's ::after overlay,
                 so the accessible name stays the article title alone. */}
             <div className="group relative grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
-              <div
-                className="relative aspect-[16/10] rounded-[2px] overflow-hidden border border-[#0D2E2B]/8"
-                style={{ backgroundColor: featured.imageBg }}
-              >
-                <div className="absolute inset-[10%]">
-                  <Image
-                    src={featured.image}
-                    alt=""
-                    fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+              {featured.image && (
+                <div
+                  className="relative aspect-[16/10] rounded-[2px] overflow-hidden border border-[#0D2E2B]/8"
+                  style={{ backgroundColor: featured.imageBg }}
+                >
+                  <div className="absolute inset-[10%]">
+                    <Image
+                      src={featured.image}
+                      alt=""
+                      fill
+                      className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
               <div>
                 <p className="section-label mb-4">{t.featured}</p>
                 <h2 className="text-3xl md:text-4xl font-light text-[#0D2E2B] leading-tight tracking-tighter mb-4 text-balance">
@@ -292,12 +294,14 @@ export default function ResursePage() {
                     className="group grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center py-6 border-b border-[#0D2E2B]/10"
                   >
                     <div className="flex items-start gap-5 min-w-0">
-                      <span
-                        className="hidden sm:block h-16 w-24 shrink-0 rounded-[2px] overflow-hidden border border-[#0D2E2B]/8 p-1.5"
-                        style={{ backgroundColor: a.imageBg }}
-                      >
-                        <img src={a.image} alt="" className="h-full w-full object-contain" />
-                      </span>
+                      {a.image && (
+                        <span
+                          className="hidden sm:block h-16 w-24 shrink-0 rounded-[2px] overflow-hidden border border-[#0D2E2B]/8 p-1.5"
+                          style={{ backgroundColor: a.imageBg }}
+                        >
+                          <img src={a.image} alt="" className="h-full w-full object-contain" />
+                        </span>
+                      )}
                       <span className="min-w-0">
                         <span className="block text-[11px] font-semibold tracking-widest uppercase text-[#888888] mb-1.5">
                           {tr(a.categoryRo, a.categoryEn)}
