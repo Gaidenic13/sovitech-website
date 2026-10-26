@@ -1,0 +1,17 @@
+A non-residential building in Romania with more than 290 kW of heating or air conditioning? The BACS obligation in Law 372/2005 has applied since 31 December 2024.
+
+The threshold is per system family (heating, air conditioning, or combined with ventilation), and the obligation applies where technically and economically feasible. The 70 kW threshold in Directive (EU) 2024/1275 comes next, but is not yet transposed into Romanian law.
+
+The point of our guide: you don’t buy a BMS, you specify it. In the carousel:
+• what a BMS does, across its three levels;
+• what it can deliver when properly commissioned: an estimated 10–20% less HVAC energy use, in a building without coordinated automation;
+• indicative cost: 9–18 EUR/m² for class A offices, excluding VAT, and what budgets usually leave out;
+• eight mistakes that keep coming back, and ten questions for the integrator, answered in writing.
+
+A closed system looks fine in year one. It shows in year five, when you want 40 more points and get a single quote.
+
+Save this for your next tender, and send it to whoever writes the specification.
+
+Full guide (in Romanian): https://www.sovitech.ro/ghid/sisteme-bms-cladiri
+
+#BMS #BACS #BuildingAutomation #FacilityManagement #EnergyEfficiency

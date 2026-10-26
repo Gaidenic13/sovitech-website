@@ -1,0 +1,10 @@
+Note pentru publicare / Publishing notes
+
+RO: Dacă nu vrei link extern în textul postării, mută linia „Ghidul complet: …” în primul comentariu și încheie postarea cu „Link în primul comentariu.”
+EN: To keep the external link out of the post body, move the "Full guide: …" line to the first comment and end the post with "Link in the first comment."
+
+Încarcă PDF-ul ca „Document” în LinkedIn (titlul documentului: „Sisteme BMS pentru clădiri: ghid în 13 slide-uri”).
+Upload the PDF as a LinkedIn "Document" (document title: "Building management systems: a 13-slide guide").
+
+De confirmat: limba modelului de caiet de sarcini (pentru varianta EN, slide 13).
+To confirm: the language of the specification template (EN version, slide 13).
